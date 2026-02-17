@@ -1,0 +1,207 @@
+{
+      "slug": "emergency-relief",
+    "cardImage": "emergency-relief",
+  "heroBackground": "emergency-relief-hero",
+  "routeExtension": "flood",
+  "heroImages": [
+    {
+      "src": "emergency-relief-1",
+      "alt": "emergency-relief-1",
+      "position": "main"
+    },
+    {
+      "src": "emergency-relief-2",
+      "alt": "emergency-relief-2",
+      "position": "small-top"
+    },
+    {
+      "src": "emergency-relief-3",
+      "alt": "emergency-relief-3",
+      "position": "medium"
+    },
+    {
+      "src": "emergency-relief-4",
+      "alt": "emergency-relief-4",
+      "position": "small-bottom"
+    }
+  ],
+  "en": {
+    "title": "Disaster Relief and Rehabilitation",
+    "description": "During floods, cyclones, and fires—As-Sunnah Foundation stands beside helpless people in every disaster. You can also join us in this humanitarian mission.",
+        "content": "<h3>Program Details</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/AK8X3pjgaI0\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>Bangladesh is a disaster-prone country. Every year, floods, cyclones, tidal surges, landslides, and other natural disasters affect hundreds of thousands of people. Especially during the monsoon season, about 26,000 square kilometers (18%) of the country's area is flooded, causing extreme suffering and homelessness for people in the northern and other regions. In addition, various disasters such as cyclones, fires, and cold waves severely disrupt the lives of helpless people.</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>As-Sunnah Foundation tirelessly works across the country to stand beside disaster-affected people. Since its inception, we have been implementing emergency relief operations during disasters along with long-term rehabilitation programs.</p>",
+    "features": [
+      {
+        "title": "Project Goals & Objectives",
+        "values": [
+          "Rescue operations for disaster victims",
+          "Relief distribution",
+          "Post-disaster rehabilitation"
+        ]
+      },
+      {
+        "title": "Beneficiaries",
+        "icon": "ListIconUser",
+        "values": [
+          "Disaster-affected people of all religions and communities"
+        ]
+      },
+      {
+        "title": "Expense Categories",
+        "values": ["Tool and material purchase", "Overall management"]
+      },
+      {
+        "title": "Project Areas",
+        "icon": "ListIconLocation",
+        "values": ["All 64 districts"]
+      },
+      {
+        "title": "Duration",
+        "icon": "ListIconCalendar",
+        "values": ["From the onset of disaster until rehabilitation (unspecified duration)"]
+      }
+    ],
+    "tagline": "Extend Your Hand to the distressed",
+    "stats": {
+      "title": "Impact Statistics",
+      "table": {
+        "columns": [
+          "Year",
+          "Cash Assistance",
+          "Livestock",
+          "Auto Rickshaws",
+          "Full or Partial House Constructions",
+          "Families Provided with Relief"
+        ],
+        "rows": [
+          ["2024", "৳300,190,000", "91", "100", "3,000", "240,000"],
+          ["2023", "৳35,000,000", "-", "-", "350", "7,552"],
+          ["2022", "৳4,980,000", "-", "-", "1,050", "50,350"],
+          ["2019", "-", "-", "-", "180", "1,500"]
+        ],
+        "footer": {
+          "label": "Total",
+          "values": ["৳34,01,70,000", "91", "100", "4,580", "299,402 families"]
+        }
+      }
+    },
+    "faq": [
+      {
+        "question": "How can I donate to the Emergency Relief Project?",
+        "answer": "Click here"
+      },
+      {
+        "question": "What is the distribution process like?",
+        "answer": "Relief is distributed in affected regions through As-Sunnah Foundation's staff and volunteers."
+      },
+      {
+        "question": "Can I donate Zakat to this project?",
+        "answer": "No, Zakat cannot be donated to this project."
+      }
+    ]
+  },
+  
+  "bn": {
+    "title": "দুর্যোগে ত্রাণ ও পুনর্বাসন",
+    "description": "বন্যা, ঘূর্ণিঝড়, অগ্নিকাণ্ড—প্রতিটি দুর্যোগে অসহায় মানুষের পাশে আছে আস-সুন্নাহ ফাউন্ডেশন। এই মানবিক অভিযাত্রায় আপনিও আমাদের সঙ্গী হতে পারেন।",
+        "content": "<h3>কার্যক্রমের বিবরণ</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/AK8X3pjgaI0\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>বাংলাদেশ প্রাকৃতিক দুর্যোগপ্রবণ একটি দেশ। প্রতিবছর বন্যা, ঘূর্ণিঝড়, জলোচ্ছ্বাস, ভূমিধস ও অন্যান্য প্রাকৃতিক বিপর্যয়ে লক্ষাধিক মানুষ ক্ষতিগ্রস্ত হয়। বিশেষ করে বর্ষাকালে দেশের প্রায় ২৬,০০০ বর্গকিলোমিটার এলাকা (১৮%) বন্যায় প্লাবিত হয়, যা উত্তরাঞ্চলসহ বিভিন্ন অঞ্চলের মানুষকে চরম দুর্ভোগ ও বাস্তুহারা করে তোলে। এছাড়াও ঘূর্ণিঝড়, অগ্নিকাণ্ড, শৈত্যপ্রবাহসহ নানা দুর্যোগে অসহায় মানুষের জীবনযাত্রা বিপর্যস্ত হয়ে পড়ে।</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>আস-সুন্নাহ ফাউন্ডেশন দেশজুড়ে দুর্যোগে ক্ষতিগ্রস্ত মানুষের পাশে দাঁড়াতে নিরলসভাবে কাজ করে যাচ্ছে। প্রতিষ্ঠালগ্ন থেকে আমরা বিভিন্ন দুর্যোগে জরুরি পরিস্থিতিতে ত্রাণ কার্যক্রমের পাশাপাশি দীর্ঘমেয়াদি পুনর্বাসন কর্মসূচি বাস্তবায়ন করছি।</p>",
+    "features": [
+      {
+        "title": "প্রকল্পের লক্ষ্য-উদ্দেশ্য",
+        "values": [
+          "দুর্গতদের উদ্ধার কার্যক্রম", 
+          "ত্রাণ বিতরণ",
+          "দুর্যোগ পরবর্তী পুনর্বাসন"
+        ]
+      },
+      {
+        "title": "উপকারভোগী",
+        "icon": "ListIconUser",
+        "values": [
+          "ধর্ম-বর্ণ নির্বিশেষে দুর্গত মানুষ"
+        ]
+      },
+      {
+        "title": "ব্যয়ের খাত",
+        "values": ["উপকরণ ক্রয়", "সার্বিক ব্যবস্থাপনা"]
+      },
+      {
+        "title": "প্রকল্পের এলাকা",
+        "icon": "ListIconLocation",
+        "values": ["৬৪ জেলা"]
+      },
+      {
+        "title": "মেয়াদ",
+        "icon": "ListIconCalendar",
+        "values": ["দুর্যোগের শুরু থেকে পুনর্বাসন পর্যন্ত (অনির্দিষ্ট সময়)"]
+      }
+    ],
+    "tagline": "হাত বাড়ান দুর্গতের প্রতি",
+    "stats": {
+      "title": "ইমপ্যাক্ট পরিসংখ্যান",
+      "table": {
+        "columns": [
+          "সাল", 
+          "নগদ অর্থ", 
+          "গবাদি পশু", 
+          "অটো গাড়ি", 
+          "পূর্ণ কিংবা আংশিক ঘর নির্মাণ", 
+          "ত্রাণ বিতরণ পরিবার"
+        ],
+        "rows": [
+          ["২০২৪", "৳ ৩০০,১৯০,০০০", "৯১", "১০০", "৩,০০০", "২৪০,০০০"],
+          ["২০২৩", "৳ ৩৫,০০০,০০০", "-", "-", "৩৫০", "৭,৫৫২"],
+          ["২০২২", "৳ ৪,৯৮০,০০০", "-", "-", "১,০৫০", "৫০,৩৫০"],
+          ["২০১৯", "-", "-", "-", "১৮০", "১,৫০০"]
+        ],
+        "footer": {
+          "label": "মোট",
+          "values": ["৳৩৪,০১,৭০,০০০", "৯১টি", "১০০", "৪,৫৮০", "২৯৯,৪০২ পরিবার"]
+        }
+      }
+    },
+    "faq": [
+      {
+        "question": "আমি কীভাবে জরুরি দুর্যোগ প্রজেক্টে জন্য দান করতে পারি?",
+        "answer": "এখানে ক্লিক করুন"
+      },
+      {
+        "question": "বিতরণ প্রক্রিয়া কেমন?",
+        "answer": "আস-সুন্নাহ ফাউন্ডেশনের কর্মী ও স্বেচ্ছাসেবকদের মাধ্যমে দুর্গত অঞ্চলে বিতরণ করা হয়।"
+      },
+      {
+        "question": "এই প্রকল্পে কি যাকাতের টাকা দেয়া যাবে?",
+        "answer": "না, এই প্রকল্পে যাকাতের টাকা দেয়া যাবে না।"
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/assets/activities-gallery/flood/flood-1.webp",
+      "alt": "emergency-relief-1"
+    },
+    {
+      "src": "/assets/activities-gallery/flood/flood-2.webp",
+      "alt": "emergency-relief-2"
+    },
+    {
+      "src": "/assets/activities-gallery/flood/flood-3.webp",
+      "alt": "emergency-relief-3"
+    },
+    {
+      "src": "/assets/activities-gallery/flood/flood-4.webp",
+      "alt": "emergency-relief-4"
+    },
+    {
+      "src": "/assets/activities-gallery/flood/flood-5.webp",
+      "alt": "emergency-relief-5"
+    },
+    {
+      "src": "/assets/activities-gallery/flood/flood-6.webp",
+      "alt": "emergency-relief-6"
+    },
+    {
+      "src": "/assets/activities-gallery/flood/flood-7.webp",
+      "alt": "emergency-relief-7"
+    }
+  ]
+}

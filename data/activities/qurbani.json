@@ -1,0 +1,216 @@
+{
+  "slug": "qurbani",
+  "cardImage": "qurbani",
+  "heroBackground": "qurbani-hero",
+  "routeExtension": "qurbani",
+  "heroImages": [
+    {
+      "src": "qurbani-1",
+      "alt": "কুরবানী",
+      "position": "main"
+    },
+    {
+      "src": "qurbani-2",
+      "alt": "কুরবানী",
+      "position": "small-top"
+    },
+    {
+      "src": "qurbani-3",
+      "alt": "কুরবানী",
+      "position": "medium"
+    },
+    {
+      "src": "qurbani-4",
+      "alt": "কুরবানী",
+      "position": "small-bottom"
+    }
+  ],
+  "en": {
+    "title": "Qurbani for Everyone",
+    "description": "Fulfill the meat deficit of marginalized people, spread the joy of Eid, and most importantly, perform a Qurbani for the pleasure of Allah through As-Sunnah Foundation's management.",
+        "content": "<h3>Qurbani for Everyone</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/M66BLITLgzs\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>In Bangladesh, there are millions of families who do not have the opportunity to eat meat from cows or goats throughout the year. The only chance for them to eat meat is during the Eid of Qurbani. These people live in extremely impoverished areas where Qurbani is very rare, and often they do not receive sufficient meat even on Eid day.</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>On the other hand, the number of Qurbanis performed in a single building in the city is often more than what an entire village might have. Therefore, to ensure a balanced distribution of Qurbani meat, the initiative “Qurbani for Everyone” is organized.</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>Through this initiative, donors from the city can perform their Qurbani by slaughtering animals in remote regions of northern Bangladesh and distributing the meat among the poor and underprivileged people of those areas.</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>Qurbani is a prayer that can be performed through a representative. Anyone can perform their Qurbani or a part of it through our platform and reach the truly poor people.</p>",
+    "features": [
+      {
+        "title": "Project Objectives",
+        "values": [
+          "To provide the opportunity for extremely poor people in remote areas to eat meat during the Eid of Qurbani.",
+          "To ensure the fulfillment of donors' trust and intentions through reliable management.",
+          "To bring balance to the joy of Eid between urban and rural areas."
+        ]
+      },
+      {
+        "title": "Beneficiaries",
+        "icon": "ListIconUser",
+        "values": [
+          "Poor families in remote areas",
+          "Orphaned and widowed families",
+          "Unemployed, day laborers, and marginalized communities",
+          "Families that cannot afford to perform Qurbani"
+        ]
+      },
+      {
+        "title": "Expense Categories",
+        "values": ["Purchase of Qurbani animals", "Distribution", "Management expenses"]
+      },
+      {
+        "title": "Project Area",
+        "icon": "ListIconLocation",
+        "values": ["Poverty-stricken areas across all 64 districts"]
+      },
+      {
+        "title": "Duration",
+        "icon": "ListIconCalendar",
+        "values": ["Annual and permanent project (Eid-ul-Azha centric)"]
+      }
+    ],
+    "tagline": "Spread the joy of Eid",
+    "stats": {
+      "title": "Impact Statistics",
+      "table": {
+        "columns": [
+          "Qurbani Year",
+          "Cow Count",
+          "Goat Count",
+          "Total Shares",
+          "Beneficiary Families"
+        ],
+        "rows": [
+          ["2024", "147", "624", "771", "(pending update)"],
+          ["2023", "-", "-", "425", "14,865"],
+          ["2022", "105", "334", "439", "-"],
+          ["2021", "48", "304", "352", "-"],
+          ["2020", "55", "176", "231", "5,264"]
+        ],
+        "footer": {
+          "label": "Total",
+          "values": ["355+", "1,438+", "2,218", "20,000+ families (approx.)"]
+        }
+      }
+    },
+    "faq": [
+      {
+        "question": "How can I perform Qurbani?",
+        "answer": "Click here"
+      },
+      {
+        "question": "How is the Qurbani process conducted?",
+        "answer": "Reliable representatives purchase animals and distribute them through reliable representatives."
+      },
+      {
+        "question": "How can I know where my Qurbani is being performed?",
+        "answer": "SMS and email will be sent to you with the number of your animal, the number of your share, the location of the Qurbani, and the distribution photos."
+      },
+      {
+        "question": "How is the distribution ensured?",
+        "answer": "A list of beneficiaries is prepared based on the spot-based poverty map. The meat is distributed to the people."
+      }
+    ]
+  },
+  "bn": {
+    "title": "সবার জন্য কুরবানী",
+    "description": "প্রান্তিক মানুষের আমিষের ঘাটতি পূরণ, ঈদের হাসি ছড়িয়ে দেয়া এবং সর্বোপরি আল্লাহর সন্তুষ্টির জন্য একটি কুরবানী করতে পারেন আস-সুন্নাহ ফাউন্ডেশনের ব্যবস্থাপনায়।",
+        "content": "<h3>কার্যক্রমের বিবরণ</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/M66BLITLgzs\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>বাংলাদেশে এমন লক্ষ লক্ষ পরিবার আছে, সারা বছর যাদের গরু-ছাগলে গোশত খাওয়ার সুযোগ হয় না। কেবল কুরবানীর ঈদেই তাদের জন্য গোশত খাওয়ার একমাত্র সুযোগ তৈরি হয়। এই মানুষগুলো এমন দারিদ্র্যপীড়িত এলাকায় বসবাস করেন, যেখানে কুরবানী হয় খুবই কম। ফলে অনেক সময় ঈদের দিনেও তারা পর্যাপ্ত গোশত পান না।</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>অন্যদিকে শহরের একটি ভবনে যতগুলো কুরবানী হয়, অনেক গ্রামের পুরো এলাকাতেও তা হয় না। তাই কুরবানীর গোশতের সুষম বণ্টনের লক্ষ্যে “সবার জন্য কুরবানী” আয়োজন করা হয়।</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>এর মাধ্যমে শহরের দাতাদের কুরবানীর পশু উত্তরবঙ্গসহ দেশের প্রত্যন্ত অঞ্চলে জবাই করে সেসব এলাকার দরিদ্র ও সুবিধাবঞ্চিত মানুষের মাঝে গোশত বিতরণ করা হয়।</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>কুরবানী এমন একটি ইবাদত, যা প্রতিনিধির মাধ্যমে সম্পন্ন করা যায়। যে কেউ চাইলে তার কুরবানী বা তার একটি অংশ আমাদের মাধ্যমে প্রকৃত দরিদ্র মানুষের কাছে পৌঁছে দিতে পারেন।</p>",
+    "features": [
+      {
+        "title": "প্রকল্পের লক্ষ্য-উদ্দেশ্য",
+        "values": [
+          "প্রত্যন্ত অঞ্চলের হতদরিদ্র মানুষদের কুরবানীর ঈদে গোশত খাওয়ার সুযোগ করে দেয়া।",
+          "নির্ভরযোগ্য ব্যবস্থাপনার মাধ্যমে দাতাদের আমানত ও ইচ্ছার বাস্তবায়ন নিশ্চিত করা।",
+          "শহর-গ্রামের মধ্যে ঈদের আনন্দের ভারসাম্য আনা।"
+        ]
+      },
+      {
+        "title": "উপকারভোগী",
+        "icon": "ListIconUser",
+        "values": [
+          "প্রত্যন্ত অঞ্চলের দরিদ্র পরিবার",
+          "এতিম ও বিধবা পরিবার",
+          "কর্মহীন, দিনমজুর ও ছিন্নমূল জনগোষ্ঠী",
+          "এমন পরিবার, যারা কুরবানী করার সামর্থ রাখে না"
+        ]
+      },
+      {
+        "title": "ব্যয়ের খাত",
+        "values": ["কুরবানীর গরু ক্রয়", "বিতরণ", "ব্যবস্থাপনা ব্যয়"]
+      },
+      {
+        "title": "প্রকল্পের এলাকা",
+        "icon": "ListIconLocation",
+        "values": ["৬৪ জেলার দারিদ্র্য বহুল এলাকা"]
+      },
+      {
+        "title": "মেয়াদ",
+        "icon": "ListIconCalendar",
+        "values": ["বার্ষিক এবং স্থায়ী প্রকল্প (ঈদ-উল-আযহা কেন্দ্রিক)"]
+      }
+    ],
+    "tagline": "ছড়িয়ে দিন ঈদের আনন্দ",
+    "stats": {
+      "title": "ইমপ্যাক্ট পরিসংখ্যান",
+      "table": {
+        "columns": [
+          "কুরবানীর বছর",
+          "গরু",
+          "ছাগল",
+          "মোট পশু",
+          "উপকারভোগী পরিবার"
+        ],
+        "rows": [
+          ["২০২৪", "১৪৭", "৬২৪", "৭৭১", "(হালনাগাদ প্রক্রিয়াধীন)"],
+          ["২০২৩", "-", "-", "৪২৫", "১৪,৮৬৫"],
+          ["২০২২", "১০৫", "৩৩৪", "৪৩৯", "-"],
+          ["২০২১", "৪৮", "৩০৪", "৩৫২", "-"],
+          ["২০২০", "৫৫", "১৭৬", "২৩১", "৫,২৬৪"]
+        ],
+        "footer": {
+          "label": "মোট",
+          "values": ["৩৫৫+", "১,৪৩৮+", "২,২১৮", "২০,০০০+ পরিবার (প্রায়)"]
+        }
+      }
+    },
+    "faq": [
+      {
+        "question": "আমি কীভাবে কুরবানীর জন্য দান করতে পারি?",
+        "answer": "এখানে ক্লিক করুন"
+      },
+      {
+        "question": "পশু কুরবানীর প্রক্রিয়া কেমন?",
+        "answer": "নির্ভরযোগ্য প্রতিনিধির মাধ্যমে ক্রয় করে জবাই করে বিতরণ করা হয়।"
+      },
+      {
+        "question": "আমি কীভাবে জানব আমার কুরবানী কোথায় সম্পন্ন হয়েছে?",
+        "answer": "এসএমএসের মাধ্যমে আপনার পশুর নম্বর, পশুতে আপনার ভাগের নম্বর, কুরবানীর স্থান এবং বিতরণের ছবি পাঠানো হবে।"
+      },
+      {
+        "question": "বিতরণ নিশ্চিত হয় কিভাবে?",
+        "answer": "স্পট ভিত্তিক দরিদ্রের তালিকা করা হয়। তালিকার লোকদের কাছে কুরবানীর গোশত পৌঁছে দেয়া হয়।"
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/assets/activities-gallery/qurbani/qurbani-1.webp",
+      "alt": "qurbani-1"
+    },
+    {
+      "src": "/assets/activities-gallery/qurbani/qurbani-2.webp",
+      "alt": "qurbani-2"
+    },
+    {
+      "src": "/assets/activities-gallery/qurbani/qurbani-3.webp",
+      "alt": "qurbani-3"
+    },
+    {
+      "src": "/assets/activities-gallery/qurbani/qurbani-4.webp",
+      "alt": "qurbani-4"
+    },
+    {
+      "src": "/assets/activities-gallery/qurbani/qurbani-5.webp",
+      "alt": "qurbani-5"
+    },
+    {
+      "src": "/assets/activities-gallery/qurbani/qurbani-6.webp",
+      "alt": "qurbani-6"
+    }
+  ]
+}

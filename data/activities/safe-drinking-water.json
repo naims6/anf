@@ -1,0 +1,210 @@
+{
+    "slug": "safe-drinking-water",
+    "cardImage": "safe-drinking-water",
+    "heroBackground": "safe-drinking-water-hero",
+    "routeExtension": "sadaqah",
+    "heroImages": [
+        {
+            "src": "safe-drinking-water-1",
+            "alt": "safe-drinking-water-1",
+            "position": "main"
+        },
+        {
+            "src": "safe-drinking-water-2",
+            "alt": "safe-drinking-water-2",
+            "position": "small-top"
+        },
+        {
+            "src": "safe-drinking-water-3",
+            "alt": "safe-drinking-water-3",
+            "position": "medium"
+        },
+        {
+            "src": "safe-drinking-water-4",
+            "alt": "safe-drinking-water-4",
+            "position": "small-bottom"
+        }
+    ],
+    "en": {
+        "title": "Installation of Tube Wells and Water Purification Plants",
+        "description": "With your support, we ensure access to clean drinking water for the needy. Join us in this humanitarian effort.",
+        "content": "<h3>Program Details</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/-Lc6SqHCMsI\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>Many regions of Bangladesh still suffer from a severe shortage of safe and drinkable water. Particularly in areas affected by drought, salinity, and arsenic contamination, people endure extreme hardship to meet their daily water needs. As a result, they often suffer from waterborne diseases, face serious health risks, and experience a significantly diminished quality of life. To address this crisis, As-Sunnah Foundation has initiated the installation of tube wells and construction of water purification plants in remote and underserved regions, aiming to ensure access to clean water so that people in these areas can lead healthier, more dignified, and improved lives.</p>",
+        "features": [
+            {
+                "title": "Project Goals and Objectives",
+                "values": [
+                    "Providing clean water in areas deprived of safe drinking water",
+                    "Protection from waterborne diseases",
+                    "Earning the reward of Sadaqah Jariyah"
+                ]
+            },
+            {
+                "title": "Beneficiaries",
+                "icon": "ListIconUser",
+                "values": [
+                    "People from all communities deprived of safe drinking water, regardless of religion or background"
+                ]
+            },
+            {
+                "title": "Expense Categories",
+                "values": [
+                    "Procurement of materials",
+                    "Transportation",
+                    "Management"
+                ]
+            },
+            {
+                "title": "Project Areas",
+                "icon": "ListIconLocation",
+                "values": [
+                    "Regions lacking access to safe drinking water"
+                ]
+            },
+            {
+                "title": "Duration",
+                "icon": "ListIconCalendar",
+                "values": [
+                    "No fixed duration"
+                ]
+            }
+        ],
+        "tagline": "Be a part of the Sadaqah Jariyah initiative",
+        "stats": {
+            "title": "Impact Statistics",
+            "table": {
+                "columns": [
+                    "Tube Wells",
+                    "Water Purification Plants",
+                    "Ring Wells"
+                ],
+                "rows": [
+                    [
+                        "120",
+                        "1",
+                        "1"
+                    ]
+                ],
+                "footer": {
+                    "label": "Total",
+                    "values": [
+                        "122"
+                    ]
+                }
+            }
+        },
+        "faq":[
+            {
+              "question": "How can I donate for this project?",
+              "answer": "Click here"
+            },
+            {
+              "question": "Can I donate zakat for this project?",
+              "answer": "No, zakat cannot be donated for this project."
+            }
+          ]
+    },
+    "bn": {
+        "title": "নলকূপ ও পানি শোধনাগার স্থাপন",
+        "description": "আপনাদের সহযোগিতায় আমরা দরিদ্র মানুষের জন্য বিশুদ্ধ পানীয় জল নিশ্চিত করছি। এই মানবিক উদ্যোগে আপনিও অংশ নিন।",
+        "content": "<h3>কার্যক্রমের বিবরণ</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/-Lc6SqHCMsI\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>বাংলাদেশের অনেক অঞ্চলে এখনও নিরাপদ ও সুপেয় পানির তীব্র সংকট বিদ্যমান। বিশেষ করে খরা, লবণাক্ততা ও আর্সেনিক দূষণের কারণে এসব এলাকার মানুষ দৈনন্দিন প্রয়োজনীয় পানির জন্য চরম ভোগান্তির শিকার হন। ফলে তারা নানান পানি বাহিত রোগে আক্রান্ত হয়ে স্বাস্থ্যঝুঁকিতে পড়েন এবং তাদের জীবনমানও মারাত্মকভাবে ক্ষতিগ্রস্ত হয়। এই পরিস্থিতি মোকাবেলায় আস-সুন্নাহ ফাউন্ডেশন সুপেয় পানি নিশ্চিত করতে দেশের বিভিন্ন দুর্গম ও উপেক্ষিত এলাকায় নলকূপ স্থাপন এবং পানিশোধনাগার নির্মাণের উদ্যোগ গ্রহণ করে, যাতে করে এসব অঞ্চলের মানুষ নিরাপদ পানি পেয়ে সুস্থ, সম্মানজনক ও উন্নত জীবনযাপনে সক্ষম হয়।</p>",
+        "features": [
+            {
+                "title": "প্রকল্পের লক্ষ্য-উদ্দেশ্য",
+                "values": [
+                    "সুপেয় পানির সুবিধা বঞ্চিত এলাকায় সুপেয় পানির ব্যবস্থা করা",
+                    "পানিবাহিত রোগ থেকে মুক্তি",
+                    "সাদাকায়ে জারিয়াহর সাওয়াব লাভ"
+                ]
+            },
+            {
+                "title": "উপকারভোগী",
+                "icon": "ListIconUser",
+                "values": [
+                    "ধর্ম-বর্ণ নির্বিশেষে সুপেয়ে পানিবঞ্চিত সব শ্রেণির মানুষ"
+                ]
+            },
+            {
+                "title": "ব্যয়ের খাত",
+                "values": [
+                    "উপকরণ ক্রয়",
+                    "পরিবহন",
+                    "ব্যবস্থাপনা"
+                ]
+            },
+            {
+                "title": "প্রকল্পের এলাকা",
+                "icon": "ListIconLocation",
+                "values": [
+                    "সুপেয় পানির সুবিধাবঞ্চিত এলাকাসমূহ"
+                ]
+            },
+            {
+                "title": "মেয়াদ",
+                "icon": "ListIconCalendar",
+                "values": [
+                    "নাই"
+                ]
+            }
+        ],
+        "tagline": "শামিল হোন সাদাকায়ে জারিয়াহ প্রকল্পে",
+        "stats": {
+            "title": "ইমপ্যাক্ট পরিসংখ্যান",
+            "table": {
+                "columns": [
+                    "টিউবওয়েল",
+                    "পানি শোধনাগার",
+                    "রিংওয়েল"
+                ],
+                "rows": [
+                    [
+                        "১২০",
+                        "১",
+                        "১"
+                    ]
+                ],
+                "footer": {
+                    "label": "মোট",
+                    "values": [
+                        "১২২"
+                    ]
+                }
+            }
+        },
+        "faq":[
+            {
+              "question": "আমি কীভাবে এই প্রকল্পের জন্য দান করতে পারি?",
+              "answer": "এখানে ক্লিক করুন"
+            },
+            {
+              "question": "এই প্রকল্পে কি যাকাতের টাকা দেয়া যাবে?",
+              "answer": "না, এই প্রকল্পে যাকাতের টাকা দেয়া যাবে না।"
+            }
+          ]
+    },
+    "gallery": [
+        {
+            "src": "/assets/activities-gallery/water/water-1.webp",
+            "alt": "safe-drinking-water-1"
+        },
+        {
+            "src": "/assets/activities-gallery/water/water-2.webp",
+            "alt": "safe-drinking-water-2"
+        },
+        {
+            "src": "/assets/activities-gallery/water/water-3.webp",
+            "alt": "safe-drinking-water-3"
+        },
+        {
+            "src": "/assets/activities-gallery/water/water-4.webp",
+            "alt": "safe-drinking-water-4"
+        },
+        {
+            "src": "/assets/activities-gallery/water/water-5.webp",
+            "alt": "safe-drinking-water-5"
+        },
+        {
+            "src": "/assets/activities-gallery/water/water-6.webp",
+            "alt": "safe-drinking-water-6"
+        }
+    ]
+}

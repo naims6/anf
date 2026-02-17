@@ -1,0 +1,236 @@
+{
+    "slug": "skill-based-entrepreneurship",
+    "cardImage": "skill-based-entrepreneurship",
+    "heroBackground": "skill-based-entrepreneurship-hero",
+    "routeExtension": "skill-development-institute",
+    "heroImages": [
+        {
+            "src": "skill-based-entrepreneurship-1",
+            "alt": "skill-based-entrepreneurship-1",
+            "position": "main"
+        },
+        {
+            "src": "skill-based-entrepreneurship-2",
+            "alt": "skill-based-entrepreneurship-2",
+            "position": "small-top"
+        },
+        {
+            "src": "skill-based-entrepreneurship-3",
+            "alt": "skill-based-entrepreneurship-3",
+            "position": "medium"
+        },
+        {
+            "src": "skill-based-entrepreneurship-4",
+            "alt": "skill-based-entrepreneurship-4",
+            "position": "small-bottom"
+        }
+    ],
+    "en": {
+        "title": "Skill-Based Entrepreneurship Development",
+        "description": "A humanitarian effort to support those who possess skills but lack the capital to start their own ventures.",
+        "content": "<h3>Program Details</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/xfIbM3l_NTM\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>With the slogan ‘Your skill, As-Sunnah’s support’, As-Sunnah Foundation is implementing the Skill-Based Entrepreneurship Development Program. Under this initiative, individuals with technical knowledge and practical experience will receive special financial assistance so they can become self-reliant and create employment opportunities for others as well.</p>",
+        "features": [
+            {
+                "title": "Project Goals and Objectives",
+                "values": [
+                    "Creating self-employment",
+                    "Developing entrepreneurs",
+                    "Empowering beneficiaries to become self-reliant",
+                    "Helping beneficiaries empower others"
+                ]
+            },
+            {
+                "title": "Beneficiaries",
+                "icon": "ListIconUser",
+                "values": [
+                    "Skilled and experienced individuals from poor communities who cannot implement their ideas due to lack of funds"
+                ]
+            },
+            {
+                "title": "Expense Categories",
+                "values": [
+                    "Procurement of materials",
+                    "Transportation",
+                    "Overall management"
+                ]
+            },
+            {
+                "title": "Project Areas",
+                "icon": "ListIconLocation",
+                "values": [
+                    "All 64 districts"
+                ]
+            },
+            {
+                "title": "Duration",
+                "icon": "ListIconCalendar",
+                "values": [
+                    "Annual and long-term project"
+                ]
+            }
+        ],
+        "tagline": "Step forward to empower the skilled underprivileged",
+        "stats": {
+            "title": "Impact Statistics",
+            "table": {
+                "columns": [
+                    "Year",
+                    "Beneficiary"
+                ],
+                "rows": [
+                    [
+                        "2025",
+                        "Target 500; Program ongoing."
+                    ]
+                ],
+                "footer": {
+                    "label": "Total",
+                    "values": [
+                        "500"
+                    ]
+                }
+            }
+        },
+        "faq": [
+            {
+                "question": "How can I donate to this program?",
+                "answer": "Click here"
+            },
+            {
+                "question": "How is the distribution process?",
+                "answer": "The distribution process is carried out through Google forms. From the applicants, the beneficiaries are selected through verification-selection."
+            },
+            {
+                "question": "What are the eligibility criteria for selection?",
+                "answer": "The following criteria are considered:\n\n1. Special skills and experience in any field\n2. Hardworking and reliable\n3. Ability to succeed in the venture\n\nAnd so on"
+            }
+        ]
+    },
+    "bn": {
+        "title": "দক্ষতাভিত্তিক উদ্যোক্তা তৈরি",
+        "description": "দক্ষতা থাকা সত্ত্বেও শুধু পুঁজির অভাবে যারা উদ্যোগ নিতে পারছেন না, তাদের পাশে দাঁড়ানোর একটি মানবিক প্রয়াস।",
+        "content": "<h3>কার্যক্রমের বিবরণ</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/xfIbM3l_NTM\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>‘দক্ষতা আপনার, সহযোগিতা আস-সুন্নাহ’র—এই স্লোগানকে সামনে রেখে আস-সুন্নাহ ফাউন্ডেশন পরিচালনা করছে ‘দক্ষতাভিত্তিক উদ্যোক্তা তৈরি কার্যক্রম। এই কার্যক্রমের আওতায় কারিগরি জ্ঞান ও বাস্তব অভিজ্ঞতা-সম্পন্নদের বিশেষ আর্থিক সহায়তা করা হবে, যেন তিনি আত্মনির্ভরতার পাশাপাশি আরো কয়েকটি পরিবারের কর্মসংস্থানের ব্যবস্থা করতে পারেন।</p>",
+        "features": [
+            {
+                "title": "প্রকল্পের লক্ষ্য-উদ্দেশ্য",
+                "values": [
+                    "আত্মকর্মসংস্থান সৃষ্টি",
+                    "উদ্যোক্তা তৈরি",
+                    "উপকারভোগীকে স্বাবলম্বীকরণ",
+                    "উপকারভোগীর মাধ্যমে আরো মানুষকে স্বাবলম্বী করা"
+                ]
+            },
+            {
+                "title": "উপকারভোগী",
+                "icon": "ListIconUser",
+                "values": [
+                    "দক্ষতা ও অভিজ্ঞতা আছে, কিন্তু অর্থের অভাবে বাস্তবায়ন করতে পারছেন, এরূপ দরিদ্র জনগোষ্ঠী"
+                ]
+            },
+            {
+                "title": "ব্যয়ের খাত",
+                "values": [
+                    "উপকরণ ক্রয়",
+                    "পরিবহন",
+                    "সার্বিক ব্যবস্থাপনা"
+                ]
+            },
+            {
+                "title": "প্রকল্পের এলাকা",
+                "icon": "ListIconLocation",
+                "values": [
+                    "৬৪ জেলা"
+                ]
+            },
+            {
+                "title": "মেয়াদ",
+                "icon": "ListIconCalendar",
+                "values": [
+                    "বার্ষিক এবং স্থায়ী প্রকল্প"
+                ]
+            }
+        ],
+        "tagline": "এগিয়ে আসুন দক্ষ দরিদ্রদের স্বাবলম্বীকরণে",
+        "stats": {
+            "title": "ইমপ্যাক্ট পরিসংখ্যান",
+            "table": {
+                "columns": [
+                    "বছর",
+                    "উপকারভোগী"
+                ],
+                "rows": [
+                    [
+                        "২০২৫",
+                        "লক্ষ্যমাত্রা ৫০০; কার্যক্রম চলমান।"
+                    ]
+                ],
+                "footer": {
+                    "label": "মোট",
+                    "values": [
+                        "৫০০"
+                    ]
+                }
+            }
+        }, 
+        "faq": [
+            {
+                "question": "আমি কীভাবে এই কার্যক্রমের জন্য দান করতে পারি?",
+                "answer": "এখানে ক্লিক করুন"
+            },
+            {
+                "question": "বিতরণ প্রক্রিয়া কেমন?",
+                "answer": "গুগল ফরমের মাধ্যমে আবেদন গ্রহণ করা হয়। আবেদনকারীদের মধ্য থেকে যাচাই-বাছাই পূর্বক গ্রহীতা নির্বাচন করা হয়।"
+            },
+            {
+                "question": "বাছাইয়ের ক্ষেত্রে আবেদনকারীর কী কী যোগ্যতা দেখেন?",
+                "answer": "নিম্নোক্ত বিষয়গুলো দেখা হয়:\n\n১. বিশেষ কোনো ক্ষেত্রে দক্ষতা ও অভিজ্ঞতা আছে কি না\n২. পরিশ্রমী ও প্রতিশ্রুতিশীল কি না\n৩. উদ্যোগ সফল করার সক্ষমতা আছে কি না\n\nইত্যাদি"
+            }
+        ]
+    },
+    "gallery": [
+        {
+            "src": "/assets/activities-gallery/skill-based-entrepreneurship/skill-based-entrepreneurship-1.webp",
+            "alt": "skill-based-entrepreneurship-1"
+        },
+        {
+            "src": "/assets/activities-gallery/skill-based-entrepreneurship/skill-based-entrepreneurship-2.webp",
+            "alt": "skill-based-entrepreneurship-2"
+        },
+        {
+            "src": "/assets/activities-gallery/skill-based-entrepreneurship/skill-based-entrepreneurship-3.webp",
+            "alt": "skill-based-entrepreneurship-3"
+        },
+        {
+            "src": "/assets/activities-gallery/skill-based-entrepreneurship/skill-based-entrepreneurship-4.webp",
+            "alt": "skill-based-entrepreneurship-4"
+        },
+        {
+            "src": "/assets/activities-gallery/skill-based-entrepreneurship/skill-based-entrepreneurship-5.webp",
+            "alt": "skill-based-entrepreneurship-5"
+        },
+        {
+            "src": "/assets/activities-gallery/skill-based-entrepreneurship/skill-based-entrepreneurship-6.webp",
+            "alt": "skill-based-entrepreneurship-6"
+        },
+        {
+            "src": "/assets/activities-gallery/skill-based-entrepreneurship/skill-based-entrepreneurship-7.webp",
+            "alt": "skill-based-entrepreneurship-7"
+        },
+        {
+            "src": "/assets/activities-gallery/skill-based-entrepreneurship/skill-based-entrepreneurship-8.webp",
+            "alt": "skill-based-entrepreneurship-8"
+        },
+        {
+            "src": "/assets/activities-gallery/skill-based-entrepreneurship/skill-based-entrepreneurship-9.webp",
+            "alt": "skill-based-entrepreneurship-9"
+        },
+        {
+            "src": "/assets/activities-gallery/skill-based-entrepreneurship/skill-based-entrepreneurship-10.webp",
+            "alt": "skill-based-entrepreneurship-10"
+        },
+        {
+            "src": "/assets/activities-gallery/skill-based-entrepreneurship/skill-based-entrepreneurship-11.webp",
+            "alt": "skill-based-entrepreneurship-11"
+        }
+    ]
+}

@@ -1,0 +1,702 @@
+{
+  "slug": "skill-development-institute",
+  "cardImage": "skill-development-institute",
+  "heroBackground": "skill-development-institute-hero",
+  "routeExtension": "skill-development-institute",
+  "heroImages": [
+    {
+      "src": "skill-development-institute-1",
+      "alt": "skill-development-institute-1",
+      "position": "main"
+    },
+    {
+      "src": "skill-development-institute-2",
+      "alt": "skill-development-institute-2",
+      "position": "small-top"
+    },
+    {
+      "src": "skill-development-institute-3",
+      "alt": "skill-development-institute-3",
+      "position": "medium"
+    },
+    {
+      "src": "skill-development-institute-4",
+      "alt": "skill-development-institute-4",
+      "position": "small-bottom"
+    }
+  ],
+  "en": {
+    "title": "As-Sunnah Skill Development Institute",
+    "description": "An institute for self-development and skill enhancement registered by the National Skill Development Authority.",
+    "content": "\u003Ch3\u003EProgram Details\u003C/h3\u003E\u003Cp class='editor-paragraph editor-empty'\u003E\u003C/p\u003E\u003Cdiv data-youtube-video=\"\"\u003E\u003Ciframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/4-ngh5KB0bQ\" start=\"0\"\u003E\u003C/iframe\u003E\u003C/div\u003E\u003Cp class=\"editor-paragraph editor-empty\"\u003E\u003C/p\u003E\u003Cp class='editor-paragraph'\u003EAs-Sunnah Skill Development Institute is an institution for self-development and skill enhancement. This affiliate of the As-Sunnah Foundation, registered with the National Skill Development Authority, was established in 2022. Since its inception, it has been working to bring information technology and technical education to all levels of society, with the goal of eliminating unemployment and creating employment opportunities.\u003C/p\u003E\u003Cp class=\"editor-paragraph editor-empty\"\u003E\u003C/p\u003E\u003Cp class='editor-paragraph'\u003EThe specialty of this institute is that it provides computer, information technology, and various technical training courses in a completely separate environment and with suitable curricula for both men and women. There are also special scholarships for talented and underprivileged students, enabling them to receive training free of charge.\u003C/p\u003E\u003Cp class=\"editor-paragraph editor-empty\"\u003E\u003C/p\u003E\u003Cp class='editor-paragraph'\u003EBy developing skilled human resources, this institute has already started to solidify its position as an effective tool for alleviating the country's unemployment problem and fostering self-employment.\u003C/p\u003E",
+    "features": [
+      {
+        "title": "Project Goals & Objectives",
+        "values": [
+          "Skill Enhancement",
+          "Unemployment Alleviation",
+          "Employment Creation",
+          "Sustainable Poverty Reduction"
+        ]
+      },
+      {
+        "title": "Course Descriptions",
+        "values": [
+          "Small Business Management",
+          "The Art of Sales and Marketing",
+          "Smart Tailoring and Fashion Design",
+          "The Art of Creation Course",
+          "Language and Leadership Foundation",
+          "Entrepreneurship in the Footwear Industry",
+          "Driving Training",
+          "Chef and Kitchen Management"
+        ]
+      },
+      {
+        "title": "Expenditure Sectors",
+        "values": [
+          "Land purchase for the institute",
+          "Construction of the institute's infrastructure",
+          "Procurement of equipment",
+          "Covering accommodation and food costs for trainees through scholarships",
+          "Management expenses"
+        ]
+      }
+    ],
+    "tagline": "Join the effort to alleviate poverty and create employment.",
+    "courses": [
+      {
+        "title": "Small Business Management",
+        "description": "The main goal of this course is to increase the technical skills of educated unemployed people and create employment opportunities for them. At the end of the course, trained youths are arranged to get jobs in various companies according to their qualifications.",
+        "cardImage": "small-business-management-card",
+        "coverImage": "small-business-management-modal-cover",
+        "courseSubjects": [
+          "Microsoft Office",
+          "Theoretical and Practical Accounting",
+          "Graphic Design",
+          "Digital Marketing",
+          "English Language",
+          "Corporate Manners and Etiquette",
+          "Artificial Intelligence",
+          "Basic Islamic Knowledge"
+        ],
+        "courseType": [
+          "3-month residential course for men."
+        ]
+      },
+      {
+        "title": "The Art of Sales and Marketing",
+        "description": "The main objective of this course is to improve the business and economic sectors of Bangladesh by creating skilled and experienced manpower in the workplace of sales and marketing.",
+        "cardImage": "the-art-of-sales-and-marketing-card",
+        "coverImage": "the-art-of-sales-and-marketing-modal-cover",
+        "courseSubjects": [
+          "Sales Strategy",
+          "Communication and Relationship Building",
+          "Marketing and Promotion Strategy",
+          "Workplace Etiquette",
+          "Service Marketing Experience",
+          "Branding",
+          "Basic Islamic Knowledge"
+        ],
+        "courseType": [
+          "3-month residential course for men."
+        ]
+      },
+      {
+        "title": "Smart Tailoring and Fashion Design",
+        "description": "To increase the skills and self-reliance of helpless women, they are being provided with various types of handwork and technical training. At the end of the course, each person is provided with various self-reliant materials worth the equivalent of BDT 30,000 to 50,000.",
+        "cardImage": "smart-tailoring-and-fashion-design-card",
+        "coverImage": "smart-tailoring-and-fashion-design-modal-cover",
+        "courseSubjects": [
+          "Tailoring",
+          "Tie-Dye",
+          "Block-Batik",
+          "Hand Embroidery and Crafting",
+          "Basic Fashion Design",
+          "Basic Business Development",
+          "Basic Islamic Knowledge"
+        ],
+        "courseType": [
+          "3-month residential course for women."
+        ]
+      },
+      {
+        "title": "Driving Training",
+        "description": "Driving training is being provided to create self-employment opportunities for unemployed and low-income youth by acquiring professional driving skills.",
+        "cardImage": "driving-training-card",
+        "coverImage": "driving-training-modal-cover",
+        "courseSubjects": [
+          "Theoretical and practical training in driving",
+          "Vehicle parts identification and maintenance",
+          "Traffic laws and regulations",
+          "1200+ minutes of direct driving training",
+          "Basic Islamic Knowledge"
+        ],
+        "courseType": [
+          "40-day residential course for men."
+        ]
+      },
+      {
+        "title": "Entrepreneurship in the Footwear Industry",
+        "description": "Bangladesh's footwear and shoe industry is a promising sector, contributing significantly to domestic demand as well as the international market. The demand for skilled entrepreneurs and trained human resources in this sector is increasing day by day. The As-Sunnah Foundation has launched the 'Entrepreneurship in the Footwear and Shoe Industry Course' to create self-employment and employment for the unemployed and enterprising youth of the country.",
+        "cardImage": "shoe-making-course-card",
+        "coverImage": "shoe-making-course-modal-cover",
+        "courseSubjects": [
+          "Making different types of shoes according to leather and fabric classification",
+          "Modern and traditional shoe design",
+          "High-quality materials and technology",
+          "Hands-on shoe making training",
+          "Market analysis and business strategy",
+          "Branding and marketing",
+          "Setting up an industry according to international standards",
+          "Industrial visits"
+        ],
+        "courseType": [
+          "4-month residential course for men."
+        ]
+      },
+      {
+        "title": "Chef Training and Kitchen Management Course",
+        "description": "The demand for skilled chefs and effective kitchen managers is increasing day by day in the hospitality and food industry in Bangladesh and globally. From hotels, restaurants, and catering services to personal initiatives—professional cooking and efficient kitchen management skills are essential in all cases. To meet this demand and open new employment opportunities for unemployed youth, the As-Sunnah Foundation has launched the 'Chef Training and Kitchen Management' course.",
+        "cardImage": "chef-training-and-kitchen-management-card",
+        "coverImage": "chef-training-and-kitchen-management-modal-cover",
+        "courseSubjects": [
+          "Hospitality and tourism services",
+          "Basic food and beverage preparation techniques",
+          "Use of cooking tools and machines",
+          "Hygiene and safety policies (OSH, PPE, HACCP)",
+          "Workplace cleaning and pest control",
+          "Fish and meat cutting methods",
+          "Mise en place (arranging ingredients)",
+          "Mother sauces and soup preparation",
+          "Various cooking techniques (temperature and time control)",
+          "Plating and garnishing techniques",
+          "Waste reduction and waste management",
+          "Food preservation and inventory control",
+          "Food nutrition assessment and diet chart preparation"
+        ],
+        "courseType": [
+          "3-month residential course for men."
+        ]
+      },
+      {
+        "title": "Language and Leadership Foundation Course",
+        "description": "The Language and Leadership course at As-Sunnah Skill Development Institute is an integrated training program that enriches the younger generation with linguistic skills and leadership qualities. In this course, students are learning basic and advanced leadership skills such as team management, problem-solving, and creative thinking, in addition to language skills. The combination of these two skills—language and leadership—will, Insha'Allah, move students forward on the path to success in every aspect of their education, career, and social life.",
+        "cardImage": "language-and-leadership-foundation-card",
+        "coverImage": "language-and-leadership-foundation-modal-cover",
+        "courseSubjects": [
+          "Bengali",
+          "Arabic",
+          "English",
+          "Leadership Skills",
+          "Corporate Manners and Behavior",
+          "Basic Computer Skills",
+          "Generative AI and Future Skills",
+          "Practical Experience"
+        ],
+        "courseType": [
+          "One-year residential course for men"
+        ]
+      },
+      {
+        "title": "The Art of Creation Course",
+        "description": "In the current digital age, the importance of video content for business and product promotion is immense. Although many products in Bangladesh have a halal identity, many entrepreneurs fall behind in their promotional activities due to the use of haram (forbidden) elements in some aspects of videography. We want to build a group of skilled and conscious content creators who will work by following halal principles in product promotion. Who will be able to create halal videos, make attractive and influential content, and be able to present the correct identity of the product.\n\nOur goal is to ensure halal video production, create content that adheres to Islamic rules and regulations, highlight the importance of halal certification and branding, and build a trustworthy and value-based identity with customers.\n\nBy acquiring this skill, you will not only earn a living but also build yourself as a confident competitor—in the domestic and international markets.",
+        "cardImage": "the-art-of-content-creation-card",
+        "coverImage": "the-art-of-content-creation-modal-cover",
+        "courseSubjects": [
+          "Script Writing",
+          "Cinematography, Photography",
+          "Lighting",
+          "Video Editing (Photoshop, Premiere Pro, After Effects and Illustrator)",
+          "Creating advertisements for e-commerce and f-commerce",
+          "Content creation through AI",
+          "Story-based advertising",
+          "Creating documentaries and OVCs",
+          "Video direction techniques",
+          "Audio production",
+          "Practical English",
+          "Basic Islamic Knowledge"
+        ],
+        "courseType": [
+          "Three-month residential course for men"
+        ]
+      }
+    ],
+    "stats": {
+      "title": "Impact Statistics",
+      "table": {
+        "columns": [
+          "Course",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "rows": [
+          [
+            "Small Business Management",
+            "42",
+            "179",
+            "496",
+            "328 (Ongoing)"
+          ],
+          [
+            "Smart Tailoring and Fashion Design",
+            "-",
+            "23",
+            "179",
+            "179 (Ongoing)"
+          ],
+          [
+            "Driving Training",
+            "-",
+            "-",
+            "-",
+            "95 (Ongoing)"
+          ],
+          [
+            "The Art of Sales and Marketing",
+            "-",
+            "-",
+            "-",
+            "79 (Ongoing)"
+          ],
+          [
+            "Chef and Kitchen Management",
+            "-",
+            "-",
+            "-",
+            "36 (Ongoing)"
+          ],
+          [
+            "Language and Leadership",
+            "-",
+            "-",
+            "-",
+            "139 (Ongoing)"
+          ],
+          [
+            "Entrepreneurship in the Footwear Industry",
+            "-",
+            "-",
+            "-",
+            "45 (Ongoing)"
+          ],
+          [
+            "The Art of Content Creation",
+            "-",
+            "-",
+            "-",
+            "30 (Ongoing)"
+          ]
+        ],
+        "footer": {
+          "label": "Total",
+          "values": [
+            "1750 (Ongoing)"
+          ]
+        }
+      }
+    },
+    "upcomingCourses": [
+      {
+        "title": "Plumbing and Pipe Fitting Training",
+        "icon": "PlumbingCourseIcon"
+      },
+      {
+        "title": "Electrical Training",
+        "icon": "ElectricCourseIcon"
+      },
+      {
+        "title": "Masonry Training",
+        "icon": "MasonCourseIcon"
+      },
+      {
+        "title": "Rod Binding Training",
+        "icon": "RodBindingCourseIcon"
+      },
+      {
+        "title": "Tiles Installation Training",
+        "icon": "TilesCourseIcon"
+      },
+      {
+        "title": "Painting Training",
+        "icon": "PaintingCourseIcon"
+      },
+      {
+        "title": "Gardening Training",
+        "icon": "GardeningCourseIcon"
+      },
+      {
+        "title": "Street Food Training",
+        "icon": "StreetFoodCourseIcon"
+      }
+    ],
+    "faq": [
+      {
+        "question": "How can I enroll in a course?",
+        "answer": "Announcements are made on the Facebook page and the website's notice board before each batch begins. Please follow the instructions on the page and the website."
+      }
+    ]
+  },
+  "bn": {
+    "title": "আস-সুন্নাহ স্কিল ডেভেলপমেন্ট ইনস্টিটিউট",
+    "description": "জাতীয় দক্ষতা উন্নয়ন কর্তৃপক্ষ কর্তৃক নিবন্ধিত একটি আত্ম-উন্নয়ন ও দক্ষতা বৃদ্ধিমূলক প্রতিষ্ঠান।",
+    "content": "\u003Ch3\u003Eকার্যক্রমের বিবরণ\u003C/h3\u003E\u003Cp class='editor-paragraph editor-empty'\u003E\u003C/p\u003E\u003Cdiv data-youtube-video=\"\"\u003E\u003Ciframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/4-ngh5KB0bQ\" start=\"0\"\u003E\u003C/iframe\u003E\u003C/div\u003E\u003Cp class=\"editor-paragraph editor-empty\"\u003E\u003C/p\u003E\u003Cp class='editor-paragraph'\u003Eআস-সুন্নাহ স্কিল ডেভেলপমেন্ট ইনস্টিটিউট একটি আত্ম-উন্নয়ন ও দক্ষতা বৃদ্ধিমূলক প্রতিষ্ঠান। জাতীয় দক্ষতা উন্নয়ন কর্তৃপক্ষ কর্তৃক নিবন্ধিত আস-সুন্নাহ ফাউন্ডেশনের এই অঙ্গপ্রতিষ্ঠানটি ২০২২ সালে প্রতিষ্ঠিত হয়। প্রতিষ্ঠালগ্ন থেকে এটি তথ্যপ্রযুক্তি ও কারিগরি শিক্ষাকে সমাজের সর্বস্তরে পৌঁছে দেয়া, বেকারত্ব দূরীকরণ ও কর্মসংস্থান সৃষ্টির লক্ষ্যে কাজ করে যাচ্ছে।\u003C/p\u003E\u003Cp class=\"editor-paragraph editor-empty\"\u003E\u003C/p\u003E\u003Cp class='editor-paragraph'\u003Eএই ইনস্টিটিউটের বিশেষত্ব হলো—এখানে নারী ও পুরুষদের জন্য সম্পূর্ণ পৃথক পরিবেশে এবং উপযোগী পাঠক্রমে কম্পিউটার, তথ্যপ্রযুক্তি ও বিভিন্ন কারিগরি প্রশিক্ষণ প্রদান করা হয়। মেধাবী ও অপ্রতুল সুবিধাপ্রাপ্ত শিক্ষার্থীদের জন্য বিশেষ স্কলারশিপের ব্যবস্থাও রয়েছে, যার মাধ্যমে তারা বিনামূল্যে প্রশিক্ষণ গ্রহণ করতে পারে।\u003C/p\u003E\u003Cp class=\"editor-paragraph editor-empty\"\u003E\u003C/p\u003E\u003Cp class='editor-paragraph'\u003Eএই ইনস্টিটিউট দক্ষ মানবসম্পদ গঠনের মাধ্যমে দেশের বেকার সমস্যা লাঘব এবং আত্মকর্মসংস্থান সৃষ্টির একটি কার্যকর মাধ্যম হিসেবে ইতোমধ্যে নিজেদের অবস্থান সুদৃঢ় করতে শুরু করেছে।\u003C/p\u003E",
+    "features": [
+      {
+        "title": "প্রকল্পের লক্ষ্য-উদ্দেশ্য",
+        "values": [
+          "দক্ষতা বৃদ্ধি",
+          "বেকারত্ব দূরীকরণ",
+          "কর্মসংস্থান সৃষ্টি",
+          "স্থায়ী দারিদ্র্য বিমোচন"
+        ]
+      },
+      {
+        "title": "কোর্সের বিবরণ",
+        "values": [
+          "স্মল বিজনেস ম্যানেজমেন্ট",
+          "দি আর্ট অব সেলস অ্যান্ড মার্কেটিং",
+          "স্মার্ট টেইলারিং অ্যান্ড ফ্যাশন ডিজাইন",
+          "দি আর্ট অব ক্রিয়েশন কোর্স",
+          "ল্যাঙ্গুয়েজ অ্যান্ড লিডারশিপ ফাউন্ডেশন",
+          "জুতা শিল্পে উদ্যোক্তা তৈরি কোর্স",
+          "ড্রাইভিং প্রশিক্ষণ",
+          "শেফ অ্যান্ড কিচেন ম্যানেজমেন্ট"
+        ]
+      },
+      {
+        "title": "ব্যয়ের খাত",
+        "values": [
+          "ইনস্টিটিউটের জন্য জমি ক্রয়",
+          "ইনস্টিটিউটের অবকাঠামো নির্মাণ",
+          "উপকরণ ক্রয়",
+          "শিক্ষাবৃত্তির মাধ্যমে প্রশিক্ষণার্থীদের আবাসন ও খাবারের ব্যয় নির্বাহ",
+          "ব্যবস্থাপনা ব্যয়"
+        ]
+      }
+    ],
+    "tagline": "দারিদ্র্য বিমোচন ও কর্মসংস্থান তৈরির প্রচেষ্টায় শামিল হোন",
+    "courses": [
+      {
+        "title": "স্মল বিজনেস ম্যানেজমেন্ট",
+        "description": "শিক্ষিত বেকারদের কারিগরি দক্ষতা বৃদ্ধি করা এবং তাদের জন্য কর্মসংস্থানের সুযোগ তৈরি করে দেয়া এই কোর্সের প্রধান লক্ষ্য। কোর্স শেষে প্রশিক্ষিত তরুণদের যোগ্যতা অনুযায়ী বিভিন্ন প্রতিষ্ঠানে চাকরির ব্যবস্থা করা হয়।",
+        "cardImage": "small-business-management-card",
+        "coverImage": "small-business-management-modal-cover",
+        "courseSubjects": [
+          "মাইক্রোসফট অফিস",
+          "তাত্ত্বিক ও ব্যাবহারিক অ্যাকাউন্টিং",
+          "গ্রাফিক ডিজাইন",
+          "ডিজিটাল মার্কেটিং",
+          "ইংরেজি ভাষা",
+          "কর্পোরেট ম্যানার্স অ্যান্ড এটিকেট",
+          "আর্টিফিশিয়াল ইন্টেলিজেন্স",
+          "মৌলিক ইসলামি জ্ঞান"
+        ],
+        "courseType": [
+          "পুরুষদের জন্য ৩ মাসব্যাপী আবাসিক কোর্স।"
+        ]
+      },
+      {
+        "title": "দি আর্ট অব সেলস এন্ড মার্কেটিং",
+        "description": "এই কোর্সের মূল উদ্দেশ্য সেলস ও মার্কেটিংয়ের কর্মক্ষেত্রে দক্ষ ও অভিজ্ঞ জনবল তৈরি করার মাধ্যমে বাংলাদেশের ব্যাবসায়িক ও অর্থনৈতিক খাতে উন্নতি সাধন করা।",
+        "cardImage": "the-art-of-sales-and-marketing-card",
+        "coverImage": "the-art-of-sales-and-marketing-modal-cover",
+        "courseSubjects": [
+          "বিক্রয় কৌশল",
+          "যোগাযোগ ও সম্পর্ক স্থাপন",
+          "বিপণন ও বাজারজাতকরণ কৌশল",
+          "কর্মক্ষেত্রে আচরণবিধি",
+          "সেবা বিপণন অভিজ্ঞতা",
+          "ব্র্যান্ডিং",
+          "মৌলিক ইসলামী জ্ঞান"
+        ],
+        "courseType": [
+          "পুরুষদের জন্য ৩ মাসব্যাপী আবাসিক কোর্স।"
+        ]
+      },
+      {
+        "title": "স্মার্ট টেইলারিং ও ফ্যাশন ডিজাইন",
+        "description": "অসহায় নারীদের দক্ষতা-বৃদ্ধি ও স্বাবলম্বীকরণের লক্ষ্যে নারীদের বিভিন্ন ধরনের হাতের কাজ ও কারিগরি প্রশিক্ষণ দেয়া হচ্ছে। কোর্স শেষে প্রত্যেককে ৩০ থেকে ৫০ হাজার টাকার সমপরিমাণ মূল্যের বিভিন্ন স্বাবলম্বী উপকরণ প্রদান করা হচ্ছা।",
+        "cardImage": "smart-tailoring-and-fashion-design-card",
+        "coverImage": "smart-tailoring-and-fashion-design-modal-cover",
+        "courseSubjects": [
+          "টেইলারিং",
+          "টাই-ডাই",
+          "ব্লক-বাটিক",
+          "হ্যান্ড অ্যাম্ব্রয়ডারি অ্যান্ড ক্র্যাফটিং",
+          "বেসিক ফ্যাশন ডিজাইন",
+          "বেসিক বিজনেস ডেভেলপমেন্ট",
+          "মৌলিক ইসলামী জ্ঞান"
+        ],
+        "courseType": [
+          "মহিলাদের জন্য ৩ মাসব্যাপী আবাসিক কোর্স।"
+        ]
+      },
+      {
+        "title": "ড্রাইভিং প্রশিক্ষণ",
+        "description": "বেকার ও নিম্নআয়ের যুবকদের পেশাদার ড্রাইভিং দক্ষতা অর্জনের মাধ্যমে আত্মকর্মসংস্থানের সুযোগ তৈরির জন্য ড্রাইভিং প্রশিক্ষণ দেয়া হচ্ছে।",
+        "cardImage": "driving-training-card",
+        "coverImage": "driving-training-modal-cover",
+        "courseSubjects": [
+          "গাড়ি চালানোর তাত্ত্বিক ও ব্যবহারিক প্রশিক্ষণ",
+          "গাড়ির যন্ত্রাংশ পরিচিতি ও রক্ষণাবেক্ষণ",
+          "ট্রাফিক আইন ও নিয়ম কানুন",
+          "১২০০+ মিনিট সরাসরি গাড়ি চালানোর প্রশিক্ষণ",
+          "মৌলিক ইসলামি জ্ঞান"
+        ],
+        "courseType": [
+          "পুরুষদের জন্য ৪০ দিনের আবাসিক কোর্স।"
+        ]
+      },
+      {
+        "title": "জুতা শিল্পে উদ্যোক্তা তৈরি কোর্স",
+        "description": "বাংলাদেশের ফুটওয়্যার ও জুতা শিল্প একটি সম্ভাবনাময় খাত, যা দেশীয় চাহিদা পূরণের পাশাপাশি আন্তর্জাতিক বাজারেও গুরুত্বপূর্ণ অবদান রাখছে। এই খাতে দক্ষ উদ্যোক্তা ও প্রশিক্ষিত মানবসম্পদের চাহিদা দিন দিন বৃদ্ধি পাচ্ছে। আস-সুন্নাহ ফাউন্ডেশন দেশের বেকার ও উদ্যমী যুবকদের আত্মকর্মসংস্থান ও কর্মসংস্থান সৃষ্টির লক্ষ্যে “ফুটওয়্যার অ্যান্ড জুতা শিল্পে উদ্যোক্তা তৈরি কোর্স” চালু করেছে।",
+        "cardImage": "shoe-making-course-card",
+        "coverImage": "shoe-making-course-modal-cover",
+        "courseSubjects": [
+          "চামড়া এবং ফেব্রিক্সের শ্রেণিবিভাগ অনুযায়ী বিভিন্ন ধরনের জুতা তৈরি",
+          "আধুনিক ও ঐতিহ্যবাহী জুতার ডিজাইন",
+          "উচ্চমানের উপকরণ ও প্রযুক্তি",
+          "হাতে-কলমে জুতা তৈরির প্রশিক্ষণ",
+          "বাজার বিশ্লেষণ ও ব্যাবসায়িক কৌশল",
+          "ব্যান্ডিং ও বিপণণ",
+          "আন্তর্জাতিক মানের কমপ্লায়েন্স অনুযায়ী শিল্প স্থাপন",
+          "ইন্ডাস্ট্রিয়াল ভিজিট"
+        ],
+        "courseType": [
+          "পুরুষদের জন্য ৪ মাসব্যাপী আবাসিক কোর্স।"
+        ]
+      },
+      {
+        "title": "শেফ ট্রেনিং অ্যান্ড কিচেন ম্যানেজমেন্ট কোর্স",
+        "description": "বাংলাদেশসহ বিশ্বব্যাপী আতিথেয়তা ও খাদ্যশিল্পে দক্ষ শেফ ও কার্যকর কিচেন ম্যানেজারের চাহিদা দিন দিন বাড়ছে। হোটেল, রেস্তোরাঁ, ক্যাটারিং সার্ভিস থেকে শুরু করে ব্যক্তিগত উদ্যোগ—সকল ক্ষেত্রেই পেশাদার রান্না ও সুষ্ঠু রান্নাঘর ব্যবস্থাপনার দক্ষতা অপরিহার্য। এই চাহিদা পূরণ ও বেকার যুবকদের জন্য নতুন কর্মসংস্থানের পথ উন্মুক্ত করতে আস-সুন্নাহ ফাউন্ডেশন চালু করেছে “শেফ ট্রেনিং অ্যান্ড কিচেন ম্যানেজমেন্ট” কোর্স।",
+        "cardImage": "chef-training-and-kitchen-management-card",
+        "coverImage": "chef-training-and-kitchen-management-modal-cover",
+        "courseSubjects": [
+          "আতিথেয়তা ও পর্যটন পরিষেবা",
+          "খাদ্য ও পানীয় প্রস্তুতির মৌলিক কৌশল",
+          "রান্না সরঞ্জাম ও যন্ত্র ব্যবহার",
+          "হাইজিন ও সুরক্ষা নীতিমাল (OSH, PPE, HACCP)",
+          "কর্মস্থল পরিচ্ছন্নতা ও কীটনাশক নিয়ন্ত্রণ",
+          "মাছ ও মাংস কাটার পদ্ধতি",
+          "মাইস এন প্লেস (উপকরণ সাজানো)",
+          "মাদার সস ও স্যুপ প্রস্তুতি",
+          "বিভিন্ন রান্নার টেকনিক (তাপ ও সময় নিয়ন্ত্রণ)",
+          "প্লেটিং ও গার্নিশিং কৌশল",
+          "বর্জ্য হ্রাস ও ওয়েস্ট ম্যানেজমেন্ট",
+          "খাদ্য সংরক্ষণ ও ইনভেস্টরি নিয়ন্ত্রণ",
+          "খাদ্যের পুষ্টি মূল্যায়ন ও ডায়েট চার্ট প্রস্তুতি"
+        ],
+        "courseType": [
+          "পুরুষদের জন্য ৩ মাসব্যাপী আবাসিক কোর্স।"
+        ]
+      },
+      {
+        "title": "ল্যাঙ্গুয়েজ অ্যান্ড লিডারশিপ ফাউন্ডেশন কোর্স",
+        "description": "আস-সুন্নাহ স্কিল ডেভেলপমেন্ট ইনস্টিটিউটের ল্যাঙ্গুয়েজ অ্যান্ড লিডারশিপ কোর্স তরুণ প্রজন্মকে ভাষাগত দক্ষতা ও নেতৃত্বগুণে সমৃদ্ধ করার একটি সমন্বিত প্রশিক্ষণ কর্মসূচি। এই কোর্সে শিক্ষার্থীরা ভাষা দক্ষতা অর্জনের পাশাপাশি টিম পরিচালনা, সমস্যা সমাধান, এবং সৃজনশীল চিন্তাধারার মতো নেতৃত্বের মৌলিক ও উন্নত কৌশল শিখছে। ভাষা ও নেতৃত্ব—এই দুই দক্ষতার সমন্বয় শিক্ষার্থীদেরকে শিক্ষা, কর্মক্ষেত্র এবং সামাজিক জীবনের প্রতিটি ক্ষেত্রে সফলতার পথে এগিয়ে নেবে ইনশাআল্লাহ।",
+        "cardImage": "language-and-leadership-foundation-card",
+        "coverImage": "language-and-leadership-foundation-modal-cover",
+        "courseSubjects": [
+          "বাংলা",
+          "আরবি",
+          "ইংরেজি",
+          "নেতৃত্ব দক্ষতা",
+          "কর্পোরেট ম্যানার্স অ্যান্ড বিহেভিয়ার",
+          "বেসিক কম্পিউটার স্কিল",
+          "জেনারেটিভ এআই ও ভবিষ্যৎ দক্ষতা",
+          "বাস্তব অভিজ্ঞতা"
+        ],
+        "courseType": [
+          "পুরুষদের জন্য এক বছর মেয়াদী আবাসিক কোর্স"
+        ]
+      },
+      {
+        "title": "দি আর্ট অব ক্রিয়েশন কোর্স",
+        "description": "বর্তমান ডিজিটাল যুগে ব্যবসা-বাণিজ্য ও পণ্যের প্রচারের ক্ষেত্রে ভিডিও কনটেন্টের গুরুত্ব অপরিসীম। বাংলাদেশে অনেক পণ্যের হালাল পরিচিতি থাকলেও, ভিডিওগ্রাফির কিছু ক্ষেত্রে হারাম উপাদান ব্যবহারের কারণে অনেক উদ্যোক্তা তাদের প্রচার কার্যক্রম থেকে পিছিয়ে থাকেন। আমরা গড়ে তুলতে চাই এমন একদল দক্ষ ও সচেতন কনটেন্ট ক্রিয়েটর, যারা পণ্যের প্রচারে হালাল নীতি অনুসরণ করে কাজ করবে। যারা হালাল উপায়ে ভিডিও তৈরি করতে পারবে, আকর্ষণীয় ও প্রভাবশালী কনটেন্ট বানাতে পারবে, এবং পণ্যের সঠিক পরিচিতি তুলে ধরতে সক্ষম হবে।\n\nআমাদের লক্ষ্য—হালাল ভিডিও প্রোডাকশন নিশ্চিত করা, ইসলামিক বিধি-নিষেধ মেনে কনটেন্ট তৈরি করা, হালাল সার্টিফিকেশন ও ব্র্যান্ডিংয়ের গুরুত্ব তুলে ধরা এবং গ্রাহকদের কাছে একটি বিশ্বাসযোগ্য ও মূল্যবোধসম্পন্ন পরিচিতি গড়ে তোলা।\n\nএই দক্ষতা অর্জনের মাধ্যমে আপনি আয়-রোজগারের পাশাপাশি নিজেকে গড়ে তুলবেন একজন আত্মবিশ্বাসী প্রতিদ্বন্দ্বী হিসেবে—দেশীয় ও আন্তর্জাতিক বাজারে।",
+        "cardImage": "the-art-of-content-creation-card",
+        "coverImage": "the-art-of-content-creation-modal-cover",
+        "courseSubjects": [
+          "স্ক্রিপ্ট রাইটিং",
+          "সিনেমাটোগ্রাফি, ফটোগ্রাফি",
+          "আলোকসজ্জা",
+          "ভিডিও এডিটিং (ফটোশপ, প্রিমিয়ার প্রো, আফটার ইফেক্ট এবং ইলাস্ট্রেটর)",
+          "ই-কমার্স ও এফ -কমার্সের জন্য বিজ্ঞাপণ তৈরি",
+          "AI-এর মাধ্যমে কনটেন্ট তৈরি",
+          "গল্প নির্ভর বিজ্ঞাপণ",
+          "ডকুমেন্টারি ও OVC তৈরি",
+          "ভিডিও পরিচালনার কৌশল",
+          "অডিও প্রোডাকশন",
+          "প্রাকটিক্যাল ইংলিশ",
+          "মৌলিক ইসলামী জ্ঞান"
+        ],
+        "courseType": [
+          "পুরুষদের জন্য তিন মাসের আবাসিক কোর্স"
+        ]
+      }
+    ],
+    "stats": {
+      "title": "ইমপ্যাক্ট পরিসংখ্যান",
+      "table": {
+        "columns": [
+          "কোর্স",
+          "২০২২",
+          "২০২৩",
+          "২০২৪",
+          "২০২৫"
+        ],
+        "rows": [
+          [
+            "স্মল বিজনেস ম্যানেজমেন্ট",
+            "৪২",
+            "১৭৯",
+            "৪৯৬",
+            "৩২৮ (চলমান)"
+          ],
+          [
+            "স্মার্ট টেইলারিং অ্যান্ড ফ্যাশন ডিজাইন",
+            "-",
+            "২৩",
+            "১৭৯",
+            "১৭৯ (চলমান)"
+          ],
+          [
+            "ড্রাইভিং প্রশিক্ষণ",
+            "-",
+            "-",
+            "-",
+            "৯৫ (চলমান)"
+          ],
+          [
+            "দি আর্ট অব সেলস অ্যান্ড মার্কেটিং",
+            "-",
+            "-",
+            "-",
+            "৭৯ (চলমান)"
+          ],
+          [
+            "শেফ অ্যান্ড কিচেন ম্যানেজমেন্ট",
+            "-",
+            "-",
+            "-",
+            "৩৬ (চলমান)"
+          ],
+          [
+            "ল্যাঙ্গুয়েজ অ্যান্ড লিডারশিপ",
+            "-",
+            "-",
+            "-",
+            "১৩৯ (চলমান)"
+          ],
+          [
+            "ফুটওয়্যার অ্যান্ড জুতা শিল্পে উদ্যোক্তা তৈরি",
+            "-",
+            "-",
+            "-",
+            "৪৫ (চলমান)"
+          ],
+          [
+            "দি আর্ট অব কন্টেন ক্রিয়েশন",
+            "-",
+            "-",
+            "-",
+            "৩০ (চলমান)"
+          ]
+        ],
+        "footer": {
+          "label": "মোট",
+          "values": [
+            "১৭৫০ (চলমান)"
+          ]
+        }
+      }
+    },
+    "upcomingCourses": [
+      {
+        "title": "প্লাম্বিং ও পাইপ ফিটিং ট্রেনিং",
+        "icon": "PlumbingCourseIcon"
+      },
+      {
+        "title": "ইলেক্ট্রিক ট্রেনিং",
+        "icon": "ElectricCourseIcon"
+      },
+      {
+        "title": "রাজমিস্ত্রী ট্রেনিং",
+        "icon": "MasonCourseIcon"
+      },
+      {
+        "title": "রড বাইন্ডিং ট্রেনিং",
+        "icon": "RodBindingCourseIcon"
+      },
+      {
+        "title": "টাইলস মিস্ত্রী ট্রেনিং",
+        "icon": "TilesCourseIcon"
+      },
+      {
+        "title": "পেইন্টিং ট্রেনিং",
+        "icon": "PaintingCourseIcon"
+      },
+      {
+        "title": "গার্ডেনিং ট্রেনিং",
+        "icon": "GardeningCourseIcon"
+      },
+      {
+        "title": "স্ট্রিট ফুড ট্রেনিং",
+        "icon": "StreetFoodCourseIcon"
+      }
+    ],
+    "faq": [
+      {
+        "question": "আমি কীভাবে কোর্সে ভর্তি হতে পারি?",
+        "answer": "প্রত্যেক ব্যাচ শুরু হওয়ার আগে ফেইসবুক পেইজ এবং ওয়েবসাইটের নোটিশ বোর্ডে ঘোষণা দেয়া হয়। পেইজ এবং ওয়েবসাইটের নির্দেশনা অনুসরণ করুন।"
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/assets/activities-gallery/skill-development-institute/skill-development-institute-1.webp",
+      "alt": "skill-based-entrepreneurship-1"
+    },
+    {
+      "src": "/assets/activities-gallery/skill-development-institute/skill-development-institute-2.webp",
+      "alt": "skill-based-entrepreneurship-2"
+    },
+    {
+      "src": "/assets/activities-gallery/skill-development-institute/skill-development-institute-3.webp",
+      "alt": "skill-based-entrepreneurship-3"
+    },
+    {
+      "src": "/assets/activities-gallery/skill-development-institute/skill-development-institute-4.webp",
+      "alt": "skill-based-entrepreneurship-4"
+    },
+    {
+      "src": "/assets/activities-gallery/skill-development-institute/skill-development-institute-5.webp",
+      "alt": "skill-based-entrepreneurship-5"
+    },
+    {
+      "src": "/assets/activities-gallery/skill-development-institute/skill-development-institute-6.webp",
+      "alt": "skill-based-entrepreneurship-6"
+    },
+    {
+      "src": "/assets/activities-gallery/skill-development-institute/skill-development-institute-7.webp",
+      "alt": "skill-based-entrepreneurship-7"
+    },
+    {
+      "src": "/assets/activities-gallery/skill-development-institute/skill-development-institute-8.webp",
+      "alt": "skill-based-entrepreneurship-8"
+    },
+    {
+      "src": "/assets/activities-gallery/skill-development-institute/skill-development-institute-9.webp",
+      "alt": "skill-based-entrepreneurship-9"
+    },
+    {
+      "src": "/assets/activities-gallery/skill-development-institute/skill-development-institute-10.webp",
+      "alt": "skill-based-entrepreneurship-10"
+    },
+    {
+      "src": "/assets/activities-gallery/skill-development-institute/skill-development-institute-11.webp",
+      "alt": "skill-based-entrepreneurship-11"
+    }
+  ]
+}

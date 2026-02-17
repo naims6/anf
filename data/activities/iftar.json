@@ -1,0 +1,198 @@
+{
+  "slug": "iftar",
+  "cardImage": "iftar",
+  "heroBackground": "iftar-hero",
+  "routeExtension": "iftar",
+  "heroImages": [
+    {
+      "src": "iftar-1",
+      "alt": "iftar-1",
+      "position": "main"
+    },
+    {
+      "src": "iftar-2",
+      "alt": "iftar-2",
+      "position": "small-top"
+    },
+    {
+      "src": "iftar-3",
+      "alt": "iftar-3",
+      "position": "medium"
+    },
+    {
+      "src": "iftar-4",
+      "alt": "iftar-4",
+      "position": "small-bottom"
+    }
+  ],
+  "en": {
+    "title": "Iftar Distribution",
+    "description": "With your support, we organize Iftar for underprivileged fasting individuals. Join us in this noble endeavor.",
+        "content": "<h3>Program Details</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/O7QdeIRq17I\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>Many poor fasting individuals cannot afford nutritious Sahri and Iftar due to financial constraints. Keeping their situation in mind during the holy month, As-Sunnah Foundation conducts Iftar distribution programs.</p>",
+    "features": [
+      {
+        "title": "Project Goals & Objectives",
+        "values": [
+          "Providing nutritious Iftar to needy fasting individuals"
+        ]
+      },
+      {
+        "title": "Beneficiaries",
+        "icon": "ListIconUser",
+        "values": [
+          "Poor families in remote areas"
+        ]
+      },
+      {
+        "title": "Expense Categories",
+        "values": ["Iftar food purchase", "Management expenses"]
+      },
+      {
+        "title": "Project Areas",
+        "icon": "ListIconLocation",
+        "values": ["Poverty-stricken areas of all 64 districts"]
+      },
+      {
+        "title": "Duration",
+        "icon": "ListIconCalendar",
+        "values": ["Annual and ongoing project (Ramadan-focused)"]
+      }
+    ],
+    "tagline": "Stand beside needy fasting individuals",
+    "stats": {
+      "title": "Impact Statistics",
+      "table": {
+        "columns": [
+          "Year", "Number of Packages"
+        ],
+        "rows": [
+          ["2025", "12,030"],
+          ["2024", "10,300"],
+          ["2023", "9,870"],
+          ["2022", "1,500"],
+          ["2021", "14,670"],
+          ["2020", "-"],
+          ["2019", "1,369"]
+        ],
+        "footer": {
+          "label": "Total",
+          "values": ["49,739"]
+        }
+      }
+    },
+    "faq": [
+      {
+        "question": "How can I donate to this program?",
+        "answer": "Click here"
+      },
+      {
+        "question": "How is the distribution process?",
+        "answer": "The distribution is carried out in poverty-stricken areas through the dedicated staff and volunteers of As-Sunnah Foundation."
+      },
+      {
+        "question": "Can Zakat funds be used for this project?",
+        "answer": "No, Zakat funds cannot be used for this project."
+      }
+    ]
+  },
+  "bn": {
+    "title": "ইফতার বিতরণ",
+    "description": "আপনার সহযোগিতায় আমরা দুস্থ রোযাদারদের জন্য ইফতার আয়োজন করি। আমাদের এই কল্যাণকর্মে আপনিও শরিক হোন।",
+        "content": "<h3>কার্যক্রমের বিবরণ</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/O7QdeIRq17I\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>অনেক দরিদ্র রোযাদার আর্থিক সামর্থ্যের অভাবে পুষ্টিকর সাহরী ও ইফতার গ্রহণ করতে পারে না। পবিত্র মাসে তাদের বিষয়টি মাথায় রেখে আস-সুন্নাহ ফাউন্ডেশন পরিচালনা করে ইফতার বিতরণ কার্যক্রম।</p>",
+    "features": [
+      {
+        "title": "প্রকল্পের লক্ষ্য-উদ্দেশ্য",
+        "values": [
+          "অভাবী সিয়াম পালনকারীদের পুষ্টিকর ইফতারের ব্যবস্থা করা"
+        ]
+      },
+      {
+        "title": "উপকারভোগী",
+        "icon": "ListIconUser",
+        "values": [
+          "প্রত্যন্ত অঞ্চলের দরিদ্র পরিবার"
+        ]
+      },
+      {
+        "title": "ব্যয়ের খাত",
+        "values": ["ইফতারসামগ্রী ক্রয়", "ব্যবস্থাপনা ব্যয়"]
+      },
+      {
+        "title": "প্রকল্পের এলাকা",
+        "icon": "ListIconLocation",
+        "values": ["৬৪ জেলার দারিদ্র্য বহুল এলাকা"]
+      },
+      {
+        "title": "মেয়াদ",
+        "icon": "ListIconCalendar",
+        "values": ["বার্ষিক এবং স্থায়ী প্রকল্প (রমযান কেন্দ্রিক)"]
+      }
+    ],
+    "tagline": "দুস্থ রোযাদারের পাশে দাঁড়ান",
+    "stats": {
+      "title": "ইমপ্যাক্ট পরিসংখ্যান",
+      "table": {
+        "columns": [
+          "সাল", "প্যাকেজ সংখ্যা"
+        ],
+        "rows": [
+          ["২০২৫", "১২,০৩০"],
+          ["২০২৪", "১০,৩০০"],
+          ["২০২৩", "৯,৮৭০"],
+          ["২০২২", "১,৫০০"],
+          ["২০২১", "১৪,৬৭০"],
+          ["২০২০", "-"],
+          ["২০১৯", "১,৩৬৯"]
+        ],
+        "footer": {
+          "label": "মোট",
+          "values": ["৪৯,৭৩৯"]
+        }
+      }
+    },
+    "faq":[
+      {
+        "question": "আমি কীভাবে ইফতার প্রজেক্টে জন্য দান করতে পারি?",
+        "answer": "এখানে ক্লিক করুন"
+      },
+      {
+        "question": "বিতরণ প্রক্রিয়া কেমন?",
+        "answer": "আস-সুন্নাহ ফাউন্ডেশনের কর্মী ও স্বেচ্ছাসেবকদের মাধ্যমে দারিদ্র্যপীড়িত অঞ্চলে বিতরণ করা হয়।"
+      },
+      {
+        "question": "এই প্রকল্পে কি যাকাতের টাকা দেয়া যাবে?",
+        "answer": "না, এই প্রকল্পে যাকাতের টাকা দেয়া যাবে না।"
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/assets/activities-gallery/iftar/iftar-1.webp",
+      "alt": "iftar-1"
+    },
+    {
+      "src": "/assets/activities-gallery/iftar/iftar-2.webp",
+      "alt": "iftar-2"
+    },
+    {
+      "src": "/assets/activities-gallery/iftar/iftar-3.webp",
+      "alt": "iftar-3"
+    },
+    {
+      "src": "/assets/activities-gallery/iftar/iftar-4.webp",
+      "alt": "iftar-4"
+    },
+    {
+      "src": "/assets/activities-gallery/iftar/iftar-5.webp",
+      "alt": "iftar-5"
+    },
+    {
+      "src": "/assets/activities-gallery/iftar/iftar-6.webp",
+      "alt": "iftar-6"
+    },
+    {
+      "src": "/assets/activities-gallery/iftar/iftar-7.webp",
+      "alt": "iftar-7"
+    }
+  ]
+}

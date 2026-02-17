@@ -1,0 +1,192 @@
+{
+  "slug": "self-reliance",
+  "cardImage": "self-reliance",
+  "heroBackground": "self-reliance-hero",
+  "routeExtension": "self-reliant",
+  "heroImages": [
+    {
+      "src": "self-reliance-1",
+      "alt": "self-reliance-1",
+      "position": "main"
+    },
+    {
+      "src": "self-reliance-2",
+      "alt": "self-reliance-2",
+      "position": "small-top"
+    },
+    {
+      "src": "self-reliance-3",
+      "alt": "self-reliance-3",
+      "position": "medium"
+    },
+    {
+      "src": "self-reliance-4",
+      "alt": "self-reliance-4",
+      "position": "small-bottom"
+    }
+  ],
+  "en": {
+    "title": "Self-Reliance",
+    "description": "Under this program, income-generating tools are provided to capable poor individuals.",
+        "content": "<h3>Program Details</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/Lpy0O_2nvLE\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>One of the top priorities of As-Sunnah Foundation is to empower unemployed and unskilled men and women to become self-reliant. To achieve this goal, the foundation regularly implements self-reliance projects. Under this program, necessary training along with financial assistance and tools are provided to poor and income-capable individuals.</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>In the first phase of the project, beneficiaries are selected through verification and screening. In the second phase, profession-based income-generating tools are distributed after training—such as sewing machines, vans, shop items, agricultural tools, etc.</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>As-Sunnah Foundation's self-reliance project does not focus only on worldly income. Before handing over the tools, lessons on Salah (prayer), fasting, halal and haram, family and social etiquette, and basic principles of Islamic life are taught. This ensures that along with earning, the beneficiaries also become good Muslims and morally upright individuals.</p>",
+    "features": [
+      {
+        "title": "Project Goals & Objectives",
+        "values": [
+          "Empowering the poor for self-reliance",
+          "Delivering Zakat funds to rightful beneficiaries"
+        ]
+      },
+      {
+        "title": "Beneficiaries",
+        "icon": "ListIconUser",
+        "values": [
+          "Income-capable poor individuals"
+        ]
+      },
+      {
+        "title": "Expense Categories",
+        "values": ["Tool purchase", "Transportation", "Management"]
+      },
+      {
+        "title": "Project Areas",
+        "icon": "ListIconLocation",
+        "values": ["Poverty-stricken areas of all 64 districts"]
+      },
+      {
+        "title": "Duration",
+        "icon": "ListIconCalendar",
+        "values": ["Once a year"]
+      }
+    ],
+    "tagline": "Extend Your Hand to the Poor",
+    "stats": {
+      "title": "Impact Statistics",
+      "table": {
+        "columns": [
+          "Year", "Beneficiary Families"
+        ],
+        "rows": [
+          ["2024", "2,063"],
+          ["2023", "2,000"],
+          ["2021-22", "1,077"]
+        ],
+        "footer": {
+          "label": "Total",
+          "values": ["5,140"]
+        }
+      }
+    },
+    "faq":[
+      {
+        "question": "How can I donate to this project?",
+        "answer": "Click here"
+      },
+      {
+        "question": "What is the distribution process?",
+        "answer": "Applications are collected through a public Google Form. Beneficiaries are selected after verification. The selected recipients are given the necessary items after proper training."
+      },
+      {
+        "question": "Can I donate Zakat for this project?",
+        "answer": "Yes, you can. To donate Zakat directly, click on this link."
+      }
+    ]
+  },
+  "bn": {
+    "title": "স্বাবলম্বীকরণ",
+    "description": "এই কার্যক্রমের আওতায় কর্মক্ষম দরিদ্রদের উপার্জন উপকরণ দেয়া হয়।",
+        "content": "<h3>কার্যক্রমের বিবরণ</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/Lpy0O_2nvLE\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>বেকার ও অদক্ষ নারী-পুরুষদের দক্ষ করে তোলার মাধ্যমে তাদের আত্মনির্ভরশীল করা আস-সুন্নাহ ফাউন্ডেশনের অন্যতম অগ্রাধিকার। এই লক্ষ্যে ফাউন্ডেশন নিয়মিত স্বাবলম্বীকরণ প্রকল্প বাস্তবায়ন করে আসছে। এ প্রকল্পের আওতায় দরিদ্র ও উপার্জনক্ষম ব্যক্তিদের প্রয়োজনীয় প্রশিক্ষণের পাশাপাশি আর্থিক সহায়তা ও উপকরণ প্রদান করা হয়।</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>এই প্রকল্প বাস্তবায়নের প্রথম ধাপে যাচাই-বাছাইপূর্বক উপকারভোগী নির্বাচন করা হয়। দ্বিতীয় ধাপে প্রশিক্ষণপূর্বক পেশাভিত্তিক উপার্জন-উপকরণ বিতরণ করা হয়—যেমন সেলাই মেশিন, ভ্যানগাড়ি, দোকানের মালামাল, কৃষি উপকরণ ইত্যাদি।</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>আস-সুন্নাহ ফাউন্ডেশনের স্বাবলম্বীকরণ প্রকল্প শুধুমাত্র দুনিয়াবি উপার্জনকেই গুরুত্ব দেয় না। উপকরণ হস্তান্তরের পূর্বে সালাত, সিয়াম, হালাল-হারাম, পারিবারিক ও সামাজিক আচরণবিধি এবং ইসলামী জীবনের মৌলিক বিধানসমূহ শেখানো হয়, যাতে উপার্জনের পাশাপাশি তারা যেন ভালো মুসলিম ও নীতিবান মানুষ হিসেবেও নিজেদের গড়ে তুলতে পারেন।</p>",
+    "features": [
+      {
+        "title": "প্রকল্পের লক্ষ্য-উদ্দেশ্য",
+        "values": [
+          "দরিদ্রদের স্বাবলম্বীকরণ", 
+          "যাকাতের অর্থ প্রকৃত হকদারদের কাছে পৌঁছে দেয়া"
+        ]
+      },
+      {
+        "title": "উপকারভোগী",
+        "icon": "ListIconUser",
+        "values": [
+          "উপার্জনক্ষম দরিদ্র জনগোষ্ঠী"
+        ]
+      },
+      {
+        "title": "ব্যয়ের খাত",
+        "values": ["উপকরণ ক্রয়", "পরিবহন", "ব্যবস্থাপনা"]
+      },
+      {
+        "title": "প্রকল্পের এলাকা",
+        "icon": "ListIconLocation",
+        "values": ["৬৪ জেলার দারিদ্র্য বহুল এলাকা"]
+      },
+      {
+        "title": "মেয়াদ",
+        "icon": "ListIconCalendar",
+        "values": ["বার্ষিক একবার"]
+      }
+    ],
+    "tagline": "হাত বাড়ান দরিদ্রদের প্রতি",
+    "stats": {
+      "title": "ইমপ্যাক্ট পরিসংখ্যান",
+      "table": {
+        "columns": [
+          "সাল", "উপকারভোগী পরিবার"
+        ],
+        "rows": [
+          ["২০২৪", "২,০৬৩"],
+          ["২০২৩", "২,০০০"],
+          ["২০২১-২২", "১,০৭৭"]
+        ],
+        "footer": {
+          "label": "মোট",
+          "values": ["৫,১৪০"]
+        }
+      }
+    },
+    "faq":[
+      {
+        "question": "আমি কীভাবে এই প্রজেক্টে জন্য দান করতে পারি?",
+        "answer": "এখানে ক্লিক করুন"
+      },
+      {
+        "question": "বিতরণ প্রক্রিয়া কেমন?",
+        "answer": "গুগল ফরমের মাধ্যমে উন্মুক্ত আবেদন গ্রহণ করা হয়। যাচাইপূর্বক উপকারভোগী নির্বাচন করা হয়। নির্বাচিত উপকারভোগীদের প্রশিক্ষণপূর্বক উপকরণ প্রদান করা হয়।"
+      },
+      {
+        "question": "এই প্রকল্পে কি যাকাতের টাকা দেয়া যাবে?",
+        "answer": "হ্যাঁ, দেয়া যাবে। তবে সরাসরি যাকাত দিতে এই লিংকে ক্লিক করুন।"
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "src": "/assets/activities-gallery/self-reliance/self-reliance-1.webp",
+      "alt": "self-reliance-1"
+    },
+    {
+      "src": "/assets/activities-gallery/self-reliance/self-reliance-2.webp",
+      "alt": "self-reliance-2"
+    },
+    {
+      "src": "/assets/activities-gallery/self-reliance/self-reliance-3.webp",
+      "alt": "self-reliance-3"
+    },
+    {
+      "src": "/assets/activities-gallery/self-reliance/self-reliance-4.webp",
+      "alt": "self-reliance-4"
+    },
+    {
+      "src": "/assets/activities-gallery/self-reliance/self-reliance-5.webp",
+      "alt": "self-reliance-5"
+    },
+    {
+      "src": "/assets/activities-gallery/self-reliance/self-reliance-6.webp",
+      "alt": "self-reliance-6"
+    },
+    {
+      "src": "/assets/activities-gallery/self-reliance/self-reliance-7.webp",
+      "alt": "self-reliance-7"
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+    "slug": "meritorious",
+    "cardImage": "meritorious",
+    "heroBackground": "meritorious-hero",
+    "routeExtension": "medhabi",
+    "heroImages": [
+        {
+            "src": "meritorious-1",
+            "alt": "meritorious-1",
+            "position": "main"
+        },
+        {
+            "src": "meritorious-2",
+            "alt": "meritorious-2",
+            "position": "small-top"
+        },
+        {
+            "src": "meritorious-3",
+            "alt": "meritorious-3",
+            "position": "medium"
+        },
+        {
+            "src": "meritorious-4",
+            "alt": "meritorious-4",
+            "position": "small-bottom"
+        }
+    ],
+    "en": {
+    "title": "Meritorious Program",
+    "description": "An initiative to build a generation with honesty, competence, and humanitarian values.",
+    "content": "<h3>Program Details</h3><p class='editor-paragraph editor-empty'></p><img class=\"editor-image\" src=\"https://cdn.assunnahfoundation.org/v2/assets/images/meritorious-01.webp\"><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>As part of building a generation with honesty, competence, and humanitarian values, As-Sunnah Foundation has taken the initiative to provide student-friendly, healthy accommodations for meritorious university students. This initiative will include quality housing, hygienic food, and various training programs such as English, technical skills, and moral education to enhance institutional learning capabilities. To ensure a conducive environment for quality study, financially able students will bear their own expenses, while scholarships will be provided for underprivileged students. Our dream is for the residents to remain free from all destructive distractions, focus wholeheartedly on their studies, and secure a bright future—thereby contributing to the progress of our nation. You too can join this initiative and play a role in building a value-driven Bangladesh.</p>",
+    "features": [
+        {
+            "title": "Project Goals and Objectives",
+            "values": [
+                "Develop an honest, competent, and value-driven generation",
+                "Provide accommodation and food for underprivileged students",
+                "Ensure safe and conducive study environments",
+                "Train students to be skilled in ICT and English",
+                "Provide fundamental Islamic education"
+            ]
+        },
+        {
+            "title": "Beneficiaries",
+            "icon": "ListIconUser",
+            "values": [
+                "University students"
+            ]
+        },
+        {
+            "title": "Expense Categories",
+            "values": [
+                "Accommodation",
+                "Food",
+                "Skill Development",
+                "Moral Education",
+                "Administrative Expenses"
+            ]
+        },
+        {
+            "title": "Duration",
+            "icon": "ListIconCalendar",
+            "values": [
+                "Until graduation"
+            ]
+        }
+    ],
+    "tagline": "Be a companion in the journey of meritorious youth towards success",
+    "stats": {
+        "title": "Impact Statistics",
+        "table": {
+            "columns": [
+                "Serial",
+                "Year",
+                "Number of Students"
+            ],
+            "rows": [
+                [
+                    "1",
+                    "2025",
+                    "1500"
+                ]
+            ],
+            "footer": {
+                "label": "Total",
+                "values": [
+                    "1500"
+                ]
+            }
+        }
+    },
+    "faq": [
+        {
+            "question": "Who will receive this accommodation facility?",
+            "answer": "Currently, only students of Jagannath University are receiving this facility."
+        },
+        {
+            "question": "How to apply?",
+            "answer": "Applications must be submitted through the prescribed form at the beginning of the academic year."
+        },
+        {
+            "question": "How many students are admitted in each batch?",
+            "answer": "Each batch admits 1500 students."
+        },
+        {
+            "question": "Will students from other universities be eligible in the future?",
+            "answer": "It may be extended to other universities in the future."
+        },
+        {
+            "question": "What are the requirements for receiving a scholarship?",
+            "answer": "This opportunity is available for meritorious and underprivileged students."
+        }
+    ]
+}
+,
+    "bn": {
+        "title": "মেধাবী কার্যক্রম",
+        "description": "সৎ, দক্ষ ও মানবিক মূল্যবোধসম্পন্ন প্রজন্ম বিনির্মাণের প্রয়াস।",
+        "content": "<h3>কার্যক্রমের বিবরণ</h3><p class='editor-paragraph editor-empty'></p><img class=\"editor-image\" src=\"https://cdn.assunnahfoundation.org/v2/assets/images/meritorious-01.webp\"><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>সৎ, দক্ষ ও মানবিক মূল্যবোধসম্পন্ন প্রজন্ম বিনির্মাণের অংশ হিসেবে বিশ্ববিদ্যালয়ের মেধাবী শিক্ষার্থীদের শিক্ষাবান্ধব স্বাস্থ্যকর আবাসনের উদ্যোগ নিয়েছে আস-সুন্নাহ ফাউন্ডেশন। এই উদ্যোগে থাকবে শিক্ষাবান্ধব মানসম্মত আবাসন, স্বাস্থ্যসম্মত খাবার, প্রাতিষ্ঠানিক শিক্ষাযোগ্যতা বৃদ্ধির জন্য ইংরেজি, কারিগরি ও নৈতিক শিক্ষাসহ নানামুখী প্রশিক্ষণের ব্যবস্থা। সুন্দর পরিবেশে পড়াশোনার মান নিশ্চিত করতে সচ্ছলরা এখানে নিজের ব্যয়ভার নিজেই বহন করবে। অসচ্ছলদের জন্য থাকবে স্কলারশিপের ব্যবস্থা। আমাদের স্বপ্ন, আবাসনের শিক্ষার্থীরা তারুণ্য বিধ্বংসী সকল পঙ্কিলতা থেকে মুক্ত হয়ে একমনে পড়ালেখা করে উজ্জ্বল ভবিষ্যৎ নিশ্চিত করবে। এতে এগিয়ে যাবে আমাদের দেশ। আমাদের এই উদ্যোগের সঙ্গী হয়ে একটি মানবিক মূল্যবোধসমৃদ্ধ বাংলাদেশ বিনির্মাণে ভূমিকা রাখতে পারেন আপনিও।</p>",
+        "features": [
+            {
+                "title": "প্রকল্পের লক্ষ্য-উদ্দেশ্য",
+                "values": [
+                    "সৎ, দক্ষ ও মানবিক মূল্যবোধসম্পন্ন প্রজন্ম তৈরি",
+                    "অসচ্ছল শিক্ষার্থীদের আবাসন ও খাদ্যের সংস্থান করা",
+                    "শিক্ষার্থীদের নিরাপদ পরিবেশে পড়াশোনার সুযোগ নিশ্চিত করা",
+                    "আইসিটি ও ইংরেজি ভাষায় দক্ষ হিসেবে গড়ে তোলা",
+                    "মৌলিক ইসলামী জ্ঞানের শিক্ষা প্রদান"
+                ]
+            },
+            {
+                "title": "উপকারভোগী",
+                "icon": "ListIconUser",
+                "values": [
+                    "বিশ্ববিদ্যালয়ের শিক্ষার্থীরা"
+                ]
+            },
+            {
+                "title": "ব্যয়ের খাত",
+                "values": [
+                    "আবাসন",
+                    "খাবার",
+                    "দক্ষতা উন্নয়ন",
+                    "নৈতিক শিক্ষা",
+                    "ব্যবস্থাপনা ব্যয়"
+                ]
+            },
+            {
+                "title": "মেয়াদ",
+                "icon": "ListIconCalendar",
+                "values": [
+                    "গ্রাজুয়েশন সম্পন্ন হওয়া পর্যন্ত"
+                ]
+            }
+        ],
+        "tagline": "মেধাবী তরুণদের এগিয়ে যাওয়ার পথে সঙ্গী হোন",
+        "stats": {
+            "title": "ইমপ্যাক্ট পরিসংখ্যান",
+            "table": {
+                "columns": [
+                    "ক্রমিক",
+                    "সাল",
+                    "শিক্ষার্থী সংখ্যা"
+                ],
+                "rows": [
+                    [
+                        "১",
+                        "২০২৫",
+                        "১৫০০"
+                    ]
+                ],
+                "footer": {
+                    "label": "মোট",
+                    "values": [
+                        "১৫০০"
+                    ]
+                }
+            }
+        }, 
+        "faq": [
+            {
+                "question": "এই আবাসন সুবিধা কারা পাবেন?",
+                "answer": "আপাতত শুধু জগন্নাথ বিশ্ববিদ্যালয়ের শিক্ষার্থীরা এই সুবিধা পাচ্ছেন।"
+            },
+            {
+                "question": "কীভাবে আবেদন করতে হবে?",
+                "answer": "শিক্ষাবর্ষের শুরুতে নির্ধারিত আবেদন ফরমে আবেদন করতে হবে।"
+            },
+            {
+                "question": "প্রতি ব্যাচে কতজন শিক্ষার্থীকে নেওয়া হবে?",
+                "answer": "প্রতি ব্যাচে ১৫০০ শিক্ষার্থী নেয়া হচ্ছে।"
+            },
+            {
+                "question": "ভবিষ্যতে কি অন্য বিশ্ববিদ্যালয়ের শিক্ষার্থীরাও সুযোগ পাবে?",
+                "answer": "পরবর্তীতে অন্য বিশ্ববিদ্যালয়ের শিক্ষার্থীদের জন্যও চালু হতে পারে।"
+            },
+            {
+                "question": "স্কলারশিপ পেতে হলে কী শর্ত পূরণ করতে হবে?",
+                "answer": "মেধাবী এবং অসচ্ছলদের জন্য এই সুযোগ রয়েছে।"
+            }
+        ]
+    },
+    "gallery": [
+        {
+            "src": "/assets/activities-gallery/self-reliance/self-reliance-1.webp",
+            "alt": "skill-based-entrepreneurship-1"
+        },
+        {
+            "src": "/assets/activities-gallery/self-reliance/self-reliance-2.webp",
+            "alt": "skill-based-entrepreneurship-2"
+        },
+        {
+            "src": "/assets/activities-gallery/self-reliance/self-reliance-3.webp",
+            "alt": "skill-based-entrepreneurship-3"
+        },
+        {
+            "src": "/assets/activities-gallery/self-reliance/self-reliance-4.webp",
+            "alt": "skill-based-entrepreneurship-4"
+        },
+        {
+            "src": "/assets/activities-gallery/self-reliance/self-reliance-5.webp",
+            "alt": "skill-based-entrepreneurship-5"
+        },
+        {
+            "src": "/assets/activities-gallery/self-reliance/self-reliance-6.webp",
+            "alt": "skill-based-entrepreneurship-6"
+        },
+        {
+            "src": "/assets/activities-gallery/self-reliance/self-reliance-7.webp",
+            "alt": "skill-based-entrepreneurship-7"
+        }
+    ]
+}

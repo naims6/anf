@@ -1,0 +1,272 @@
+{
+    "slug": "winter-relief",
+    "cardImage": "winter-relief",
+    "heroBackground": "winter-relief-hero",
+    "routeExtension": "winter",
+    "heroImages": [
+        {
+            "src": "winter-relief-1",
+            "alt": "winter-relief-1",
+            "position": "main"
+        },
+        {
+            "src": "winter-relief-2",
+            "alt": "winter-relief-2",
+            "position": "small-top"
+        },
+        {
+            "src": "winter-relief-3",
+            "alt": "winter-relief-3",
+            "position": "medium"
+        },
+        {
+            "src": "winter-relief-4",
+            "alt": "winter-relief-4",
+            "position": "small-bottom"
+        }
+    ],
+    "en": {
+        "title": "Winter Clothing Distribution",
+        "description": "Our sincere effort to spread warmth to those in need during the harsh winter.",
+        "content": "<h3>Program Details</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/fhJO634H1Hw\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>Those of us who live in cities or are relatively well-off barely feel the impact of winter. The cold doesn't seep through our brick walls, and for many, winter is simply a time for stylish outfits. But for many poor villagers, winter is a season of fear—a time when they cannot even provide warm clothing for their children. It becomes a season of sorrow and helplessness.</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>To deliver warm clothes to such vulnerable people, As-Sunnah Foundation organizes winter clothing distribution every year.</p>",
+        "features": [
+            {
+                "title": "Project Goals and Objectives",
+                "values": [
+                    "Protecting poor and cold-affected individuals from the harsh winter",
+                    "Delivering Zakat funds to the rightful recipients"
+                ]
+            },
+            {
+                "title": "Beneficiaries",
+                "icon": "ListIconUser",
+                "values": [
+                    "Poor communities in remote regions"
+                ]
+            },
+            {
+                "title": "Expense Categories",
+                "values": [
+                    "Purchase of winter clothing",
+                    "Transportation",
+                    "Overall management"
+                ]
+            },
+            {
+                "title": "Project Areas",
+                "icon": "ListIconLocation",
+                "values": [
+                    "Poverty-stricken areas across all 64 districts"
+                ]
+            },
+            {
+                "title": "Duration",
+                "icon": "ListIconCalendar",
+                "values": [
+                    "Annual and long-term project (centered around winter season)"
+                ]
+            }
+        ],
+        "tagline": "Stand with those suffering in the cold",
+        "stats": {
+            "title": "Impact Statistics",
+            "table": {
+                "columns": [
+                    "Year",
+                    "Winter Items",
+                    "Quantity"
+                ],
+                "rows": [
+                    [
+                        "2025",
+                        "Blanket, Shawl, Wool Cap, Socks (one set package per person)",
+                        "20,965"
+                    ],
+                    [
+                        "2024",
+                        "Blanket, Jacket, Sweater",
+                        "58,045"
+                    ],
+                    [
+                        "2023",
+                        "Blanket",
+                        "15,651"
+                    ],
+                    [
+                        "2022",
+                        "Blanket",
+                        "7,620"
+                    ],
+                    [
+                        "2021",
+                        "Blanket",
+                        "11,450"
+                    ],
+                    [
+                        "2020",
+                        "Blanket",
+                        "6,050"
+                    ],
+                    [
+                        "2019",
+                        "Blanket",
+                        "5,785"
+                    ]
+                ],
+                "footer": {
+                    "label": "Total",
+                    "values": [
+                        "125,566"
+                    ]
+                }
+            }
+        },
+        "faq":[
+            {
+              "question": "How can I donate for winter clothing?",
+              "answer": "Click here"
+            },
+            {
+              "question": "What is the distribution process?",
+              "answer": "Distribution is carried out in selected cold-affected and poverty-stricken areas."
+            }
+          ]
+    },
+    "bn": {
+        "title": "শীতবস্ত্র বিতরণ",
+        "description": "দরিদ্র মানুষের শরীরে উষ্ণতা ছড়িয়ে দিতে আমাদের আন্তরিক প্রয়াস।",
+        "content": "<h3>কার্যক্রমের বিবরণ</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/fhJO634H1Hw\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>আমরা যারা শহরে বাস করি এবং যারা কিছুটা অবস্থাসম্পন্ন—তারা শীত তেমন অনুভব করি না। ইটের দেয়াল ভেদ করে শীত আমাদের শরীর ছুঁতে পারে না। বরং শীত আমাদেরকে বাহারি পোশাক পরিধান করার উপলক্ষ তৈরি করে দেয়। এজন্য শীতকাল আমাদের অনেকের প্রিয় ঋতু। গ্রামের অনেক গরিব মানুষের কাছে ব্যাপারটা ঠিক এর বিপরীত। শীত তাদের কাছে আতঙ্কের ঋতু। সন্তানের শরীর গরম পোশাকে আচ্ছাদিত করতে না পারার গ্লানির ঋতু।</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>এরূপ মানুষদের কাছে শীতের পোশাক পৌঁছে দেওয়ার জন্য আস-সুন্নাহ ফাউন্ডেশন প্রতি বছর পরিচালনা করছে শীতবস্ত্র বিতরণ কার্যক্রম।</p>",
+        "features": [
+            {
+                "title": "প্রকল্পের লক্ষ্য-উদ্দেশ্য",
+                "values": [
+                    "দরিদ্র শীতার্ত মানুষকে শীত থেকে সুরক্ষা দেয়া",
+                    "যাকাতের অর্থ প্রকৃত হকদারদের কাছে পৌঁছে দেয়া"
+                ]
+            },
+            {
+                "title": "উপকারভোগী",
+                "icon": "ListIconUser",
+                "values": [
+                    "প্রত্যন্ত অঞ্চলের দরিদ্র জনগোষ্ঠী"
+                ]
+            },
+            {
+                "title": "ব্যয়ের খাত",
+                "values": [
+                    "শীতবস্ত্র ক্রয়",
+                    "পরিবহন",
+                    "সার্বিক ব্যবস্থাপনা"
+                ]
+            },
+            {
+                "title": "প্রকল্পের এলাকা",
+                "icon": "ListIconLocation",
+                "values": [
+                    "৬৪ জেলার দারিদ্র্য বহুল এলাকা"
+                ]
+            },
+            {
+                "title": "মেয়াদ",
+                "icon": "ListIconCalendar",
+                "values": [
+                    "বার্ষিক এবং স্থায়ী প্রকল্প (শীতকাল কেন্দ্রিক)"
+                ]
+            }
+        ],
+        "tagline": "শীতার্তদের পাশে দাঁড়ান",
+        "stats": {
+            "title": "ইমপ্যাক্ট পরিসংখ্যান",
+            "table": {
+                "columns": [
+                    "সাল",
+                    "শীতবস্ত্র",
+                    "সংখ্যা"
+                ],
+                "rows": [
+                    [
+                        "২০২৫",
+                        "কম্বল, শাল, কানটুপি, মোজা (প্রত্যেককে এক সেটের প্যাকেজ)",
+                        "২০,৯৬৫"
+                    ],
+                    [
+                        "২০২৪",
+                        "কম্বল, জ্যাকেট, সোয়েটার",
+                        "৫৮,০৪৫"
+                    ],
+                    [
+                        "২০২৩",
+                        "কম্বল",
+                        "১৫,৬৫১"
+                    ],
+                    [
+                        "২০২২",
+                        "কম্বল",
+                        "৭,৬২০"
+                    ],
+                    [
+                        "২০২১",
+                        "কম্বল",
+                        "১১,৪৫০"
+                    ],
+                    [
+                        "২০২০",
+                        "কম্বল",
+                        "৬,০৫০"
+                    ],
+                    [
+                        "২০১৯",
+                        "কম্বল",
+                        "৫,৭৮৫"
+                    ]
+                ],
+                "footer": {
+                    "label": "মোট",
+                    "values": [
+                        "১২৫,৫৬৬"
+                    ]
+                }
+            }
+        },
+        "faq":[
+            {
+              "question": "আমি কীভাবে শীতবস্ত্রের জন্য দান করতে পারি?",
+              "answer": "এখানে ক্লিক করুন"
+            },
+            {
+              "question": "বিতরণ প্রক্রিয়া কেমন?",
+              "answer": "শীতপ্রবণ ও দারিদ্র্যপীড়িত এলাকাসমূহ নির্বাচন করে বিতরণ করা হয়।"
+            }
+          ]
+    },
+    "gallery": [
+        {
+            "src": "/assets/activities-gallery/winter/winter_1.webp",
+            "alt": "winter-relief-1"
+        },
+        {
+            "src": "/assets/activities-gallery/winter/winter_2.webp",
+            "alt": "winter-relief-2"
+        },
+        {
+            "src": "/assets/activities-gallery/winter/winter_3.webp",
+            "alt": "winter-relief-3"
+        },
+        {
+            "src": "/assets/activities-gallery/winter/winter4.webp",
+            "alt": "winter-relief-4"
+        },
+        {
+            "src": "/assets/activities-gallery/winter/winter5.webp",
+            "alt": "winter-relief-5"
+        },
+        {
+            "src": "/assets/activities-gallery/winter/winter_6.webp",
+            "alt": "winter-relief-6"
+        },
+        {
+            "src": "/assets/activities-gallery/winter/winter_7.webp",
+            "alt": "winter-relief-7"
+        }
+    ]
+}

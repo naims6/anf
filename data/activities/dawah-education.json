@@ -1,0 +1,182 @@
+{
+    "slug": "dawah-education",
+    "cardImage": "dawah-education",
+    "heroBackground": "dawah-education-hero",
+    "routeExtension": "general",
+    "heroImages": [
+        {
+            "src": "dawah-education-1",
+            "alt": "dawah-education-1",
+            "position": "main"
+        },
+        {
+            "src": "dawah-education-2",
+            "alt": "dawah-education-2",
+            "position": "small-top"
+        },
+        {
+            "src": "dawah-education-3",
+            "alt": "dawah-education-3",
+            "position": "medium"
+        },
+        {
+            "src": "dawah-education-4",
+            "alt": "dawah-education-4",
+            "position": "small-bottom"
+        }
+    ],
+    "en": {
+    "title": "Dawah Activities",
+    "description": "As-Sunnah Foundation's dawah initiatives aim to inspire Islamic values by spreading authentic knowledge.",
+        "content": "<h3>Program Details</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/VmoZEo2_Ozc\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>Dawah is the noble duty of the prophets, and the ummah has inherited this responsibility. Without authentic knowledge and education, the Muslim society can never truly awaken.</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>With this spirit and by the grace of Almighty Allah, As-Sunnah Foundation has already played a strong role in disseminating pure Islam among Bengali-speaking Muslims in a short period. The foundation conducts dawah activities both online and offline in various ways. Through timely content, video lectures, Q&A sessions, publications, and leaflets, it delivers the purified message of Islam to millions.</p>",
+    "features": [
+      {
+        "title": "Project Goals and Objectives",
+        "values": [
+          "Propagation of authentic Islam",
+          "Raising religious awareness and sense of responsibility",
+          "Establishing a value-driven society"
+        ]
+      },
+      {
+        "title": "Activities",
+        "values": [
+          "Production of dawah videos",
+          "Live Shariah solutions",
+          "Distribution of books and publications",
+          "Organizing workshops",
+          "Dawah diploma",
+          "Shariah solutions through an open call center",
+          "In-person Shariah consultation and family counseling",
+          "And more"
+        ]
+      }
+    ],
+    "tagline": "Spread the call of Islam",
+    "stats": {
+  "title": "Impact Statistics",
+  "description": "Some statistics achieved through this program are presented below.",
+  "table": {
+    "columns": [
+      "Dawah Videos",
+      "Dawah Diploma",
+      "Workshop Organization",
+      "Live Q&A (Shariah Solutions)",
+      "Shariah Solutions via Open Call Center",
+      "In-Person Shariah Consultation & Family Counseling",
+      "Book and Publication Distribution"
+    ],
+    "rows": [
+      [
+        "Regular dawah videos have been uploaded on various As-Sunnah Foundation pages and YouTube channels. So far, over 256 videos have been published, reaching more than 30 million viewers.",
+        
+        "Various diploma courses for scholars and educated individuals are being offered by the Dawah and Research Institute of As-Sunnah Foundation. The initiative began in 2024. Its goal is to develop insightful, visionary, and proactive da‘ees to address the contemporary crises of the global Muslim Ummah.",
+        
+        "As part of the foundation's dawah efforts, multiple workshops have been organized on different topics. These include three batches of dawah training, a zakat workshop, and two nasihah programs for SSC students.",
+        
+        "To answer public Islamic queries, a weekly live Q&A session titled 'Shariah Solutions' is broadcast on our verified Facebook pages and YouTube channel. So far, 267 episodes—each around one hour long—have been aired.",
+        
+        "An open call center has been established to provide Shariah-compliant answers to people's daily religious queries. Qualified scholars respond over the phone based on Quran and Sunnah. Over 30,000 questions have been answered to date.",
+        
+        "Apart from the call center, in-person Shariah consultations and family counseling services are provided by learned scholars. Around 10,000 people have received such consultations, significantly contributing to family conflict resolution.",
+        
+        "Books published by the As-Sunnah Foundation include:\n\nMorning and Evening Duas and Dhikr of the Prophet (ﷺ), Post-Prayer Duas (Pocket Card), Ramadan Planner, How to Perform Umrah, Quranic Messages in Taraweeh Prayers, 27 Practices of Ramadan, Seerah Memorabilia, and various dawah leaflets. Over 700,000 copies have been sold or distributed for free."
+      ]
+    ]
+  }
+}
+
+  },
+    "bn": {
+        "title": "দাওয়াহ কার্যক্রম",
+        "description": "বিশুদ্ধ জ্ঞান ছড়িয়ে দিয়ে ইসলামী চেতনায় উজ্জীবিত করতে আস-সুন্নাহ ফাউন্ডেশনের দাওয়াহমূলক উদ্যোগ।",
+        "content": "<h3>কার্যক্রমের বিবরণ</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/VmoZEo2_Ozc\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>দাওয়াহ নবীদের মহৎ দায়িত্ব, উম্মাহ যার উত্তরাধিকার বহন করছে। বিশুদ্ধ জ্ঞান ও শিক্ষা ছাড়া মুসলিম সমাজ কখনো প্রকৃতভাবে জাগ্রত হতে পারে না।</p><p class='editor-paragraph editor-empty'></p><p class='editor-paragraph'>এই চেতনা থেকেই মহান আল্লাহর অশেষ অনুগ্রহে অল্প সময়ের মধ্যেই আস সুন্নাহ ফাউন্ডেশন বাংলাভাষী মুসলমানদের মাঝে বিশুদ্ধ দ্বীন প্রচারে এক শক্তিশালী ভূমিকা পালন করছে। অনলাইন ও অফলাইনে বহুবিধ পদ্ধতিতে ফাউন্ডেশন দাওয়াহ কার্যক্রম পরিচালনা করছে। যুগোপযোগী কনটেন্ট, ভিডিও বক্তৃতা, প্রশ্নোত্তর অনুষ্ঠান, বই-পুস্তক ও লিফলেপ প্রকাশ করে লাখো মানুষের মাঝে ইসলামের পরিশুদ্ধ বাণী পৌঁছে দিচ্ছে।</p>",
+        "features": [
+            {
+                "title": "প্রকল্পের লক্ষ্য-উদ্দেশ্য",
+                "values": [
+                    "বিশুদ্ধ দ্বীন প্রচার",
+                    "দ্বীনি সচেতনতা ও দায়িত্ববোধ সৃষ্টি করা",
+                    "নীতি ও মূল্যবোধভিত্তিক সমাজ প্রতিষ্ঠা করা"
+                ]
+            },
+            {
+                "title": "কার্যক্রম",
+                "values": [
+                    "দাওয়াহমূলক ভিডিও তৈরি",
+                    "শরয়ী সমাধান লাইভ",
+                    "বই-পুস্তক বিতরণ",
+                    "কর্মশালা আয়োজন",
+                    "দাওয়াহ ডিপ্লোমা",
+                    "উন্মুক্ত কল সেন্টারের মাধ্যমে শরয়ী সমাধান",
+                    "সরাসরি সাক্ষাৎকারীদের শরয়ী সমাধান ও ফ্যামিলি কাউন্সেলিং",
+                    "প্রভৃতি"
+                ]
+            }
+        ],
+        "tagline": "ছড়িয়ে দিন দ্বীনের আহ্বান",
+        "stats": {
+      "title": "ইমপ্যাক্ট পরিসংখ্যান",
+      "description": "এই কার্যক্রমের মাধ্যমে অর্জিত কিছু পরিসংখ্যান নিচে তুলে ধরা হলো।",
+      "table": {
+        "columns": [
+          "দাওয়াহমূলক ভিডিও", 
+          "দাওয়াহ ডিপ্লোমা", 
+          "কর্মশালা আয়োজন", 
+          "লাইভ প্রশ্নোত্তর শরয়ী সমাধান", 
+          "উন্মুক্ত কল সেন্টারের মাধ্যমে শরয়ী সমাধান", 
+          "সরাসরি সাক্ষাৎকারীদের শরয়ী সমাধান ও ফ্যামিলি কাউন্সেলিং",
+          "বই-পুস্তক প্রকাশ"
+        ],
+        "rows": [
+          [
+            "আস-সুন্নাহ ফাউন্ডেশনের বিভিন্ন পেইজ ও ইউটিউব চ্যানেলে নিয়মিত দাওয়াহমূলক ভিডিও আপলোড করা হয়েছে। এ পর্যন্ত ২৫৬টি+ ভিডিও আপলোড করা হয়েছে, যা ৩ কোটি+ সংখ্যক মানুষ দেখেছেন।",
+
+            "আস-সুন্নাহ ফাউন্ডেশনের দাওয়াহ ও গবেষণা ইনস্টিটিউট থেকে পরিচালিত হচ্ছে আলেম ও সাধারণ শিক্ষিতদের জন্য বিভিন্ন মেয়াদী ডিপ্লোমা কোর্স। ২০২৪ সালে এর যাত্রা শুরু হয়েছে। বিশ্বব্যাপী মুসলিম উম্মাহর সংকটকালে যুগসচেতন, দূরদৃষ্টি-সম্পন্ন, প্রাজ্ঞ ও কর্মমুখর দা‘য়ী তৈরি এই ইনস্টিটিউটের মূল লক্ষ্য।", 
+
+            "আস-সুন্নাহ ফাউন্ডেশনের দাওয়াহ কার্যক্রমের অংশ হিসেবে বিভিন্ন বিষয়ে কর্মশালার আয়োজন করা হয়। ইতোমধ্যে দাওয়াহ প্রশিক্ষণ (৩ ব্যাচ), যাকাত কর্মশালা, এসএসসি শিক্ষার্থীদের জন্য নসীহা প্রোগ্রাম (২টি)-সহ বিভিন্ন কর্মশালার আয়োজন করা হয়েছে।",
+
+            "সাধারণ মানুষের দ্বীনি জিজ্ঞাসার উত্তর দেয়ার জন্য আমাদের ভেরিফাইড ফেইসবুক পেইজ ও ইউটিউব চ্যানেল থেকে ‘শরয়ী সমাধান’ শিরোনামে ধারাবাহিক সাপ্তাহিক লাইভ প্রশ্নোত্তর অনুষ্ঠান হয়ে থাকে। ঘণ্টাব্যাপী আয়োজিত এ অনুষ্ঠানটির এ পর্যন্ত ২৬৭ পর্ব সম্প্রচারিত হয়েছে।", 
+            
+            "সাধারণ মানুষের প্রাত্যহিক দ্বীনি জিজ্ঞাসার জবাব দিতে প্রতিষ্ঠিত হয়েছে উন্মুক্ত কল সেন্টার। বিজ্ঞ আলেমগণ ফোন কলের মাধ্যমে কুরআন-সুন্নাহভিত্তিক জিজ্ঞাসার জবাব দিয়ে থাকেন। এ যাবৎ ৩০ হাজার প্রশ্নের উত্তর দেয়া হয়েছে।", 
+            
+            "কল সেন্টার ছাড়াও সরাসরি শরয়ী সমাধান এবং পারিবারিক কলহ দূরীকরণে কাজ করেন বিজ্ঞ আলেমগণ। এ যাবৎ সরাসরি সাক্ষাৎকারীদের প্রায় ১০ হাজার শরয়ী সমাধান দেয়া হয়েছে এবং পারিবারিক কলহ নিরসনে ভূমিকা রাখা হয়েছে।", 
+            
+            "আস-সুন্নাহ ফাউন্ডেশন থেকে এ যাবৎ প্রকাশিত বইসমূহ হলো—\n\nরাসূলুল্লাহ (সাল্লাল্লাহু আলাইহি ওয়া সাল্লাম)-এর সকাল সন্ধ্যার দু‘আ ও যিকর (বই) এবং পাঁচ ওয়াক্ত সালাত পরবর্তী মাসনূন দু‘আ ও যিকর (পকেট কার্ড), রমাদান প্ল্যানার, উমরাহ কীভাবে করবেন, তারাবীহর সালাতে কুরআনের বার্তা, মাহে রমাদানের ২৭ আমল, সীরাত স্মারক এবং বিভিন্ন দাওয়াহমূলক লিফলেট। এ যাবৎ ৭ লক্ষাধিক কপি বিক্রি এবং বিনামূল্যে বিতরণ করা হয়েছে।"
+          ]
+          
+        ]
+      }
+    }
+    },
+    "gallery": [
+        {
+            "src": "/assets/activities-gallery/dawah/dawah-1.webp",
+            "alt": "dawah-education-1"
+        },
+        {
+            "src": "/assets/activities-gallery/dawah/dawah-2.webp",
+            "alt": "dawah-education-2"
+        },
+        {
+            "src": "/assets/activities-gallery/dawah/dawah-3.webp",
+            "alt": "dawah-education-3"
+        },
+        {
+            "src": "/assets/activities-gallery/dawah/dawah-4.webp",
+            "alt": "dawah-education-4"
+        },
+        {
+            "src": "/assets/activities-gallery/dawah/dawah-5.webp",
+            "alt": "dawah-education-5"
+        },
+        {
+            "src": "/assets/activities-gallery/dawah/dawah-6.webp",
+            "alt": "dawah-education-6"
+        },
+        {
+            "src": "/assets/activities-gallery/dawah/dawah-7.webp",
+            "alt": "dawah-education-7"
+        }
+    ]
+}

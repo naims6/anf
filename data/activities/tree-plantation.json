@@ -1,0 +1,246 @@
+{
+    "slug": "tree-plantation",
+    "cardImage": "tree-plantation",
+    "heroBackground": "tree-plantation-hero",
+    "routeExtension": "tree-plantation",
+    "heroImages": [
+        {
+            "src": "tree-plantation-1",
+            "alt": "tree-plantation-1",
+            "position": "main"
+        },
+        {
+            "src": "tree-plantation-2",
+            "alt": "tree-plantation-2",
+            "position": "small-top"
+        },
+        {
+            "src": "tree-plantation-3",
+            "alt": "tree-plantation-3",
+            "position": "medium"
+        },
+        {
+            "src": "tree-plantation-4",
+            "alt": "tree-plantation-4",
+            "position": "small-bottom"
+        }
+    ],
+    "en": {
+        "title": "Tree Plantation",
+        "description": "You too can join this noble initiative of building a greener world by planting trees. A single sapling can become a breath of fresh air for future generations.",
+        "content": "<h3>Program Details</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/099lbWQGq0g\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>One of the main reasons for the global rise in temperature and environmental imbalance is deforestation. The number of trees is decreasing day by day. To combat climate change and global warming and protect human civilization, the noble Sunnah of the Prophet Muhammad (PBUH) — tree plantation — is essential. Recognizing this need and as a part of Sadaqah Jariyah, As-Sunnah Foundation has launched a nationwide tree plantation campaign.</p>",
+        "features": [
+            {
+                "title": "Project Goals and Objectives",
+                "values": [
+                    "Environmental protection",
+                    "Prevention of global warming",
+                    "Creating sustainable income opportunities for the poor",
+                    "Earning the reward of Sadaqah Jariyah"
+                ]
+            },
+            {
+                "title": "Beneficiaries",
+                "icon": "ListIconUser",
+                "values": [
+                    "Impoverished families in remote areas"
+                ]
+            },
+            {
+                "title": "Expense Categories",
+                "values": [
+                    "Tree sapling purchase",
+                    "Transportation",
+                    "Overall management"
+                ]
+            },
+            {
+                "title": "Project Areas",
+                "icon": "ListIconLocation",
+                "values": [
+                    "Poverty-stricken areas in all 64 districts"
+                ]
+            },
+            {
+                "title": "Duration",
+                "icon": "ListIconCalendar",
+                "values": [
+                    "Annual and long-term project (focused on monsoon season)"
+                ]
+            }
+        ],
+        "tagline": "Join the movement to build a greener world",
+        "stats": {
+            "title": "Impact Statistics",
+            "table": {
+                "columns": [
+                    "Year of Plantation",
+                    "Type of Trees",
+                    "Total Number of Trees"
+                ],
+                "rows": [
+                    [
+                        "2024",
+                        "All types of fruit tree saplings",
+                        "158,395"
+                    ],
+                    [
+                        "2023",
+                        "All types of fruit tree saplings",
+                        "100,700"
+                    ],
+                    [
+                        "2022",
+                        "Amrapali mango, Thai guava, Seedless lemon",
+                        "50,000"
+                    ],
+                    [
+                        "2021",
+                        "Amrapali mango, Thai guava, Seedless lemon, Litchi",
+                        "65,792"
+                    ]
+                ],
+                "footer": {
+                    "label": "Total",
+                    "values": [
+                        "374,887 trees"
+                    ]
+                }
+            }
+        }, 
+        "faq": [
+            {
+                "question": "How can I donate to this program?",
+                "answer": "Click here"
+            },
+            {
+                "question": "How is the distribution process?",
+                "answer": "The distribution process is carried out through Google forms. From the applicants, the beneficiaries are selected through verification-selection."
+            }
+        ]
+    },
+    "bn": {
+        "title": "বৃক্ষরোপণ",
+        "description": "গাছ লাগিয়ে সবুজ পৃথিবী গড়ার এই মহতী উদ্যোগে শামিল হতে পারেন আপনিও। একটি গাছের চারা হতে পারে ভবিষ্যৎ প্রজন্মের জন্য এক নির্মল নিঃশ্বাস।",
+        "content": "<h3>কার্যক্রমের বিবরণ</h3><p class='editor-paragraph editor-empty'></p><div data-youtube-video=\"\"><iframe class=\"editor-youtube-video\" width=\"640\" height=\"480\" allowfullscreen=\"true\" autoplay=\"false\" disablekbcontrols=\"false\" enableiframeapi=\"false\" endtime=\"0\" ivloadpolicy=\"0\" loop=\"false\" modestbranding=\"true\" origin=\"\" playlist=\"\" src=\"https://www.youtube.com/embed/099lbWQGq0g\" start=\"0\"></iframe></div><p class=\"editor-paragraph editor-empty\"></p><p class='editor-paragraph'>বিশ্বব্যাপী তাপমাত্রা বেড়ে পরিবেশের ভারসাম্য হারিয়ে যাওয়ার অন্যতম কারণ বৃক্ষহীনতা। দিন দিন কমে যাচ্ছে গাছের সংখ্যা। বর্তমান পৃথিবীর জলবায়ু পরিবর্তন ও বৈশ্বিক উষ্ণায়ন প্রতিরোধে তথা মানবসভ্যতার সুরক্ষার জন্য মহানবী সা.–এর মহান সুন্নাহ বৃক্ষরোপণ অতীব প্রয়োজন। এই প্রয়োজনীয়তা উপলব্ধি করে এবং সাদাকায়ে জারিয়াহর অংশ হিসেবে আস-সুন্নাহ ফাউন্ডেশন দেশব্যাপী বৃক্ষরোপণ কর্মসূচি হাতে নিয়েছে।</p>",
+        "features": [
+            {
+                "title": "প্রকল্পের লক্ষ্য-উদ্দেশ্য",
+                "values": [
+                    "পরিবেশ সুরক্ষা",
+                    "উষ্ণায়ন রোধ করা",
+                    "দরিদ্রদের স্থায়ী আয়ের সুযোগ তৈরি",
+                    "সাদাকায়ে জারিয়াহর সাওয়াব লাভ"
+                ]
+            },
+            {
+                "title": "উপকারভোগী",
+                "icon": "ListIconUser",
+                "values": [
+                    "প্রত্যন্ত অঞ্চলের দরিদ্র পরিবার"
+                ]
+            },
+            {
+                "title": "ব্যয়ের খাত",
+                "values": [
+                    "গাছ ক্রয়",
+                    "পরিবহন",
+                    "সার্বিক ব্যবস্থাপনা"
+                ]
+            },
+            {
+                "title": "প্রকল্পের এলাকা",
+                "icon": "ListIconLocation",
+                "values": [
+                    "৬৪ জেলার দারিদ্র্য বহুল এলাকা"
+                ]
+            },
+            {
+                "title": "মেয়াদ",
+                "icon": "ListIconCalendar",
+                "values": [
+                    "বার্ষিক এবং স্থায়ী প্রকল্প (বর্ষাকাল কেন্দ্রিক)"
+                ]
+            }
+        ],
+        "tagline": "শামিল হোন সবুজ পৃথিবী গড়ার উদ্যোগে",
+        "stats": {
+            "title": "ইমপ্যাক্ট পরিসংখ্যান",
+            "table": {
+                "columns": [
+                    "বৃক্ষরোপণ বছর",
+                    "গাছের নাম",
+                    "মোট গাছের সংখ্যা"
+                ],
+                "rows": [
+                    [
+                        "২০২৪",
+                        "সব ধরণের ফলদ গাছের চারা",
+                        "১৫৮,৩৯৫"
+                    ],
+                    [
+                        "২০২৩",
+                        "সব ধরণের ফলদ গাছের চারা",
+                        "১০০,৭০০"
+                    ],
+                    [
+                        "২০২২",
+                        "আম্রপালি, থাই পেয়ারা, সীডলেজ লেবু",
+                        "৫০০,০০"
+                    ],
+                    [
+                        "২০২১",
+                        "আম্রপালি, থাই পেয়ারা, সীডলেজ লেবু , লিচু",
+                        "৬৫,৭৯২"
+                    ]
+                ],
+                "footer": {
+                    "label": "মোট",
+                    "values": [
+                        "৩৭৪,৮৮৭ গাছ"
+                    ]
+                }
+            }
+        }, 
+        "faq": [
+            {
+                "question": "আমি কীভাবে বৃক্ষরোপণের জন্য দান করতে পারি?",
+                "answer": "এখানে ক্লিক করুন"
+            },
+            {
+                "question": "বিতরণ প্রক্রিয়া কেমন?",
+                "answer": "গুগল ফরমের মাধ্যমে আবেদন গ্রহণ করা হয়। আবেদনকারীদের মধ্য থেকে যাচাই-বাছাই পূর্বক গ্রহীতা নির্বাচন করা হয়।"
+            }
+        ]
+    },
+    "gallery": [
+        {
+            "src": "/assets/activities-gallery/tree/tree_1.webp",
+            "alt": "tree-plantation-1"
+        },
+        {
+            "src": "/assets/activities-gallery/tree/tree_2.webp",
+            "alt": "tree-plantation-2"
+        },
+        {
+            "src": "/assets/activities-gallery/tree/tree_3.webp",
+            "alt": "tree-plantation-3"
+        },
+        {
+            "src": "/assets/activities-gallery/tree/tree_4.webp",
+            "alt": "tree-plantation-4"
+        },
+        {
+            "src": "/assets/activities-gallery/tree/tree_5.webp",
+            "alt": "tree-plantation-5"
+        },
+        {
+            "src": "/assets/activities-gallery/tree/tree_6.webp",
+            "alt": "tree-plantation-6"
+        },
+        {
+            "src": "/assets/activities-gallery/tree/tree_7.webp",
+            "alt": "tree-plantation-7"
+        }
+    ]
+}

@@ -409,18 +409,18 @@ export default function GetInvolved() {
           {/* Main Title with Gradient */}
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-bangla leading-tight">
             <span className="relative inline-block">
-              আমাদের সাথে
+              আমরা সবাই মানবতার তরে
               <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full"></span>
             </span>
             <br />
             <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent">
-              যুক্ত হোন
+              আমাদের সাথে যুক্ত হবেন যেভাবে
             </span>
           </h2>
 
           {/* Description */}
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-bangla leading-relaxed">
-            নিচের যে কোনো পদ্ধতিতে আমাদের সঙ্গে যুক্ত হয়ে আর্তমানবতার সেবায় ভূমিকা রাখতে পারেন।
+            নিচের যেকোন পদ্ধতিতে আমাদের সঙ্গে আপনিও যুক্ত হতে পারেন
           </p>
         </div>
 

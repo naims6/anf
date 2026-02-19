@@ -268,16 +268,17 @@ export default function ServiceSection() {
     <section className="relative overflow-hidden py-10 bg-linear-to-b from-white via-emerald-50/20 to-white">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-blue-100/40 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-tr from-amber-100/40 to-transparent rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-emerald-100/30 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-96 h-96 bg-linear-to-br from-blue-100/40 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-linear-to-tr from-amber-100/40 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-linear-to-r from-emerald-100/30 to-transparent rounded-full blur-3xl" />
 
         {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0001_1px,transparent_1px),linear-gradient(to_bottom,#0001_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0001_1px,transparent_1px),linear-gradient(to_bottom,#0001_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
 
+        {/* Section Header  */}
         <SectionHeader
           badgeText='উম্মাহর সেবায় নিবেদিত প্রাণ'
           title='আন-নুসরার পণ,'
@@ -288,7 +289,7 @@ export default function ServiceSection() {
 
         {/* Interactive Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10 ">
-          {services.map((service, index) => (
+          {services?.map((service, index) => (
             <div
               key={service.id}
               className="relative group "
@@ -414,7 +415,7 @@ export default function ServiceSection() {
 
         {/* Impact Stats Section */}
         <div className="mb-10">
-          <div className="bg-gradient-to-r from-white/80 to-emerald-50/60 backdrop-blur-sm rounded-3xl border border-gray-200/50 p-8 ">
+          <div className="bg-linear-to-r from-white/80 to-emerald-50/60 backdrop-blur-sm rounded-3xl border border-gray-200/50 p-8 ">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 { icon: Target, value: '৫০+', label: 'সক্রিয় প্রকল্প', color: 'text-blue-600' },
@@ -440,8 +441,8 @@ export default function ServiceSection() {
         {/* Call to Action */}
         <div className="text-center">
           <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl blur-xl opacity-20" />
-            <div className="relative bg-white/90 backdrop-blur-xl rounded-3xl border border-gray-200/50 p-12 shadow-2xl">
+            <div className="absolute rounded-3xl blur-xl opacity-20" />
+            <div className="relative bg-white/90 backdrop-blur-xl rounded-3xl border border-gray-200/50 p-12 shadow-xl">
               <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-bangla">
                 কুরআন-সুন্নাহভিত্তিক সমাজ প্রতিষ্ঠায় অংশীদার হতে চান?
               </h3>
@@ -453,7 +454,7 @@ export default function ServiceSection() {
                 <div className="transition-transform duration-300 hover:scale-105 active:scale-95">
                   <Button
                     size="lg"
-                    className="group bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-10 py-7 text-xl font-semibold rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 font-bangla"
+                    className="group bg-linear-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-10 py-7 text-xl font-semibold rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 font-bangla"
                   >
                     <span>কার্যক্রমে অংশগ্রহণ করুন</span>
                     <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />

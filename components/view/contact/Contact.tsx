@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Clock, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Clock, MessageSquare, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
 
 const contactInfo = [
   {
@@ -45,13 +46,13 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     console.log('Form submitted:', formData);
     setIsSubmitting(false);
-    
+
     // Reset form
     setFormData({
       name: '',
@@ -60,7 +61,7 @@ export default function Contact() {
       subject: '',
       message: ''
     });
-    
+
     alert('আপনার বার্তা সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।');
   };
 
@@ -70,10 +71,10 @@ export default function Contact() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 right-10 w-96 h-96 bg-emerald-50/30 rounded-full blur-3xl" />
         <div className="absolute bottom-20 left-10 w-80 h-80 bg-blue-50/30 rounded-full blur-3xl" />
-        
+
         {/* Geometric Pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
-          <div 
+          <div
             className="absolute inset-0"
             style={{
               backgroundImage: `linear-gradient(90deg, transparent 95%, #000 100%)`,
@@ -85,30 +86,13 @@ export default function Contact() {
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2 mb-6">
-            <div className="w-2 h-2 bg-emerald-500 rounded-full" />
-            <span className="text-emerald-700 font-semibold text-sm font-bangla">
-              যোগাযোগ করুন
-            </span>
-          </div>
-
-          {/* Title */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-bangla leading-tight">
-            <span className="block mb-3">আমাদের সাথে</span>
-            <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
-                যোগাযোগ করুন
-              </span>
-              <div className="absolute -bottom-2 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
-            </span>
-          </h2>
-          
-          <p className="text-lg text-gray-600 font-bangla leading-relaxed max-w-2xl mx-auto">
-            আপনার যেকোনো প্রশ্ন, মতামত বা সহযোগিতার জন্য আমরা সবসময় প্রস্তুত
-          </p>
-        </div>
+        <SectionHeader
+          badgeText=' যোগাযোগ করুন'
+          title='আমাদের সাথে'
+          subtitle='যোগাযোগ করুন'
+          description='আপনার যেকোনো প্রশ্ন, মতামত বা সহযোগিতার জন্য আমরা সবসময় প্রস্তুত'
+          icon={Star}
+        />
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left Column - Contact Info & Map */}
@@ -117,7 +101,7 @@ export default function Contact() {
             <div className="space-y-6">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
-                
+
                 return (
                   <div
                     key={index}
@@ -126,10 +110,10 @@ export default function Contact() {
                     <div className="flex items-start gap-4">
                       {/* Icon Container */}
                       <div className={`
-                        flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center
-                        ${index === 0 ? 'bg-blue-500/10 text-blue-600' : 
-                          index === 1 ? 'bg-emerald-500/10 text-emerald-600' : 
-                          'bg-amber-500/10 text-amber-600'}
+                        shrink-0 w-14 h-14 rounded-xl flex items-center justify-center
+                        ${index === 0 ? 'bg-blue-500/10 text-blue-600' :
+                          index === 1 ? 'bg-emerald-500/10 text-emerald-600' :
+                            'bg-amber-500/10 text-amber-600'}
                       `}>
                         <Icon className="w-7 h-7" />
                       </div>
@@ -139,7 +123,7 @@ export default function Contact() {
                         <h3 className="text-lg font-bold text-gray-900 mb-2 font-bangla">
                           {info.title}
                         </h3>
-                        
+
                         <div className="space-y-1 mb-2">
                           {info.details.map((detail, idx) => (
                             <p key={idx} className="text-gray-700 font-bangla">
@@ -154,68 +138,6 @@ export default function Contact() {
               })}
             </div>
 
-            {/* Compact Map Section */}
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-lg overflow-hidden">
-              <div className="p-6 border-b border-gray-100">
-                <div className="flex items-center gap-3">
-                  <MapPin className="w-5 h-5 text-emerald-600" />
-                  <h3 className="text-lg font-bold text-gray-900 font-bangla">
-                    আমাদের অবস্থান
-                  </h3>
-                </div>
-              </div>
-              
-              {/* Map Container */}
-              <div className="relative aspect-[16/9] bg-gray-100 overflow-hidden">
-                {/* Static Map Image - Replace with actual Map component */}
-                <div 
-                  className="absolute inset-0 bg-gray-200 flex items-center justify-center"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='%23e5e7eb' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%23f9fafb'/%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3Ccircle cx='50%25' cy='50%25' r='12' fill='%2310b981' opacity='0.8'/%3E%3Ccircle cx='50%25' cy='50%25' r='8' fill='white'/%3E%3Ctext x='50%25' y='55%25' font-family='system-ui, sans-serif' font-size='14' text-anchor='middle' fill='%230f766e' font-weight='bold'%3Eআমরা এখানে%3C/text%3E%3C/svg%3E")`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
-                >
-                  {/* Map Pin Marker */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <div className="relative">
-                      <div className="w-24 h-24 bg-emerald-500/20 rounded-full animate-ping" />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg">
-                          <MapPin className="w-6 h-6 text-white" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Map Overlay Info */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                    <p className="text-sm text-gray-700 font-bangla text-center">
-                      ঢাকার উত্তরা থানাধীন, সেক্টর ১৪
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Actions */}
-              <div className="p-6 border-t border-gray-100">
-                <div className="flex gap-4">
-                  <Button
-                    variant="outline"
-                    className="flex-1 border-emerald-500 text-emerald-600 hover:bg-emerald-50 font-bangla"
-                  >
-                    দিকনির্দেশনা
-                  </Button>
-                  <Button
-                    className="flex-1 bg-gradient-to-r from-emerald-500 to-green-600 text-white hover:opacity-90 font-bangla"
-                  >
-                    শেয়ার করুন
-                  </Button>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Right Column - Contact Form */}
@@ -343,6 +265,57 @@ export default function Contact() {
                 আমরা আপনার গোপনীয়তা রক্ষা করি। আপনার তথ্য শুধুমাত্র যোগাযোগের জন্য ব্যবহৃত হবে।
               </p>
             </div>
+          </div>
+        </div>
+
+        {/* Map Section  */}
+        <div className="relative aspect-video bg-gray-100 overflow-hidden mt-10">
+          {/* Static Map Image - Replace with actual Map component */}
+          <div
+            className="absolute inset-0 bg-gray-200 flex items-center justify-center"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='%23e5e7eb' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%23f9fafb'/%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3Ccircle cx='50%25' cy='50%25' r='12' fill='%2310b981' opacity='0.8'/%3E%3Ccircle cx='50%25' cy='50%25' r='8' fill='white'/%3E%3Ctext x='50%25' y='55%25' font-family='system-ui, sans-serif' font-size='14' text-anchor='middle' fill='%230f766e' font-weight='bold'%3Eআমরা এখানে%3C/text%3E%3C/svg%3E")`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          >
+            {/* Map Pin Marker */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="relative">
+                <div className="w-24 h-24 bg-emerald-500/20 rounded-full animate-ping" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg">
+                    <MapPin className="w-6 h-6 text-white" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Map Overlay Info */}
+          <div className="absolute bottom-4 left-4 right-4">
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+              <p className="text-sm text-gray-700 font-bangla text-center">
+                ঢাকার উত্তরা থানাধীন, সেক্টর ১৪
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="p-6 border-t border-gray-100">
+          <div className="flex gap-4">
+            <Button
+              variant="outline"
+              className="flex-1 border-emerald-500 text-emerald-600 hover:bg-emerald-50 font-bangla"
+            >
+              দিকনির্দেশনা
+            </Button>
+            <Button
+              className="flex-1 bg-linear-to-r from-emerald-500 to-green-600 text-white hover:opacity-90 font-bangla"
+            >
+              শেয়ার করুন
+            </Button>
           </div>
         </div>
       </div>

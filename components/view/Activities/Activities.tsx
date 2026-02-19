@@ -134,15 +134,15 @@ export default function ActivitiesSection() {
             <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
 
             {/* Decorative Lines */}
-            <div className="absolute top-40 left-10 right-10 h-px bg-gradient-to-r from-transparent via-emerald-200/50 to-transparent" />
-            <div className="absolute bottom-40 left-10 right-10 h-px bg-gradient-to-r from-transparent via-blue-200/50 to-transparent" />
+            <div className="absolute top-40 left-10 right-10 h-px bg-linear-to-r from-transparent via-emerald-200/50 to-transparent" />
+            <div className="absolute bottom-40 left-10 right-10 h-px bg-linear-to-r from-transparent via-blue-200/50 to-transparent" />
           </div>
 
           <div className=" relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
             <div className="text-center mb-10">
               {/* Badge */}
-              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl px-6 py-3 border border-emerald-200 mb-4">
+              <div className="inline-flex items-center gap-3 bg-linear-to-r from-emerald-50 to-green-50 rounded-2xl px-6 py-3 border border-emerald-200 mb-4">
                 <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
                 <span className="text-emerald-700 font-semibold text-sm tracking-wide font-bangla">
                   মানুষের সেবায় নিরলস
@@ -151,10 +151,10 @@ export default function ActivitiesSection() {
 
               {/* Main Title */}
               <h2 className="text-5xl font-bold text-gray-900 mb-8 font-bangla leading-tight">
-                <span className="block pb-4 border-b-4 border-emerald-500/30 inline-block">
+                <span className="block pb-4 border-b-4 border-emerald-500/30">
                   চলতি
                 </span>
-                <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
                   কার্যক্রম
                 </span>
               </h2>

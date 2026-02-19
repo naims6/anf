@@ -315,6 +315,7 @@
 import { Heart, Users, Target, Briefcase, Star, Shield, Award, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
 
 const involvementOptions = [
   {
@@ -325,7 +326,7 @@ const involvementOptions = [
     // color: 'from-rose-500 to-pink-500',
     // bgColor: 'bg-rose-50',
     // borderColor: 'border-rose-200',
-      color: 'from-emerald-500 to-green-500',
+    color: 'from-emerald-500 to-green-500',
     bgColor: 'bg-emerald-50',
     borderColor: 'border-emerald-200',
     features: ['মাসিক অনুদান', 'বাৎসরিক প্ল্যান', 'স্বয়ংক্রিয় পেমেন্ট', 'আপডেট রিপোর্ট'],
@@ -350,7 +351,7 @@ const involvementOptions = [
     // color: 'from-blue-500 to-cyan-500',
     // bgColor: 'bg-blue-50',
     // borderColor: 'border-blue-200',
-      color: 'from-emerald-500 to-green-500',
+    color: 'from-emerald-500 to-green-500',
     bgColor: 'bg-emerald-50',
     borderColor: 'border-emerald-200',
     features: ['ফিল্ড ভলান্টিয়ার', 'অনলাইন স্বেচ্ছাসেবক', 'বিশেষ দক্ষতা', 'প্রশিক্ষণ সুযোগ'],
@@ -364,7 +365,7 @@ const involvementOptions = [
     // color: 'from-amber-500 to-orange-500',
     // bgColor: 'bg-amber-50',
     // borderColor: 'border-amber-200',
-      color: 'from-emerald-500 to-green-500',
+    color: 'from-emerald-500 to-green-500',
     bgColor: 'bg-emerald-50',
     borderColor: 'border-emerald-200',
     features: ['ফুলটাইম চাকরি', 'পার্টটাইম চাকরি', 'ইন্টার্নশিপ', 'প্রজেক্ট ভিত্তিক'],
@@ -394,35 +395,14 @@ export default function GetInvolved() {
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-8">
-          {/* Decorative Badge */}
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-white/80 to-emerald-50/80 backdrop-blur-sm rounded-2xl px-6 py-3 border border-emerald-200/50 mb-8 shadow-sm">
-            <div className="relative">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-              <div className="absolute inset-0 bg-emerald-400/30 rounded-full animate-ping" />
-            </div>
-            <span className="text-emerald-700 font-semibold text-sm tracking-wide font-bangla">
-              মানবতার সেবায় একত্রিত
-            </span>
-          </div>
+        <SectionHeader
+          badgeText='মানবতার সেবায় একত্রিত'
+          title='আমরা সবাই মানবতার তরে'
+          subtitle='আমাদের সাথে যুক্ত হবেন যেভাবে'
+          description='নিচের যেকোন পদ্ধতিতে আমাদের সঙ্গে আপনিও যুক্ত হতে পারেন'
+          icon={Star }
+        />
 
-          {/* Main Title with Gradient */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-bangla leading-tight">
-            <span className="relative inline-block">
-              আমরা সবাই মানবতার তরে
-              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full"></span>
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent">
-              আমাদের সাথে যুক্ত হবেন যেভাবে
-            </span>
-          </h2>
-
-          {/* Description */}
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-bangla leading-relaxed">
-            নিচের যেকোন পদ্ধতিতে আমাদের সঙ্গে আপনিও যুক্ত হতে পারেন
-          </p>
-        </div>
 
         {/* Involvement Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -448,15 +428,15 @@ export default function GetInvolved() {
                   ${hoveredCard === option.id ? 'scale-105 z-10' : ''}
                 `}>
                   {/* Animated Top Gradient Bar */}
-                  <div className={`h-1.5 w-full bg-gradient-to-r ${option.color} animate-pulse`} />
+                  <div className={`h-1.5 w-full bg-linear-to-r ${option.color} animate-pulse`} />
 
                   {/* Card Content */}
-                  <div className="p-6 md:p-8 flex flex-col flex-grow">
+                  <div className="p-6 md:p-8 flex flex-col grow">
                     {/* Icon Circle */}
                     <div className="relative mb-6">
                       <div className={`
                         w-16 h-16 rounded-2xl flex items-center justify-center mb-4
-                        bg-gradient-to-br ${option.color}
+                        bg-linear-to-br ${option.color}
                         group-hover:scale-110 group-hover:rotate-12 transition-all duration-500
                         shadow-lg
                       `}>
@@ -489,15 +469,15 @@ export default function GetInvolved() {
                     </p>
 
                     {/* Features List */}
-                    <div className="space-y-3 mb-8 flex-grow">
+                    <div className="space-y-3 mb-8 grow">
                       {option.features.map((feature, idx) => (
                         <div
                           key={idx}
                           className="flex items-center gap-2"
                         >
                           <div className={`
-                            w-2 h-2 rounded-full bg-gradient-to-r ${option.color}
-                            flex-shrink-0
+                            w-2 h-2 rounded-full bg-linear-to-r ${option.color}
+                            shrink-0
                           `} />
                           <span className="text-sm text-gray-700 font-bangla">{feature}</span>
                         </div>
@@ -508,7 +488,7 @@ export default function GetInvolved() {
                     <Button
                       className={`
                         w-full mt-auto
-                        bg-gradient-to-r ${option.color}
+                        bg-linear-to-r ${option.color}
                         hover:opacity-90 text-white
                         rounded-xl py-6 font-semibold font-bangla
                         transition-all duration-300 transform
@@ -525,14 +505,14 @@ export default function GetInvolved() {
 
                   {/* Hover Glow Effect */}
                   <div className={`
-                    absolute inset-0 rounded-3xl bg-gradient-to-br ${option.color}
+                    absolute inset-0 rounded-3xl bg-linear-to-br ${option.color}
                     opacity-0 group-hover:opacity-5 transition-opacity duration-500 -z-10
                   `} />
                 </div>
 
                 {/* Floating Glow Effect */}
                 <div className={`
-                  absolute -inset-4 rounded-3xl bg-gradient-to-br ${option.color}
+                  absolute -inset-4 rounded-3xl bg-linear-to-br ${option.color}
                   opacity-0 group-hover:opacity-10 blur-xl transition-all duration-700 -z-20
                   ${hoveredCard === option.id ? 'scale-110' : ''}
                 `} />
@@ -542,7 +522,6 @@ export default function GetInvolved() {
         </div>
 
         {/* CTA Section */}
-
       </div>
 
       {/* Custom CSS */}

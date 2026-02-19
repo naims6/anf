@@ -7,6 +7,7 @@ import { Calendar, User, Clock, ArrowRight, BookOpen, TrendingUp, MessageSquare,
 import { motion } from 'framer-motion';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
 
 const blogPosts = [
   {
@@ -91,12 +92,12 @@ const blogPosts = [
 
 export default function Blog() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
+    {
       loop: true,
       align: 'start',
       skipSnaps: false,
       duration: 30
-    }, 
+    },
     [Autoplay({ delay: 5000, stopOnInteraction: false })]
   );
 
@@ -115,15 +116,15 @@ export default function Blog() {
   };
 
   return (
-    <section className="relative py-10 bg-gradient-to-b from-white via-emerald-50/5 to-white overflow-hidden">
+    <section className="relative py-10 bg-linear-to-b from-white via-emerald-50/5 to-white overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-50/30 to-emerald-50/30 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-gradient-to-tr from-amber-50/20 to-emerald-50/20 rounded-full blur-3xl" />
-        
+
         {/* Subtle Pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
-          <div 
+          <div
             className="absolute inset-0"
             style={{
               backgroundImage: `linear-gradient(45deg, transparent 48%, #000 50%, transparent 52%)`,
@@ -135,50 +136,21 @@ export default function Blog() {
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16">
-          <div className="max-w-3xl">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2 mb-6 border border-emerald-100">
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-emerald-600" />
-                <span className="text-emerald-700 font-semibold text-sm font-bangla">
-                  সর্বশেষ আপডেট
-                </span>
-              </div>
-            </div>
+        <SectionHeader
+          badgeText='সর্বশেষ আপডেট'
+          title='আমাদের'
+          subtitle='ব্লগ ও সংবাদ'
+          description='ফাউন্ডেশনের কার্যক্রম, সাফল্য ও সাম্প্রতিক সংবাদ সম্পর্কে জানুন'
+          icon={BookOpen}
+        />
 
-            {/* Title */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-bangla leading-tight">
-              <span className="block mb-3">আমাদের</span>
-              <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
-                  ব্লগ ও সংবাদ
-                </span>
-                <div className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
-              </span>
-            </h2>
-            
-            <p className="text-lg text-gray-600 font-bangla leading-relaxed">
-              ফাউন্ডেশনের কার্যক্রম, সাফল্য ও সাম্প্রতিক সংবাদ সম্পর্কে জানুন
-            </p>
-          </div>
-
-          {/* View All Button */}
-          <Link 
-            href="/blog"
-            className="group inline-flex items-center gap-3 text-emerald-600 hover:text-emerald-700 font-semibold font-bangla text-lg transition-all duration-300"
-          >
-            <span>সমস্ত ব্লগ দেখুন</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-          </Link>
-        </div>
 
         {/* Featured Blog Card */}
         <div className="mb-16">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 shadow-2xl"
+            className="group relative rounded-3xl overflow-hidden bg-linear-to-br from-gray-900 to-gray-800 shadow-2xl"
           >
             <div className="grid lg:grid-cols-2">
               {/* Image Side */}
@@ -190,10 +162,10 @@ export default function Blog() {
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                
+
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-900/60 via-gray-900/20 to-transparent lg:bg-gradient-to-r lg:from-gray-900/60 lg:via-gray-900/30 lg:to-transparent" />
-                
+                <div className="absolute inset-0 bg-linear-to-r from-gray-900/60 via-gray-900/20 to-transparent lg:bg-linear-to-r lg:from-gray-900/60 lg:via-gray-900/30 lg:to-transparent" />
+
                 {/* Category Badge */}
                 <div className="absolute top-6 left-6">
                   <div className="px-4 py-2 rounded-full bg-emerald-500/90 backdrop-blur-sm">
@@ -225,7 +197,7 @@ export default function Blog() {
                   <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 font-bangla leading-tight">
                     {blogPosts[0].title}
                   </h3>
-                  
+
                   <p className="text-white/90 mb-6 font-bangla leading-relaxed">
                     {blogPosts[0].excerpt}
                   </p>
@@ -275,8 +247,19 @@ export default function Blog() {
             <ChevronRight className="w-6 h-6 text-gray-700" />
           </button>
 
+          {/* View All Button */}
+          <div className='text-end'>
+            <Link
+              href="/blog"
+              className="group inline-flex items-center gap-3 text-emerald-600 hover:text-emerald-700 font-semibold font-bangla text-lg transition-all duration-300"
+            >
+              <span>সমস্ত ব্লগ দেখুন</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+            </Link>
+          </div>
+
           {/* Carousel Container */}
-          <div className="overflow-hidden" ref={emblaRef}>
+          <div className="overflow-hidden py-6" ref={emblaRef}>
             <div className="flex -ml-6">
               {blogPosts.slice(1).map((blog, index) => (
                 <motion.div
@@ -288,9 +271,9 @@ export default function Blog() {
                 >
                   <article className="group h-full">
                     {/* Blog Card */}
-                    <div className="h-full bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div className="h-full bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg  transition-all duration-500 hover:-translate-y-2">
                       {/* Image Container */}
-                      <div className="relative aspect-[16/10] overflow-hidden bg-gray-100">
+                      <div className="relative aspect-16/10 overflow-hidden bg-gray-100">
                         <Image
                           src={blog.image}
                           alt={blog.title}
@@ -298,10 +281,10 @@ export default function Blog() {
                           className="object-cover group-hover:scale-110 transition-transform duration-700"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
-                        
+
                         {/* Gradient Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-                        
+
                         {/* Category Badge */}
                         <div className="absolute top-4 left-4">
                           <div className="px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm">
@@ -310,7 +293,7 @@ export default function Blog() {
                             </span>
                           </div>
                         </div>
-                        
+
                         {/* Stats Overlay */}
                         <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90">
                           <div className="flex items-center gap-4">
@@ -357,7 +340,7 @@ export default function Blog() {
                             <Clock className="w-4 h-4 text-emerald-600" />
                             <span className="text-sm text-gray-600 font-bangla">{blog.readTime}</span>
                           </div>
-                          
+
                           <Link
                             href={`/blog/${blog.slug}`}
                             className="group/read inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-semibold font-bangla transition-all duration-300"
@@ -380,11 +363,10 @@ export default function Blog() {
               <button
                 key={index}
                 onClick={() => scrollTo(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === selectedBlog 
-                    ? 'bg-emerald-600 w-6' 
-                    : 'bg-gray-300 hover:bg-gray-400'
-                }`}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${index === selectedBlog
+                  ? 'bg-emerald-600 w-6'
+                  : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

@@ -33,9 +33,9 @@ const activityIcons: Record<string, any> = {
 const activities: Activity[] = [
   {
     slug: 'skill-development-institute',
-    title: 'আস-সুন্নাহ স্কিল ডেভেলপমেন্ট ইনস্টিটিউট',
+    title: 'স্কিলস ডেভেলপমেন্ট প্রজেক্ট',
     description:
-      'জাতীয় দক্ষতা উন্নয়ন কর্তৃপক্ষ কর্তৃক নিবন্ধিত একটি আত্ম-উন্নয়ন ও দক্ষতা বৃদ্ধিমূলক প্রতিষ্ঠান।',
+      'দেশের তারুণ্য শক্তিকে কাজে লাগিয়ে দক্ষতাবৃদ্ধির মাধ্যমে সম্ভাবনার দ্বার খুলছে আন-নুসরা ফাউন্ডেশন।',
     tag: 'নিয়মিত কার্যক্রম',
     image:
       'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80',
@@ -43,27 +43,51 @@ const activities: Activity[] = [
   },
   {
     slug: 'emergency-relief',
-    title: 'দুর্যোগে ত্রাণ ও পুনর্বাসন',
+    title: 'ত্রাণ কার্যক্রম পুনর্বাসন প্রক্রিয়া',
     description:
-      'বন্যা, ঘূর্ণিঝড়, অগ্নিকাণ্ড—প্রতিটি দুর্যোগে অসহায় মানুষের পাশে আছে আস-সুন্নাহ ফাউন্ডেশন।',
+      'দুর্যোগকবলিত এলাকায় প্রয়োজনীয় ত্রাণসামগ্রী পৌঁছে দিতে এবং বাস্তুহারা ও ক্ষতিগ্রস্ত মানুষের পুনর্বাসনে আন-নুসরা ফাউন্ডেশন।',
     tag: 'নিয়মিত কার্যক্রম',
     image:
       'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80',
     icon: Shield
   },
-  { slug: 'skill-based-entrepreneurship', title: 'দক্ষতাভিত্তিক উদ্যোক্তা তৈরি', description: 'দক্ষতা থাকা সত্ত্বেও শুধু পুঁজির অভাবে যারা উদ্যোগ নিতে পারছেন না, তাদের পাশে দাঁড়ানোর একটি মানবিক প্রয়াস।', tag: 'নিয়মিত কার্যক্রম', image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80', icon: ShoppingBag },
-
-  { slug: 'self-reliance', title: 'স্বাবলম্বীকরণ', description: 'এই কার্যক্রমের আওতায় কর্মক্ষম দরিদ্রদের উপার্জন উপকরণ দেয়া হয়।', tag: 'নিয়মিত কার্যক্রম', image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80', icon: Users },
-
-  { slug: 'meritorious', title: 'মেধাবী কার্যক্রম', description: 'সৎ, দক্ষ ও মানবিক মূল্যবোধসম্পন্ন প্রজন্ম বিনির্মাণের প্রয়াস।', tag: 'নিয়মিত কার্যক্রম', image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80', icon: Heart },
-
-  { slug: 'dawah-education', title: 'দাওয়াহ কার্যক্রম', description: 'বিশুদ্ধ জ্ঞান ছড়িয়ে দিয়ে ইসলামী চেতনায় উজ্জীবিত করতে আস-সুন্নাহ ফাউন্ডেশনের দাওয়াহমূলক উদ্যোগ।', tag: 'নিয়মিত কার্যক্রম', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80', icon: BookOpen },
-
+  {
+    slug: 'skill-based-entrepreneurship',
+    title: 'মক্তব পরিচালনা',
+    description: 'শিশু কিশোরদের কুরআন পাঠে উপযোগী করে তোলতে মক্তবভিত্তিক শিক্ষা প্রতিষ্ঠা ও পরিচালনা করছে আন-নুসরা ফাউন্ডেশন।',
+    tag: 'নিয়মিত কার্যক্রম',
+    image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80',
+    icon: ShoppingBag
+  },
+  {
+    slug: 'self-reliance',
+    title: 'উদ্যোক্তা তৈরি ও অর্থ সহায়তা',
+    description: 'হস্তশিল্প, যন্ত্রশিল্প, কারিগরি, কৃষি, খামার ব্যবস্থাপনা প্রশিক্ষণের পাশাপাশি আত্মনির্ভরশীলতার জন্য অর্থ সহায়তা প্রদান।',
+    tag: 'নিয়মিত কার্যক্রম',
+    image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80',
+    icon: Users
+  },
+  {
+    slug: 'meritorious',
+    title: 'দাওয়াহ কার্যক্রম',
+    description: 'কুরআন-সুন্নাহ দৃষ্টিভঙ্গি সমাজের সকল শ্রেণী-পেশার মানুষের মাঝে তুলে ধরার জন্য সাপ্তাহিক, মাসিক, বার্ষিক বিষয় ভিত্তিক সভা, সেমিনার ও পাঠচক্র বৈঠক আয়োজন এবং মৌলিক ও প্রমাণ্য বইপত্র প্রকাশ ও প্রচার।',
+    tag: 'নিয়মিত কার্যক্রম',
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+    icon: Heart
+  },
+  {
+    slug: 'dawah-education',
+    title: 'বৃক্ষরোপন',
+    description: 'পরিবেশ সুরক্ষা ও স্বাবলম্বীকরণের লক্ষ্যে অধিক ফলনশীন, ঔষধি বৃক্ষরোপণ কার্যক্রম পরিচালনা।',
+    tag: 'নিয়মিত কার্যক্রম',
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80',
+    icon: BookOpen
+  },
   {
     slug: 'tree-plantation',
-    title: 'বৃক্ষরোপণ',
+    title: 'ঈদসামগ্রী',
     description:
-      'গাছ লাগিয়ে সবুজ পৃথিবী গড়ার এই মহতী উদ্যোগে শামিল হতে পারেন আপনিও।',
+      'পবিত্র ঈদুল ফিতর ও ঈদুল আযহার আনন্দ সবার মাঝে ছড়িয়ে দিতে পোশাক, খাদ্যদ্রব্য, কুরবানির মাংস ইত্যাদি ঈদসামগ্রী প্রদান।',
     tag: 'নিয়মিত কার্যক্রম',
     image:
       'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
@@ -71,9 +95,9 @@ const activities: Activity[] = [
   },
   {
     slug: 'qurbani',
-    title: 'সবার জন্য কুরবানী',
+    title: 'ইফতার সামগ্রী',
     description:
-      'প্রান্তিক মানুষের আমিষের ঘাটতি পূরণ, ঈদের হাসি ছড়িয়ে দেয়া এবং সর্বোপরি আল্লাহর সন্তুষ্টির জন্য একটি কুরবানী করতে পারেন।',
+      'পবিত্র রমজান মাস উপলক্ষে গরীব দুঃস্থ মানুষের মাঝে ইফতার সামগ্রী বিতরণ।',
     tag: 'নিয়মিত কার্যক্রম',
     image:
       'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80',
@@ -81,33 +105,13 @@ const activities: Activity[] = [
   },
   {
     slug: 'iftar',
-    title: 'ইফতার বিতরণ',
+    title: 'শীতবস্ত্র বিতরণ',
     description:
-      'আপনার সহযোগিতায় আমরা দুস্থ রোযাদারদের জন্য ইফতার আয়োজন করি। আমাদের এই কল্যাণকর্মে আপনিও শরিক হোন।',
+      'শীতার্ত মানুষের কল্যানে কম্বল, জ্যাকেট, মাফলার, টুপি, সুয়েটারসহ নানান শীতবস্ত্র বিতরণ।',
     tag: 'নিয়মিত কার্যক্রম',
     image:
       'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80',
     icon: Calendar
-  },
-  {
-    slug: 'winter-relief',
-    title: 'শীতবস্ত্র বিতরণ',
-    description:
-      'দরিদ্র মানুষের শরীরে উষ্ণতা ছড়িয়ে দিতে আমাদের আন্তরিক প্রয়াস।',
-    tag: 'নিয়মিত কার্যক্রম',
-    image:
-      'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=800&q=80',
-    icon: Home
-  },
-  {
-    slug: 'safe-drinking-water',
-    title: 'নলকূপ ও পানি শোধনাগার স্থাপন',
-    description:
-      'আপনাদের সহযোগিতায় আমরা দরিদ্র মানুষের জন্য বিশুদ্ধ পানীয় জল নিশ্চিত করছি। এই মানবিক উদ্যোগে আপনিও অংশ নিন।',
-    tag: 'নিয়মিত কার্যক্রম',
-    image:
-      'https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?auto=format&fit=crop&w=800&q=80',
-    icon: Droplets
   }
 ]
 
@@ -144,17 +148,16 @@ export default function ActivitiesSection() {
           {/* Main Title */}
           <h2 className="text-5xl font-bold text-gray-900 mb-8 font-bangla leading-tight">
             <span className="block pb-4 border-b-4 border-emerald-500/30 inline-block">
-              চলমান
+              চলতি
             </span>
             <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
-              কার্যক্রমসমূহ
+              কার্যক্রম
             </span>
           </h2>
 
           {/* Description */}
           <p className="text-lg text-gray-600 max-w-3xl mx-auto font-bangla leading-relaxed">
-            মানুষের সার্বিক কল্যাণ ও সামাজিক উন্নয়নে আস-সুন্নাহ ফাউন্ডেশনের নানা রকম কার্যক্রম চলমান রয়েছে।
-            প্রতিটি কার্যক্রম পরিচালিত হয় স্বচ্ছতা, জবাবদিহিতা ও সর্বোচ্চ মানের নিশ্চয়তা নিয়ে।
+            মানবতার কল্যাণ ও সামাজিক সমৃদ্ধির লক্ষ্যে আন-নুসরা ফাউন্ডেশনের নানাবিদ কার্যক্রম সক্রিয় রয়েছে। প্রতিটি কার্যক্রম শরঈ পদ্ধতি মেইন্টেইন করে শতভাগ আমানতদারিতার সাথে স্বচ্ছতা ও জবাবদিহিতা নিয়ে পরিচালিত হয়।
           </p>
         </div>
 

@@ -201,6 +201,7 @@
 import { useState } from 'react';
 import { GraduationCap, HeartHandshake, MessageCircle, HandCoins, Palette, Shield, ArrowRight, Sparkles, Target, CheckCircle2, Users, Clock, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
 
 const services = [
   {
@@ -276,6 +277,7 @@ export default function ServiceSection() {
       </div>
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Section Header */}
         <div className="text-center mb-20">
           <div className="inline-block">
@@ -306,6 +308,12 @@ export default function ServiceSection() {
             কুরআন-সুন্নাহ অনুযায়ী আমাদের কার্যাবলি, সামাজিক উন্নয়ন ও মানবকল্যানে নিবেদিত।
           </p>
         </div>
+        {/* <SectionHeader
+          badgeText='উম্মাহর সেবায় নিবেদিত প্রাণ'
+          title='আন-নুসরার পণ,'
+          subtitle='সবার হোক সুখী জীবন'
+          description='কুরআন-সুন্নাহ অনুযায়ী আমাদের কার্যাবলি, সামাজিক উন্নয়ন ও মানবকল্যানে নিবেদিত।'
+        /> */}
 
         {/* Interactive Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10 ">
@@ -464,7 +472,7 @@ export default function ServiceSection() {
             <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl blur-xl opacity-20" />
             <div className="relative bg-white/90 backdrop-blur-xl rounded-3xl border border-gray-200/50 p-12 shadow-2xl">
               <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-bangla">
-                কুরআন-সুন্নাহভিত্তিক সমাজ প্রতিষ্ঠায় অংশীদার হতে চান? 
+                কুরআন-সুন্নাহভিত্তিক সমাজ প্রতিষ্ঠায় অংশীদার হতে চান?
               </h3>
               <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto font-bangla">
                 আপনার আন্তরিক অংশগ্রহণ কুরআন-সুন্নাহর আলোকে সমাজ প্রতিষ্ঠা ও মানবকল্যানের যাত্রায় ভূমিকা রাখতে সহায়ক হবে।

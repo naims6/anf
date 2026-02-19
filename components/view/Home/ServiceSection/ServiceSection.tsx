@@ -464,10 +464,10 @@ export default function ServiceSection() {
             <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl blur-xl opacity-20" />
             <div className="relative bg-white/90 backdrop-blur-xl rounded-3xl border border-gray-200/50 p-12 shadow-2xl">
               <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-bangla">
-                ইসলামী সমাজ গঠনে অংশগ্রহণ করুন
+                কুরআন-সুন্নাহভিত্তিক সমাজ প্রতিষ্ঠায় অংশীদার হতে চান? 
               </h3>
               <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto font-bangla">
-                আপনার সমর্থন ও অংশগ্রহণ আমাদের কার্যক্রমকে আরও বিস্তৃত করে উম্মাহর সার্বিক কল্যাণে ভূমিকা রাখতে সাহায্য করবে
+                আপনার আন্তরিক অংশগ্রহণ কুরআন-সুন্নাহর আলোকে সমাজ প্রতিষ্ঠা ও মানবকল্যানের যাত্রায় ভূমিকা রাখতে সহায়ক হবে।
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

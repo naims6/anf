@@ -199,13 +199,13 @@
 'use client';
 
 import { useState } from 'react';
-import { GraduationCap, HeartHandshake, MessageCircle, Shield, ArrowRight, Sparkles, Target, CheckCircle2, Users, Clock, Globe } from 'lucide-react';
+import { GraduationCap, HeartHandshake, MessageCircle, HandCoins, Palette, Shield, ArrowRight, Sparkles, Target, CheckCircle2, Users, Clock, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const services = [
   {
     id: 1,
-    title: 'শিক্ষা কার্যক্রম',
+    title: 'শিক্ষা',
     icon: GraduationCap,
     description: 'কুরআন-সুন্নাহর সাথে আধুনিক শিক্ষার সমন্বয় সাধন করে পাঠ্যক্রম ও পাঠ্যপুস্তক প্রণয়ন এবং শিক্ষা প্রতিষ্ঠান প্রতিষ্ঠা ও পরিচালনা।',
     stats: '৫০০+ শিক্ষার্থী',
@@ -216,7 +216,7 @@ const services = [
   },
   {
     id: 2,
-    title: 'সেবা কার্যক্রম:',
+    title: 'সেবা',
     icon: HeartHandshake,
     description: 'অভাবগ্রস্তদের মাঝে শীতবস্ত্র, রমজানে ইফতার, পোশাক ও ঈদ-সামগ্রী প্রদান এবং অসচ্ছলদের মাঝে কুরবানীর গোল্ড বিতরণ কার্যক্রম আয়োজন।',
     stats: '১০,০০০+ পরিবার',
@@ -227,7 +227,7 @@ const services = [
   },
   {
     id: 3,
-    title: 'দাওয়াহ কার্যক্রম',
+    title: 'দাওয়াহ',
     icon: MessageCircle,
     description: 'পরিবারিক পর্যায়ে দ্বীনি পরিবেশ সমুন্নোত রাখতে ফ্যামিলি কাউন্সেলিং বিভাগ ও দ্বীনি জিজ্ঞাসার কল সেন্টার পরিচালনা করা।',
     stats: '১০০+ প্রকাশনা',
@@ -238,25 +238,25 @@ const services = [
   },
   {
     id: 4,
-    title: 'ইসলামী অর্থনীতি কার্যক্রম ',
-    icon: MessageCircle,
+    title: 'ইসলামী অর্থনীতি ',
+    icon: HandCoins,
     description: 'বেকারত্ব দূরীকরণে ও দারিদ্র্য বিমোচনে হস্তশিল্প, যন্ত্রশিল্প, কারিগরি, কৃষি, খামার ব্যবস্থাপনা প্রশিক্ষণের পাশাপাশি আত্মনির্ভরশীলতার জন্য অর্থ সহায়তা প্রদান।',
-    stats: '১০০+ প্রকাশনা',
-    gradient: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
+    stats: '২০০+ উদ্যোক্তা সহায়তা',
+    gradient: 'linear-gradient(135deg, #A855F7 0%, #7E22CE 100%)',
     projects: ['কর্জে হাসানাহ', 'যাকাত ফান্ড', 'উপার্জন উপকরণ বিতরণ ', 'উদ্যোক্তা প্রশিক্ষণ'],
-    bgColor: 'bg-amber-500/5',
-    borderColor: 'border-amber-500/20'
+    bgColor: 'bg-purple-500/5',
+    borderColor: 'border-purple-500/20'
   },
   {
     id: 5,
-    title: 'ইসলামী কৃষ্টি-কালচার কার্যক্রম',
-    icon: MessageCircle,
+    title: 'ইসলামী কৃষ্টি-কালচার',
+    icon: Palette,
     description: 'শিশু-কিশোরদের বিনোদন ও নৈতিক জাগরণের লক্ষ্যে ইসলামী সংস্কৃতিকেন্দ্র নির্মাণ এবং বিভিন্ন দিবস উপলক্ষ্যে ইসলামী সঙ্গীত, কবিতা আবৃত্তি, ক্যালিওগ্রাফিসহ নানাবিধ সাংস্কৃতিক প্রতিযোগিতা আয়োজন।',
-    stats: '১০০+ প্রকাশনা',
-    gradient: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
+    stats: '৩০+ সাংস্কৃতিক আয়োজন',
+    gradient: 'linear-gradient(135deg, #F43F5E 0%, #BE123C 100%)',
     projects: ['সামাজিক সংস্কার', 'ইসলামী সংস্কৃতিকেন্দ্র', 'সাংস্কৃতিক প্রতিযোগিতা', ' কন্টেন্ট নির্মাণ', 'ঈদ কার্যক্রম'],
-    bgColor: 'bg-amber-500/5',
-    borderColor: 'border-amber-500/20'
+    bgColor: 'bg-rose-500/5',
+    borderColor: 'border-rose-500/20'
   }
 ];
 

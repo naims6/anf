@@ -199,7 +199,7 @@
 'use client';
 
 import { useState } from 'react';
-import { GraduationCap, HeartHandshake, MessageCircle, HandCoins, Palette, Shield, ArrowRight, Sparkles, Target, CheckCircle2, Users, Clock, Globe } from 'lucide-react';
+import { GraduationCap, HeartHandshake, MessageCircle, HandCoins, Palette, Shield, ArrowRight, Target, CheckCircle2, Users, Clock, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
 
@@ -265,7 +265,7 @@ export default function ServiceSection() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
   return (
-    <section className="relative overflow-hidden py-10 bg-gradient-to-b from-white via-emerald-50/20 to-white">
+    <section className="relative overflow-hidden py-10 bg-linear-to-b from-white via-emerald-50/20 to-white">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-blue-100/40 to-transparent rounded-full blur-3xl" />
@@ -279,7 +279,7 @@ export default function ServiceSection() {
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
-        <div className="text-center mb-20">
+        {/* <div className="text-center mb-20">
           <div className="inline-block">
             <div className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 backdrop-blur-sm rounded-2xl px-6 py-3 border border-emerald-200/50 mb-8">
               <div className="relative">
@@ -307,13 +307,17 @@ export default function ServiceSection() {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto font-bangla leading-relaxed">
             কুরআন-সুন্নাহ অনুযায়ী আমাদের কার্যাবলি, সামাজিক উন্নয়ন ও মানবকল্যানে নিবেদিত।
           </p>
-        </div>
-        {/* <SectionHeader
+        </div> */}
+
+
+        <SectionHeader
           badgeText='উম্মাহর সেবায় নিবেদিত প্রাণ'
           title='আন-নুসরার পণ,'
           subtitle='সবার হোক সুখী জীবন'
           description='কুরআন-সুন্নাহ অনুযায়ী আমাদের কার্যাবলি, সামাজিক উন্নয়ন ও মানবকল্যানে নিবেদিত।'
-        /> */}
+          icon={Shield}
+        />
+
 
         {/* Interactive Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10 ">

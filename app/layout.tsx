@@ -40,7 +40,9 @@ export default function RootLayout({
             <Navbar />
             <BottomNav />
             <FloatingActionButton />
-            {children}
+            <div className="min-w-11/12 mx-auto ">
+              {children}
+            </div>
           </StoreProvider>
           <Footer />
         </div>

@@ -3,6 +3,7 @@ import { BookOpen, Heart, TreePine, Home, Users, GraduationCap, Droplets, Shoppi
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
+import DefaultWeight from '@/components/shared/DefaultWeight/DefaultWeight';
 
 // Map activity slugs to icons and images
 
@@ -119,61 +120,64 @@ const activities: Activity[] = [
 
 export default function ActivitiesSection() {
   return (
-    <section className="relative py-10 bg-gradient-to-b from-white via-emerald-50/10 to-white overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        {/* Gradient Orbs */}
-        <div className="absolute top-20 -left-20 w-80 h-80 bg-gradient-to-br from-blue-100/30 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-20 -right-20 w-80 h-80 bg-gradient-to-tr from-emerald-100/30 to-transparent rounded-full blur-3xl" />
+    <section>
+      <DefaultWeight>
 
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
+        <div className="relative py-10 bg-linear-to-b from-white via-emerald-50/10 to-white overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0">
+            {/* Gradient Orbs */}
+            <div className="absolute top-20 -left-20 w-80 h-80 bg-linear-to-br from-blue-100/30 to-transparent rounded-full blur-3xl" />
+            <div className="absolute bottom-20 -right-20 w-80 h-80 bg-linear-to-tr from-emerald-100/30 to-transparent rounded-full blur-3xl" />
 
-        {/* Decorative Lines */}
-        <div className="absolute top-40 left-10 right-10 h-px bg-gradient-to-r from-transparent via-emerald-200/50 to-transparent" />
-        <div className="absolute bottom-40 left-10 right-10 h-px bg-gradient-to-r from-transparent via-blue-200/50 to-transparent" />
-      </div>
+            {/* Grid Pattern */}
+            <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
 
-      <div className=" relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-10">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl px-6 py-3 border border-emerald-200 mb-4">
-            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-            <span className="text-emerald-700 font-semibold text-sm tracking-wide font-bangla">
-              মানুষের সেবায় নিরলস
-            </span>
+            {/* Decorative Lines */}
+            <div className="absolute top-40 left-10 right-10 h-px bg-gradient-to-r from-transparent via-emerald-200/50 to-transparent" />
+            <div className="absolute bottom-40 left-10 right-10 h-px bg-gradient-to-r from-transparent via-blue-200/50 to-transparent" />
           </div>
 
-          {/* Main Title */}
-          <h2 className="text-5xl font-bold text-gray-900 mb-8 font-bangla leading-tight">
-            <span className="block pb-4 border-b-4 border-emerald-500/30 inline-block">
-              চলতি
-            </span>
-            <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
-              কার্যক্রম
-            </span>
-          </h2>
+          <div className=" relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Section Header */}
+            <div className="text-center mb-10">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl px-6 py-3 border border-emerald-200 mb-4">
+                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                <span className="text-emerald-700 font-semibold text-sm tracking-wide font-bangla">
+                  মানুষের সেবায় নিরলস
+                </span>
+              </div>
 
-          {/* Description */}
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto font-bangla leading-relaxed">
-            মানবতার কল্যাণ ও সামাজিক সমৃদ্ধির লক্ষ্যে আন-নুসরা ফাউন্ডেশনের নানাবিদ কার্যক্রম সক্রিয় রয়েছে। প্রতিটি কার্যক্রম শরঈ পদ্ধতি মেইন্টেইন করে শতভাগ আমানতদারিতার সাথে স্বচ্ছতা ও জবাবদিহিতা নিয়ে পরিচালিত হয়।
-          </p>
-        </div>
+              {/* Main Title */}
+              <h2 className="text-5xl font-bold text-gray-900 mb-8 font-bangla leading-tight">
+                <span className="block pb-4 border-b-4 border-emerald-500/30 inline-block">
+                  চলতি
+                </span>
+                <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
+                  কার্যক্রম
+                </span>
+              </h2>
 
-        {/* Activities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-          {activities.map((activity) => {
-            const Icon = activity.icon || Heart;
+              {/* Description */}
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto font-bangla leading-relaxed">
+                মানবতার কল্যাণ ও সামাজিক সমৃদ্ধির লক্ষ্যে আন-নুসরা ফাউন্ডেশনের নানাবিদ কার্যক্রম সক্রিয় রয়েছে। প্রতিটি কার্যক্রম শরঈ পদ্ধতি মেইন্টেইন করে শতভাগ আমানতদারিতার সাথে স্বচ্ছতা ও জবাবদিহিতা নিয়ে পরিচালিত হয়।
+              </p>
+            </div>
 
-            return (
-              <Link
-                key={activity.slug}
-                href={`/activities/${activity.slug}`}
-                className="group block"
-              >
-                {/* Card Container */}
-                <div className={`
+            {/* Activities Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+              {activities.map((activity) => {
+                const Icon = activity.icon || Heart;
+
+                return (
+                  <Link
+                    key={activity.slug}
+                    href={`/activities/${activity.slug}`}
+                    className="group block"
+                  >
+                    {/* Card Container */}
+                    <div className={`
                   relative h-full min-h-[350px] rounded-3xl overflow-hidden
                   bg-white border-2 border-emerald-200
                   shadow-xl shadow-gray-200/50
@@ -182,114 +186,114 @@ export default function ActivitiesSection() {
                   hover:-translate-y-2
                   bg-emerald-50 flex flex-col
                 `}>
-                  {/* Image Section */}
-                  <div className="relative h-48 flex-shrink-0 overflow-hidden rounded-t-3xl">
-                    <Image
-                      src={activity?.image}
-                      alt={activity.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
+                      {/* Image Section */}
+                      <div className="relative h-48 flex-shrink-0 overflow-hidden rounded-t-3xl">
+                        <Image
+                          src={activity?.image}
+                          alt={activity.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
 
-                    {/* Image Overlay Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/40 to-transparent" />
+                        {/* Image Overlay Gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/40 to-transparent" />
 
-                    {/* Tag on Image */}
-                    <div className="absolute top-4 right-4">
-                      <span className={`
+                        {/* Tag on Image */}
+                        <div className="absolute top-4 right-4">
+                          <span className={`
                         px-4 py-1.5 rounded-full text-xs font-semibold
                         bg-white/90 backdrop-blur-sm border border-emerald-200 text-emerald-700
                       `}>
-                        {activity.tag}
-                      </span>
-                    </div>
+                            {activity.tag}
+                          </span>
+                        </div>
 
-                    {/* Icon on Image */}
-                    <div className="absolute bottom-4 left-4">
-                      <div className={`
+                        {/* Icon on Image */}
+                        <div className="absolute bottom-4 left-4">
+                          <div className={`
                         w-12 h-12 rounded-xl flex items-center justify-center
                         bg-white/90 backdrop-blur-sm border border-emerald-200
                         group-hover:scale-110 transition-transform duration-300
                       `}>
-                        <Icon className="w-6 h-6 text-emerald-600" />
+                            <Icon className="w-6 h-6 text-emerald-600" />
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
 
-                  {/* Gradient Top Bar */}
-                  <div className={`h-1 w-full bg-gradient-to-r from-emerald-500 to-green-500 flex-shrink-0`} />
+                      {/* Gradient Top Bar */}
+                      <div className={`h-1 w-full bg-gradient-to-r from-emerald-500 to-green-500 flex-shrink-0`} />
 
-                  {/* Card Content - Flex column to push action indicator to bottom */}
-                  <div className="p-6 flex flex-col flex-grow">
-                    {/* Title */}
-                    <h3 className={`
+                      {/* Card Content - Flex column to push action indicator to bottom */}
+                      <div className="p-6 flex flex-col flex-grow">
+                        {/* Title */}
+                        <h3 className={`
                       text-xl font-bold text-gray-900 mb-3 font-bangla
                       leading-tight group-hover:text-emerald-600 transition-colors duration-300
                       line-clamp-2
                     `}>
-                      {activity.title}
-                    </h3>
+                          {activity.title}
+                        </h3>
 
-                    {/* Description */}
-                    <p className="text-gray-700 leading-relaxed mb- font-bangla text-md line-clamp-3 flex-grow">
-                      {activity.description}
-                    </p>
+                        {/* Description */}
+                        <p className="text-gray-700 leading-relaxed mb- font-bangla text-md line-clamp-3 flex-grow">
+                          {activity.description}
+                        </p>
 
-                    {/* Action Indicator - This will now be at the bottom */}
-                    <div className="flex items-center justify-between  pt-4 border-t border-gray-100">
-                      <span className={`text-sm font-semibold text-emerald-600 font-bangla`}>
-                        বিস্তারিত দেখুন
-                      </span>
-                      <div className={`
+                        {/* Action Indicator - This will now be at the bottom */}
+                        <div className="flex items-center justify-between  pt-4 border-t border-gray-100">
+                          <span className={`text-sm font-semibold text-emerald-600 font-bangla`}>
+                            বিস্তারিত দেখুন
+                          </span>
+                          <div className={`
                         w-10 h-10 rounded-full flex items-center justify-center
                         bg-gradient-to-r from-emerald-500 to-green-500
                         text-white group-hover:scale-110 transition-all duration-300
                       `}>
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
 
-                  {/* Corner Accents */}
-                  <div className={`absolute top-52 right-4 w-12 h-12 border-t-2 border-r-2 border-emerald-200 rounded-tr-3xl`} />
-                  <div className={`absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-emerald-200 rounded-bl-3xl`} />
+                      {/* Corner Accents */}
+                      <div className={`absolute top-52 right-4 w-12 h-12 border-t-2 border-r-2 border-emerald-200 rounded-tr-3xl`} />
+                      <div className={`absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-emerald-200 rounded-bl-3xl`} />
 
-                  {/* Hover Overlay */}
-                  <div className={`
+                      {/* Hover Overlay */}
+                      <div className={`
                     absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-500 to-green-500
                     opacity-0 group-hover:opacity-5 transition-opacity duration-300 -z-10
                   `} />
-                </div>
+                    </div>
 
-                {/* Background Glow on Hover */}
-                <div className={`
+                    {/* Background Glow on Hover */}
+                    <div className={`
                   absolute -inset-4 rounded-3xl bg-gradient-to-br from-emerald-500 to-green-500
                   opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 -z-20
                 `} />
-              </Link>
-            );
-          })}
-        </div>
+                  </Link>
+                );
+              })}
+            </div>
 
-        {/* CTA Section */}
-        <Link className='flex justify-center items-center' href="/activities">
-          <Button
-            size="lg"
-            className="group bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-12 py-7 text-xl font-semibold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 font-bangla min-w-[230px]"
-          >
-            <span>কার্যক্রমসমূহ</span>
-            <svg className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </Button>
-        </Link>
-      </div>
+            {/* CTA Section */}
+            <Link className='flex justify-center items-center' href="/activities">
+              <Button
+                size="lg"
+                className="group bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-12 py-7 text-xl font-semibold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 font-bangla min-w-[230px]"
+              >
+                <span>কার্যক্রমসমূহ</span>
+                <svg className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Button>
+            </Link>
+          </div>
 
-      {/* Custom CSS for Grid Pattern */}
-      <style jsx>{`
+          {/* Custom CSS for Grid Pattern */}
+          <style jsx>{`
         .bg-grid-pattern {
           background-image: 
             linear-gradient(to right, #0000000a 1px, transparent 1px),
@@ -321,6 +325,9 @@ export default function ActivitiesSection() {
           -webkit-line-clamp: 3;
         }
       `}</style>
+        </div>
+
+      </DefaultWeight>
     </section>
   );
 }

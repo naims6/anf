@@ -1,35 +1,35 @@
-import { Shield, Sparkles } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 
 interface TSectionHeaderProps {
     badgeText: string;
     title: string;
     subtitle: string;
     description: string;
+    icon: LucideIcon;
 }
 
-const SectionHeader = ({ badgeText, title, subtitle, description }: TSectionHeaderProps) => {
+const SectionHeader = ({ badgeText, title, subtitle, description, icon: Icon }: TSectionHeaderProps) => {
     return (
         <div className="text-center mb-20">
             <div className="inline-block">
-                <div className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500/10 to-emerald-600/10 backdrop-blur-sm rounded-2xl px-6 py-3 border border-emerald-200/50 mb-8">
+                <div className="inline-flex items-center gap-3 bg-linear-to-r from-emerald-500/10 to-emerald-600/10 backdrop-blur-sm rounded-2xl px-6 py-3 border border-emerald-200/50 mb-8">
                     <div className="relative">
-                        <Shield className="w-5 h-5 text-emerald-600" />
+                        <Icon className="w-5 h-5 text-emerald-600" />
                         <div className="absolute inset-0 bg-emerald-400/30 rounded-full blur-sm" />
                     </div>
                     <span className="text-emerald-700 font-semibold text-sm tracking-wide font-bangla">
                         {badgeText}
                     </span>
-                    <Sparkles className="w-4 h-4 text-amber-500" />
                 </div>
             </div>
 
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 font-bangla leading-tight">
                 <span className="relative inline-block">
                     {title}
-                    <div className="absolute bottom-2 left-0 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent" />
+                    <div className="absolute bottom-2 left-0 h-1 bg-linear-to-r from-transparent via-emerald-500 to-transparent" />
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-emerald-600 via-green-600 to-emerald-600 bg-size-[200%_auto] animate-gradient bg-clip-text text-transparent">
                     {subtitle}
                 </span>
             </h2>

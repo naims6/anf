@@ -319,7 +319,7 @@ export default function ServiceSection() {
                   {/* Icon */}
                   <div className="relative mb-">
                     <div
-                      className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform duration-300 ${activeCard === service.id ? 'rotate-360' : ''}`}
+                      className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform duration-300 ${activeCard === service.id ? 'rotate-15' : ''}`}
                       style={{ background: service.gradient }}
                     >
                       <service.icon className="w-10 h-10 text-white" />

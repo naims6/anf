@@ -63,7 +63,7 @@ export default function DonationMethods() {
   const Icon = selectedPayment?.icon || Smartphone;
 
   return (
-    <section className="py-5 bg-gradient-to-b from-white to-rose-50/30">
+    <section className="py-5 bg-linear-to-b from-white to-rose-50/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -98,11 +98,11 @@ export default function DonationMethods() {
                     <button
                       key={method.id}
                       onClick={() => setSelectedMethod(method.id)}
-                      className={`w-full text-left rounded-2xl p-5 border transition-all duration-300 ${isSelected ? 'border-rose-300 bg-gradient-to-r from-rose-50 to-pink-50 shadow-md' : 'border-gray-200 hover:border-rose-200 hover:bg-rose-50/30'}`}
+                      className={`w-full text-left rounded-2xl p-5 border transition-all duration-300 hover:cursor-pointer ${isSelected ? 'border-rose-300 bg-linear-to-r from-rose-50 to-pink-50 shadow-md' : 'border-gray-200 hover:border-rose-200 hover:bg-rose-50/30'}`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
-                          <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${method.color} flex items-center justify-center`}>
+                          <div className={`shrink-0 w-12 h-12 rounded-xl bg-linear-to-br ${method.color} flex items-center justify-center`}>
                             <MethodIcon className="w-6 h-6 text-white" />
                           </div>
                           
@@ -126,7 +126,7 @@ export default function DonationMethods() {
               </div>
 
               {/* Security Features */}
-              <div className="mt-8 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-100">
+              <div className="mt-8 bg-linear-to-r from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-100">
                 <div className="flex items-center gap-3 mb-4">
                   <Shield className="w-6 h-6 text-emerald-600" />
                   <h4 className="font-bold text-gray-900 font-bangla">
@@ -164,7 +164,7 @@ export default function DonationMethods() {
                   <>
                     {/* Method Header */}
                     <div className="text-center mb-8">
-                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${selectedPayment.color} mb-4`}>
+                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-linear-to-br ${selectedPayment.color} mb-4`}>
                         <Icon className="w-8 h-8 text-white" />
                       </div>
                       
@@ -198,7 +198,7 @@ export default function DonationMethods() {
                       <div className="space-y-4">
                         {selectedPayment.steps.map((step, idx) => (
                           <div key={idx} className="flex items-start gap-4">
-                            <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-r from-rose-50 to-pink-50 flex items-center justify-center">
+                            <div className="shrink-0 w-8 h-8 rounded-lg bg-linear-to-r from-rose-50 to-pink-50 flex items-center justify-center">
                               <div className="text-sm font-bold text-rose-600">
                                 {idx + 1}
                               </div>
@@ -227,7 +227,7 @@ export default function DonationMethods() {
                     {/* Important Notes */}
                     <div className="bg-amber-50 rounded-xl p-4 border border-amber-100">
                       <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0">
+                        <div className="shrink-0">
                           <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center">
                             <span className="text-white text-sm font-bold">!</span>
                           </div>

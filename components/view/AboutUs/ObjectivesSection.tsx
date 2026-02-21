@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { GraduationCap, MessageCircle, Heart, Book, Users, Target, Award, Lightbulb } from 'lucide-react';
+import { GraduationCap, MessageCircle, Heart } from 'lucide-react';
 
 const objectives = [
   {
@@ -87,20 +87,20 @@ export default function ObjectivesSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-full px-4 py-2 mb-6">
-              <div className="w-2 h-2 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full" />
+          <div className="text-center mb-12 mt-10">
+            <div className="inline-flex items-center gap-2 bg-linear-to-r from-emerald-50 to-blue-50 rounded-full px-4 py-2 mb-6">
+              <div className="w-2 h-2 bg-linear-to-r from-emerald-500 to-blue-500 rounded-full" />
               <span className="text-emerald-700 font-semibold text-sm font-bangla">
                 আমাদের লক্ষ্যসমূহ
               </span>
             </div>
-            
+
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-bangla">
-              <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-emerald-600 via-green-600 to-blue-600 bg-clip-text text-transparent">
                 লক্ষ্য-উদ্দেশ্য
               </span>
             </h2>
-            
+
             <p className="text-gray-600 max-w-3xl mx-auto font-bangla">
               তিনটি মূল খাতে আমাদের সুনির্দিষ্ট লক্ষ্য ও উদ্দেশ্য
             </p>
@@ -117,7 +117,7 @@ export default function ObjectivesSection() {
                 <button
                   key={obj.id}
                   onClick={() => setActiveTab(obj.id)}
-                  className={`flex items-center gap-3 px-6 py-3 rounded-xl font-semibold transition-all duration-300 font-bangla ${isActive ? colors.text + ' ' + colors.bg + ' border ' + colors.border + ' shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}
+                  className={`flex items-center gap-3 px-6 py-3 rounded-xl font-semibold transition-all duration-300 font-bangla hover:cursor-pointer ${isActive ? colors.text + ' ' + colors.bg + ' border ' + colors.border + ' shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}
                 >
                   <TabIcon className="w-5 h-5" />
                   {obj.label}
@@ -127,10 +127,10 @@ export default function ObjectivesSection() {
           </div>
 
           {/* Active Tab Content */}
-          <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl border border-gray-100 p-8">
+          <div className="bg-linear-to-br from-white to-gray-50 rounded-3xl border border-gray-100 p-8">
             {/* Tab Header */}
             <div className={`inline-flex items-center gap-3 ${colorMap[activeObjective?.color as keyof typeof colorMap]?.bg} rounded-xl px-4 py-3 mb-8`}>
-              <div className={`w-10 h-10 rounded-lg bg-gradient-to-r ${colorMap[activeObjective?.color as keyof typeof colorMap]?.gradient} flex items-center justify-center`}>
+              <div className={`w-10 h-10 rounded-lg bg-linear-to-r ${colorMap[activeObjective?.color as keyof typeof colorMap]?.gradient} flex items-center justify-center`}>
                 <Icon className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -147,10 +147,10 @@ export default function ObjectivesSection() {
             <div className="space-y-6">
               {activeObjective?.items.map((item, idx) => (
                 <div key={idx} className="flex items-start gap-4">
-                  <div className={`flex-shrink-0 w-8 h-8 rounded-lg ${colorMap[activeObjective?.color as keyof typeof colorMap]?.bg} flex items-center justify-center`}>
+                  <div className={`shrink-0 w-8 h-8 rounded-lg ${colorMap[activeObjective?.color as keyof typeof colorMap]?.bg} flex items-center justify-center`}>
                     <div className={`w-2 h-2 rounded-full ${colorMap[activeObjective?.color as keyof typeof colorMap]?.text}`} />
                   </div>
-                  
+
                   <p className="text-gray-700 leading-relaxed font-bangla">
                     {item}
                   </p>

@@ -40,7 +40,7 @@ export default function RootLayout({
             <Navbar />
             <BottomNav />
             <FloatingActionButton />
-            <div className="min-w-11/12 mx-auto ">
+            <div className="min-h-[calc(100vh-600px)]">
               {children}
             </div>
           </StoreProvider>

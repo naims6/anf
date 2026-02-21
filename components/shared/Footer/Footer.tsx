@@ -1,33 +1,23 @@
 import Link from "next/link";
-import Image from "next/image"; 
-import { Facebook, Instagram, Twitter, Youtube, MapPin, Phone, Mail, Heart, Shield, Users, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { MapPin, Phone, Mail, Heart, Shield, Users, ArrowRight } from "lucide-react";
 import { SiteConfig } from "@/config/siteConfig";
 import { NavItem } from "@/types/siteConfigType";
 import Logo from "../../../assets/logo/footer-logo.png";
 
-export function Footer() {
-  const {
-    brandName,
-    description,
-    email,
-    displayNumber,
-    callLink,
-    location,
-    navItems,
-    socialLinks,
-  } = SiteConfig;
+interface SocialLink {
+  name: string;
+  icon: any;
+  href: string;
+}
 
-  const activityItems = [
-    "যাকাত প্রদান",
-    "এতিম ও দুস্থ সহায়তা",
-    "জরুরি খাদ্য সহায়তা",
-    "মসজিদ ও মাদ্রাসা ফান্ড",
-    "শীতবস্ত্র বিতরণ",
-    "স্বাস্থ্যসেবা প্রদান"
-  ];
+export function Footer() {
+  const { brandName, description, email, displayNumber, callLink, location, navItems, socialLinks } = SiteConfig;
+
+  const activityItems = ["যাকাত প্রদান", "এতিম ও দুস্থ সহায়তা", "জরুরি খাদ্য সহায়তা", "মসজিদ ও মাদ্রাসা ফান্ড", "শীতবস্ত্র বিতরণ", "স্বাস্থ্যসেবা প্রদান"];
 
   return (
-    <footer className="bg-primary text-white relative overflow-hidden border-t border-white/10">
+    <footer className="bg-primary text-white relative overflow-hidden border-t border-white/10 pb-24 lg:pb-0">
       {/* Background Subtle Elements */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute -top-24 -left-24 w-64 h-64 border border-white rounded-full"></div>
@@ -46,11 +36,11 @@ export function Footer() {
           <div className="group p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-amber-400/50 transition-all duration-300">
             <Users className="h-8 w-8 text-amber-400 mb-4 group-hover:scale-110 transition-transform" />
             <h3 className="text-lg font-bold mb-2">স্বচ্ছ কার্যক্রম</h3>
-            <p className="text-sm text-white/60">ব্যয়ের সঠিক হিসাব এবং নিয়মিত আপডেট প্রদান।</p>
+            <p className="text-sm text-white/60">ব্যয়ের সঠিক হিসাব এবং নিয়মিত আপডেট প্রদান।</p>
           </div>
           <div className="group p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-amber-400/50 transition-all duration-300 sm:col-span-2 lg:col-span-1">
             <Heart className="h-8 w-8 text-amber-400 mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-lg font-bold mb-2">সদকাহ জারিয়া</h3>
+            <h3 className="text-lg font-bold mb-2">সদকাহ জারিয়া</h3>
             <p className="text-sm text-white/60">স্থায়ী সওয়াব অর্জনে আপনার পাশে আন-নুসরা ফাউন্ডেশন।</p>
           </div>
         </div>
@@ -63,8 +53,8 @@ export function Footer() {
             <div className="flex justify-center md:justify-start">
               <Image
                 src={Logo}
-                alt="An Nusra Foundation Logo"
-                className="h-24 w-auto object-contain bg-white rounded-sm"
+                alt={`${brandName} Logo`}
+                className="h-20 w-auto object-contain bg-white rounded-md p-1" // লোগোটি হোয়াইট ব্যাকগ্রাউন্ডে থাকলে p-1 দিলে সুন্দর দেখায়
                 priority
               />
             </div>
@@ -72,7 +62,7 @@ export function Footer() {
               {description}
             </p>
             <div className="flex justify-center md:justify-start gap-4 pt-2">
-              {socialLinks.map(({ name, icon: Icon, href }: any) => (
+              {socialLinks?.map(({ name, icon: Icon, href }: SocialLink) => (
                 <Link key={name} href={href} className="p-2 bg-white/5 rounded-full hover:bg-amber-500 hover:text-white transition-all duration-300 transform hover:-translate-y-1">
                   <Icon className="h-5 w-5" />
                 </Link>
@@ -101,7 +91,7 @@ export function Footer() {
           <div className="space-y-5">
             <h3 className="text-lg font-bold border-l-4 border-amber-400 pl-3">আমাদের কার্যক্রম</h3>
             <div className="flex flex-col gap-3">
-              {activityItems.map((item, index) => (
+              {activityItems?.map((item, index) => (
                 <div
                   key={index}
                   className="group flex items-center gap-2 text-sm text-white/60 hover:text-amber-400 cursor-pointer transition-all duration-400 hover:translate-x-3"
@@ -118,19 +108,19 @@ export function Footer() {
             <h3 className="text-lg font-bold border-l-4 border-amber-400 pl-3">যোগাযোগ করুন</h3>
             <div className="space-y-4 text-sm text-white/70">
               <Link href={callLink} className="flex items-center gap-3 hover:text-amber-400 transition-colors group">
-                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-amber-500/20">
+                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-amber-500/20 transition-colors">
                   <Phone className="h-4 w-4" />
                 </div>
                 {displayNumber}
               </Link>
               <Link href={`mailto:${email}`} className="flex items-center gap-3 hover:text-amber-400 transition-colors group">
-                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-amber-500/20">
+                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-amber-500/20 transition-colors">
                   <Mail className="h-4 w-4" />
                 </div>
                 {email}
               </Link>
               <div className="flex items-start gap-3 group">
-                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-amber-500/20">
+                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-amber-500/20 transition-colors">
                   <MapPin className="h-4 w-4" />
                 </div>
                 <span className="leading-relaxed">{location}</span>
@@ -140,8 +130,8 @@ export function Footer() {
         </div>
 
         {/* নিচের অংশ */}
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
-          <div className="text-center lg:text-left space-y-2">
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6 text-center">
+          <div className="space-y-2 lg:text-left">
             <p className="text-xs text-white/50">
               © {new Date().getFullYear()} {brandName}। সর্বস্বত্ব সংরক্ষিত।
             </p>

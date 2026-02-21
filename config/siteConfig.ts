@@ -8,7 +8,7 @@ export const SiteConfig: any = {
   brandName: "As Nusra Foundation",
   url: "https://annusrafoundation.com",
   email: "annusrafoundation@gmail.com",
-  description: "An Nusra Foundation is a non-profit Islamic organization platform designed to support charity-based activities such as Zakat, Sadaqah, Emergency Aid, Education Funds, etc.",
+  description: "আন-নুসরা ফাউন্ডেশন একটি অলাভজনক ইসলামি সেবামূলক প্ল্যাটফর্ম, যা যাকাত, সদকাহ, জরুরি ত্রাণ সহায়তা এবং শিক্ষা তহবিলের মতো বিভিন্ন চ্যারিটি কার্যক্রম পরিচালনার মাধ্যমে মানবতার সেবায় নিয়োজিত।",
   displayNumber: "+880 1817-536363",
   callLink: "tel:+01817536363",
   whatsappLink: "https://wa.me/8801817536363",

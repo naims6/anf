@@ -4,6 +4,8 @@ import React, { useState, useMemo } from 'react';
 import { BlogPost } from '@/types/blog';
 import blogDataRaw from '@/data/activities/blogs.json';
 import BlogCard from '@/components/view/Blog/BlogCard';
+import DefaultWeight from '@/components/shared/DefaultWeight/DefaultWeight';
+import { Search, SearchX } from 'lucide-react';
 
 // টাইপ কাস্টিং (JSON ডাটাকে ইন্টারফেসের সাথে মিলানো)
 const blogData = blogDataRaw as BlogPost[];
@@ -21,7 +23,7 @@ export default function BlogPage() {
 
   return (
     <main className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <DefaultWeight>
 
         {/* Header & Search Area */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
@@ -40,9 +42,9 @@ export default function BlogPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <span className="absolute left-4 top-3.5 text-gray-400">
-              🔍
-            </span>
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+              <Search size={20} strokeWidth={2} />
+            </div>
           </div>
         </div>
 
@@ -57,19 +59,7 @@ export default function BlogPage() {
           /* Clean & Professional Empty State */
           <div className="flex flex-col items-center justify-center py-24 px-6 text-center  rounded-3xl border border-dashed border-gray-300 shadow-sm">
             <div className="bg-gray-50 p-6 rounded-full mb-6">
-              <svg
-                className="w-16 h-16 text-gray-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 4h.01"
-                />
-              </svg>
+              <SearchX className="w-16 h-16 text-gray-300" strokeWidth={1.5} />
             </div>
 
             <h3 className="text-2xl font-bold text-gray-800 mb-2">
@@ -82,14 +72,14 @@ export default function BlogPage() {
 
             <button
               onClick={() => setSearchQuery("")}
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-green-600 hover:bg-green-700 transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-green-600 hover:bg-green-700 transition-all duration-200 shadow-md hover:shadow-lg active:scale-95 hover:cursor-pointer"
             >
               সার্চ ক্লিয়ার করুন
             </button>
           </div>
         )}
 
-      </div>
+      </DefaultWeight>
     </main>
   );
 }

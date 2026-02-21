@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "title": "দুর্যোগে মানবতার বার্তা: আস-সুন্নাহ ফাউন্ডেশনের ত্রাণ কার্যক্রম",
+    "excerpt": "প্রাকৃতিক দুর্যোগের সময় মানুষের পাশে দাঁড়ানো আমাদের দায়িত্ব। দেখুন কিভাবে আমরা বন্যা কবলিত অঞ্চলে সহায়তা করছি।",
+    "author": "ড. আহমাদ রহমান",
+    "date": "২০২৪ ডিসেম্বর ১৫",
+    "readTime": "৫ মিনিট",
+    "category": "সেবা কার্যক্রম",
+    "image": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "views": "২.৫K",
+    "comments": 45,
+    "slug": "disaster-relief-bangladesh"
+  },
+  {
+    "id": 2,
+    "title": "দক্ষতা উন্নয়নে আস-সুন্নাহ স্কিল ডেভেলপমেন্ট ইনস্টিটিউটের ভূমিকা",
+    "excerpt": "যুবসমাজের দক্ষতা উন্নয়নে আমাদের ইনস্টিটিউট কিভাবে পরিবর্তন আনছে, জানুন সরাসরি প্রশিক্ষণার্থীদের কাছ থেকে।",
+    "author": "প্রফেসর মোঃ আলী হোসেন",
+    "date": "২০২৪ ডিসেম্বর ১২",
+    "readTime": "৭ মিনিট",
+    "category": "শিক্ষা",
+    "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "views": "১.৮K",
+    "comments": 32,
+    "slug": "skill-development-institute-impact"
+  },
+  {
+    "id": 3,
+    "title": "রমজানে ইফতার বিতরণ: সমাজের সুবিধাবঞ্চিতদের পাশে",
+    "excerpt": "প্রতি বছর রমজান মাসে আমরা কিভাবে হাজারো দুস্থ রোযাদারকে ইফতার প্রদান করি, জানুন আমাদের বিশেষ প্রতিবেদনে।",
+    "author": "শেখ মোঃ রফিকুল ইসলাম",
+    "date": "২০২৪ ডিসেম্বর ১০",
+    "readTime": "৪ মিনিট",
+    "category": "রমজান",
+    "image": "https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "views": "৩.২K",
+    "comments": 67,
+    "slug": "ramadan-iftar-distribution"
+  },
+  {
+    "id": 4,
+    "title": "পরিবেশ রক্ষায় বৃক্ষরোপণ: সবুজ বাংলাদেশ গড়ার অঙ্গীকার",
+    "excerpt": "জলবায়ু পরিবর্তনের প্রভাব মোকাবেলায় আমাদের বৃক্ষরোপণ কর্মসূচির সাফল্য ও ভবিষ্যৎ পরিকল্পনা।",
+    "author": "ড. সুমনা আক্তার",
+    "date": "২০২৪ ডিসেম্বর ০৮",
+    "readTime": "৬ মিনিট",
+    "category": "পরিবেশ",
+    "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "views": "২.১K",
+    "comments": 28,
+    "slug": "tree-plantation-environment"
+  },
+  {
+    "id": 5,
+    "title": "স্বাবলম্বীকরণ প্রকল্প: দারিদ্র্য বিমোচনে কার্যকরী পদক্ষেপ",
+    "excerpt": "দরিদ্র পরিবারগুলোকে কিভাবে স্বাবলম্বী করে তোলা যায়, আমাদের প্রকল্পের সাফল্যের গল্প জানুন এখানে।",
+    "author": "মোঃ আব্দুল কাদের",
+    "date": "২০২৪ ডিসেম্বর ০৫",
+    "readTime": "৮ মিনিট",
+    "category": "উন্নয়ন",
+    "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "views": "১.৫K",
+    "comments": 39,
+    "slug": "self-reliance-project-success"
+  },
+  {
+    "id": 6,
+    "title": "বিশুদ্ধ পানির অধিকার: গ্রামীণ এলাকায় নলকূপ স্থাপন",
+    "excerpt": "দূরবর্তী গ্রামীণ এলাকায় বিশুদ্ধ পানির সংকট নিরসনে আমাদের পদক্ষেপ ও তার সামাজিক প্রভাব বিশ্লেষণ।",
+    "author": "ইঞ্জিনিয়ার রোকনুজ্জামান",
+    "date": "২০২৪ ডিসেম্বর ০৩",
+    "readTime": "৫ মিনিট",
+    "category": "সেবা",
+    "image": "https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "views": "২.৩K",
+    "comments": 41,
+    "slug": "clean-water-project-rural"
+  }
+]

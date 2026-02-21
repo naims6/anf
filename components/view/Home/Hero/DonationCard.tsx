@@ -112,7 +112,7 @@
 //             min="1"
 //             required
 //           />
-          
+
 //         </div>
 
 //         {/* Donate Button */}
@@ -317,22 +317,26 @@ export default function DonationCard() {
           <Label htmlFor="fund" className="text-sm font-semibold text-gray-700 font-bangla">
             তহবিল নির্বাচন করুন
           </Label>
-          <Select  value={selectedFund} onValueChange={setSelectedFund}>
-            <SelectTrigger className="w-full h-12 py-4 rounded-xl border-gray-300 bg-white/80 focus:border-emerald-500 focus:ring-emerald-500 font-bangla text-gray-700">
-              <SelectValue placeholder="তহবিল নির্বাচন করুন" />
-            </SelectTrigger>
-            <SelectContent className="rounded-xl border border-gray-200 shadow-lg bg-white font-bangla">
-              {donationFunds.map((fund) => (
-                <SelectItem 
-                  key={fund.value} 
-                  value={fund.value}
-                  className="font-bangla text-gray-700 hover:bg-emerald-50 focus:bg-emerald-50"
-                >
-                  {fund.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div>
+            <Select value={selectedFund} onValueChange={setSelectedFund}>
+
+              <SelectTrigger className="w-full h-12 py-5.5 rounded-xl border-gray-300 bg-white/80 focus:border-emerald-500 focus:ring-emerald-500 font-bangla text-gray-700">
+                <SelectValue placeholder="তহবিল নির্বাচন করুন" />
+              </SelectTrigger>
+
+              <SelectContent className="rounded-xl border border-gray-200 shadow-lg bg-white font-bangla">
+                {donationFunds?.map((fund) => (
+                  <SelectItem
+                    key={fund.value}
+                    value={fund.value}
+                    className="font-bangla text-gray-700 hover:bg-emerald-50 focus:bg-emerald-50"
+                  >
+                    {fund.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         {/* Contact Input */}

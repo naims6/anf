@@ -7,13 +7,13 @@ import BlogCard from '@/components/view/Blog/BlogCard';
 import DefaultWeight from '@/components/shared/DefaultWeight/DefaultWeight';
 import { Search, SearchX } from 'lucide-react';
 
-// টাইপ কাস্টিং (JSON ডাটাকে ইন্টারফেসের সাথে মিলানো)
 const blogData = blogDataRaw as BlogPost[];
 
 export default function BlogPage() {
+  
   const [searchQuery, setSearchQuery] = useState("");
 
-  // সার্চ লজিক (Title বা Category অনুযায়ী)
+  // Search logic title/ category 
   const filteredPosts = useMemo(() => {
     return blogData.filter((post) =>
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||

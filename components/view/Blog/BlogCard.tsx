@@ -14,10 +14,10 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
        <Image
           src={post.image}
           alt={post.title}
-          fill // কন্টেইনার অনুযায়ী ইমেজ পূর্ণ করবে
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // রেসপন্সিভ সাইজ অপ্টিমাইজেশন
+          fill 
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
           className="object-cover group-hover:scale-110 transition-transform duration-500"
-          priority={post.id <= 3} // প্রথম ৩টি ইমেজকে দ্রুত লোড করার জন্য
+          priority={post.id <= 3}
         />
         <div className="absolute top-4 left-4">
           <span className="bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">
@@ -27,7 +27,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
       </div>
 
       {/* Content Section */}
-      <div className="p-5 flex flex-col flex-grow">
+      <div className="p-5 flex flex-col grow">
         <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
           <span>{post.date}</span>
           <span>•</span>

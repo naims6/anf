@@ -270,7 +270,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Phone, Mail, Heart, Shield } from 'lucide-react';
+import { Phone, Mail, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -384,7 +384,7 @@ export default function DonationCard() {
         {/* Donate Button */}
         <Button
           type="submit"
-          className="w-full h-12 md:w-auto md:flex-1 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] font-bangla"
+          className="w-full h-12 md:w-auto md:flex-1 bg-linear-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] font-bangla"
         >
           <Heart className="w-5 h-5 mr-2" />
           দান করুন

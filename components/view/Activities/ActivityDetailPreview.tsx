@@ -34,7 +34,7 @@ export default function ActivityDetailPreview({ activity }: ActivityDetailPrevie
   ];
 
   return (
-    <div className="bg-gradient-to-br from-white to-emerald-50/30 rounded-3xl border border-gray-100 p-8">
+    <div className="bg-linear-to-br from-white to-emerald-50/30 rounded-3xl border border-gray-100 p-8">
       <div className="mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4 font-bangla">
           কার্যক্রম বিবরণ
@@ -85,7 +85,7 @@ export default function ActivityDetailPreview({ activity }: ActivityDetailPrevie
             'বিস্তারিত প্রতিবেদন'
           ].map((feature, idx) => (
             <div key={idx} className="flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-green-500" />
+              <div className="w-2 h-2 rounded-full bg-linear-to-r from-emerald-500 to-green-500" />
               <span className="text-gray-700 font-bangla">
                 {feature}
               </span>

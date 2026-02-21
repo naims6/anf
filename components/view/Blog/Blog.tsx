@@ -119,8 +119,8 @@ export default function Blog() {
     <section className="relative py-10 bg-linear-to-b from-white via-emerald-50/5 to-white overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-50/30 to-emerald-50/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-gradient-to-tr from-amber-50/20 to-emerald-50/20 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-1/4 w-96 h-96 bg-linear-to-br from-blue-50/30 to-emerald-50/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-linear-to-tr from-amber-50/20 to-emerald-50/20 rounded-full blur-3xl" />
 
         {/* Subtle Pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
@@ -283,7 +283,7 @@ export default function Blog() {
                         />
 
                         {/* Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
 
                         {/* Category Badge */}
                         <div className="absolute top-4 left-4">

@@ -1,11 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  BookOpen, Heart, TreePine, Home, Users, GraduationCap, 
-  Droplets, ShoppingBag, Shield, Calendar, HandHeart, 
-  LucideIcon
-} from 'lucide-react';
+import { BookOpen, Heart, TreePine, Home, Users, GraduationCap, Droplets, ShoppingBag, Shield, Calendar, HandHeart } from 'lucide-react';
 
 import ActivitiesHeader from '@/components/view/Activities/ActivitiesHeader';
 import ActivityDetailPreview from '@/components/view/Activities/ActivityDetailPreview';
@@ -211,7 +207,7 @@ export default function ActivitiesPage() {
 
                 {/* Results Count */}
                 <div className="mt-12 text-center">
-                  <div className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl px-6 py-3">
+                  <div className="inline-flex items-center gap-3 bg-linear-to-r from-emerald-50 to-green-50 rounded-2xl px-6 py-3">
                     <div className="w-2 h-2 bg-emerald-500 rounded-full" />
                     <span className="text-emerald-700 font-semibold font-bangla">
                       {filteredActivities.length}টি কার্যক্রম পাওয়া গেছে
@@ -226,7 +222,7 @@ export default function ActivitiesPage() {
                   <ActivityDetailPreview activity={selectedActivity} />
 
                   {/* Support CTA */}
-                  <div className="mt-8 bg-gradient-to-r from-rose-50 to-pink-50 rounded-3xl p-6 border border-rose-100">
+                  <div className="mt-8 bg-linear-to-r from-rose-50 to-pink-50 rounded-3xl p-6 border border-rose-100">
                     <h3 className="text-xl font-bold text-gray-900 mb-4 font-bangla">
                       এই কার্যক্রমে সহযোগিতা করুন
                     </h3>
@@ -234,7 +230,7 @@ export default function ActivitiesPage() {
                       আপনার দান অসংখ্য মানুষের জীবনে পরিবর্তন আনতে পারে
                     </p>
 
-                    <button className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:shadow-lg font-bangla">
+                    <button className="w-full bg-linear-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:shadow-lg font-bangla">
                       সহযোগিতা করুন
                     </button>
                   </div>
@@ -246,7 +242,7 @@ export default function ActivitiesPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-r from-emerald-50 to-green-50">
+      <section className="py-16 bg-linear-to-r from-emerald-50 to-green-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="bg-white rounded-3xl p-8 md:p-12 border border-gray-100 shadow-lg">
@@ -259,7 +255,7 @@ export default function ActivitiesPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg font-bangla">
+                <button className="px-8 py-4 bg-linear-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg font-bangla">
                   স্বেচ্ছাসেবক হোন
                 </button>
 

@@ -269,7 +269,7 @@ export default function Contact() {
         </div>
 
         {/* Map Section  */}
-        <div className="relative aspect-video bg-gray-100 overflow-hidden mt-10">
+        <div className="relative w-full mx-auto h-100 lg:h-125 aspect-video bg-gray-100 overflow-hidden mt-10">
           {/* Static Map Image - Replace with actual Map component */}
           <div
             className="absolute inset-0 bg-gray-200 flex items-center justify-center"

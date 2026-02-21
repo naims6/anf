@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { BlogPost } from '@/types/blog';
-import blogDataRaw from '@/data/activities/blogs.json'; 
+import blogDataRaw from '@/data/activities/blogs.json';
 import BlogCard from '@/components/view/Blog/BlogCard';
 
 // টাইপ কাস্টিং (JSON ডাটাকে ইন্টারফেসের সাথে মিলানো)
@@ -22,7 +22,7 @@ export default function BlogPage() {
   return (
     <main className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Header & Search Area */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
           <div>
@@ -46,7 +46,7 @@ export default function BlogPage() {
           </div>
         </div>
 
-        {/* Blog Grid */}
+        {/* Blog Grid logic */}
         {filteredPosts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post) => (
@@ -54,8 +54,38 @@ export default function BlogPage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20">
-            <h3 className="text-xl text-gray-500">আপনার সার্চের সাথে মিলে এমন কোনো ব্লগ পাওয়া যায়নি।</h3>
+          /* Clean & Professional Empty State */
+          <div className="flex flex-col items-center justify-center py-24 px-6 text-center  rounded-3xl border border-dashed border-gray-300 shadow-sm">
+            <div className="bg-gray-50 p-6 rounded-full mb-6">
+              <svg
+                className="w-16 h-16 text-gray-300"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 4h.01"
+                />
+              </svg>
+            </div>
+
+            <h3 className="text-2xl font-bold text-gray-800 mb-2">
+              কোনো ফলাফল পাওয়া যায়নি
+            </h3>
+
+            <p className="text-gray-500 max-w-sm mb-8 leading-relaxed">
+              দুঃখিত, আপনার দেওয়া <span className="font-semibold text-green-600">{searchQuery}</span> শব্দের সাথে মিলে এমন কোনো ব্লগ খুঁজে পাওয়া যায়নি। দয়া করে সঠিক বানান চেক করুন অথবা ভিন্ন শব্দ ব্যবহার করুন।
+            </p>
+
+            <button
+              onClick={() => setSearchQuery("")}
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-green-600 hover:bg-green-700 transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+            >
+              সার্চ ক্লিয়ার করুন
+            </button>
           </div>
         )}
 

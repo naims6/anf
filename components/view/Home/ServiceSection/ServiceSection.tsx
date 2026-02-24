@@ -288,7 +288,7 @@ export default function ServiceSection() {
         />
 
         {/* Interactive Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10 ">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
           {services?.map((service, index) => (
             <div
               key={service.id}
@@ -298,21 +298,14 @@ export default function ServiceSection() {
             >
               {/* Card Container with Glass Effect */}
               <div className={`
-                relative h-full rounded-3xl overflow-hidden
+                relative h-full rounded-xl overflow-hidden
                 bg-white/80 backdrop-blur-xl
-                border border-primary
+                border border-primary/20 hover:border-primary/70
                 shadow-lg shadow-gray-200/50
                 transition-all duration-500 ease-out
                 ${activeCard === service.id ? 'scale-105 shadow-2xl shadow-emerald-200/30' : ''}
                 ${service.bgColor}
               `}>
-                {/* Animated Border */}
-                <div
-                  className={`absolute inset-0 rounded-3xl p-[2px] transition-opacity duration-300 ${activeCard === service.id ? 'opacity-100' : 'opacity-0'}`}
-                  style={{ background: service.gradient }}
-                >
-                  <div className="w-full h-full bg-white/80 backdrop-blur-xl rounded-3xl" />
-                </div>
 
                 {/* Card Content */}
                 <div className="relative p-8 h-full flex flex-col">
@@ -357,41 +350,20 @@ export default function ServiceSection() {
                     ))}
                   </div>
 
-                  {/* Interactive Button */}
-                  {/* <div className={`mt-auto transition-transform duration-300 ${activeCard === service.id ? 'translate-y-0' : 'translate-y-2'}`}>
-                    <Button
-                      variant="ghost"
-                      className={`w-full justify-between group/btn ${service.borderColor.replace('border-', 'hover:bg-').replace('/20', '/10')}`}
-                    >
-                      <span className="font-bangla">বিস্তারিত দেখুন</span>
-                      <div className={`transition-transform duration-300 ${activeCard === service.id ? 'translate-x-1' : ''}`}>
-                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                      </div>
-                    </Button>
-                  </div> */}
-
-                  <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-100">
-                    <span className={`text-sm font-semibold text-emerald-600 font-bangla`}>
+                  <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-100 ">
+                    <span className={`text-sm font-semibold text-emerald-600 font-bangla `}>
                       বিস্তারিত দেখুন
                     </span>
                     <div className={`
                         w-10 h-10 rounded-full flex items-center justify-center
                     
-                        bg-gradient-to-r from-emerald-500 to-green-500
+                        bg-linear-to-r from-emerald-500 to-green-500
                         text-white transition-all duration-300
                       `}>
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </div>
                   </div>
                 </div>
-
-                {/* Hover Glow Effect */}
-                <div
-                  className={`absolute inset-0 rounded-3xl blur-xl transition-opacity duration-300 ${activeCard === service.id ? 'opacity-30' : 'opacity-0'}`}
-                  style={{ background: service.gradient }}
-                />
               </div>
 
               {/* Floating Particles */}

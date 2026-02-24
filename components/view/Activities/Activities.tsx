@@ -125,13 +125,11 @@ export default function ActivitiesSection() {
       <DefaultWeight>
 
         <div className="relative py-10 bg-linear-to-b from-white via-emerald-50/10 to-white overflow-hidden">
-
           <div className=" relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
             <SectionHeader
               badgeText='মানুষের সেবায় নিরলস'
-              title='চলতি'
-              subtitle='কার্যক্রম'
+              title='চলতি কার্যক্রম'
               description='মানবতার কল্যাণ ও সামাজিক সমৃদ্ধির লক্ষ্যে আন-নুসরা ফাউন্ডেশনের নানাবিদ কার্যক্রম সক্রিয় রয়েছে। প্রতিটি কার্যক্রম শরঈ পদ্ধতি মেইন্টেইন করে শতভাগ আমানতদারিতার সাথে স্বচ্ছতা ও জবাবদিহিতা নিয়ে পরিচালিত হয়।'
               icon={Star}
             />
@@ -208,10 +206,6 @@ export default function ActivitiesSection() {
                           </div>
                         </div>
                       </div>
-
-                      {/* Corner Accents */}
-                      <div className={`absolute top-52 right-4 w-12 h-12 border-t-2 border-r-2 border-emerald-200 rounded-tr-3xl`} />
-                      <div className={`absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-emerald-200 rounded-bl-3xl`} />
 
                       {/* Hover Overlay */}
                       <div

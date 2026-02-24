@@ -3,7 +3,7 @@ import { LucideIcon } from "lucide-react";
 interface TSectionHeaderProps {
     badgeText: string;
     title: string;
-    subtitle: string;
+    subtitle?: string;
     description: string;
     icon: LucideIcon;
 }
@@ -23,13 +23,12 @@ const SectionHeader = ({ badgeText, title, subtitle, description, icon: Icon }: 
                 </div>
             </div>
 
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 font-bangla leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black font-bangla leading-[1.15] text-center">
                 <span className="relative inline-block">
                     {title}
-                    <div className="absolute bottom-2 left-0 h-1 bg-linear-to-r from-transparent via-emerald-500 to-transparent" />
                 </span>
-                <br />
-                <span className="bg-linear-to-r from-emerald-600 via-green-600 to-emerald-600 bg-size-[200%_auto] animate-gradient bg-clip-text text-transparent">
+
+                <span className="block my-6 text-black">
                     {subtitle}
                 </span>
             </h2>

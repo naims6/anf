@@ -138,8 +138,7 @@ export default function Blog() {
         {/* Section Header */}
         <SectionHeader
           badgeText='সর্বশেষ আপডেট'
-          title='আমাদের'
-          subtitle='ব্লগ ও সংবাদ'
+          title='আমাদের ব্লগ ও সংবাদ'
           description='ফাউন্ডেশনের কার্যক্রম, সাফল্য ও সাম্প্রতিক সংবাদ সম্পর্কে জানুন'
           icon={BookOpen}
         />

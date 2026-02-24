@@ -300,7 +300,7 @@ export default function ServiceSection() {
               <div className={`
                 relative h-full rounded-xl overflow-hidden
                 bg-white/80 backdrop-blur-xl
-                border border-primary/20 hover:border-primary/70
+                border hover:border-primary/70
                 shadow-lg shadow-gray-200/50
                 transition-all duration-500 ease-out
                 ${activeCard === service.id ? 'scale-105 shadow-2xl shadow-emerald-200/30' : ''}
@@ -332,7 +332,7 @@ export default function ServiceSection() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 mb-2 leading-relaxed flex-grow font-bangla">
+                  <p className="text-gray-600 mb-2 leading-relaxed grow font-bangla">
                     {service.description}
                   </p>
 
@@ -345,22 +345,19 @@ export default function ServiceSection() {
                         style={{ transitionDelay: `${idx * 100}ms` }}
                       >
                         <CheckCircle2 className={`w-4 h-4 ${service.borderColor.replace('border-', 'text-')}`} />
-                        <span className="text-sm text-gray-700 font-bangla">{project}</span>
+                        <span  className="text-sm text-gray-700 font-bangla">{project}</span>
                       </div>
                     ))}
                   </div>
 
                   <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-100 ">
-                    <span className={`text-sm font-semibold text-emerald-600 font-bangla `}>
+                    <span className={`text-sm font-semibold group-hover:text-emerald-600 font-bangla `}>
                       বিস্তারিত দেখুন
                     </span>
-                    <div className={`
-                        w-10 h-10 rounded-full flex items-center justify-center
-                    
-                        bg-linear-to-r from-emerald-500 to-green-500
-                        text-white transition-all duration-300
-                      `}>
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    <div
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-transparent text-inherit transition-all duration-300 ease-in-out group-hover:bg-emerald-600 group-hover:text-white group-hover:scale-110"
+                    >
+                      <ArrowRight className="w-5 h-5 transition-transform duration-300" />
                     </div>
                   </div>
                 </div>
@@ -387,7 +384,7 @@ export default function ServiceSection() {
 
         {/* Impact Stats Section */}
         <div className="mb-10">
-          <div className="bg-linear-to-r from-white/80 to-emerald-50/60 backdrop-blur-sm rounded-3xl border border-gray-200/50 p-8 ">
+          <div className="backdrop-blur-sm rounded-3xl border border-gray-200/50 p-8 ">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 { icon: Target, value: '৫০+', label: 'সক্রিয় প্রকল্প', color: 'text-blue-600' },
@@ -419,14 +416,14 @@ export default function ServiceSection() {
                 কুরআন-সুন্নাহভিত্তিক সমাজ প্রতিষ্ঠায় অংশীদার হতে চান?
               </h3>
               <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto font-bangla">
-                আপনার আন্তরিক অংশগ্রহণ কুরআন-সুন্নাহর আলোকে সমাজ প্রতিষ্ঠা ও মানবকল্যানের যাত্রায় ভূমিকা রাখতে সহায়ক হবে।
+                 আপনার আন্তরিক অংশগ্রহণ কুরআন-সুন্নাহর আলোকে সমাজ প্রতিষ্ঠা ও মানবকল্যানের যাত্রায় ভূমিকা রাখতে সহায়ক হবে।
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <div className="transition-transform duration-300 hover:scale-105 active:scale-95">
                   <Button
-                    size="lg"
-                    className="group bg-linear-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-10 py-7 text-xl font-semibold rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 font-bangla"
+                  // size="lg"
+                  className='py-7.5 rounded-2xl'
                   >
                     <span>কার্যক্রমে অংশগ্রহণ করুন</span>
                     <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />

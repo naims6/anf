@@ -25,7 +25,7 @@ export default function ActivityCard({
     >
       {/* Card Container */}
       <div className="
-        relative h-full min-h-[400px] rounded-3xl overflow-hidden
+        relative h-full min-h-100 rounded-3xl overflow-hidden
         bg-white border border-gray-200
         shadow-lg hover:shadow-2xl
         transition-all duration-500 ease-out
@@ -33,7 +33,7 @@ export default function ActivityCard({
         flex flex-col
       ">
         {/* Image Container */}
-        <div className="relative h-56 flex-shrink-0 overflow-hidden">
+        <div className="relative h-56 shrink-0 overflow-hidden">
           <Image
             src={image}
             alt={title}
@@ -44,7 +44,7 @@ export default function ActivityCard({
           />
           
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
           
           {/* Tag Badge */}
           <div className="absolute top-4 right-4">

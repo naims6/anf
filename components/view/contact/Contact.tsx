@@ -105,7 +105,7 @@ export default function Contact() {
                 return (
                   <div
                     key={index}
-                    className="group bg-white rounded-2xl border border-primary p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                    className="group bg-white rounded-2xl border hover:border-primary/70 p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="flex items-start gap-4">
                       {/* Icon Container */}
@@ -119,7 +119,7 @@ export default function Contact() {
                       </div>
 
                       {/* Content */}
-                      <div className="flex-grow">
+                      <div>
                         <h3 className="text-lg font-bold text-gray-900 mb-2 font-bangla">
                           {info.title}
                         </h3>

@@ -1,5 +1,5 @@
 'use client'
-import { BookOpen, Heart, TreePine, Home, Users, GraduationCap, Droplets, ShoppingBag, Shield, Leaf, Calendar, HandHeart, LucideIcon, Star } from 'lucide-react';
+import { BookOpen, Heart, TreePine, Home, Users, GraduationCap, Droplets, ShoppingBag, Shield, Leaf, Calendar, HandHeart, LucideIcon, Star, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -124,8 +124,8 @@ export default function ActivitiesSection() {
     <section>
       <DefaultWeight>
 
-        <div className="relative py-10 bg-linear-to-b from-white via-emerald-50/10 to-white overflow-hidden">
-          <div className=" relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative bg-linear-to-b from-white via-emerald-50/10 to-white overflow-hidden">
+          <div className=" relative z-10 mx-auto">
             {/* Section Header */}
             <SectionHeader
               badgeText='মানুষের সেবায় নিরলস'
@@ -143,12 +143,13 @@ export default function ActivitiesSection() {
                   <Link
                     key={activity.slug}
                     href={`/activities/${activity.slug}`}
+                    className='group'
                   >
                     {/* Card Container */}
                     <div
-                      className={`relative h-full min-h-87.5 rounded-3xl overflow-hidden bg-white border-2 border-emerald-200 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:shadow-gray-300/50 hover:-translate-y-2 duration-300 flex flex-col`}>
+                      className={`relative h-full min-h-87.5 rounded-xl overflow-hidden bg-white border shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:shadow-gray-300/50 hover:-translate-y-2 duration-300 flex flex-col`}>
                       {/* Image Section */}
-                      <div className="relative h-48 shrink-0 overflow-hidden rounded-t-3xl">
+                      <div className="relative h-48 shrink-0 overflow-hidden rounded-t-xl">
                         <Image
                           src={activity?.image}
                           alt={activity.title}
@@ -163,7 +164,7 @@ export default function ActivitiesSection() {
                         {/* Tag on Image */}
                         <div className="absolute top-4 right-4">
                           <span
-                            className={`px-4 py-1.5 rounded-full text-xs font-semibold bg-white/90 backdrop-blur-sm border border-emerald-200 text-emerald-700 `}>
+                            className={`px-4 py-1.5 rounded-full text-xs font-semibold bg-white/90 backdrop-blur-sm border `}>
                             {activity.tag}
                           </span>
                         </div>
@@ -171,20 +172,17 @@ export default function ActivitiesSection() {
                         {/* Icon on Image */}
                         <div className="absolute bottom-4 left-4">
                           <div
-                            className={`w-12 h-12 rounded-xl flex items-center justify-center bg-white/90 backdrop-blur-sm border border-emerald-200 group-hover:scale-110 transition-transform duration-300`}>
-                            <Icon className="w-6 h-6 text-emerald-600" />
+                            className={`w-12 h-12 rounded-xl flex items-center justify-center bg-white/90 backdrop-blur-sm border group-hover:scale-110 transition-transform duration-300`}>
+                            <Icon className="w-6 h-6 group-hover:text-emerald-600" />
                           </div>
                         </div>
                       </div>
 
-                      {/* Gradient Top Bar */}
-                      <div className={`h-1 w-full bg-linear-to-r from-emerald-500 to-green-500 shrink-0`} />
-
-                      {/* Card Content - Flex column to push action indicator to bottom */}
+                      {/* Card Content  */}
                       <div className="p-6 flex flex-col grow">
                         {/* Title */}
                         <h3
-                          className={`text-xl font-bold text-gray-900 mb-3 font-bangla leading-tight group-hover:text-emerald-600 transition-colors duration-300 line-clamp-2`}>
+                          className={`text-xl font-bold text-gray-900 mb-3 font-bangla leading-tight line-clamp-2`}>
                           {activity.title}
                         </h3>
 
@@ -193,16 +191,16 @@ export default function ActivitiesSection() {
                           {activity.description}
                         </p>
 
-                        {/* Action Indicator - This will now be at the bottom */}
-                        <div className="flex items-center justify-between  pt-4 border-t border-gray-100">
-                          <span className={`text-sm font-semibold text-emerald-600 font-bangla`}>
+                        {/* Action Indicator */}
+                        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+
+                          <span className={`text-sm font-semibold group-hover:text-emerald-600 font-bangla`}>
                             বিস্তারিত দেখুন
                           </span>
                           <div
-                            className={` w-10 h-10 rounded-full flex items-center justify-center  bg-linear-to-r from-emerald-500 to-green-500 text-white group-hover:scale-110 transition-all duration-300 `}>
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
+                            className="w-10 h-10 flex items-center justify-center rounded-full bg-transparent text-inherit transition-all duration-300 ease-in-out group-hover:bg-emerald-600 group-hover:text-white group-hover:scale-110"
+                          >
+                            <ArrowRight className="w-5 h-5 transition-transform duration-300" />
                           </div>
                         </div>
                       </div>
@@ -211,27 +209,10 @@ export default function ActivitiesSection() {
                       <div
                         className={` absolute inset-0 rounded-3xl bg-linear-to-br from-emerald-500 to-green-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300 -z-10 `} />
                     </div>
-
-                    {/* Background Glow on Hover */}
-                    <div
-                      className={`absolute -inset-4 rounded-3xl bg-linear-to-br from-emerald-500 to-green-500 opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 -z-20 `} />
                   </Link>
                 );
               })}
             </div>
-
-            {/* CTA Section */}
-            <Link className='flex justify-center items-center' href="/activities">
-              <Button
-                size="lg"
-                className="group bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-12 py-7 text-xl font-semibold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 font-bangla min-w-[230px]"
-              >
-                <span>কার্যক্রমসমূহ</span>
-                <svg className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </Button>
-            </Link>
           </div>
 
           {/* Custom CSS for Grid Pattern */}

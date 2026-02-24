@@ -84,7 +84,7 @@ export default function Gallery() {
 
   return (
     <>
-      <section className="relative py-6 bg-gradient-to-b from-white via-emerald-50/5 to-white">
+      <section className="relative py-6 bg-linear-to-b from-white via-emerald-50/5 to-white">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 right-10 w-96 h-96 bg-emerald-100/20 rounded-full blur-3xl" />
@@ -106,8 +106,7 @@ export default function Gallery() {
           {/* Section Header */}
           <SectionHeader
             badgeText='আমাদের কার্যক্রমের ঝলক'
-            title='কার্যক্রমের'
-            subtitle='ছবিসমূহ'
+            title='কার্যক্রমের ছবিসমূহ'
             description='ফাউন্ডেশনের বিভিন্ন কার্যক্রমের মুহূর্তগুলো ক্যামেরাবন্দী করা কিছু দৃশ্য'
             icon={Star}
           />

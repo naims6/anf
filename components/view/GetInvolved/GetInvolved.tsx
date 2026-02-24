@@ -1,6 +1,6 @@
 'use client';
 
-import { Heart, Users, Target, Briefcase, Star } from 'lucide-react';
+import { Heart, Users, Target, Briefcase, Star, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
@@ -90,28 +90,21 @@ export default function GetInvolved() {
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 {/* Card Container */}
-                <div className={` relative h-full rounded-3xl overflow-hidden bg-white border-2 ${option.borderColor} shadow-xl shadow-gray-200/50 transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-gray-300/50 hover:-translate-y-3 flex flex-col ${hoveredCard === option.id ? 'scale-105 z-10' : ''} `}>
+                <div className={` relative h-full rounded-xl overflow-hidden bg-white border shadow-xl shadow-gray-200/50 transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-gray-300/50 hover:-translate-y-3 flex flex-col ${hoveredCard === option.id ? 'scale-105 z-10' : ''} `}>
 
                   {/* Card Content */}
                   <div className="p-6 md:p-8 flex flex-col grow">
                     {/* Icon Circle */}
                     <div className="relative mb-6">
-                      <div className={`
-                        w-16 h-16 rounded-2xl flex items-center justify-center mb-4
-                        bg-linear-to-br ${option.color}
-                        group-hover:scale-110 group-hover:rotate-12 transition-all duration-500
-                        shadow-lg
-                      `}>
+                      <div
+                        className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 bg-linear-to-br ${option.color} group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg`}>
                         <Icon className="w-8 h-8 text-white" />
                       </div>
 
                       {/* Floating Stats */}
                       <div className="absolute top-0 right-0">
-                        <div className={`
-                          px-3 py-1.5 rounded-full text-xs font-semibold
-                          ${option.bgColor} border ${option.borderColor} text-gray-700
-                          backdrop-blur-sm
-                        `}>
+                        <div
+                          className={`px-3 py-1.5 rounded-full text-xs font-semibold ${option.bgColor} border ${option.borderColor} text-gray-700 backdrop-blur-sm`}>
                           {option.stats}
                         </div>
                       </div>
@@ -137,10 +130,9 @@ export default function GetInvolved() {
                           key={idx}
                           className="flex items-center gap-2"
                         >
-                          <div className={`
-                            w-2 h-2 rounded-full bg-linear-to-r ${option.color}
-                            shrink-0
-                          `} />
+                          <Check
+                            className={`w-4 h-4 rounded-full p-0.5`}
+                          />
                           <span className="text-sm text-gray-700 font-bangla">{feature}</span>
                         </div>
                       ))}

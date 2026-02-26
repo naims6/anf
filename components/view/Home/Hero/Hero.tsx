@@ -33,7 +33,7 @@ const heroSlides = [
 export default function Hero() {
     const { locale } = useLanguage();
     const [selectedIndex, setSelectedIndex] = useState(0);
-    
+
     // Get translations based on current locale
     const t = locale === 'bn' ? bnMessages.HomePage.HeroSection : enMessages.HomePage.HeroSection;
 
@@ -74,10 +74,7 @@ export default function Hero() {
                             className="embla__slide flex-[0_0_100%] min-w-0 h-full"
                         >
                             <div
-                                className={`
-                  h-full w-full bg-cover bg-center transition-transform duration-1000 ease-out
-                  ${selectedIndex === index ? 'scale-100' : 'scale-105'}
-                `}
+                                className={`h-full w-full bg-cover bg-center transition-transform duration-1000 ease-out ${selectedIndex === index ? 'scale-100' : 'scale-105'}`}
                                 style={{
                                     backgroundImage: `url(${slide.image})`,
                                 }}
@@ -121,7 +118,7 @@ export default function Hero() {
                                 className="group bg-linear-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-10 py-7 text-xl font-semibold rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 font-bangla hover:cursor-pointer"
                             >
                                 <Heart className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform " />
-                               {t.btn1}
+                                {t.btn1}
                                 <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                             </Button>
 

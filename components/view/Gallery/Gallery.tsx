@@ -5,6 +5,9 @@ import Image from 'next/image';
 import { Eye, X, ChevronLeft, ChevronRight, Maximize2, Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
+import { useLanguage } from '@/contexts/LanguageContext';
+import bnMessages from '@/messages/bn.json';
+import enMessages from '@/messages/en.json'
 
 const galleryImages = [
   {
@@ -54,6 +57,10 @@ const galleryImages = [
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Get translations based on current locale
+  const { locale } = useLanguage();
+  const t = locale === 'bn' ? bnMessages.HomePage.GallerySection : enMessages.HomePage.GallerySection;
 
   const openImage = (id: number) => {
     setSelectedImage(id);
@@ -105,9 +112,9 @@ export default function Gallery() {
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <SectionHeader
-            badgeText='আমাদের কার্যক্রমের ঝলক'
-            title='কার্যক্রমের ছবিসমূহ'
-            description='ফাউন্ডেশনের বিভিন্ন কার্যক্রমের মুহূর্তগুলো ক্যামেরাবন্দী করা কিছু দৃশ্য'
+            badgeText={t.badgeText}
+            title={t.title}
+            description={t.description}
             icon={Star}
           />
 

@@ -5,9 +5,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import DefaultWeight from '@/components/shared/DefaultWeight/DefaultWeight';
 import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
+import { useLanguage } from '@/contexts/LanguageContext';
+import bnMessages from '@/messages/bn.json'
+import enMessages from '@/messages/en.json'
 
 // Map activity slugs to icons and images
-
 
 type Activity = {
   slug: string
@@ -118,8 +120,12 @@ const activities: Activity[] = [
 ]
 
 
-
 export default function ActivitiesSection() {
+
+  const { locale } = useLanguage();
+
+  const t = locale === 'bn' ? bnMessages.HomePage.ActivitiesSection : enMessages.HomePage.ActivitiesSection;
+
   return (
     <section>
       <DefaultWeight>
@@ -128,9 +134,9 @@ export default function ActivitiesSection() {
           <div className=" relative z-10 mx-auto">
             {/* Section Header */}
             <SectionHeader
-              badgeText='মানুষের সেবায় নিরলস'
-              title='চলতি কার্যক্রম'
-              description='মানবতার কল্যাণ ও সামাজিক সমৃদ্ধির লক্ষ্যে আন-নুসরা ফাউন্ডেশনের নানাবিদ কার্যক্রম সক্রিয় রয়েছে। প্রতিটি কার্যক্রম শরঈ পদ্ধতি মেইন্টেইন করে শতভাগ আমানতদারিতার সাথে স্বচ্ছতা ও জবাবদিহিতা নিয়ে পরিচালিত হয়।'
+              badgeText={t.badgeText}
+              title={t.title}
+              description={t.description}
               icon={Star}
             />
 

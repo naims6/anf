@@ -4,6 +4,9 @@ import { Heart, Users, Target, Briefcase, Star, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
+import { useLanguage } from '@/contexts/LanguageContext';
+import bnMessages from '@/messages/bn.json'
+import enMessages from '@/messages/en.json'
 
 const involvementOptions = [
   {
@@ -64,16 +67,20 @@ const involvementOptions = [
 export default function GetInvolved() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
+   // Get translations based on current locale
+  const { locale } = useLanguage();
+  const t = locale === 'bn' ? bnMessages.HomePage.GetInvolvedSection : enMessages.HomePage.GetInvolvedSection;
+
   return (
     <section className="relative py-10 bg-linear-to-b from-white via-emerald-50/5 to-white overflow-hidden">
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <SectionHeader
-          badgeText='মানবতার সেবায় একত্রিত'
-          title='আমরা সবাই মানবতার তরে'
-          subtitle='আমাদের সাথে যুক্ত হবেন যেভাবে'
-          description='নিচের যেকোন পদ্ধতিতে আমাদের সঙ্গে আপনিও যুক্ত হতে পারেন'
+          badgeText={t.badgeText}
+          title={t.title}
+          subtitle={t.subtitle}
+          description={t.description}
           icon={Star}
         />
 

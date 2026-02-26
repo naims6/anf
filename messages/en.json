@@ -21,6 +21,9 @@
       "btn1": "Learn more",
       "btn2": "Activities"
     },
+    "DonationCard": {
+      "alert": "The online donation service is coming soon..."
+    },
     "ServiceSection": {
       "badgeText": "Dedicated Soul for the Ummah",
       "title": "An-Nusra's Services",
@@ -86,15 +89,43 @@
         }
       ],
       "stats": [
-        { "value": "50+", "label": "Active Projects" },
-        { "value": "100+", "label": "Dedicated Staff" },
-        { "value": "25+", "label": "Years of Experience" },
-        { "value": "10+", "label": "Departments in Operation" }
+        {
+          "value": "50+",
+          "label": "Active Projects"
+        },
+        {
+          "value": "100+",
+          "label": "Dedicated Staff"
+        },
+        {
+          "value": "25+",
+          "label": "Years of Experience"
+        },
+        {
+          "value": "10+",
+          "label": "Departments in Operation"
+        }
       ],
       "ctaTitle": "Want to be a partner in establishing a Quran-Sunnah based society?",
       "ctaDescription": "Your sincere participation will help play a role in the journey of establishing society and humanitarian work in the light of Quran-Sunnah.",
       "ctaButton1": "Participate in Activities",
       "ctaButton2": "Become a Donor"
+    },
+    "ActivitiesSection": {
+      "badgeText": "Relentless in serving people",
+      "title": "Current activities",
+      "description": "An-Nusra Foundation is active in various activities aimed at the welfare of humanity and social prosperity. Each activity is carried out with 100% integrity, transparency, and accountability, maintaining the Sharia system."
+    },
+    "GetInvolvedSection": {
+      "badgeText": "United in the service of humanity",
+      "title": "We are all on the path of humanity.",
+      "subtitle": "How to join us",
+      "description": "You can also join us in any of the following ways"
+    },
+    "GallerySection": {
+      "badgeText": "A glimpse of our activities",
+      "title": "Photo of the event",
+      "description": "Some scenes captured on camera from various activities of the foundation"
     }
   }
 }

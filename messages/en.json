@@ -1,0 +1,22 @@
+{
+  "Navbar": {
+    "home": "Home",
+    "activities": "Activities",
+    "programs": "Programs",
+    "about": "About",
+    "contact": "Contact",
+    "blog": "Blog",
+    "donate": "Donate"
+  },
+  "Common": {
+    "donateNow": "Donate Now",
+    "contactUs": "Contact Us",
+    "learnMore": "Learn More",
+    "viewAll": "View All"
+  },
+  "HomePage": {
+    "heroTitle": "Transform Lives Through Charity",
+    "heroSubtitle": "Join us in making a difference through Zakat, Sadaqah, and charitable giving",
+    "heroCta": "Start Donating"
+  }
+}

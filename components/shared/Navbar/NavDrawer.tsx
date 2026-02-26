@@ -45,7 +45,7 @@ export default function NavDrawer() {
                     </Button>
                 </SheetTrigger>
 
-                <SheetContent side="right" className="w-[320px] sm:w-[380px] p-0 overflow-hidden">
+                <SheetContent side="right" className="w-[320px] sm:w-95 p-0 overflow-hidden">
    
                         {/* Logo & Close Button */}
                         <div className="-mb-14 -mt-6 -ml-2">
@@ -134,7 +134,7 @@ export default function NavDrawer() {
                                             </div>
 
                                             {/* Hover Background Effect */}
-                                            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-emerald-500/0 to-green-500/0 group-hover:from-emerald-500/5 group-hover:to-green-500/5 transition-all duration-300" />
+                                            <div className="absolute inset-0 rounded-xl bg-linear-to-r from-emerald-500/0 to-green-500/0 group-hover:from-emerald-500/5 group-hover:to-green-500/5 transition-all duration-300" />
                                         </Link>
                                     </SheetTrigger>
                                 );
@@ -144,9 +144,9 @@ export default function NavDrawer() {
 
                         {/* Footer Section */}
                         <div className="mt-8 px-4">
-                            <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-4 border border-emerald-100">
+                            <div className="bg-linear-to-r from-emerald-50 to-green-50 rounded-xl p-4 border border-emerald-100">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-emerald-500 to-green-500 flex items-center justify-center">
+                                    <div className="w-12 h-12 rounded-xl bg-linear-to-r from-emerald-500 to-green-500 flex items-center justify-center">
                                         <Heart className="h-6 w-6 text-white" />
                                     </div>
                                     <div className="flex-1">
@@ -158,7 +158,7 @@ export default function NavDrawer() {
                                 <Link
                                     href="/donate"
                                     onClick={() => setIsOpen(false)}
-                                    className="mt-4 block w-full bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-semibold py-3 rounded-lg text-center transition-all duration-300"
+                                    className="mt-4 block w-full bg-linear-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-semibold py-3 rounded-lg text-center transition-all duration-300"
                                 >
                                     দান করুন
                                 </Link>

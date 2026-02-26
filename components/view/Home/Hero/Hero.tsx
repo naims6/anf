@@ -229,7 +229,7 @@ export default function Hero() {
 
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-black/30 pointer-events-none" />
-            </div>
+            </div> 
 
             {/* ================= Content ================= */}
             <div className="w-full min-h-125 bg-linear-to-r from-green-900 via-primary/90 to-green-700 py-14">

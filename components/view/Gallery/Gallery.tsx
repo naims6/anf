@@ -173,15 +173,16 @@ export default function Gallery() {
           </div>
 
           {/* View All CTA */}
-          <div className="text-center mt-16">
+          <div className="text-end mt-10 hover:cursor-pointer">
             <button
               onClick={() => openImage(1)}
-              className="inline-flex items-center gap-3 bg-linear-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-8 py-4 rounded-xl font-semibold font-bangla text-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-xl font-semibold font-bangla text-lg transition-all duration-300 text-emerald-600 hover:gap-4  hover:cursor-pointer"
             >
               <span>সমস্ত ছবি দেখুন</span>
-              <Eye className="w-5 h-5" />
+              <Eye className="w-8 h-8 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </div>
+
         </div>
       </section>
 

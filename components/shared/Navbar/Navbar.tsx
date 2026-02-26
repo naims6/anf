@@ -9,28 +9,33 @@ import Image from "next/image";
 import { SiteConfig } from "@/config/siteConfig";
 import NavDrawer from "./NavDrawer";
 import { NavItem } from "@/types/siteConfigType";
+import LanguageToggle from "./LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslations } from "next-intl";
 
 const { email, location, socialLinks, navItems, callLink, displayNumber } = SiteConfig;
 
 const Navbar = () => {
   const pathname = usePathname();
+  const { locale } = useLanguage();
+  const t = useTranslations('Navbar');
 
   return (
     <>
       {/* Top Announcement Bar */}
-      <div className="bg-gradient-to-r from-emerald-600 to-green-700 text-white py-2 px-4 text-sm text-center relative overflow-hidden -mb-32">
+      {/* <div className="bg-linear-to-r from-emerald-600 to-green-700 text-white py-2 px-4 text-sm text-center relative overflow-hidden -mb-32">
         <div className="absolute inset-0 bg-[url('/islamic-pattern.png')] opacity-10"></div>
         <div className="relative z-10">
           🕌 <strong>Your Sadaqah Changes Lives</strong> - Donate today and earn endless rewards
         </div>
-      </div>
+      </div> */}
 
       {/* Top Contact Bar */}
-      <div className="hidden lg:block border-b bg-gradient-to-r from-emerald-50 to-green-50/80 text-sm">
+      {/* <div className="hidden lg:block border-b bg-linear-to-r from-emerald-50 to-green-50/80 text-sm">
         <div className="container mx-auto py-3 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <Link 
-              href={callLink} 
+            <Link
+              href={callLink}
               className="flex items-center gap-2 hover:text-emerald-600 transition-all duration-300 group"
             >
               <div className="p-1.5 bg-emerald-100 rounded-lg group-hover:bg-emerald-200 transition-colors">
@@ -38,9 +43,9 @@ const Navbar = () => {
               </div>
               <span className="font-medium text-gray-700">{displayNumber}</span>
             </Link>
-            
-            <Link 
-              href={`mailto:${email}`} 
+
+            <Link
+              href={`mailto:${email}`}
               className="flex items-center gap-2 hover:text-emerald-600 transition-all duration-300 group"
             >
               <div className="p-1.5 bg-emerald-100 rounded-lg group-hover:bg-emerald-200 transition-colors">
@@ -48,7 +53,7 @@ const Navbar = () => {
               </div>
               <span className="font-medium text-gray-700">{email}</span>
             </Link>
-            
+
             <div className="flex items-center gap-2">
               <div className="p-1.5 bg-emerald-100 rounded-lg">
                 <MapPin className="h-3.5 w-3.5 text-emerald-700" />
@@ -56,9 +61,9 @@ const Navbar = () => {
               <span className="font-medium text-gray-700">{location}</span>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-4">
-            {socialLinks.map((social:any) => (
+            {socialLinks?.map((social: any) => (
               <Link
                 key={social.name}
                 href={social.href}
@@ -70,21 +75,21 @@ const Navbar = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Navigation */}
-      <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-lg supports-[backdrop-filter]:bg-white/90 shadow-sm border-b border-gray-100">
+      <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-lg supports-backdrop-filter:bg-white/90 shadow-sm border-b border-gray-100">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-20">
-            
+
             {/* Logo */}
             <div className="flex-1 md:flex-none">
               <Link href="/" className="flex items-center gap-3 group mt-3">
                 <div className="relative">
-                  <Image 
-                    src={brandlogo.logo} 
-                    width={160} 
-                    height={140} 
+                  <Image
+                    src={brandlogo.logo}
+                    width={160}
+                    height={140}
                     quality={100}
                     alt="As Nusra Foundation Logo"
                     className="transition-transform duration-300 group-hover:scale-105 -ml-3 md:ml-0 w-36 h-32"
@@ -95,7 +100,7 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1 mx-8">
-              {navItems?.bn.map((item:NavItem) => (
+              {navItems?.[locale]?.map((item: NavItem) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -113,6 +118,9 @@ const Navbar = () => {
 
             {/* Right Side Actions */}
             <div className="flex items-center gap-4 flex-1 justify-end">
+
+              {/* Language toggle btn  */}
+              <LanguageToggle />
               
               {/* Donate Button */}
               <Link
@@ -120,12 +128,12 @@ const Navbar = () => {
                 className="hidden sm:flex items-center gap-2 bg-primary hover:from-amber-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg"
               >
                 <Heart className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                <span>দান করুন</span>
+                <span>{t('donate')}</span>
               </Link>
 
               {/* User Actions */}
               <div className="flex items-center gap-2">
-                
+
                 {/* Login Button */}
                 {/* <Link
                   href="/auth/signin"
@@ -138,14 +146,14 @@ const Navbar = () => {
                 {/* User Icon */}
                 <Link
                   href="/auth/signin"
-                  className="hidden md:flex items-center justify-center w-12 h-12 bg-gradient-to-br from-emerald-100 to-green-100 hover:from-emerald-200 hover:to-green-200 border-2 border-emerald-200 rounded-xl shadow-sm hover:shadow transition-all duration-300 group relative overflow-hidden"
+                  className="hidden md:flex items-center justify-center w-12 h-12 bg-linear-to-br from-emerald-100 to-green-100 hover:from-emerald-200 hover:to-green-200 border-2 border-emerald-200 rounded-xl shadow-sm hover:shadow transition-all duration-300 group relative overflow-hidden"
                   aria-label="User Account"
                 >
                   <User className="h-5 w-5 text-emerald-700 group-hover:scale-110 transition-transform" />
-                  
+
                   {/* Hover effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
+                  <div className="absolute inset-0 bg-linear-to-br from-emerald-200/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
                   {/* Pulse animation */}
                   <div className="absolute inset-0 border-2 border-emerald-300 rounded-xl opacity-0 group-hover:opacity-100 animate-ping"></div>
                 </Link>

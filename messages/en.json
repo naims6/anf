@@ -15,8 +15,86 @@
     "viewAll": "View All"
   },
   "HomePage": {
-    "heroTitle": "Transform Lives Through Charity",
-    "heroSubtitle": "Join us in making a difference through Zakat, Sadaqah, and charitable giving",
-    "heroCta": "Start Donating"
+    "HeroSection": {
+      "title": "An-Nusra Foundation",
+      "subtitle": "It is a non-political, non-profit, religious, social and humanitarian organization.",
+      "btn1": "Learn more",
+      "btn2": "Activities"
+    },
+    "ServiceSection": {
+      "badgeText": "Dedicated Soul for the Ummah",
+      "title": "An-Nusra's Services",
+      "subtitle": "Let everyone have a happy life",
+      "description": "Our activities, social development, and humanitarian works are in accordance with Quran-Sunnah.",
+      "services": [
+        {
+          "title": "Education",
+          "description": "Establishing curriculum and textbooks, setting up educational institutions, and managing them by integrating modern education with Quran-Sunnah.",
+          "stats": "500+ students",
+          "projects": [
+            "Curriculum and Textbooks",
+            "Establishment of Educational Institutions",
+            "Scholarship Programs",
+            "Higher Research Center",
+            "Technology Training",
+            "Maktob-based Education"
+          ]
+        },
+        {
+          "title": "Service",
+          "description": "Organizing activities to distribute winter clothes, iftar during Ramadan, clothes and Eid materials to the needy, and distributing sacrificial animals to the poor.",
+          "stats": "10,000+ families",
+          "projects": [
+            "Emergency Relief Assistance",
+            "Healthcare for Distressed Women and Children",
+            "Tree Plantation Activities"
+          ]
+        },
+        {
+          "title": "Da'wah",
+          "description": "Managing family counseling department and religious inquiry call center to maintain a religious environment at the family level.",
+          "stats": "100+ publications",
+          "projects": [
+            "Mosque-based Activities",
+            "Publications",
+            "Family Counseling",
+            "Da'wah Training"
+          ]
+        },
+        {
+          "title": "Islamic Economics",
+          "description": "Providing financial assistance for self-reliance through training in handicrafts, machine industry, technical skills, agriculture, and farm management to eliminate unemployment and poverty.",
+          "stats": "200+ entrepreneur support",
+          "projects": [
+            "Qard-e-Hasanah",
+            "Zakat Fund",
+            "Distribution of Income Tools",
+            "Entrepreneur Training"
+          ]
+        },
+        {
+          "title": "Islamic Culture",
+          "description": "Building Islamic cultural centers and organizing various cultural competitions like Islamic music, poetry recitation, calligraphy for the entertainment and moral awakening of children and adolescents.",
+          "stats": "30+ cultural events",
+          "projects": [
+            "Social Reform",
+            "Islamic Cultural Center",
+            "Cultural Competitions",
+            "Content Creation",
+            "Eid Activities"
+          ]
+        }
+      ],
+      "stats": [
+        { "value": "50+", "label": "Active Projects" },
+        { "value": "100+", "label": "Dedicated Staff" },
+        { "value": "25+", "label": "Years of Experience" },
+        { "value": "10+", "label": "Departments in Operation" }
+      ],
+      "ctaTitle": "Want to be a partner in establishing a Quran-Sunnah based society?",
+      "ctaDescription": "Your sincere participation will help play a role in the journey of establishing society and humanitarian work in the light of Quran-Sunnah.",
+      "ctaButton1": "Participate in Activities",
+      "ctaButton2": "Become a Donor"
+    }
   }
 }

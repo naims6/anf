@@ -33,7 +33,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{locale: string}>;
 }>) {
-  // Next.js 15 এ params একটি Promise, তাই await করা জরুরি
+
   const {locale} = await params;
   const messages = await getMessages();
   
@@ -42,7 +42,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* locale={locale} প্রপটি যোগ করা হয়েছে যাতে Client Provider ঠিকমতো ভাষা বুঝতে পারে */}
+        
         <NextIntlClientProvider locale={locale} messages={messages}>
           <LanguageProvider initialLocale={locale as 'en' | 'bn'}>
             <StoreProvider>

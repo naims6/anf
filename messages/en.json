@@ -22,7 +22,23 @@
       "btn2": "Activities"
     },
     "DonationCard": {
-      "alert": "The online donation service is coming soon..."
+      "alert": "The online donation service is coming soon...",
+      "title": "Make Your Donation",
+      "fundSelectionLabel": "Select Fund",
+      "fundPlaceholder": "Select Fund",
+      "contactLabel": "Phone Number or Email",
+      "contactPlaceholder": "01XXXXXXXXX",
+      "amountLabel": "Amount (BDT)",
+      "amountPlaceholder": "1000",
+      "donateButton": "Donate",
+      "funds": {
+        "zakat": "Zakat",
+        "sadaqah": "Sadaqah",
+        "education": "Education Fund",
+        "emergency": "Emergency Fund",
+        "winter": "Winter Relief Fund",
+        "qurbani": "Qurbani Fund"
+      }
     },
     "ServiceSection": {
       "badgeText": "Dedicated Soul for the Ummah",
@@ -120,12 +136,139 @@
       "badgeText": "United in the service of humanity",
       "title": "We are all on the path of humanity.",
       "subtitle": "How to join us",
-      "description": "You can also join us in any of the following ways"
+      "description": "You can also join us in any of the following ways",
+      "involvementOptions": [
+        {
+          "title": "Regular Donor",
+          "description": "Become a partner in our permanent service through monthly/annual donations",
+          "features": ["Monthly Donation", "Annual Plan", "Automatic Payment", "Update Report"],
+          "stats": "500+ Regular Donors"
+        },
+        {
+          "title": "Lifetime Donor Member",
+          "description": "Permanently become a partner in humanitarian service through lifetime membership",
+          "features": ["Lifetime Membership", "Special Privileges", "Name Inclusion", "Invitation to Events"],
+          "stats": "200+ Lifetime Members"
+        },
+        {
+          "title": "Volunteer",
+          "description": "Directly participate in humanitarian work by giving your time and labor",
+          "features": ["Field Volunteer", "Online Volunteer", "Special Skills", "Training Opportunities"],
+          "stats": "1000+ Volunteers"
+        },
+        {
+          "title": "Career",
+          "description": "Join our team and contribute to humanitarian service with professional skills",
+          "features": ["Full-time Job", "Part-time Job", "Internship", "Project-based"],
+          "stats": "50+ Staff"
+        }
+      ],
+      "joinButton": "Join Now"
     },
     "GallerySection": {
       "badgeText": "A glimpse of our activities",
       "title": "Photo of the event",
       "description": "Some scenes captured on camera from various activities of the foundation"
+    },
+    "ContactSection": {
+      "badgeText": "Contact Us",
+      "title": "Get in Touch",
+      "subtitle": "Contact Us",
+      "description": "We are always ready for any questions, feedback or collaboration from you",
+      "contactInfo": [
+        {
+          "title": "Phone Number",
+          "details": ["+88 01817-536363"]
+        },
+        {
+          "title": "Email Address",
+          "details": ["info@assunnahfoundation.org"]
+        },
+        {
+          "title": "Office Address",
+          "details": ["Building 12, Road 8,", "Mohammadpur, Dhaka-1207"]
+        }
+      ],
+      "formTitle": "Send Message",
+      "formDescription": "Fill out the form below and send your message to us",
+      "formFields": {
+        "name": "Your Name *",
+        "namePlaceholder": "Your Full Name",
+        "email": "Email Address *",
+        "emailPlaceholder": "example@email.com",
+        "phone": "Phone Number *",
+        "phonePlaceholder": "+88 01711-234567",
+        "subject": "Subject *",
+        "subjectPlaceholder": "Message Subject",
+        "message": "Your Message *",
+        "messagePlaceholder": "Write your message here..."
+      },
+      "submitButton": "Send Message",
+      "submittingText": "Sending...",
+      "successMessage": "Your message has been sent successfully! We will contact you soon.",
+      "privacyText": "We protect your privacy. Your information will only be used for contact purposes.",
+      "mapLocation": "Sector 14, Uttara, Dhaka",
+      "directionsButton": "Directions",
+      "shareButton": "Share"
+    },
+    "Footer": {
+      "safeDonation": "Safe Donation",
+      "safeDonationDesc": "Your every contribution is secured by encryption.",
+      "transparentOperation": "Transparent Operation",
+      "transparentOperationDesc": "Accurate expense accounting and regular updates.",
+      "continuousCharity": "Continuous Charity",
+      "continuousCharityDesc": "An-Nusra Foundation stands beside you for eternal reward.",
+      "quickLinks": "Quick Links",
+      "ourActivities": "Our Activities",
+      "contactUs": "Contact Us",
+      "copyrightText": "© {year} {brandName}. All rights reserved.",
+      "privacyPolicy": "Privacy Policy",
+      "terms": "Terms",
+      "refundPolicy": "Refund Policy",
+      "paymentPartners": "Secure Payment Partners",
+      "activityItems": [
+        "Zakat Distribution",
+        "Orphan and Poor Assistance", 
+        "Emergency Food Aid",
+        "Mosque and Madrasa Fund",
+        "Winter Clothing Distribution",
+        "Healthcare Services"
+      ]
     }
+  },
+  "Programs": {
+    "heroTitle": "Our <span class=\"text-green-600\">Permanent Programs</span>",
+    "heroSubtitle": "As-Sunnah Foundation works with sustainable and long-term planning not just temporary assistance to improve people's lives.",
+    "learnMore": "Learn More",
+    "partnerWithUs": "Be Our Partner in Serving Humanity",
+    "donationText": "Your small contribution can change the future of a neglected person. Donate to your favorite project today.",
+    "donateNow": "Donate Now",
+    "volunteer": "Join as Volunteer",
+    "programsList": [
+      {
+        "title": "Education and Skill Development",
+        "description": "Providing scholarships to poor and brilliant students and technical training through As-Sunnah Skill Development."
+      },
+      {
+        "title": "Self-reliance Project",
+        "description": "Making poor families permanently free from poverty by providing them with rickshaws, sewing machines or capital for small businesses."
+      },
+      {
+        "title": "Health and Medical Services",
+        "description": "Ensuring medical assistance to helpless patients, free medical camps and emergency medicine supply."
+      },
+      {
+        "title": "Pure Water Project",
+        "description": "Installing deep tube wells for arsenic-free pure water in remote and coastal areas of the country."
+      },
+      {
+        "title": "Environment and Tree Plantation",
+        "description": "Planting lakhs of fruit and forest trees across the country every year to combat climate change."
+      },
+      {
+        "title": "Disaster Management",
+        "description": "Providing quick relief and assistance to victims of floods, cyclones or any natural disaster."
+      }
+    ]
   }
 }

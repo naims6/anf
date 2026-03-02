@@ -8,68 +8,23 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import bnMessages from '@/messages/bn.json'
 import enMessages from '@/messages/en.json'
 
-const involvementOptions = [
-  {
-    id: 1,
-    title: 'নিয়মিত দাতা',
-    description: 'মাসিক/বাৎসরিক অনুদানের মাধ্যমে আমাদের স্থায়ী সেবার অংশীদার হোন',
-    icon: Heart,
-    // color: 'from-rose-500 to-pink-500',
-    // bgColor: 'bg-rose-50',
-    // borderColor: 'border-rose-200',
-    color: 'from-emerald-500 to-green-500',
-    bgColor: 'bg-emerald-50',
-    borderColor: 'border-emerald-200',
-    features: ['মাসিক অনুদান', 'বাৎসরিক প্ল্যান', 'স্বয়ংক্রিয় পেমেন্ট', 'আপডেট রিপোর্ট'],
-    stats: '৫০০+ নিয়মিত দাতা'
-  },
-  {
-    id: 2,
-    title: 'আজীবন ও দাতা সদস্য',
-    description: 'আজীবন সদস্যপদের মাধ্যমে স্থায়ীভাবে মানবসেবার অংশীদার হোন',
-    icon: Users,
-    color: 'from-emerald-500 to-green-500',
-    bgColor: 'bg-emerald-50',
-    borderColor: 'border-emerald-200',
-    features: ['আজীবন মেম্বারশিপ', 'বিশেষ প্রিভিলেজ', 'নাম অন্তর্ভুক্তি', 'অনুষ্ঠানে আমন্ত্রণ'],
-    stats: '২০০+ আজীবন সদস্য'
-  },
-  {
-    id: 3,
-    title: 'স্বেচ্ছাসেবক',
-    description: 'আপনার সময় ও শ্রম দিয়ে সরাসরি মানবসেবার কাজে অংশ নিন',
-    icon: Target,
-    // color: 'from-blue-500 to-cyan-500',
-    // bgColor: 'bg-blue-50',
-    // borderColor: 'border-blue-200',
-    color: 'from-emerald-500 to-green-500',
-    bgColor: 'bg-emerald-50',
-    borderColor: 'border-emerald-200',
-    features: ['ফিল্ড ভলান্টিয়ার', 'অনলাইন স্বেচ্ছাসেবক', 'বিশেষ দক্ষতা', 'প্রশিক্ষণ সুযোগ'],
-    stats: '১০০০+ স্বেচ্ছাসেবক'
-  },
-  {
-    id: 4,
-    title: 'ক্যারিয়ার',
-    description: 'আমাদের টিমের অংশ হয়ে পেশাদারি দক্ষতা নিয়ে মানবসেবায় যুক্ত হোন',
-    icon: Briefcase,
-    // color: 'from-amber-500 to-orange-500',
-    // bgColor: 'bg-amber-50',
-    // borderColor: 'border-amber-200',
-    color: 'from-emerald-500 to-green-500',
-    bgColor: 'bg-emerald-50',
-    borderColor: 'border-emerald-200',
-    features: ['ফুলটাইম চাকরি', 'পার্টটাইম চাকরি', 'ইন্টার্নশিপ', 'প্রজেক্ট ভিত্তিক'],
-    stats: '৫০+ কর্মী'
-  }
-];
-
 export default function GetInvolved() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
    // Get translations based on current locale
   const { locale } = useLanguage();
   const t = locale === 'bn' ? bnMessages.HomePage.GetInvolvedSection : enMessages.HomePage.GetInvolvedSection;
+  const involvementOptions = t.involvementOptions || [];
+  
+  // Add IDs to the translated options
+  const involvementOptionsWithIds = involvementOptions.map((option: { title: string; description: string; features: string[]; stats: string }, index: number) => ({
+    ...option,
+    id: index + 1,
+    icon: [Heart, Users, Target, Briefcase][index],
+    color: 'from-emerald-500 to-green-500',
+    bgColor: 'bg-emerald-50',
+    borderColor: 'border-emerald-200'
+  }));
 
   return (
     <section className="relative py-10 bg-linear-to-b from-white via-emerald-50/5 to-white overflow-hidden">
@@ -86,7 +41,7 @@ export default function GetInvolved() {
 
         {/* Involvement Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          {involvementOptions.map((option) => {
+          {involvementOptionsWithIds.map((option) => {
             const Icon = option.icon;
 
             return (
@@ -132,7 +87,7 @@ export default function GetInvolved() {
 
                     {/* Features List */}
                     <div className="space-y-3 mb-8 grow">
-                      {option.features.map((feature, idx) => (
+                      {option.features.map((feature: string, idx: number) => (
                         <div
                           key={idx}
                           className="flex items-center gap-2"
@@ -150,7 +105,7 @@ export default function GetInvolved() {
                       variant="custom"
                       size="lg"
                     >
-                      যুক্ত হন
+                      {t.joinButton}
                     </Button>
                   </div>
                 </div>

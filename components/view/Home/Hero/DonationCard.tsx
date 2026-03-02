@@ -10,15 +10,6 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import enMessages from '@/messages/en.json';
 import bnMessages from '@/messages/bn.json';
 
-const donationFunds = [
-  { value: 'zakat', label: 'যাকাত' },
-  { value: 'sadaqah', label: 'সাদাকাহ' },
-  { value: 'education', label: 'শিক্ষা তহবিল' },
-  { value: 'emergency', label: 'জরুরী তহবিল' },
-  { value: 'winter', label: 'শীতবার্তা তহবিল' },
-  { value: 'qurbani', label: 'কুরবানি তহবিল' },
-];
-
 export default function DonationCard() {
   const [selectedFund, setSelectedFund] = useState('');
   const [amount, setAmount] = useState('');
@@ -27,6 +18,16 @@ export default function DonationCard() {
   // Get translations based on current locale
   const { locale } = useLanguage();
   const t = locale === 'bn' ? bnMessages.HomePage.DonationCard : enMessages.HomePage.DonationCard;
+  
+  // Define donation funds with translations
+  const donationFunds = [
+    { value: 'zakat', label: t.funds?.zakat || (locale === 'bn' ? 'যাকাত' : 'Zakat') },
+    { value: 'sadaqah', label: t.funds?.sadaqah || (locale === 'bn' ? 'সাদাকাহ' : 'Sadaqah') },
+    { value: 'education', label: t.funds?.education || (locale === 'bn' ? 'শিক্ষা তহবিল' : 'Education Fund') },
+    { value: 'emergency', label: t.funds?.emergency || (locale === 'bn' ? 'জরুরী তহবিল' : 'Emergency Fund') },
+    { value: 'winter', label: t.funds?.winter || (locale === 'bn' ? 'শীতবার্তা তহবিল' : 'Winter Relief Fund') },
+    { value: 'qurbani', label: t.funds?.qurbani || (locale === 'bn' ? 'কুরবানি তহবিল' : 'Qurbani Fund') },
+  ];
 
   const handleDonate = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,7 +53,7 @@ export default function DonationCard() {
         {/* Header */}
         <div className="text-center mb-6">
           <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 font-bangla">
-            আপনার অনুদান প্রদান করুন
+            {t.title}
           </h3>
         </div>
 
@@ -60,11 +61,11 @@ export default function DonationCard() {
           {/* Fund Selection */}
           <div className="space-y-2 md:flex-1">
             <Label htmlFor="fund" className="text-sm font-semibold text-gray-700 font-bangla">
-              তহবিল নির্বাচন করুন
+              {t.fundSelectionLabel}
             </Label>
             <Select value={selectedFund} onValueChange={setSelectedFund}>
               <SelectTrigger className="w-full h-12 rounded-xl border-gray-300 bg-white/80 font-bangla text-gray-700 shadow-sm transition-all">
-                <SelectValue placeholder="তহবিল নির্বাচন করুন" />
+                <SelectValue placeholder={t.fundPlaceholder} />
               </SelectTrigger>
               <SelectContent className="rounded-xl border border-gray-200 shadow-lg bg-white font-bangla">
                 {donationFunds?.map((fund) => (
@@ -79,7 +80,7 @@ export default function DonationCard() {
           {/* Contact Input */}
           <div className="space-y-2 md:flex-1">
             <Label htmlFor="contact" className="text-sm font-semibold text-gray-700 font-bangla">
-              ফোন নম্বর বা ইমেইল
+              {t.contactLabel}
             </Label>
             <div className="relative">
               <Input
@@ -87,7 +88,7 @@ export default function DonationCard() {
                 type="text"
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
-                placeholder="01XXXXXXXXX"
+                placeholder={t.contactPlaceholder}
                 className="pl-11 h-12 rounded-xl border-gray-300 bg-white/80 font-bangla text-gray-700 shadow-sm"
                 required
               />
@@ -100,14 +101,14 @@ export default function DonationCard() {
           {/* Amount Input */}
           <div className="space-y-2 md:flex-1">
             <Label htmlFor="amount" className="text-sm font-semibold text-gray-700 font-bangla">
-              পরিমাণ (টাকা)
+              {t.amountLabel}
             </Label>
             <Input
               id="amount"
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              placeholder="1000"
+              placeholder={t.amountPlaceholder}
               className="h-12 rounded-xl border-gray-300 bg-white/80 text-lg font-semibold font-bangla text-gray-700 shadow-sm"
               min="1"
               required
@@ -121,7 +122,7 @@ export default function DonationCard() {
             className="w-full h-12 md:w-auto md:flex-1 bg-linear-to-r from-emerald-500/50 to-green-600/50 text-white rounded-xl text-lg font-semibold font-bangla cursor-not-allowed"
           >
             <Heart className="w-5 h-5 mr-2" />
-            দান করুন
+            {t.donateButton}
           </Button>
         </form>
       </div>

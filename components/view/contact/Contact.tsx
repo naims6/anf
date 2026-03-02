@@ -4,30 +4,14 @@ import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Clock, MessageSquare, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
+import { useLanguage } from '@/contexts/LanguageContext';
+import enMessages from '@/messages/en.json';
+import bnMessages from '@/messages/bn.json';
 
-const contactInfo = [
-  {
-    icon: Phone,
-    title: 'ফোন নম্বর',
-    // +880 1817-536363
-    details: ['+৮৮ ০১৮১৭-৫৩৬৩৬৩'],
-    // description: 'সকাল ৯টা থেকে রাত ৯টা পর্যন্ত'
-  },
-  {
-    icon: Mail,
-    title: 'ইমেইল ঠিকানা',
-    details: ['info@assunnahfoundation.org'],
-    // description: '২৪ ঘণ্টার মধ্যে উত্তর পাবেন'
-  },
-  {
-    icon: MapPin,
-    title: 'অফিসের ঠিকানা',
-    details: ['বিল্ডিং ১২, রোড ৮,', 'মোহাম্মদপুর, ঢাকা-১২০৭'],
-    // description: 'রবি-বৃহস্পতি: সকাল ৯টা - সন্ধ্যা ৬টা'
-  }
-];
+const contactIcons = [Phone, Mail, MapPin];
 
 export default function Contact() {
+  const { locale } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,6 +19,10 @@ export default function Contact() {
     subject: '',
     message: ''
   });
+  
+  // Get translations based on current locale
+  const t = locale === 'bn' ? bnMessages.HomePage.ContactSection : enMessages.HomePage.ContactSection;
+  const contactInfo = t.contactInfo;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -62,7 +50,7 @@ export default function Contact() {
       message: ''
     });
 
-    alert('আপনার বার্তা সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।');
+    alert(t.successMessage);
   };
 
   return (
@@ -87,10 +75,10 @@ export default function Contact() {
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <SectionHeader
-          badgeText=' যোগাযোগ করুন'
-          title='আমাদের সাথে'
-          subtitle='যোগাযোগ করুন'
-          description='আপনার যেকোনো প্রশ্ন, মতামত বা সহযোগিতার জন্য আমরা সবসময় প্রস্তুত'
+          badgeText={t.badgeText}
+          title={t.title}
+          subtitle={t.subtitle}
+          description={t.description}
           icon={Star}
         />
 
@@ -100,7 +88,7 @@ export default function Contact() {
             {/* Contact Cards */}
             <div className="space-y-6">
               {contactInfo.map((info, index) => {
-                const Icon = info.icon;
+                const Icon = contactIcons[index];
 
                 return (
                   <div
@@ -147,11 +135,11 @@ export default function Contact() {
               <div className="flex items-center gap-3 mb-4">
                 <MessageSquare className="w-6 h-6 text-emerald-600" />
                 <h3 className="text-2xl font-bold text-gray-900 font-bangla">
-                  বার্তা পাঠান
+                  {t.formTitle}
                 </h3>
               </div>
               <p className="text-gray-600 font-bangla">
-                নিচের ফর্মটি পূরণ করে আপনার বার্তা আমাদের কাছে পাঠিয়ে দিন
+                {t.formDescription}
               </p>
             </div>
 
@@ -161,7 +149,7 @@ export default function Contact() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 font-bangla">
-                    আপনার নাম *
+                    {t.formFields.name}
                   </label>
                   <input
                     type="text"
@@ -170,13 +158,13 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300 outline-none font-bangla"
-                    placeholder="আপনার পূর্ণ নাম"
+                    placeholder={t.formFields.namePlaceholder}
                   />
                 </div>
 
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 font-bangla">
-                    ইমেইল ঠিকানা *
+                    {t.formFields.email}
                   </label>
                   <input
                     type="email"
@@ -185,7 +173,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300 outline-none font-bangla"
-                    placeholder="example@email.com"
+                    placeholder={t.formFields.emailPlaceholder}
                   />
                 </div>
               </div>
@@ -194,7 +182,7 @@ export default function Contact() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 font-bangla">
-                    ফোন নম্বর *
+                    {t.formFields.phone}
                   </label>
                   <input
                     type="tel"
@@ -203,13 +191,13 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300 outline-none font-bangla"
-                    placeholder="+৮৮ ০১৭১১-২৩৪৫৬৭"
+                    placeholder={t.formFields.phonePlaceholder}
                   />
                 </div>
 
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 font-bangla">
-                    বিষয় *
+                    {t.formFields.subject}
                   </label>
                   <input
                     type="text"
@@ -218,7 +206,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300 outline-none font-bangla"
-                    placeholder="বার্তার বিষয়"
+                    placeholder={t.formFields.subjectPlaceholder}
                   />
                 </div>
               </div>
@@ -226,7 +214,7 @@ export default function Contact() {
               {/* Message */}
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-700 font-bangla">
-                  আপনার বার্তা *
+                  {t.formFields.message}
                 </label>
                 <textarea
                   name="message"
@@ -235,7 +223,7 @@ export default function Contact() {
                   required
                   rows={5}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300 outline-none resize-none font-bangla"
-                  placeholder="আপনার বার্তাটি এখানে লিখুন..."
+                  placeholder={t.formFields.messagePlaceholder}
                 />
               </div>
 
@@ -248,11 +236,11 @@ export default function Contact() {
                 {isSubmitting ? (
                   <span className="flex items-center gap-3">
                     <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    পাঠানো হচ্ছে...
+                    {t.submittingText}
                   </span>
                 ) : (
                   <span className="flex items-center justify-center gap-3">
-                    বার্তা পাঠান
+                    {t.submitButton}
                     <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 )}
@@ -262,7 +250,7 @@ export default function Contact() {
             {/* Form Footer */}
             <div className="mt-8 pt-8 border-t border-gray-100">
               <p className="text-sm text-gray-500 text-center font-bangla">
-                আমরা আপনার গোপনীয়তা রক্ষা করি। আপনার তথ্য শুধুমাত্র যোগাযোগের জন্য ব্যবহৃত হবে।
+                {t.privacyText}
               </p>
             </div>
           </div>
@@ -296,7 +284,7 @@ export default function Contact() {
           <div className="absolute bottom-4 left-4 right-4">
             <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 border border-white/20">
               <p className="text-sm text-gray-700 font-bangla text-center">
-                ঢাকার উত্তরা থানাধীন, সেক্টর ১৪
+                {t.mapLocation}
               </p>
             </div>
           </div>
@@ -309,12 +297,12 @@ export default function Contact() {
               variant="outline"
               className="flex-1 border-emerald-500 text-emerald-600 hover:bg-emerald-50 font-bangla"
             >
-              দিকনির্দেশনা
+              {t.directionsButton}
             </Button>
             <Button
               className="flex-1 bg-linear-to-r from-emerald-500 to-green-600 text-white hover:opacity-90 font-bangla"
             >
-              শেয়ার করুন
+              {t.shareButton}
             </Button>
           </div>
         </div>

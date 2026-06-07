@@ -1,4 +1,4 @@
-import ProgramsPage from "@/pages/programspage/ProgramsPage";
+import ProgramsPage from "@/components/pages/programspage/ProgramsPage";
 
 
 

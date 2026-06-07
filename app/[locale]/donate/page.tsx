@@ -1,4 +1,4 @@
-import DonatePage from '@/pages/donatepage/DonatePage'
+import DonatePage from '@/components/pages/donatepage/DonatePage'
 
 export default function Donate() {
     return <DonatePage />

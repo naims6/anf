@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { User, Mail, Lock, Eye, EyeOff, Loader2, UserPlus } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import {
   loginSchema,
@@ -23,6 +22,9 @@ import {
   type LoginFormData,
   type RegisterFormData,
 } from "@/lib/validations/auth";
+import { useLanguage } from "@/contexts/LanguageContext";
+import enMessages from "@/messages/en.json";
+import bnMessages from "@/messages/bn.json";
 
 type AuthMode = "login" | "register";
 
@@ -31,7 +33,10 @@ export default function AuthSheet() {
   const [mode, setMode] = useState<AuthMode>("login");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const t = useTranslations("Auth");
+  const { locale } = useLanguage();
+
+  const messages = locale === "bn" ? bnMessages.Auth : enMessages.Auth;
+  const t = (key: keyof typeof enMessages.Auth) => messages[key];
 
   const loginForm = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -55,14 +60,12 @@ export default function AuthSheet() {
     formState: { errors: registerErrors, isSubmitting: registerSubmitting },
   } = registerForm;
 
-  const onLogin = async (data: LoginFormData) => {
+  const onLogin = async (_data: LoginFormData) => {
     // TODO: API integration
-    console.log(data);
     await new Promise((r) => setTimeout(r, 1000));
   };
 
-  const onRegister = async (data: RegisterFormData) => {
-    console.log(data);
+  const onRegister = async (_data: RegisterFormData) => {
     toast.error(t("notAvailable"));
   };
 
@@ -261,7 +264,7 @@ export default function AuthSheet() {
                     {registerErrors.email.message}
                   </p>
                 )}
-              </div>
+                </div>
 
               <div className="space-y-2">
                 <Label htmlFor="reg-password">{t("passwordLabel")}</Label>

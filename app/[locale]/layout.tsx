@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import StoreProvider from "@/Providers/StoreProviders";
@@ -6,10 +5,10 @@ import Navbar from "@/components/shared/Navbar/Navbar";
 import { Footer } from "@/components/shared/Footer/Footer";
 import { BottomNav } from "@/components/shared/Navbar/BottomNav";
 import { FloatingActionButton } from "@/components/shared/FloatingButton/FloatingButton";
-import {routing} from '@/i18n/routing';
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {LanguageProvider} from '@/contexts/LanguageContext';
+import { Toaster } from 'react-hot-toast';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,6 +54,17 @@ export default async function RootLayout({
                 </div>
                 <Footer />
               </div>
+              <Toaster
+                position="top-right"
+                toastOptions={{
+                  duration: 4000,
+                  style: {
+                    borderRadius: "12px",
+                    padding: "12px 16px",
+                    fontSize: "14px",
+                  },
+                }}
+              />
             </StoreProvider>
           </LanguageProvider>
         </NextIntlClientProvider>

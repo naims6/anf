@@ -270,5 +270,34 @@
         "description": "Providing quick relief and assistance to victims of floods, cyclones or any natural disaster."
       }
     ]
+  },
+  "Auth": {
+    "login": "Login",
+    "register": "Register",
+    "loginTitle": "Welcome Back",
+    "registerTitle": "Create Account",
+    "emailLabel": "Email or Phone",
+    "emailPlaceholder": "Enter your email or phone",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "loginButton": "Login",
+    "registerButton": "Register",
+    "loggingIn": "Logging in...",
+    "registering": "Creating account...",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "nameRequired": "Name is required",
+    "emailRequired": "Email or phone is required",
+    "passwordRequired": "Password is required",
+    "passwordMin": "Password must be at least 6 characters",
+    "passwordMismatch": "Passwords do not match",
+    "emailInvalid": "Please enter a valid email or phone number",
+    "accountAccess": "Access your account",
+    "createAccountDesc": "Create your account to get started",
+    "notAvailable": "Registration is currently not available. Please try again later."
   }
 }

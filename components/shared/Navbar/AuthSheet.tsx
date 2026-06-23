@@ -23,6 +23,7 @@ import {
   type RegisterFormData,
 } from "@/lib/validations/auth";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/hooks/useAuth";
 import enMessages from "@/messages/en.json";
 import bnMessages from "@/messages/bn.json";
 
@@ -34,6 +35,7 @@ export default function AuthSheet() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { locale } = useLanguage();
+  const { login } = useAuth();
 
   const messages = locale === "bn" ? bnMessages.Auth : enMessages.Auth;
   const t = (key: keyof typeof enMessages.Auth) => messages[key];
@@ -60,9 +62,16 @@ export default function AuthSheet() {
     formState: { errors: registerErrors, isSubmitting: registerSubmitting },
   } = registerForm;
 
-  const onLogin = async (_data: LoginFormData) => {
-    // TODO: API integration
-    await new Promise((r) => setTimeout(r, 1000));
+  const onLogin = async (data: LoginFormData) => {
+    try {
+      await login({ email: data.email, password: data.password });
+      toast.success("Logged in successfully");
+      setIsOpen(false);
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Invalid email or password";
+      toast.error(message);
+    }
   };
 
   const onRegister = async (_data: RegisterFormData) => {

@@ -6,7 +6,6 @@ import {
   useState,
   ReactNode,
   useEffect,
-  useRef,
 } from "react";
 
 type Locale = "en" | "bn";

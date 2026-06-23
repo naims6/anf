@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import StoreProvider from "@/Providers/StoreProviders";
+import { AuthProvider } from "@/contexts/AuthContext";
 import Navbar from "@/components/shared/Navbar/Navbar";
 import { Footer } from "@/components/shared/Footer/Footer";
 import { BottomNav } from "@/components/shared/Navbar/BottomNav";
@@ -45,6 +46,7 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <LanguageProvider initialLocale={locale as 'en' | 'bn'}>
             <StoreProvider>
+              <AuthProvider>
               <div>
                 <Navbar />
                 <BottomNav />
@@ -65,6 +67,7 @@ export default async function RootLayout({
                   },
                 }}
               />
+            </AuthProvider>
             </StoreProvider>
           </LanguageProvider>
         </NextIntlClientProvider>

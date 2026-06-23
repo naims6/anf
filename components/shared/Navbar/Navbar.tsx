@@ -9,10 +9,12 @@ import Image from "next/image";
 import { SiteConfig } from "@/config/siteConfig";
 import NavDrawer from "./NavDrawer";
 import AuthSheet from "./AuthSheet";
+import UserMenu from "./UserMenu";
 import { NavItem } from "@/types/siteConfigType";
 import LanguageToggle from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslations } from "next-intl";
+import { useAuth } from "@/hooks/useAuth";
 
 const { navItems } = SiteConfig;
 
@@ -20,6 +22,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const { locale } = useLanguage();
   const t = useTranslations("Navbar");
+  const { isAuthenticated } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-lg supports-backdrop-filter:bg-background/90 shadow-sm border-b border-border">
@@ -68,7 +71,7 @@ const Navbar = () => {
               <span>{t("donate")}</span>
             </Link>
 
-            <AuthSheet />
+            {isAuthenticated ? <UserMenu /> : <AuthSheet />}
 
             <div className="lg:hidden">
               <NavDrawer />

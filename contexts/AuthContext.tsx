@@ -31,44 +31,75 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    let mounted = true;
-
-    authService
-      .getMe()
-      .then((res) => {
-        if (mounted) setUser(res.data.user);
-      })
-      .catch(() => {
-        if (mounted) setUser(null);
-      })
-      .finally(() => {
-        if (mounted) setIsLoading(false);
-      });
-
-    return () => {
-      mounted = false;
-    };
+  const fetchUser = useCallback(async () => {
+    try {
+      const res = await authService.getMe();
+      if (res.success) {
+        setUser(res.data);
+      } else {
+        setUser(null);
+      }
+    } catch {
+      setUser(null);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
 
   const login = useCallback(async (credentials: LoginCredentials) => {
     const res = await authService.login(credentials);
-    if (res.data?.user) {
-      setUser(res.data.user);
+
+    if (!res.success) {
+      throw new Error(res.message || "Login failed");
+    }
+
+    const { userInfo } = res.data;
+
+    const partialUser: User = {
+      id: "",
+      email: userInfo.email,
+      name: userInfo.name,
+      phone: null,
+      roleId: 0,
+      role: { name: "" },
+    };
+
+    setUser(partialUser);
+
+    try {
+      const profile = await authService.getMe();
+      if (profile.success) {
+        setUser(profile.data);
+      }
+    } catch {
+      // keep partial user if getMe fails
     }
   }, []);
 
   const logout = useCallback(async () => {
-    await authService.logout();
-    setUser(null);
+    try {
+      await authService.logout();
+    } finally {
+      setUser(null);
+    }
   }, []);
 
   const changePassword = useCallback(async (payload: ChangePasswordData) => {
-    await authService.changePassword(payload);
+    const res = await authService.changePassword(payload);
+    if (!res.success) {
+      throw new Error(res.message || "Change password failed");
+    }
   }, []);
 
   const createUser = useCallback(async (payload: CreateUserData) => {
-    await authService.createUser(payload);
+    const res = await authService.createUser(payload);
+    if (!res.success) {
+      throw new Error(res.message || "Create user failed");
+    }
   }, []);
 
   return (
@@ -87,4 +118,5 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     </AuthContext.Provider>
   );
 }
+
 

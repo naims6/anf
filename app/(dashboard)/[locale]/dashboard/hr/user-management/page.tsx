@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useTranslations } from "next-intl";
 import { Search, Plus, MoreHorizontal } from "lucide-react";
 
 const users = [
@@ -15,31 +16,31 @@ const users = [
 ];
 
 export default function UserManagementPage() {
+  const t = useTranslations("Dashboard.userManagement");
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">User Management</h1>
-          <p className="text-sm text-muted-foreground">
-            Manage users, roles, and permissions.
-          </p>
+          <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
+          <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
         </div>
         <Button>
           <Plus className="mr-2 h-4 w-4" />
-          Add User
+          {t("addUser")}
         </Button>
       </div>
 
       <div className="flex items-center gap-4">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="Search users..." className="pl-8" />
+          <Input placeholder={t("searchUsers")} className="pl-8" />
         </div>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">All Users</CardTitle>
+          <CardTitle className="text-base">{t("allUsers")}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
@@ -47,8 +48,8 @@ export default function UserManagementPage() {
               <thead>
                 <tr className="border-b text-left text-muted-foreground">
                   <th className="pb-3 font-medium">User</th>
-                  <th className="pb-3 font-medium">Role</th>
-                  <th className="pb-3 font-medium">Status</th>
+                  <th className="pb-3 font-medium">{t("role")}</th>
+                  <th className="pb-3 font-medium">{t("status")}</th>
                   <th className="pb-3 font-medium"></th>
                 </tr>
               </thead>
@@ -64,9 +65,7 @@ export default function UserManagementPage() {
                         </Avatar>
                         <div>
                           <p className="font-medium">{user.name}</p>
-                          <p className="text-xs text-muted-foreground">
-                            {user.email}
-                          </p>
+                          <p className="text-xs text-muted-foreground">{user.email}</p>
                         </div>
                       </div>
                     </td>
@@ -79,7 +78,7 @@ export default function UserManagementPage() {
                             : "bg-gray-100 text-gray-600"
                         }`}
                       >
-                        {user.status}
+                        {user.status === "Active" ? t("active") : t("inactive")}
                       </span>
                     </td>
                     <td className="py-3 text-right">

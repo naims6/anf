@@ -7,7 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Bell, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { usePathname, useRouter } from "@/i18n/routing";
+import { useAuth } from "@/hooks/useAuth";
+import { useTranslations } from "next-intl";
+import toast from "react-hot-toast";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,13 +20,24 @@ import {
 
 export function DashboardHeader() {
   const { locale, setLocale } = useLanguage();
-  const pathname = usePathname();
-  const router = useRouter();
+  const { logout, user } = useAuth();
+  const t = useTranslations("Dashboard.header");
 
   const toggleLanguage = () => {
     const newLocale = locale === "en" ? "bn" : "en";
     setLocale(newLocale);
-    router.replace(pathname, { locale: newLocale });
+    const newPath = window.location.pathname.replace(/^\/(en|bn)/, `/${newLocale}`);
+    window.location.href = newPath;
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      toast.success(t("logoutSuccess"));
+      window.location.href = `/${locale}`;
+    } catch {
+      toast.error(t("logoutFailed"));
+    }
   };
 
   return (
@@ -35,7 +48,7 @@ export function DashboardHeader() {
       <div className="ml-auto flex items-center gap-3">
         <div className="relative hidden md:block">
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="Search..." className="w-64 pl-8" />
+          <Input placeholder={t("search")} className="w-64 pl-8" />
         </div>
 
         <Button
@@ -65,17 +78,17 @@ export function DashboardHeader() {
             <Button variant="ghost" size="icon" className="rounded-full">
               <Avatar className="h-8 w-8">
                 <AvatarFallback className="bg-primary/10 text-xs text-primary">
-                  AD
+                  {user?.name?.split(" ").map((n) => n[0]).join("") || "AD"}
                 </AvatarFallback>
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-48">
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem>{t("profile")}</DropdownMenuItem>
+            <DropdownMenuItem>{t("settings")}</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-destructive">
-              Logout
+            <DropdownMenuItem className="text-destructive" onClick={handleLogout}>
+              {t("logout")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

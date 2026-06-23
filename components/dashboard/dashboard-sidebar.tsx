@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ChevronRight } from "lucide-react"
+import { useTranslations } from "next-intl"
 import {
   Sidebar,
   SidebarContent,
@@ -26,6 +27,24 @@ import { navItems } from "./sidebar-items"
 
 export function DashboardSidebar() {
   const pathname = usePathname()
+  const t = useTranslations("Dashboard.sidebar")
+
+  const getLabel = (item: (typeof navItems)[number]) => {
+    const mapping: Record<string, string> = {
+      "Overview": "overview",
+      "HR Management": "hrManagement",
+      "Articles": "articles",
+    }
+    return t((mapping[item.label] || item.label) as any)
+  }
+
+  const getSubLabel = (label: string) => {
+    const key = label === "Employees" ? "employees"
+      : label === "User Management" ? "userManagement"
+      : label === "All Articles" ? "allArticles"
+      : label
+    return t(key as any)
+  }
 
   return (
     <Sidebar>
@@ -56,7 +75,7 @@ export function DashboardSidebar() {
                             isActive={pathname.startsWith(item.href)}
                           >
                             <item.icon />
-                            <span>{item.label}</span>
+                            <span>{getLabel(item)}</span>
                             <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
                           </SidebarMenuButton>
                         </CollapsibleTrigger>
@@ -68,7 +87,7 @@ export function DashboardSidebar() {
                                   asChild
                                   isActive={pathname === sub.href}
                                 >
-                                  <Link href={sub.href}>{sub.label}</Link>
+                                  <Link href={sub.href}>{getSubLabel(sub.label)}</Link>
                                 </SidebarMenuSubButton>
                               </SidebarMenuSubItem>
                             ))}
@@ -87,7 +106,7 @@ export function DashboardSidebar() {
                     >
                       <Link href={item.href}>
                         <item.icon />
-                        <span>{item.label}</span>
+                        <span>{getLabel(item)}</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -102,7 +121,7 @@ export function DashboardSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <Link href="/">Back to Site</Link>
+              <Link href="/">{t("backToSite")}</Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

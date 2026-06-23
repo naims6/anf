@@ -271,6 +271,65 @@
       }
     ]
   },
+  "Dashboard": {
+    "sidebar": {
+      "overview": "ওভারভিউ",
+      "hrManagement": "এইচআর ম্যানেজমেন্ট",
+      "employees": "কর্মচারী",
+      "userManagement": "ব্যবহারকারী ব্যবস্থাপনা",
+      "articles": "আর্টিকেল",
+      "allArticles": "সব আর্টিকেল",
+      "backToSite": "সাইটে ফিরে যান"
+    },
+    "header": {
+      "search": "অনুসন্ধান...",
+      "profile": "প্রোফাইল",
+      "settings": "সেটিংস",
+      "logout": "লগআউট",
+      "logoutSuccess": "সফলভাবে লগআউট করা হয়েছে",
+      "logoutFailed": "লগআউট ব্যর্থ হয়েছে"
+    },
+    "overview": {
+      "title": "ওভারভিউ",
+      "subtitle": "ফিরে আসায় স্বাগতম। আজ কী ঘটছে তা দেখুন।",
+      "totalEmployees": "মোট কর্মচারী",
+      "articles": "আর্টিকেল",
+      "pageViews": "পৃষ্ঠা দর্শন",
+      "engagement": "ব্যস্ততা",
+      "fromLastMonth": "গত মাস থেকে {change}",
+      "recentActivity": "সাম্প্রতিক কার্যক্রম",
+      "quickLinks": "দ্রুত লিংক",
+      "manageEmployees": "কর্মচারী ব্যবস্থাপনা",
+      "createArticle": "আর্টিকেল তৈরি করুন",
+      "viewReports": "রিপোর্ট দেখুন",
+      "settings": "সেটিংস"
+    },
+    "hr": {
+      "title": "এইচআর ম্যানেজমেন্ট",
+      "subtitle": "আপনার দল, কর্মচারী এবং ব্যবহারকারীর অনুমতি পরিচালনা করুন।",
+      "employees": "কর্মচারী",
+      "employeesDesc": "আপনার দলের সদস্যদের পরিচালনা করুন",
+      "userManagement": "ব্যবহারকারী ব্যবস্থাপনা",
+      "userManagementDesc": "ব্যবহারকারী, ভূমিকা এবং অনুমতি পরিচালনা করুন"
+    },
+    "employees": {
+      "title": "কর্মচারী",
+      "subtitle": "আপনার দল এবং কর্মচারীদের পরিচালনা করুন।",
+      "allEmployees": "সকল কর্মচারী",
+      "placeholder": "কর্মচারী তালিকা এবং ব্যবস্থাপনা এখানে প্রদর্শিত হবে।"
+    },
+    "userManagement": {
+      "title": "ব্যবহারকারী ব্যবস্থাপনা",
+      "subtitle": "ব্যবহারকারী, ভূমিকা এবং অনুমতি পরিচালনা করুন।",
+      "addUser": "ব্যবহারকারী যোগ করুন",
+      "searchUsers": "ব্যবহারকারী অনুসন্ধান...",
+      "allUsers": "সকল ব্যবহারকারী",
+      "role": "ভূমিকা",
+      "status": "অবস্থা",
+      "active": "সক্রিয়",
+      "inactive": "নিষ্ক্রিয়"
+    }
+  },
   "Auth": {
     "login": "লগইন",
     "register": "নিবন্ধন",

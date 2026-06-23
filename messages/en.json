@@ -271,6 +271,65 @@
       }
     ]
   },
+  "Dashboard": {
+    "sidebar": {
+      "overview": "Overview",
+      "hrManagement": "HR Management",
+      "employees": "Employees",
+      "userManagement": "User Management",
+      "articles": "Articles",
+      "allArticles": "All Articles",
+      "backToSite": "Back to Site"
+    },
+    "header": {
+      "search": "Search...",
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Logout",
+      "logoutSuccess": "Logged out successfully",
+      "logoutFailed": "Failed to logout"
+    },
+    "overview": {
+      "title": "Overview",
+      "subtitle": "Welcome back. Here's what's happening today.",
+      "totalEmployees": "Total Employees",
+      "articles": "Articles",
+      "pageViews": "Page Views",
+      "engagement": "Engagement",
+      "fromLastMonth": "{change} from last month",
+      "recentActivity": "Recent Activity",
+      "quickLinks": "Quick Links",
+      "manageEmployees": "Manage Employees",
+      "createArticle": "Create Article",
+      "viewReports": "View Reports",
+      "settings": "Settings"
+    },
+    "hr": {
+      "title": "HR Management",
+      "subtitle": "Manage your team, employees, and user permissions.",
+      "employees": "Employees",
+      "employeesDesc": "Manage your team members",
+      "userManagement": "User Management",
+      "userManagementDesc": "Manage users, roles, and permissions"
+    },
+    "employees": {
+      "title": "Employees",
+      "subtitle": "Manage your team and employees.",
+      "allEmployees": "All Employees",
+      "placeholder": "Employee list and management will appear here."
+    },
+    "userManagement": {
+      "title": "User Management",
+      "subtitle": "Manage users, roles, and permissions.",
+      "addUser": "Add User",
+      "searchUsers": "Search users...",
+      "allUsers": "All Users",
+      "role": "Role",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive"
+    }
+  },
   "Auth": {
     "login": "Login",
     "register": "Register",

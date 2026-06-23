@@ -52,11 +52,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = useCallback(async (credentials: LoginCredentials) => {
     const res = await authService.login(credentials);
-
-    if (!res.success) {
-      throw new Error(res.message || "Login failed");
-    }
-
     const { userInfo } = res.data;
 
     const partialUser: User = {

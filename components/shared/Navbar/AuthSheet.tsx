@@ -67,10 +67,8 @@ export default function AuthSheet() {
       await login({ email: data.email, password: data.password });
       toast.success("Logged in successfully");
       setIsOpen(false);
-    } catch (error) {
-      const message =
-        error instanceof Error ? error.message : "Invalid email or password";
-      toast.error(message);
+    } catch {
+      toast.error("Invalid email or password");
     }
   };
 

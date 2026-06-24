@@ -7,9 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Bell, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useAuth } from "@/hooks/useAuth";
 import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
+import { logoutAction } from "@/app/actions/auth";
+import { CurrentUser } from "@/lib/validations/auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,9 +19,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export function DashboardHeader() {
+export function DashboardHeader({ user }: { user: CurrentUser | null }) {
   const { locale, setLocale } = useLanguage();
-  const { logout, user } = useAuth();
   const t = useTranslations("Dashboard.header");
 
   const toggleLanguage = () => {
@@ -32,7 +32,7 @@ export function DashboardHeader() {
 
   const handleLogout = async () => {
     try {
-      await logout();
+      await logoutAction();
       toast.success(t("logoutSuccess"));
       window.location.href = `/${locale}`;
     } catch {

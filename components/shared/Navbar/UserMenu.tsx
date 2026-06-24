@@ -10,16 +10,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useAuth } from "@/hooks/useAuth";
 import toast from "react-hot-toast";
+import { logoutAction } from "@/app/actions/auth";
+import { CurrentUser } from "@/lib/validations/auth";
 
-export default function UserMenu() {
-  const { user, logout } = useAuth();
+export default function UserMenu({ user }: { user: CurrentUser }) {
   const router = useRouter();
 
   const handleLogout = async () => {
     try {
-      await logout();
+      await logoutAction();
       toast.success("Logged out successfully");
       router.refresh();
     } catch {

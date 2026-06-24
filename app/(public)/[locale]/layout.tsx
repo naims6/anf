@@ -1,5 +1,4 @@
 import StoreProvider from "@/Providers/StoreProviders";
-import { AuthProvider } from "@/contexts/AuthContext";
 import Navbar from "@/components/shared/Navbar/Navbar";
 import { Footer } from "@/components/shared/Footer/Footer";
 import { BottomNav } from "@/components/shared/Navbar/BottomNav";
@@ -8,6 +7,7 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {LanguageProvider} from '@/contexts/LanguageContext';
 import { Toaster } from 'react-hot-toast';
+import { getSession } from "@/app/actions/auth";
 
 export default async function RootLayout({
   children,
@@ -19,15 +19,15 @@ export default async function RootLayout({
 
   const {locale} = await params;
   const messages = await getMessages();
+  const session = await getSession();
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <LanguageProvider initialLocale={locale as 'en' | 'bn'}>
         <StoreProvider>
-          <AuthProvider>
-            <Navbar />
-            <BottomNav />
-            <FloatingActionButton />
+          <Navbar user={session?.user || null} />
+          <BottomNav />
+          <FloatingActionButton />
             <div className="min-h-[calc(100vh-600px)]">
               {children}
             </div>
@@ -43,7 +43,6 @@ export default async function RootLayout({
                 },
               }}
             />
-          </AuthProvider>
         </StoreProvider>
       </LanguageProvider>
     </NextIntlClientProvider>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import {
   Sheet,
@@ -23,19 +24,19 @@ import {
   type RegisterFormData,
 } from "@/lib/validations/auth";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useAuth } from "@/hooks/useAuth";
+import { loginAction } from "@/app/actions/auth";
 import enMessages from "@/messages/en.json";
 import bnMessages from "@/messages/bn.json";
 
 type AuthMode = "login" | "register";
 
 export default function AuthSheet() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<AuthMode>("login");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { locale } = useLanguage();
-  const { login } = useAuth();
 
   const messages = locale === "bn" ? bnMessages.Auth : enMessages.Auth;
   const t = (key: keyof typeof enMessages.Auth) => messages[key];
@@ -64,11 +65,16 @@ export default function AuthSheet() {
 
   const onLogin = async (data: LoginFormData) => {
     try {
-      await login({ email: data.email, password: data.password });
-      toast.success("Logged in successfully");
-      setIsOpen(false);
-    } catch {
-      toast.error("Invalid email or password");
+      const res = await loginAction({ email: data.email, password: data.password });
+      if (res.success) {
+        toast.success("Logged in successfully");
+        setIsOpen(false);
+        router.push(`/${locale}/dashboard`);
+      } else {
+        toast.error(res.error || "Invalid email or password");
+      }
+    } catch (err: any) {
+      toast.error(err.message || "Invalid email or password");
     }
   };
 

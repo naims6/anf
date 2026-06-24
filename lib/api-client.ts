@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fetcher, FetchOptions } from "@/lib/fetcher";
 
 export const apiClient = {

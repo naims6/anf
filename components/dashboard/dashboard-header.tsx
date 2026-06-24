@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { logoutAction } from "@/app/actions/auth";
+import { logoutAction } from "@/lib/actions/auth";
 import { CurrentUser } from "@/lib/validations/auth";
 import {
   DropdownMenu,
@@ -26,7 +26,10 @@ export function DashboardHeader({ user }: { user: CurrentUser | null }) {
   const toggleLanguage = () => {
     const newLocale = locale === "en" ? "bn" : "en";
     setLocale(newLocale);
-    const newPath = window.location.pathname.replace(/^\/(en|bn)/, `/${newLocale}`);
+    const newPath = window.location.pathname.replace(
+      /^\/(en|bn)/,
+      `/${newLocale}`,
+    );
     window.location.href = newPath;
   };
 
@@ -57,11 +60,19 @@ export function DashboardHeader({ user }: { user: CurrentUser | null }) {
           onClick={toggleLanguage}
           className="min-w-[72px] gap-1.5"
         >
-          <span className={locale === "bn" ? "font-semibold" : "text-muted-foreground"}>
+          <span
+            className={
+              locale === "bn" ? "font-semibold" : "text-muted-foreground"
+            }
+          >
             EN
           </span>
           <span className="text-xs text-muted-foreground">/</span>
-          <span className={locale === "en" ? "font-semibold" : "text-muted-foreground"}>
+          <span
+            className={
+              locale === "en" ? "font-semibold" : "text-muted-foreground"
+            }
+          >
             বাং
           </span>
         </Button>
@@ -78,7 +89,10 @@ export function DashboardHeader({ user }: { user: CurrentUser | null }) {
             <Button variant="ghost" size="icon" className="rounded-full">
               <Avatar className="h-8 w-8">
                 <AvatarFallback className="bg-primary/10 text-xs text-primary">
-                  {user?.name?.split(" ").map((n) => n[0]).join("") || "AD"}
+                  {user?.name
+                    ?.split(" ")
+                    .map((n) => n[0])
+                    .join("") || "AD"}
                 </AvatarFallback>
               </Avatar>
             </Button>
@@ -87,7 +101,10 @@ export function DashboardHeader({ user }: { user: CurrentUser | null }) {
             <DropdownMenuItem>{t("profile")}</DropdownMenuItem>
             <DropdownMenuItem>{t("settings")}</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-destructive" onClick={handleLogout}>
+            <DropdownMenuItem
+              className="text-destructive"
+              onClick={handleLogout}
+            >
               {t("logout")}
             </DropdownMenuItem>
           </DropdownMenuContent>

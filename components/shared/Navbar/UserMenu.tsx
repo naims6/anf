@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
-import { logoutAction } from "@/app/actions/auth";
+import { logoutAction } from "@/lib/actions/auth";
 import { CurrentUser } from "@/lib/validations/auth";
 
 export default function UserMenu({ user }: { user: CurrentUser }) {

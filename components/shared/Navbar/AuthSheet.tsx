@@ -24,7 +24,7 @@ import {
   type RegisterFormData,
 } from "@/lib/validations/auth";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { loginAction } from "@/app/actions/auth";
+import { loginAction } from "@/lib/actions/auth";
 import enMessages from "@/messages/en.json";
 import bnMessages from "@/messages/bn.json";
 
@@ -65,7 +65,10 @@ export default function AuthSheet() {
 
   const onLogin = async (data: LoginFormData) => {
     try {
-      const res = await loginAction({ email: data.email, password: data.password });
+      const res = await loginAction({
+        email: data.email,
+        password: data.password,
+      });
       if (res.success) {
         toast.success("Logged in successfully");
         setIsOpen(false);
@@ -277,7 +280,7 @@ export default function AuthSheet() {
                     {registerErrors.email.message}
                   </p>
                 )}
-                </div>
+              </div>
 
               <div className="space-y-2">
                 <Label htmlFor="reg-password">{t("passwordLabel")}</Label>

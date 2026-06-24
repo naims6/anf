@@ -1,15 +1,15 @@
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
-import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar"
-import { DashboardHeader } from "@/components/dashboard/dashboard-header"
-import { getSession } from "@/app/actions/auth"
-import { redirect } from "next/navigation"
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
+import { DashboardHeader } from "@/components/dashboard/dashboard-header";
+import { getSession } from "@/lib/actions/auth";
+import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({
   children,
   params,
 }: {
-  children: React.ReactNode
-  params: Promise<{ locale: string }>
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
   const session = await getSession();
@@ -28,5 +28,5 @@ export default async function DashboardLayout({
         </main>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }

@@ -8,7 +8,7 @@ import { Bell, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslations } from "next-intl";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { logoutAction } from "@/app/actions/auth";
 import { CurrentUser } from "@/lib/validations/auth";
 import {

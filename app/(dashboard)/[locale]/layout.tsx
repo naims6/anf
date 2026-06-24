@@ -2,7 +2,7 @@ import StoreProvider from "@/Providers/StoreProviders";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {LanguageProvider} from '@/contexts/LanguageContext';
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from '@/components/ui/sonner';
 
 export default async function DashboardRootLayout({
   children,
@@ -24,11 +24,6 @@ export default async function DashboardRootLayout({
               position="top-right"
               toastOptions={{
                 duration: 4000,
-                style: {
-                  borderRadius: "12px",
-                  padding: "12px 16px",
-                  fontSize: "14px",
-                },
               }}
             />
         </StoreProvider>

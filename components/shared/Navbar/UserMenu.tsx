@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { logoutAction } from "@/app/actions/auth";
 import { CurrentUser } from "@/lib/validations/auth";
 

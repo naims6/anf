@@ -6,7 +6,7 @@ import { FloatingActionButton } from "@/components/shared/FloatingButton/Floatin
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {LanguageProvider} from '@/contexts/LanguageContext';
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from '@/components/ui/sonner';
 import { getSession } from "@/app/actions/auth";
 
 export default async function RootLayout({
@@ -36,11 +36,6 @@ export default async function RootLayout({
               position="top-right"
               toastOptions={{
                 duration: 4000,
-                style: {
-                  borderRadius: "12px",
-                  padding: "12px 16px",
-                  fontSize: "14px",
-                },
               }}
             />
         </StoreProvider>

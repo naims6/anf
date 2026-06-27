@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, Suspense } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
@@ -14,6 +15,11 @@ import {
   ShieldCheck,
   Loader2,
   AlertTriangle,
+  ChevronLeft,
+  ChevronRight,
+  ArrowUpDown,
+  ArrowUp,
+  ArrowDown,
 } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -47,6 +53,7 @@ import {
   type RoleFormData,
   type Role,
   type Permission,
+  type PaginationMeta,
 } from "@/lib/validations/roles";
 import {
   getAllRoles,
@@ -56,14 +63,58 @@ import {
   getAllPermissions,
 } from "@/services/roleService";
 
-export default function RolesPage() {
+function RolesContent() {
   const t = useTranslations("Dashboard.roles");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // ─── Read params from URL ─────────────────────────────────────────────────
+  const page = Number(searchParams.get("page")) || 1;
+  const searchTerm = searchParams.get("searchTerm") || "";
+  const sortBy = searchParams.get("sortBy") || undefined;
+  const sortOrder = searchParams.get("sortOrder") || undefined;
+  const limit = Number(searchParams.get("limit")) || 5;
+
+  // ─── Debounced search input ────────────────────────────────────────────────
+  const [searchInput, setSearchInput] = useState(searchTerm);
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(null);
+
+  const updateParams = useCallback(
+    (updates: Record<string, string | undefined>) => {
+      const params = new URLSearchParams(searchParams.toString());
+      Object.entries(updates).forEach(([key, value]) => {
+        if (value) params.set(key, value);
+        else params.delete(key);
+      });
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    },
+    [searchParams, pathname, router],
+  );
+
+  // Sync searchInput when URL searchTerm changes externally
+  useEffect(() => {
+    setSearchInput(searchTerm);
+  }, [searchTerm]);
+
+  // Debounce search input → update URL
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      if (searchInput !== searchTerm) {
+        updateParams({ searchTerm: searchInput || undefined, page: "1" });
+      }
+    }, 400);
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, [searchInput, searchTerm, updateParams]);
 
   // ─── State ──────────────────────────────────────────────────────────────────
   const [roles, setRoles] = useState<Role[]>([]);
   const [allPermissions, setAllPermissions] = useState<Permission[]>([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
+  const [pagination, setPagination] = useState<PaginationMeta | null>(null);
   const [permsLoading, setPermsLoading] = useState(false);
   const permsFetched = useRef(false);
 
@@ -92,18 +143,24 @@ export default function RolesPage() {
 
   const selectedIds = watch("permissionIds");
 
-  // ─── Fetch roles on mount, permissions lazy when sheet opens ──────────────
+  // ─── Fetch roles whenever URL params change ────────────────────────────────
   const fetchData = useCallback(async () => {
     setLoading(true);
-    const res = await getAllRoles();
+    const res = await getAllRoles({ page, limit, searchTerm, sortBy, sortOrder });
     if (res.data) {
       setRoles(res.data);
+      if (res.pagination) setPagination(res.pagination);
     } else {
       toast.error(res.error || "Failed to load roles");
     }
     setLoading(false);
-  }, []);
+  }, [page, limit, searchTerm, sortBy, sortOrder]);
 
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  // ─── Permissions fetch────────────────────────────────────────────────────
   const ensurePermissions = useCallback(async () => {
     if (permsFetched.current) return;
     setPermsLoading(true);
@@ -116,21 +173,6 @@ export default function RolesPage() {
     }
     setPermsLoading(false);
   }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
-  // ─── Derived ────────────────────────────────────────────────────────────────
-  const filteredRoles = useMemo(
-    () =>
-      roles.filter(
-        (r) =>
-          r.name.toLowerCase().includes(search.toLowerCase()) ||
-          r.description.toLowerCase().includes(search.toLowerCase()),
-      ),
-    [roles, search],
-  );
 
   // ─── Handlers ───────────────────────────────────────────────────────────────
   const openAddSheet = () => {
@@ -221,23 +263,31 @@ export default function RolesPage() {
     );
   };
 
-  // ─── Render ─────────────────────────────────────────────────────────────────
-  if (loading) {
-    return (
-      <div className="space-y-6">
-        <Skeleton className="h-8 w-48" />
-        <Skeleton className="h-10 w-72" />
-        <Card>
-          <CardContent className="p-6">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <Skeleton key={i} className="mb-4 h-12 w-full" />
-            ))}
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+  const goToPage = (p: number) => {
+    updateParams({ page: String(p) });
+  };
 
+  // ─── Sort ──────────────────────────────────────────────────────────────────────
+  const toggleSort = (column: string) => {
+    if (sortBy !== column) {
+      updateParams({ sortBy: column, sortOrder: "asc" });
+    } else if (sortOrder === "asc") {
+      updateParams({ sortBy: column, sortOrder: "desc" });
+    } else {
+      updateParams({ sortBy: undefined, sortOrder: undefined });
+    }
+  };
+
+  const SortIcon = ({ column }: { column: string }) => {
+    if (sortBy !== column) return <ArrowUpDown className="ml-1 inline h-3 w-3 opacity-50" />;
+    return sortOrder === "asc" ? (
+      <ArrowUp className="ml-1 inline h-3 w-3 text-primary" />
+    ) : (
+      <ArrowDown className="ml-1 inline h-3 w-3 text-primary" />
+    );
+  };
+
+  // ─── Render ─────────────────────────────────────────────────────────────────
   return (
     <div className="space-y-6">
       {/* ── Header ───────────────────────────────────────────────────── */}
@@ -258,8 +308,8 @@ export default function RolesPage() {
         <Input
           placeholder={t("searchRoles")}
           className="pl-9"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
         />
       </div>
 
@@ -268,13 +318,21 @@ export default function RolesPage() {
         <CardHeader className="border-b px-6 py-4">
           <CardTitle className="text-base font-semibold">
             {t("allRoles")}
-            <span className="ml-2 text-xs font-normal text-muted-foreground">
-              ({filteredRoles.length})
-            </span>
+            {!loading && (
+              <span className="ml-2 text-xs font-normal text-muted-foreground">
+                ({roles.length})
+              </span>
+            )}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
-          {filteredRoles.length === 0 ? (
+          {loading ? (
+            <div className="p-6">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <Skeleton key={i} className="mb-4 h-12 w-full" />
+              ))}
+            </div>
+          ) : roles.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <Shield className="mb-3 h-10 w-10 text-muted-foreground/50" />
               <p className="text-sm text-muted-foreground">{t("noRoles")}</p>
@@ -284,14 +342,30 @@ export default function RolesPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b bg-muted/50 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    <th className="px-6 py-3">{t("name")}</th>
-                    <th className="px-6 py-3">{t("description")}</th>
+                    <th className="px-6 py-3">
+                      <button
+                        className="flex items-center gap-1 hover:text-foreground"
+                        onClick={() => toggleSort("name")}
+                      >
+                        {t("name")}
+                        <SortIcon column="name" />
+                      </button>
+                    </th>
+                    <th className="px-6 py-3">
+                      <button
+                        className="flex items-center gap-1 hover:text-foreground"
+                        onClick={() => toggleSort("description")}
+                      >
+                        {t("description")}
+                        <SortIcon column="description" />
+                      </button>
+                    </th>
                     <th className="px-6 py-3">{t("permissions")}</th>
                     <th className="px-6 py-3 text-right">{t("actions")}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredRoles.map((role) => (
+                  {roles.map((role) => (
                     <tr
                       key={role.id}
                       className="border-b last:border-0 transition-colors hover:bg-muted/30"
@@ -345,6 +419,46 @@ export default function RolesPage() {
           )}
         </CardContent>
       </Card>
+
+      {/* ── Pagination ──────────────────────────────────────────────────── */}
+      {pagination && pagination.totalPages > 1 && (
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-muted-foreground">
+            Page {pagination.page} of {pagination.totalPages} ({pagination.total} total)
+          </p>
+          <div className="flex items-center gap-1">
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={pagination.page <= 1}
+              onClick={() => goToPage(pagination.page - 1)}
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map(
+              (p) => (
+                <Button
+                  key={p}
+                  variant={p === pagination.page ? "default" : "outline"}
+                  size="sm"
+                  className="min-w-[2rem]"
+                  onClick={() => goToPage(p)}
+                >
+                  {p}
+                </Button>
+              ),
+            )}
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={pagination.page >= pagination.totalPages}
+              onClick={() => goToPage(pagination.page + 1)}
+            >
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      )}
 
       {/* ── Add / Edit Sheet ──────────────────────────────────────────── */}
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
@@ -474,7 +588,7 @@ export default function RolesPage() {
           <AlertDialogFooter>
             <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
             <AlertDialogAction
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              className="bg-destructive text-white hover:bg-destructive/90"
               onClick={confirmDelete}
             >
               {t("delete")}
@@ -483,5 +597,27 @@ export default function RolesPage() {
         </AlertDialogContent>
       </AlertDialog>
     </div>
+  );
+}
+
+export default function RolesPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="space-y-6">
+          <Skeleton className="h-8 w-48" />
+          <Skeleton className="h-10 w-72" />
+          <Card>
+            <CardContent className="p-6">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <Skeleton key={i} className="mb-4 h-12 w-full" />
+              ))}
+            </CardContent>
+          </Card>
+        </div>
+      }
+    >
+      <RolesContent />
+    </Suspense>
   );
 }

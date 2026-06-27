@@ -3,16 +3,26 @@
 
 import { cookies } from "next/headers"
 import { apiClient } from "@/lib/api-client"
-import type { RoleFormData, Role, Permission, ApiResponse } from "@/lib/validations/roles"
+import type { RoleFormData, Role, Permission, ApiResponse, RoleQueryParams } from "@/lib/validations/roles"
 
-export async function getAllRoles() {
+export async function getAllRoles(params?: RoleQueryParams) {
   try {
     const cookieStore = await cookies()
     const token = cookieStore.get("access_token")?.value
+    const queryParams: Record<string, string> = {}
+    if (params) {
+      if (params.page !== undefined) queryParams.page = String(params.page)
+      if (params.limit !== undefined) queryParams.limit = String(params.limit)
+      if (params.skip !== undefined) queryParams.skip = String(params.skip)
+      if (params.sortBy) queryParams.sortBy = params.sortBy
+      if (params.sortOrder) queryParams.sortOrder = params.sortOrder
+      if (params.searchTerm) queryParams.searchTerm = params.searchTerm
+    }
     const res = await apiClient.get<ApiResponse<Role[]>>("/role/get-all", {
       headers: { Authorization: `Bearer ${token}` },
+      params: queryParams,
     })
-    return { data: res.data }
+    return { data: res.data, pagination: res.pagination }
   } catch (error: any) {
     return { error: error.message || "Failed to fetch roles" }
   }

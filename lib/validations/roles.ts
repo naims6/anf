@@ -20,8 +20,25 @@ export interface Role {
   permissions: Permission[]
 }
 
+export interface PaginationMeta {
+  page: number
+  limit: number
+  total: number
+  totalPages: number
+}
+
 export interface ApiResponse<T> {
   success: boolean
   message: string
   data: T
+  pagination?: PaginationMeta
+}
+
+export interface RoleQueryParams {
+  page?: number
+  limit?: number
+  skip?: number
+  sortBy?: string
+  sortOrder?: string
+  searchTerm?: string
 }

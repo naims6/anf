@@ -24,7 +24,7 @@ import {
   type RegisterFormData,
 } from "@/lib/validations/auth";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { loginAction } from "@/lib/actions/auth";
+import { loginAction } from "@/services/authService";
 import enMessages from "@/messages/en.json";
 import bnMessages from "@/messages/bn.json";
 

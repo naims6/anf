@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { logoutAction } from "@/lib/actions/auth";
+import { logoutAction } from "@/services/authService";
 import { CurrentUser } from "@/lib/validations/auth";
 import {
   DropdownMenu,
@@ -92,7 +92,7 @@ export function DashboardHeader({ user }: { user: CurrentUser | null }) {
                   {user?.name
                     ?.split(" ")
                     .map((n) => n[0])
-                    .join("") || "AD"}
+                    .join("") || "Un"}
                 </AvatarFallback>
               </Avatar>
             </Button>

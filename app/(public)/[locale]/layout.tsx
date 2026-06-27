@@ -7,7 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { Toaster } from "@/components/ui/sonner";
-import { getSession } from "@/lib/actions/auth";
+import { getSession } from "@/services/authService";
 
 export default async function RootLayout({
   children,

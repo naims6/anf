@@ -40,7 +40,6 @@ export const navItems: NavItem[] = [
     href: "/dashboard/rbac",
     items: [
       { labelKey: "roles", href: "/dashboard/rbac/roles" },
-      { labelKey: "permissions", href: "/dashboard/rbac/permissions" },
       { labelKey: "users", href: "/dashboard/rbac/users" },
     ],
   },

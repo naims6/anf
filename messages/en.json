@@ -332,6 +332,28 @@
       "status": "Status",
       "active": "Active",
       "inactive": "Inactive"
+    },
+    "roles": {
+      "title": "Roles",
+      "subtitle": "Manage roles and their permissions.",
+      "addRole": "Add Role",
+      "addRoleDesc": "Create a new role with specific permissions.",
+      "editRole": "Edit Role",
+      "editRoleDesc": "Update the role's name, description, and permissions.",
+      "searchRoles": "Search roles...",
+      "allRoles": "All Roles",
+      "noRoles": "No roles found.",
+      "name": "Name",
+      "description": "Description",
+      "permissions": "Permissions",
+      "actions": "Actions",
+      "nameLabel": "Role Name",
+      "namePlaceholder": "e.g. article_writer",
+      "descLabel": "Description",
+      "descPlaceholder": "Describe the role's purpose...",
+      "cancel": "Cancel",
+      "save": "Save",
+      "update": "Update"
     }
   },
   "Auth": {

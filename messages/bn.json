@@ -332,6 +332,28 @@
       "status": "অবস্থা",
       "active": "সক্রিয়",
       "inactive": "নিষ্ক্রিয়"
+    },
+    "roles": {
+      "title": "ভূমিকা",
+      "subtitle": "ভূমিকা এবং তাদের অনুমতি পরিচালনা করুন।",
+      "addRole": "ভূমিকা যোগ করুন",
+      "addRoleDesc": "নির্দিষ্ট অনুমতি সহ একটি নতুন ভূমিকা তৈরি করুন।",
+      "editRole": "ভূমিকা সম্পাদনা করুন",
+      "editRoleDesc": "ভূমিকার নাম, বিবরণ এবং অনুমতি আপডেট করুন।",
+      "searchRoles": "ভূমিকা অনুসন্ধান...",
+      "allRoles": "সকল ভূমিকা",
+      "noRoles": "কোনো ভূমিকা পাওয়া যায়নি।",
+      "name": "নাম",
+      "description": "বিবরণ",
+      "permissions": "অনুমতি",
+      "actions": "কাজ",
+      "nameLabel": "ভূমিকার নাম",
+      "namePlaceholder": "যেমন: article_writer",
+      "descLabel": "বিবরণ",
+      "descPlaceholder": "ভূমিকার উদ্দেশ্য বর্ণনা করুন...",
+      "cancel": "বাতিল",
+      "save": "সংরক্ষণ",
+      "update": "আপডেট"
     }
   },
   "Auth": {

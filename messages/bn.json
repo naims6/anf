@@ -351,6 +351,9 @@
       "namePlaceholder": "যেমন: article_writer",
       "descLabel": "বিবরণ",
       "descPlaceholder": "ভূমিকার উদ্দেশ্য বর্ণনা করুন...",
+      "deleteRole": "ভূমিকা মুছুন",
+      "deleteRoleDesc": "আপনি কি {name} মুছতে চান? এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।",
+      "delete": "মুছুন",
       "cancel": "বাতিল",
       "save": "সংরক্ষণ",
       "update": "আপডেট"

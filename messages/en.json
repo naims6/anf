@@ -351,6 +351,9 @@
       "namePlaceholder": "e.g. article_writer",
       "descLabel": "Description",
       "descPlaceholder": "Describe the role's purpose...",
+      "deleteRole": "Delete Role",
+      "deleteRoleDesc": "Are you sure you want to delete {name}? This action cannot be undone.",
+      "delete": "Delete",
       "cancel": "Cancel",
       "save": "Save",
       "update": "Update"

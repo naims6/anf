@@ -14,7 +14,14 @@ export interface Permission {
 }
 
 export interface Role {
+  id: number
   name: string
   description: string
-  permissionIds: number[]
+  permissions: Permission[]
+}
+
+export interface ApiResponse<T> {
+  success: boolean
+  message: string
+  data: T
 }

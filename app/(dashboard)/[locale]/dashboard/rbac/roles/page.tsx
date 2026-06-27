@@ -1,17 +1,26 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useMemo, useCallback, useRef } from "react"
-import { useForm, Controller } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useTranslations } from "next-intl"
-import { toast } from "sonner"
-import { Search, Plus, Pencil, Trash2, Shield, ShieldCheck, Loader2, AlertTriangle } from "lucide-react"
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+import {
+  Search,
+  Plus,
+  Pencil,
+  Trash2,
+  Shield,
+  ShieldCheck,
+  Loader2,
+  AlertTriangle,
+} from "lucide-react";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Sheet,
   SheetContent,
@@ -20,7 +29,7 @@ import {
   SheetDescription,
   SheetClose,
   SheetFooter,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -30,41 +39,46 @@ import {
   AlertDialogFooter,
   AlertDialogCancel,
   AlertDialogAction,
-} from "@/components/ui/alert-dialog"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/alert-dialog";
+import { cn } from "@/lib/utils";
 
-import { roleSchema, type RoleFormData, type Role, type Permission } from "@/lib/validations/roles"
+import {
+  roleSchema,
+  type RoleFormData,
+  type Role,
+  type Permission,
+} from "@/lib/validations/roles";
 import {
   getAllRoles,
   createRole,
   updateRole,
   deleteRole,
   getAllPermissions,
-} from "@/services/roleService"
+} from "@/services/roleService";
 
 export default function RolesPage() {
-  const t = useTranslations("Dashboard.roles")
+  const t = useTranslations("Dashboard.roles");
 
   // ─── State ──────────────────────────────────────────────────────────────────
-  const [roles, setRoles] = useState<Role[]>([])
-  const [allPermissions, setAllPermissions] = useState<Permission[]>([])
-  const [loading, setLoading] = useState(true)
-  const [search, setSearch] = useState("")
-  const [permsLoading, setPermsLoading] = useState(false)
-  const permsFetched = useRef(false)
+  const [roles, setRoles] = useState<Role[]>([]);
+  const [allPermissions, setAllPermissions] = useState<Permission[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [permsLoading, setPermsLoading] = useState(false);
+  const permsFetched = useRef(false);
 
-  const [sheetOpen, setSheetOpen] = useState(false)
-  const [editingRole, setEditingRole] = useState<Role | null>(null)
-  const [submitting, setSubmitting] = useState(false)
-  const [deletingRole, setDeletingRole] = useState<Role | null>(null)
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [editingRole, setEditingRole] = useState<Role | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [deletingRole, setDeletingRole] = useState<Role | null>(null);
 
-  const isEditing = editingRole !== null
+  const isEditing = editingRole !== null;
 
   // ─── Form ────────────────────────────────────────────────────────────────────
   const form = useForm<RoleFormData>({
     resolver: zodResolver(roleSchema),
     defaultValues: { name: "", description: "", permissionIds: [] },
-  })
+  });
 
   const {
     register,
@@ -74,38 +88,38 @@ export default function RolesPage() {
     setValue,
     control,
     formState: { errors },
-  } = form
+  } = form;
 
-  const selectedIds = watch("permissionIds")
+  const selectedIds = watch("permissionIds");
 
   // ─── Fetch roles on mount, permissions lazy when sheet opens ──────────────
   const fetchData = useCallback(async () => {
-    setLoading(true)
-    const res = await getAllRoles()
+    setLoading(true);
+    const res = await getAllRoles();
     if (res.data) {
-      setRoles(res.data)
+      setRoles(res.data);
     } else {
-      toast.error(res.error || "Failed to load roles")
+      toast.error(res.error || "Failed to load roles");
     }
-    setLoading(false)
-  }, [])
+    setLoading(false);
+  }, []);
 
   const ensurePermissions = useCallback(async () => {
-    if (permsFetched.current) return
-    setPermsLoading(true)
-    const res = await getAllPermissions()
+    if (permsFetched.current) return;
+    setPermsLoading(true);
+    const res = await getAllPermissions();
     if (res.data) {
-      setAllPermissions(res.data)
-      permsFetched.current = true
+      setAllPermissions(res.data);
+      permsFetched.current = true;
     } else {
-      toast.error(res.error || "Failed to load permissions")
+      toast.error(res.error || "Failed to load permissions");
     }
-    setPermsLoading(false)
-  }, [])
+    setPermsLoading(false);
+  }, []);
 
   useEffect(() => {
-    fetchData()
-  }, [fetchData])
+    fetchData();
+  }, [fetchData]);
 
   // ─── Derived ────────────────────────────────────────────────────────────────
   const filteredRoles = useMemo(
@@ -116,82 +130,96 @@ export default function RolesPage() {
           r.description.toLowerCase().includes(search.toLowerCase()),
       ),
     [roles, search],
-  )
-  console.log({filteredRoles})
+  );
 
   // ─── Handlers ───────────────────────────────────────────────────────────────
   const openAddSheet = () => {
-    ensurePermissions()
-    setEditingRole(null)
-    reset({ name: "", description: "", permissionIds: [] })
-    setSheetOpen(true)
-  }
+    ensurePermissions();
+    setEditingRole(null);
+    reset({ name: "", description: "", permissionIds: [] });
+    setSheetOpen(true);
+  };
 
   const openEditSheet = (role: Role) => {
-    ensurePermissions()
-    setEditingRole(role)
+    ensurePermissions();
+    setEditingRole(role);
     reset({
       name: role.name,
       description: role.description,
       permissionIds: role.permissions.map((p) => p.id),
-    })
-    setSheetOpen(true)
-  }
+    });
+    setSheetOpen(true);
+  };
 
   const onSubmit = async (data: RoleFormData) => {
-    setSubmitting(true)
+    setSubmitting(true);
     if (isEditing && editingRole) {
-      const res = await updateRole(editingRole.id, data)
+      const res = await updateRole(editingRole.id, data);
       if (res.data) {
         setRoles((prev) =>
           prev.map((r) =>
             r.id === editingRole.id
-              ? { ...res.data!, permissions: res.data!.permissions || [] }
+              ? {
+                  ...r,
+                  name: data.name,
+                  description: data.description,
+                  permissions: allPermissions.filter((p) =>
+                    data.permissionIds.includes(p.id),
+                  ),
+                }
               : r,
           ),
-        )
-        toast.success("Role updated")
-        setSheetOpen(false)
+        );
+        toast.success("Role updated");
+        setSheetOpen(false);
       } else {
-        toast.error(res.error || "Failed to update role")
+        toast.error(res.error || "Failed to update role");
       }
     } else {
-      const res = await createRole(data)
+      const res = await createRole(data);
       if (res.data) {
-        setRoles((prev) => [...prev, { ...res.data!, permissions: res.data!.permissions || [] }])
-        toast.success("Role created")
-        setSheetOpen(false)
+        const newRole: Role = {
+          id: res.data.id,
+          name: data.name,
+          description: data.description,
+          permissions: allPermissions.filter((p) =>
+            data.permissionIds.includes(p.id),
+          ),
+        };
+        setRoles((prev) => [...prev, newRole]);
+        toast.success("Role created");
+        setSheetOpen(false);
       } else {
-        toast.error(res.error || "Failed to create role")
+        toast.error(res.error || "Failed to create role");
       }
     }
-    setSubmitting(false)
-  }
+    setSubmitting(false);
+  };
 
   const handleDelete = (role: Role) => {
-    setDeletingRole(role)
-  }
+    setDeletingRole(role);
+  };
 
   const confirmDelete = async () => {
-    if (!deletingRole) return
-    const res = await deleteRole(deletingRole.id)
+    if (!deletingRole) return;
+    const res = await deleteRole(deletingRole.id);
     if (res.success) {
-      setRoles((prev) => prev.filter((r) => r.id !== deletingRole.id))
-      toast.success("Role deleted")
+      setRoles((prev) => prev.filter((r) => r.id !== deletingRole.id));
+      toast.success("Role deleted");
     } else {
-      toast.error(res.error || "Failed to delete role")
+      toast.error(res.error || "Failed to delete role");
     }
-    setDeletingRole(null)
-  }
+    setDeletingRole(null);
+  };
 
   const togglePermission = (id: number) => {
-    const current = selectedIds || []
+    const current = selectedIds || [];
     setValue(
       "permissionIds",
       current.includes(id) ? current.filter((p) => p !== id) : [...current, id],
       { shouldValidate: true },
-    )
-  }
+    );
+  };
 
   // ─── Render ─────────────────────────────────────────────────────────────────
   if (loading) {
@@ -207,7 +235,7 @@ export default function RolesPage() {
           </CardContent>
         </Card>
       </div>
-    )
+    );
   }
 
   return (
@@ -343,7 +371,9 @@ export default function RolesPage() {
                   {...register("name")}
                 />
                 {errors.name && (
-                  <p className="text-xs text-destructive">{errors.name.message}</p>
+                  <p className="text-xs text-destructive">
+                    {errors.name.message}
+                  </p>
                 )}
               </div>
 
@@ -366,7 +396,9 @@ export default function RolesPage() {
                   )}
                 />
                 {errors.description && (
-                  <p className="text-xs text-destructive">{errors.description.message}</p>
+                  <p className="text-xs text-destructive">
+                    {errors.description.message}
+                  </p>
                 )}
               </div>
 
@@ -374,11 +406,15 @@ export default function RolesPage() {
                 <div className="flex items-center justify-between">
                   <Label>{t("permissions")}</Label>
                   {errors.permissionIds && (
-                    <p className="text-xs text-destructive">{errors.permissionIds.message}</p>
+                    <p className="text-xs text-destructive">
+                      {errors.permissionIds.message}
+                    </p>
                   )}
                 </div>
                 {allPermissions.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">No permissions available.</p>
+                  <p className="text-sm text-muted-foreground">
+                    No permissions available.
+                  </p>
                 ) : (
                   <div className="grid gap-2">
                     {allPermissions.map((perm) => (
@@ -386,7 +422,8 @@ export default function RolesPage() {
                         key={perm.id}
                         className={cn(
                           "flex cursor-pointer items-center gap-3 rounded-lg border px-4 py-3 text-sm transition-colors hover:bg-accent",
-                          (selectedIds || []).includes(perm.id) && "border-primary/50 bg-primary/5",
+                          (selectedIds || []).includes(perm.id) &&
+                            "border-primary/50 bg-primary/5",
                         )}
                       >
                         <input
@@ -410,7 +447,9 @@ export default function RolesPage() {
                 </Button>
               </SheetClose>
               <Button type="submit" disabled={submitting}>
-                {submitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {submitting && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
                 {isEditing ? t("update") : t("save")}
               </Button>
             </SheetFooter>
@@ -444,5 +483,5 @@ export default function RolesPage() {
         </AlertDialogContent>
       </AlertDialog>
     </div>
-  )
+  );
 }

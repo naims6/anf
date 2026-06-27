@@ -29,22 +29,8 @@ export function DashboardSidebar() {
   const pathname = usePathname()
   const t = useTranslations("Dashboard.sidebar")
 
-  const getLabel = (item: (typeof navItems)[number]) => {
-    const mapping: Record<string, string> = {
-      "Overview": "overview",
-      "HR Management": "hrManagement",
-      "Articles": "articles",
-    }
-    return t((mapping[item.label] || item.label) as any)
-  }
-
-  const getSubLabel = (label: string) => {
-    const key = label === "Employees" ? "employees"
-      : label === "User Management" ? "userManagement"
-      : label === "All Articles" ? "allArticles"
-      : label
-    return t(key as any)
-  }
+  // get level from nextintl
+  const tLabel = (key: string) => t(key)
 
   return (
     <Sidebar>
@@ -65,7 +51,7 @@ export function DashboardSidebar() {
                 if (item.items && item.items.length > 0) {
                   return (
                     <Collapsible
-                      key={item.label}
+                      key={item.labelKey}
                       defaultOpen={pathname.startsWith(item.href)}
                       className="group/collapsible"
                     >
@@ -75,7 +61,7 @@ export function DashboardSidebar() {
                             isActive={pathname.startsWith(item.href)}
                           >
                             <item.icon />
-                            <span>{getLabel(item)}</span>
+                            <span>{tLabel(item.labelKey)}</span>
                             <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
                           </SidebarMenuButton>
                         </CollapsibleTrigger>
@@ -87,7 +73,7 @@ export function DashboardSidebar() {
                                   asChild
                                   isActive={pathname === sub.href}
                                 >
-                                  <Link href={sub.href}>{getSubLabel(sub.label)}</Link>
+                                  <Link href={sub.href}>{tLabel(sub.labelKey)}</Link>
                                 </SidebarMenuSubButton>
                               </SidebarMenuSubItem>
                             ))}
@@ -99,14 +85,14 @@ export function DashboardSidebar() {
                 }
 
                 return (
-                  <SidebarMenuItem key={item.label}>
+                  <SidebarMenuItem key={item.labelKey}>
                     <SidebarMenuButton
                       asChild
                       isActive={pathname === item.href}
                     >
                       <Link href={item.href}>
                         <item.icon />
-                        <span>{getLabel(item)}</span>
+                            <span>{tLabel(item.labelKey)}</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

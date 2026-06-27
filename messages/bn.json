@@ -279,6 +279,10 @@
       "userManagement": "ব্যবহারকারী ব্যবস্থাপনা",
       "articles": "আর্টিকেল",
       "allArticles": "সব আর্টিকেল",
+      "rbac": "RBAC",
+      "roles": "ভূমিকা",
+      "permissions": "অনুমতি",
+      "users": "ব্যবহারকারী",
       "backToSite": "সাইটে ফিরে যান"
     },
     "header": {

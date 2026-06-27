@@ -279,6 +279,10 @@
       "userManagement": "User Management",
       "articles": "Articles",
       "allArticles": "All Articles",
+      "rbac": "RBAC",
+      "roles": "Roles",
+      "permissions": "Permissions",
+      "users": "Users",
       "backToSite": "Back to Site"
     },
     "header": {

@@ -3,36 +3,45 @@ import {
   Users,
   FileText,
   type LucideIcon,
+  Shield,
 } from "lucide-react";
 
 export interface NavItem {
-  label: string;
+  labelKey: string;
   icon: LucideIcon;
   href: string;
-  items?: { label: string; href: string }[];
+  items?: { labelKey: string; href: string }[];
 }
 
 export const navItems: NavItem[] = [
   {
-    label: "Overview",
+    labelKey: "overview",
     icon: LayoutDashboard,
     href: "/dashboard",
   },
   {
-    label: "HR Management",
+    labelKey: "hrManagement",
     icon: Users,
     href: "/dashboard/hr",
     items: [
-      { label: "Employees", href: "/dashboard/hr/employees" },
-      { label: "User Management", href: "/dashboard/hr/user-management" },
+      { labelKey: "employees", href: "/dashboard/hr/employees" },
+      { labelKey: "userManagement", href: "/dashboard/hr/user-management" },
     ],
   },
   {
-    label: "Articles",
+    labelKey: "articles",
     icon: FileText,
     href: "/dashboard/articles",
+    items: [{ labelKey: "allArticles", href: "/dashboard/articles" }],
+  },
+  {
+    labelKey: "rbac",
+    icon: Shield,
+    href: "/dashboard/rbac",
     items: [
-      { label: "All Articles", href: "/dashboard/articles" },
+      { labelKey: "roles", href: "/dashboard/rbac/roles" },
+      { labelKey: "permissions", href: "/dashboard/rbac/permissions" },
+      { labelKey: "users", href: "/dashboard/rbac/users" },
     ],
   },
 ];

@@ -8,6 +8,7 @@ import { Bell, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { logoutAction } from "@/services/authService";
 import { CurrentUser } from "@/lib/validations/auth";
@@ -21,6 +22,7 @@ import {
 
 export function DashboardHeader({ user }: { user: CurrentUser | null }) {
   const { locale, setLocale } = useLanguage();
+  const router = useRouter();
   const t = useTranslations("Dashboard.header");
 
   const toggleLanguage = () => {
@@ -98,7 +100,9 @@ export function DashboardHeader({ user }: { user: CurrentUser | null }) {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-48">
-            <DropdownMenuItem>{t("profile")}</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.push("/dashboard/profile")}>
+              {t("profile")}
+            </DropdownMenuItem>
             <DropdownMenuItem>{t("settings")}</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem

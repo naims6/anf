@@ -25,6 +25,29 @@ export interface Role {
   name: string
 }
 
+export interface UserDetails {
+  id: string
+  name: string
+  email: string
+  phone: string | null
+  status: string
+  roleId: number
+  createdAt: string
+  updatedAt: string
+  role: {
+    id: number
+    name: string
+  }
+  permissions: {
+    id: number
+    name: string
+  }[]
+  teams: {
+    id: number
+    name: string
+  }[]
+}
+
 export interface PaginationMeta {
   page: number
   limit: number

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef, Suspense } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
@@ -211,7 +212,10 @@ function UserManagementContent() {
                       className="border-b last:border-0 transition-colors hover:bg-muted/30"
                     >
                       <td className="px-6 py-4">
-                        <div className="flex items-center gap-3">
+                        <Link
+                          href={`/dashboard/hr/user-management/${user.id}`}
+                          className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+                        >
                           <Avatar className="h-8 w-8">
                             <AvatarFallback className="bg-primary/10 text-xs text-primary">
                               {getInitials(user.name)}
@@ -223,7 +227,7 @@ function UserManagementContent() {
                               {user.email}
                             </p>
                           </div>
-                        </div>
+                        </Link>
                       </td>
                       <td className="px-6 py-4">{user.role.name}</td>
                       <td className="px-6 py-4">

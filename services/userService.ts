@@ -3,7 +3,8 @@
 
 import { cookies } from "next/headers"
 import { apiClient } from "@/lib/api-client"
-import type { User, Role, PaginationMeta } from "@/lib/validations/users"
+import { getSession } from "@/services/authService"
+import type { User, Role, UserDetails, PaginationMeta } from "@/lib/validations/users"
 
 export async function getAllUsers(params?: {
   page?: number
@@ -48,6 +49,33 @@ export async function getAllRolesForUser() {
     return { data: res.data }
   } catch (error: any) {
     return { error: error.message || "Failed to fetch roles" }
+  }
+}
+
+export async function getMyProfile() {
+  try {
+    const session = await getSession()
+    if (!session) return { error: "Not authenticated" }
+    return getUserDetails(session.user.id)
+  } catch (error: any) {
+    return { error: error.message || "Failed to fetch profile" }
+  }
+}
+
+export async function getUserDetails(id: string) {
+  try {
+    const cookieStore = await cookies()
+    const token = cookieStore.get("access_token")?.value
+    const res = await apiClient.get<{
+      success: boolean
+      message: string
+      data: UserDetails
+    }>(`/user/details/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    return { data: res.data }
+  } catch (error: any) {
+    return { error: error.message || "Failed to fetch user details" }
   }
 }
 

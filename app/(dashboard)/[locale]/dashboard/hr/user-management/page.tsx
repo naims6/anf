@@ -38,6 +38,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import { useDebouncedSearch } from "@/hooks/use-debounced-search";
 import {
   createUserSchema,
   type CreateUserFormData,
@@ -54,43 +55,12 @@ import {
 function UserManagementContent() {
   const t = useTranslations("Dashboard.userManagement");
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
 
   const page = Number(searchParams.get("page")) || 1;
   const searchTerm = searchParams.get("searchTerm") || "";
   const limit = 10;
 
-  const [searchInput, setSearchInput] = useState(searchTerm);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>(null);
-
-  const updateParams = useCallback(
-    (updates: Record<string, string | undefined>) => {
-      const params = new URLSearchParams(searchParams.toString());
-      Object.entries(updates).forEach(([key, value]) => {
-        if (value) params.set(key, value);
-        else params.delete(key);
-      });
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    },
-    [searchParams, pathname, router],
-  );
-
-  useEffect(() => {
-    setSearchInput(searchTerm);
-  }, [searchTerm]);
-
-  useEffect(() => {
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => {
-      if (searchInput !== searchTerm) {
-        updateParams({ searchTerm: searchInput || undefined, page: "1" });
-      }
-    }, 400);
-    return () => {
-      if (debounceRef.current) clearTimeout(debounceRef.current);
-    };
-  }, [searchInput, searchTerm, updateParams]);
+  const [searchInput, setSearchInput, updateParams] = useDebouncedSearch("searchTerm");
 
   const [users, setUsers] = useState<User[]>([]);
   const [roles, setRoles] = useState<Role[]>([]);

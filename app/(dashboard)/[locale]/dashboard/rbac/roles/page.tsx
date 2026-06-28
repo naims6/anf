@@ -47,6 +47,7 @@ import {
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 import { cn } from "@/lib/utils";
+import { useDebouncedSearch } from "@/hooks/use-debounced-search";
 
 import {
   roleSchema,
@@ -66,8 +67,6 @@ import {
 function RolesContent() {
   const t = useTranslations("Dashboard.roles");
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
 
   // ─── Read params from URL ─────────────────────────────────────────────────
   const page = Number(searchParams.get("page")) || 1;
@@ -77,45 +76,14 @@ function RolesContent() {
   const limit = Number(searchParams.get("limit")) || 5;
 
   // ─── Debounced search input ────────────────────────────────────────────────
-  const [searchInput, setSearchInput] = useState(searchTerm);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>(null);
-
-  const updateParams = useCallback(
-    (updates: Record<string, string | undefined>) => {
-      const params = new URLSearchParams(searchParams.toString());
-      Object.entries(updates).forEach(([key, value]) => {
-        if (value) params.set(key, value);
-        else params.delete(key);
-      });
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    },
-    [searchParams, pathname, router],
-  );
-
-  // Sync searchInput when URL searchTerm changes externally
-  useEffect(() => {
-    setSearchInput(searchTerm);
-  }, [searchTerm]);
-
-  // Debounce search input → update URL
-  useEffect(() => {
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => {
-      if (searchInput !== searchTerm) {
-        updateParams({ searchTerm: searchInput || undefined, page: "1" });
-      }
-    }, 400);
-    return () => {
-      if (debounceRef.current) clearTimeout(debounceRef.current);
-    };
-  }, [searchInput, searchTerm, updateParams]);
+  const [searchInput, setSearchInput, updateParams] =
+    useDebouncedSearch("searchTerm");
 
   // ─── State ──────────────────────────────────────────────────────────────────
   const [roles, setRoles] = useState<Role[]>([]);
   const [allPermissions, setAllPermissions] = useState<Permission[]>([]);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState<PaginationMeta | null>(null);
-  const [permsLoading, setPermsLoading] = useState(false);
   const permsFetched = useRef(false);
 
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -146,7 +114,13 @@ function RolesContent() {
   // ─── Fetch roles whenever URL params change ────────────────────────────────
   const fetchData = useCallback(async () => {
     setLoading(true);
-    const res = await getAllRoles({ page, limit, searchTerm, sortBy, sortOrder });
+    const res = await getAllRoles({
+      page,
+      limit,
+      searchTerm,
+      sortBy,
+      sortOrder,
+    });
     if (res.data) {
       setRoles(res.data);
       if (res.pagination) setPagination(res.pagination);
@@ -163,7 +137,6 @@ function RolesContent() {
   // ─── Permissions fetch────────────────────────────────────────────────────
   const ensurePermissions = useCallback(async () => {
     if (permsFetched.current) return;
-    setPermsLoading(true);
     const res = await getAllPermissions();
     if (res.data) {
       setAllPermissions(res.data);
@@ -171,7 +144,6 @@ function RolesContent() {
     } else {
       toast.error(res.error || "Failed to load permissions");
     }
-    setPermsLoading(false);
   }, []);
 
   // ─── Handlers ───────────────────────────────────────────────────────────────
@@ -279,7 +251,8 @@ function RolesContent() {
   };
 
   const SortIcon = ({ column }: { column: string }) => {
-    if (sortBy !== column) return <ArrowUpDown className="ml-1 inline h-3 w-3 opacity-50" />;
+    if (sortBy !== column)
+      return <ArrowUpDown className="ml-1 inline h-3 w-3 opacity-50" />;
     return sortOrder === "asc" ? (
       <ArrowUp className="ml-1 inline h-3 w-3 text-primary" />
     ) : (
@@ -424,7 +397,8 @@ function RolesContent() {
       {pagination && pagination.totalPages > 1 && (
         <div className="flex items-center justify-between">
           <p className="text-sm text-muted-foreground">
-            Page {pagination.page} of {pagination.totalPages} ({pagination.total} total)
+            Page {pagination.page} of {pagination.totalPages} (
+            {pagination.total} total)
           </p>
           <div className="flex items-center gap-1">
             <Button

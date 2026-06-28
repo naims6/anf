@@ -45,6 +45,7 @@ async function changePassword(
 export async function loginAction(credentials: LoginCredentials) {
   try {
     const response = await login(credentials);
+    console.log("Response", response);
     const {
       accessToken,
       refreshToken: newRefreshToken,

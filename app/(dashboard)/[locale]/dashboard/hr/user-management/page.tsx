@@ -14,6 +14,8 @@ import {
   Users,
   ChevronLeft,
   ChevronRight,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -72,6 +74,7 @@ function UserManagementContent() {
   const [pagination, setPagination] = useState<PaginationMeta | null>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const referenceFetched = useRef(false);
 
   const form = useForm<CreateUserFormData>({
@@ -338,12 +341,27 @@ function UserManagementContent() {
 
               <div className="space-y-2">
                 <Label htmlFor="password">{t("passwordLabel")}</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder={t("passwordPlaceholder")}
-                  {...register("password")}
-                />
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder={t("passwordPlaceholder")}
+                    className="pr-10"
+                    {...register("password")}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    tabIndex={-1}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
+                  </button>
+                </div>
                 {errors.password && (
                   <p className="text-xs text-destructive">
                     {errors.password.message}

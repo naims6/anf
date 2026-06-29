@@ -3,17 +3,14 @@
 import { useState, useEffect, useCallback, useRef, Suspense } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
-  Search,
   Plus,
   Loader2,
   Users,
-  ChevronLeft,
-  ChevronRight,
   Eye,
   EyeOff,
 } from "lucide-react";
@@ -22,8 +19,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Sheet,
   SheetContent,
@@ -33,13 +36,6 @@ import {
   SheetClose,
   SheetFooter,
 } from "@/components/ui/sheet";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 import { useDebouncedSearch } from "@/hooks/use-debounced-search";
 import {
@@ -56,6 +52,13 @@ import {
   getAllTeamsForUser,
   createUser,
 } from "@/services/userService";
+
+import { SearchInput } from "@/components/shared/SearchInput";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { EmptyState } from "@/components/shared/EmptyState";
+import { Pagination } from "@/components/shared/Pagination";
+import { PageFallback } from "@/components/shared/PageFallback";
 
 function UserManagementContent() {
   const t = useTranslations("Dashboard.userManagement");
@@ -159,26 +162,22 @@ function UserManagementContent() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
-          <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
-        </div>
-        <Button onClick={openAddSheet}>
-          <Plus className="mr-2 h-4 w-4" />
-          {t("addUser")}
-        </Button>
-      </div>
+      <PageHeader
+        title={t("title")}
+        subtitle={t("subtitle")}
+        action={
+          <Button onClick={openAddSheet}>
+            <Plus className="mr-2 h-4 w-4" />
+            {t("addUser")}
+          </Button>
+        }
+      />
 
-      <div className="relative max-w-sm">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          placeholder={t("searchUsers")}
-          className="pl-9"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-      </div>
+      <SearchInput
+        placeholder={t("searchUsers")}
+        value={searchInput}
+        onChange={setSearchInput}
+      />
 
       <Card>
         <CardHeader className="border-b px-6 py-4">
@@ -193,16 +192,12 @@ function UserManagementContent() {
         </CardHeader>
         <CardContent className="p-0">
           {loading ? (
-            <div className="p-6">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <Skeleton key={i} className="mb-4 h-12 w-full" />
-              ))}
-            </div>
+            <TableSkeleton />
           ) : users.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <Users className="mb-3 h-10 w-10 text-muted-foreground/50" />
-              <p className="text-sm text-muted-foreground">{t("noUsers")}</p>
-            </div>
+            <EmptyState
+              icon={<Users className="h-10 w-10 text-muted-foreground/50" />}
+              message={t("noUsers")}
+            />
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -258,44 +253,13 @@ function UserManagementContent() {
         </CardContent>
       </Card>
 
-      {pagination && pagination.totalPages > 1 && (
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">
-            Page {pagination.page} of {pagination.totalPages} (
-            {pagination.total} total)
-          </p>
-          <div className="flex items-center gap-1">
-            <Button
-              variant="outline"
-              size="sm"
-              disabled={pagination.page <= 1}
-              onClick={() => goToPage(pagination.page - 1)}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map(
-              (p) => (
-                <Button
-                  key={p}
-                  variant={p === pagination.page ? "default" : "outline"}
-                  size="sm"
-                  className="min-w-[2rem]"
-                  onClick={() => goToPage(p)}
-                >
-                  {p}
-                </Button>
-              ),
-            )}
-            <Button
-              variant="outline"
-              size="sm"
-              disabled={pagination.page >= pagination.totalPages}
-              onClick={() => goToPage(pagination.page + 1)}
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
+      {pagination && (
+        <Pagination
+          page={pagination.page}
+          totalPages={pagination.totalPages}
+          total={pagination.total}
+          onPageChange={goToPage}
+        />
       )}
 
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
@@ -450,21 +414,7 @@ function UserManagementContent() {
 
 export default function UserManagementPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="space-y-6">
-          <Skeleton className="h-8 w-48" />
-          <Skeleton className="h-10 w-72" />
-          <Card>
-            <CardContent className="p-6">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <Skeleton key={i} className="mb-4 h-12 w-full" />
-              ))}
-            </CardContent>
-          </Card>
-        </div>
-      }
-    >
+    <Suspense fallback={<PageFallback />}>
       <UserManagementContent />
     </Suspense>
   );

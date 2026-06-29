@@ -7,26 +7,17 @@ import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
-  Search, Plus, Pencil, Trash2, Users,
-  Loader2, AlertTriangle, ChevronLeft, ChevronRight, Check, X,
+  Plus, Pencil, Trash2, Users,
+  Check, X,
 } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Skeleton } from "@/components/ui/skeleton";
-import {
-  Sheet, SheetContent, SheetHeader, SheetTitle,
-  SheetDescription, SheetClose, SheetFooter,
-} from "@/components/ui/sheet";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
-import {
-  AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle,
-  AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction,
-} from "@/components/ui/alert-dialog";
 
 import { useDebouncedSearch } from "@/hooks/use-debounced-search";
 import {
@@ -36,6 +27,15 @@ import type { Role } from "@/lib/validations/roles";
 import {
   getAllTeams, createTeam, updateTeam, deleteTeam, getAllRolesForTeam,
 } from "@/services/teamService";
+
+import { SearchInput } from "@/components/shared/SearchInput";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { EmptyState } from "@/components/shared/EmptyState";
+import { Pagination } from "@/components/shared/Pagination";
+import { DeleteAlertDialog } from "@/components/shared/DeleteAlertDialog";
+import { CrudSheet } from "@/components/shared/CrudSheet";
+import { PageFallback } from "@/components/shared/PageFallback";
 
 function TeamsContent() {
   const t = useTranslations("Dashboard.teams");
@@ -171,25 +171,21 @@ function TeamsContent() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
-          <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
-        </div>
-        <Button onClick={openAddSheet}>
-          <Plus className="mr-2 h-4 w-4" /> {t("addTeam")}
-        </Button>
-      </div>
+      <PageHeader
+        title={t("title")}
+        subtitle={t("subtitle")}
+        action={
+          <Button onClick={openAddSheet}>
+            <Plus className="mr-2 h-4 w-4" /> {t("addTeam")}
+          </Button>
+        }
+      />
 
-      <div className="relative max-w-sm">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          placeholder={t("searchTeams")}
-          className="pl-9"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-      </div>
+      <SearchInput
+        placeholder={t("searchTeams")}
+        value={searchInput}
+        onChange={setSearchInput}
+      />
 
       <Card>
         <CardHeader className="border-b px-6 py-4">
@@ -200,14 +196,12 @@ function TeamsContent() {
         </CardHeader>
         <CardContent className="p-0">
           {loading ? (
-            <div className="p-6">
-              {Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="mb-4 h-12 w-full" />)}
-            </div>
+            <TableSkeleton />
           ) : teams.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <Users className="mb-3 h-10 w-10 text-muted-foreground/50" />
-              <p className="text-sm text-muted-foreground">{t("noTeams")}</p>
-            </div>
+            <EmptyState
+              icon={<Users className="h-10 w-10 text-muted-foreground/50" />}
+              message={t("noTeams")}
+            />
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -275,157 +269,124 @@ function TeamsContent() {
         </CardContent>
       </Card>
 
-      {pagination && pagination.totalPages > 1 && (
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">
-            Page {pagination.page} of {pagination.totalPages} ({pagination.total} total)
-          </p>
-          <div className="flex items-center gap-1">
-            <Button variant="outline" size="sm" disabled={pagination.page <= 1} onClick={() => goToPage(pagination.page - 1)}>
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map((p) => (
-              <Button key={p} variant={p === pagination.page ? "default" : "outline"} size="sm" className="min-w-[2rem]" onClick={() => goToPage(p)}>
-                {p}
-              </Button>
-            ))}
-            <Button variant="outline" size="sm" disabled={pagination.page >= pagination.totalPages} onClick={() => goToPage(pagination.page + 1)}>
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
+      {pagination && (
+        <Pagination
+          page={pagination.page}
+          totalPages={pagination.totalPages}
+          total={pagination.total}
+          onPageChange={goToPage}
+        />
       )}
 
-      <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-        <SheetContent side="right" className="flex w-full flex-col sm:max-w-md">
-          <SheetHeader className="border-b px-6 py-5">
-            <SheetTitle className="text-lg">{isEditing ? t("editTeam") : t("addTeam")}</SheetTitle>
-            <SheetDescription>{isEditing ? t("editTeamDesc") : t("addTeamDesc")}</SheetDescription>
-          </SheetHeader>
-          <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-0 flex-1 flex-col">
-            <div className="min-h-0 flex-1 space-y-5 overflow-y-auto px-6 py-5">
-              <div className="space-y-2">
-                <Label htmlFor="name">{t("nameLabel")}</Label>
-                <Input id="name" placeholder={t("namePlaceholder")} {...register("name")} />
-                {errors.name && <p className="text-xs text-destructive">{errors.name.message}</p>}
-              </div>
-              <div className="space-y-2">
-                <Label>{t("parentTeamLabel")}</Label>
-                <Controller
-                  name="parentId"
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      value={field.value != null ? String(field.value) : "none"}
-                      onValueChange={(val) => field.onChange(val === "none" ? null : Number(val))}
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder={t("parentTeamPlaceholder")} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="none">{t("parentTeamPlaceholder")}</SelectItem>
-                        {filteredParents.map((team) => (
-                          <SelectItem key={team.id} value={String(team.id)}>{team.name}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label>{t("roleLabel")}</Label>
-                <Controller
-                  name="roleId"
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      value={field.value != null ? String(field.value) : "none"}
-                      onValueChange={(val) => field.onChange(val === "none" ? null : Number(val))}
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder={t("rolePlaceholder")} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="none">{t("rolePlaceholder")}</SelectItem>
-                        {roleOptions.map((role) => (
-                          <SelectItem key={role.id} value={String(role.id)}>{role.name}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-              </div>
-              <div className="flex items-start gap-3 rounded-lg border p-4">
-                <Controller
-                  name="isDefault"
-                  control={control}
-                  render={({ field }) => (
-                    <input
-                      type="checkbox"
-                      id="isDefault"
-                      checked={field.value}
-                      onChange={field.onChange}
-                      onBlur={field.onBlur}
-                      ref={field.ref}
-                      className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                    />
-                  )}
-                />
-                <div>
-                  <Label htmlFor="isDefault" className="font-medium">{t("isDefaultLabel")}</Label>
-                  <p className="text-xs text-muted-foreground">{t("isDefaultDesc")}</p>
-                </div>
-              </div>
-            </div>
-            <SheetFooter className="shrink-0 border-t px-6 py-4">
-              <SheetClose asChild>
-                <Button variant="outline" type="button" disabled={submitting}>{t("cancel")}</Button>
-              </SheetClose>
-              <Button type="submit" disabled={submitting}>
-                {submitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                {isEditing ? t("update") : t("save")}
-              </Button>
-            </SheetFooter>
-          </form>
-        </SheetContent>
-      </Sheet>
+      <CrudSheet
+        open={sheetOpen}
+        onOpenChange={setSheetOpen}
+        title={isEditing ? t("editTeam") : t("addTeam")}
+        description={isEditing ? t("editTeamDesc") : t("addTeamDesc")}
+        onSubmit={handleSubmit(onSubmit)}
+        submitting={submitting}
+        isEditing={isEditing}
+        saveLabel={t("save")}
+        updateLabel={t("update")}
+        cancelLabel={t("cancel")}
+      >
+        <div className="space-y-2">
+          <Label htmlFor="name">{t("nameLabel")}</Label>
+          <Input
+            id="name"
+            placeholder={t("namePlaceholder")}
+            {...register("name")}
+          />
+          {errors.name && <p className="text-xs text-destructive">{errors.name.message}</p>}
+        </div>
 
-      <AlertDialog open={deletingTeam !== null} onOpenChange={(open) => !open && setDeletingTeam(null)}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-destructive/10 sm:mx-0">
-              <AlertTriangle className="h-6 w-6 text-destructive" />
-            </div>
-            <AlertDialogTitle>{t("deleteTeam")}</AlertDialogTitle>
-            <AlertDialogDescription>{t("deleteTeamDesc", { name: deletingTeam?.name ?? "" })}</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
-            <AlertDialogAction className="bg-destructive text-white hover:bg-destructive/90" onClick={confirmDelete}>
-              {t("delete")}
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+        <div className="space-y-2">
+          <Label>{t("parentTeamLabel")}</Label>
+          <Controller
+            name="parentId"
+            control={control}
+            render={({ field }) => (
+              <Select
+                value={field.value != null ? String(field.value) : "none"}
+                onValueChange={(val) => field.onChange(val === "none" ? null : Number(val))}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder={t("parentTeamPlaceholder")} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="none">{t("parentTeamPlaceholder")}</SelectItem>
+                  {filteredParents.map((team) => (
+                    <SelectItem key={team.id} value={String(team.id)}>{team.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label>{t("roleLabel")}</Label>
+          <Controller
+            name="roleId"
+            control={control}
+            render={({ field }) => (
+              <Select
+                value={field.value != null ? String(field.value) : "none"}
+                onValueChange={(val) => field.onChange(val === "none" ? null : Number(val))}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder={t("rolePlaceholder")} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="none">{t("rolePlaceholder")}</SelectItem>
+                  {roleOptions.map((role) => (
+                    <SelectItem key={role.id} value={String(role.id)}>{role.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          />
+        </div>
+
+        <div className="flex items-start gap-3 rounded-lg border p-4">
+          <Controller
+            name="isDefault"
+            control={control}
+            render={({ field }) => (
+              <input
+                type="checkbox"
+                id="isDefault"
+                checked={field.value}
+                onChange={field.onChange}
+                onBlur={field.onBlur}
+                ref={field.ref}
+                className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+              />
+            )}
+          />
+          <div>
+            <Label htmlFor="isDefault" className="font-medium">{t("isDefaultLabel")}</Label>
+            <p className="text-xs text-muted-foreground">{t("isDefaultDesc")}</p>
+          </div>
+        </div>
+      </CrudSheet>
+
+      <DeleteAlertDialog
+        open={deletingTeam !== null}
+        onOpenChange={(open) => !open && setDeletingTeam(null)}
+        title={t("deleteTeam")}
+        description={t("deleteTeamDesc", { name: deletingTeam?.name ?? "" })}
+        onConfirm={confirmDelete}
+        confirmLabel={t("delete")}
+        cancelLabel={t("cancel")}
+      />
     </div>
   );
 }
 
 export default function TeamsPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="space-y-6">
-          <Skeleton className="h-8 w-48" />
-          <Skeleton className="h-10 w-72" />
-          <Card>
-            <CardContent className="p-6">
-              {Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="mb-4 h-12 w-full" />)}
-            </CardContent>
-          </Card>
-        </div>
-      }
-    >
+    <Suspense fallback={<PageFallback />}>
       <TeamsContent />
     </Suspense>
   );

@@ -3,20 +3,15 @@
 import { useState, useEffect, useCallback, useRef, Suspense } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
-  Search,
-  Plus,
   Pencil,
   Trash2,
   Shield,
   ShieldCheck,
-  Loader2,
-  AlertTriangle,
-  ChevronLeft,
-  ChevronRight,
+  Plus,
   ArrowUpDown,
   ArrowUp,
   ArrowDown,
@@ -26,26 +21,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Skeleton } from "@/components/ui/skeleton";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-  SheetClose,
-  SheetFooter,
-} from "@/components/ui/sheet";
-import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogCancel,
-  AlertDialogAction,
-} from "@/components/ui/alert-dialog";
 import { cn } from "@/lib/utils";
 import { useDebouncedSearch } from "@/hooks/use-debounced-search";
 
@@ -64,22 +39,28 @@ import {
   getAllPermissions,
 } from "@/services/roleService";
 
+import { SearchInput } from "@/components/shared/SearchInput";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { EmptyState } from "@/components/shared/EmptyState";
+import { Pagination } from "@/components/shared/Pagination";
+import { DeleteAlertDialog } from "@/components/shared/DeleteAlertDialog";
+import { CrudSheet } from "@/components/shared/CrudSheet";
+import { PageFallback } from "@/components/shared/PageFallback";
+
 function RolesContent() {
   const t = useTranslations("Dashboard.roles");
   const searchParams = useSearchParams();
 
-  // ─── Read params from URL ─────────────────────────────────────────────────
   const page = Number(searchParams.get("page")) || 1;
   const searchTerm = searchParams.get("searchTerm") || "";
   const sortBy = searchParams.get("sortBy") || undefined;
   const sortOrder = searchParams.get("sortOrder") || undefined;
   const limit = Number(searchParams.get("limit")) || 5;
 
-  // ─── Debounced search input ────────────────────────────────────────────────
   const [searchInput, setSearchInput, updateParams] =
     useDebouncedSearch("searchTerm");
 
-  // ─── State ──────────────────────────────────────────────────────────────────
   const [roles, setRoles] = useState<Role[]>([]);
   const [allPermissions, setAllPermissions] = useState<Permission[]>([]);
   const [loading, setLoading] = useState(true);
@@ -93,7 +74,6 @@ function RolesContent() {
 
   const isEditing = editingRole !== null;
 
-  // ─── Form ────────────────────────────────────────────────────────────────────
   const form = useForm<RoleFormData>({
     resolver: zodResolver(roleSchema),
     defaultValues: { name: "", description: "", permissionIds: [] },
@@ -111,7 +91,6 @@ function RolesContent() {
 
   const selectedIds = watch("permissionIds");
 
-  // ─── Fetch roles whenever URL params change ────────────────────────────────
   const fetchData = useCallback(async () => {
     setLoading(true);
     const res = await getAllRoles({
@@ -134,7 +113,6 @@ function RolesContent() {
     fetchData();
   }, [fetchData]);
 
-  // ─── Permissions fetch────────────────────────────────────────────────────
   const ensurePermissions = useCallback(async () => {
     if (permsFetched.current) return;
     const res = await getAllPermissions();
@@ -146,7 +124,6 @@ function RolesContent() {
     }
   }, []);
 
-  // ─── Handlers ───────────────────────────────────────────────────────────────
   const openAddSheet = () => {
     ensurePermissions();
     setEditingRole(null);
@@ -210,10 +187,6 @@ function RolesContent() {
     setSubmitting(false);
   };
 
-  const handleDelete = (role: Role) => {
-    setDeletingRole(role);
-  };
-
   const confirmDelete = async () => {
     if (!deletingRole) return;
     const res = await deleteRole(deletingRole.id);
@@ -239,7 +212,6 @@ function RolesContent() {
     updateParams({ page: String(p) });
   };
 
-  // ─── Sort ──────────────────────────────────────────────────────────────────────
   const toggleSort = (column: string) => {
     if (sortBy !== column) {
       updateParams({ sortBy: column, sortOrder: "asc" });
@@ -260,33 +232,25 @@ function RolesContent() {
     );
   };
 
-  // ─── Render ─────────────────────────────────────────────────────────────────
   return (
     <div className="space-y-6">
-      {/* ── Header ───────────────────────────────────────────────────── */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
-          <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
-        </div>
-        <Button onClick={openAddSheet}>
-          <Plus className="mr-2 h-4 w-4" />
-          {t("addRole")}
-        </Button>
-      </div>
+      <PageHeader
+        title={t("title")}
+        subtitle={t("subtitle")}
+        action={
+          <Button onClick={openAddSheet}>
+            <Plus className="mr-2 h-4 w-4" />
+            {t("addRole")}
+          </Button>
+        }
+      />
 
-      {/* ── Search ────────────────────────────────────────────────────── */}
-      <div className="relative max-w-sm">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          placeholder={t("searchRoles")}
-          className="pl-9"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-      </div>
+      <SearchInput
+        placeholder={t("searchRoles")}
+        value={searchInput}
+        onChange={setSearchInput}
+      />
 
-      {/* ── Table ─────────────────────────────────────────────────────── */}
       <Card>
         <CardHeader className="border-b px-6 py-4">
           <CardTitle className="text-base font-semibold">
@@ -300,16 +264,12 @@ function RolesContent() {
         </CardHeader>
         <CardContent className="p-0">
           {loading ? (
-            <div className="p-6">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <Skeleton key={i} className="mb-4 h-12 w-full" />
-              ))}
-            </div>
+            <TableSkeleton />
           ) : roles.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <Shield className="mb-3 h-10 w-10 text-muted-foreground/50" />
-              <p className="text-sm text-muted-foreground">{t("noRoles")}</p>
-            </div>
+            <EmptyState
+              icon={<Shield className="h-10 w-10 text-muted-foreground/50" />}
+              message={t("noRoles")}
+            />
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -378,7 +338,7 @@ function RolesContent() {
                           <Button
                             variant="ghost"
                             size="icon-sm"
-                            onClick={() => handleDelete(role)}
+                            onClick={() => setDeletingRole(role)}
                           >
                             <Trash2 className="h-4 w-4 text-destructive" />
                           </Button>
@@ -393,204 +353,118 @@ function RolesContent() {
         </CardContent>
       </Card>
 
-      {/* ── Pagination ──────────────────────────────────────────────────── */}
-      {pagination && pagination.totalPages > 1 && (
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">
-            Page {pagination.page} of {pagination.totalPages} (
-            {pagination.total} total)
-          </p>
-          <div className="flex items-center gap-1">
-            <Button
-              variant="outline"
-              size="sm"
-              disabled={pagination.page <= 1}
-              onClick={() => goToPage(pagination.page - 1)}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map(
-              (p) => (
-                <Button
-                  key={p}
-                  variant={p === pagination.page ? "default" : "outline"}
-                  size="sm"
-                  className="min-w-[2rem]"
-                  onClick={() => goToPage(p)}
-                >
-                  {p}
-                </Button>
-              ),
-            )}
-            <Button
-              variant="outline"
-              size="sm"
-              disabled={pagination.page >= pagination.totalPages}
-              onClick={() => goToPage(pagination.page + 1)}
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
+      {pagination && (
+        <Pagination
+          page={pagination.page}
+          totalPages={pagination.totalPages}
+          total={pagination.total}
+          onPageChange={goToPage}
+        />
       )}
 
-      {/* ── Add / Edit Sheet ──────────────────────────────────────────── */}
-      <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-        <SheetContent side="right" className="flex w-full flex-col sm:max-w-md">
-          <SheetHeader className="border-b px-6 py-5">
-            <SheetTitle className="text-lg">
-              {isEditing ? t("editRole") : t("addRole")}
-            </SheetTitle>
-            <SheetDescription>
-              {isEditing ? t("editRoleDesc") : t("addRoleDesc")}
-            </SheetDescription>
-          </SheetHeader>
+      <CrudSheet
+        open={sheetOpen}
+        onOpenChange={setSheetOpen}
+        title={isEditing ? t("editRole") : t("addRole")}
+        description={isEditing ? t("editRoleDesc") : t("addRoleDesc")}
+        onSubmit={handleSubmit(onSubmit)}
+        submitting={submitting}
+        isEditing={isEditing}
+        saveLabel={t("save")}
+        updateLabel={t("update")}
+        cancelLabel={t("cancel")}
+      >
+        <div className="space-y-2">
+          <Label htmlFor="name">{t("nameLabel")}</Label>
+          <Input
+            id="name"
+            placeholder={t("namePlaceholder")}
+            {...register("name")}
+          />
+          {errors.name && (
+            <p className="text-xs text-destructive">{errors.name.message}</p>
+          )}
+        </div>
 
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex min-h-0 flex-1 flex-col"
-          >
-            <div className="min-h-0 flex-1 space-y-6 overflow-y-auto px-6 py-5">
-              <div className="space-y-2">
-                <Label htmlFor="name">{t("nameLabel")}</Label>
-                <Input
-                  id="name"
-                  placeholder={t("namePlaceholder")}
-                  {...register("name")}
-                />
-                {errors.name && (
-                  <p className="text-xs text-destructive">
-                    {errors.name.message}
-                  </p>
-                )}
-              </div>
+        <div className="space-y-2">
+          <Label htmlFor="description">{t("descLabel")}</Label>
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <textarea
+                id="description"
+                rows={3}
+                placeholder={t("descPlaceholder")}
+                className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
+                value={field.value}
+                onChange={field.onChange}
+                onBlur={field.onBlur}
+                ref={field.ref}
+              />
+            )}
+          />
+          {errors.description && (
+            <p className="text-xs text-destructive">
+              {errors.description.message}
+            </p>
+          )}
+        </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="description">{t("descLabel")}</Label>
-                <Controller
-                  name="description"
-                  control={control}
-                  render={({ field }) => (
-                    <textarea
-                      id="description"
-                      rows={3}
-                      placeholder={t("descPlaceholder")}
-                      className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
-                      value={field.value}
-                      onChange={field.onChange}
-                      onBlur={field.onBlur}
-                      ref={field.ref}
-                    />
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <Label>{t("permissions")}</Label>
+            {errors.permissionIds && (
+              <p className="text-xs text-destructive">
+                {errors.permissionIds.message}
+              </p>
+            )}
+          </div>
+          {allPermissions.length === 0 ? (
+            <p className="text-sm text-muted-foreground">
+              No permissions available.
+            </p>
+          ) : (
+            <div className="grid gap-2">
+              {allPermissions.map((perm) => (
+                <label
+                  key={perm.id}
+                  className={cn(
+                    "flex cursor-pointer items-center gap-3 rounded-lg border px-4 py-3 text-sm transition-colors hover:bg-accent",
+                    (selectedIds || []).includes(perm.id) &&
+                      "border-primary/50 bg-primary/5",
                   )}
-                />
-                {errors.description && (
-                  <p className="text-xs text-destructive">
-                    {errors.description.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <Label>{t("permissions")}</Label>
-                  {errors.permissionIds && (
-                    <p className="text-xs text-destructive">
-                      {errors.permissionIds.message}
-                    </p>
-                  )}
-                </div>
-                {allPermissions.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">
-                    No permissions available.
-                  </p>
-                ) : (
-                  <div className="grid gap-2">
-                    {allPermissions.map((perm) => (
-                      <label
-                        key={perm.id}
-                        className={cn(
-                          "flex cursor-pointer items-center gap-3 rounded-lg border px-4 py-3 text-sm transition-colors hover:bg-accent",
-                          (selectedIds || []).includes(perm.id) &&
-                            "border-primary/50 bg-primary/5",
-                        )}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={(selectedIds || []).includes(perm.id)}
-                          onChange={() => togglePermission(perm.id)}
-                          className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                        />
-                        {perm.name}
-                      </label>
-                    ))}
-                  </div>
-                )}
-              </div>
+                >
+                  <input
+                    type="checkbox"
+                    checked={(selectedIds || []).includes(perm.id)}
+                    onChange={() => togglePermission(perm.id)}
+                    className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                  />
+                  {perm.name}
+                </label>
+              ))}
             </div>
+          )}
+        </div>
+      </CrudSheet>
 
-            <SheetFooter className="shrink-0 border-t px-6 py-4">
-              <SheetClose asChild>
-                <Button variant="outline" type="button" disabled={submitting}>
-                  {t("cancel")}
-                </Button>
-              </SheetClose>
-              <Button type="submit" disabled={submitting}>
-                {submitting && (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                )}
-                {isEditing ? t("update") : t("save")}
-              </Button>
-            </SheetFooter>
-          </form>
-        </SheetContent>
-      </Sheet>
-
-      <AlertDialog
+      <DeleteAlertDialog
         open={deletingRole !== null}
         onOpenChange={(open) => !open && setDeletingRole(null)}
-      >
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-destructive/10 sm:mx-0">
-              <AlertTriangle className="h-6 w-6 text-destructive" />
-            </div>
-            <AlertDialogTitle>{t("deleteRole")}</AlertDialogTitle>
-            <AlertDialogDescription>
-              {t("deleteRoleDesc", { name: deletingRole?.name ?? "" })}
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
-            <AlertDialogAction
-              className="bg-destructive text-white hover:bg-destructive/90"
-              onClick={confirmDelete}
-            >
-              {t("delete")}
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+        title={t("deleteRole")}
+        description={t("deleteRoleDesc", { name: deletingRole?.name ?? "" })}
+        onConfirm={confirmDelete}
+        confirmLabel={t("delete")}
+        cancelLabel={t("cancel")}
+      />
     </div>
   );
 }
 
 export default function RolesPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="space-y-6">
-          <Skeleton className="h-8 w-48" />
-          <Skeleton className="h-10 w-72" />
-          <Card>
-            <CardContent className="p-6">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <Skeleton key={i} className="mb-4 h-12 w-full" />
-              ))}
-            </CardContent>
-          </Card>
-        </div>
-      }
-    >
+    <Suspense fallback={<PageFallback />}>
       <RolesContent />
     </Suspense>
   );

@@ -24,7 +24,7 @@ export const navItems: NavItem[] = [
     icon: Users,
     href: "/dashboard/hr",
     items: [
-      { labelKey: "employees", href: "/dashboard/hr/employees" },
+      { labelKey: "teams", href: "/dashboard/hr/teams" },
       { labelKey: "userManagement", href: "/dashboard/hr/user-management" },
     ],
   },
@@ -32,15 +32,22 @@ export const navItems: NavItem[] = [
     labelKey: "articles",
     icon: FileText,
     href: "/dashboard/articles",
-    items: [{ labelKey: "allArticles", href: "/dashboard/articles" }],
+    items: [
+      { labelKey: "allArticles", href: "/dashboard/articles" },
+      {
+        labelKey: "addArticle",
+        href: "/dashboard/articles/create",
+      },
+      {
+        labelKey: "createCategory",
+        href: "/dashboard/articles/create-category",
+      },
+    ],
   },
   {
     labelKey: "rbac",
     icon: Shield,
     href: "/dashboard/rbac",
-    items: [
-      { labelKey: "roles", href: "/dashboard/rbac/roles" },
-      { labelKey: "users", href: "/dashboard/rbac/users" },
-    ],
+    items: [{ labelKey: "roles", href: "/dashboard/rbac/roles" }],
   },
 ];

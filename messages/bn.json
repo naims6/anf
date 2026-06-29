@@ -348,6 +348,8 @@
       "passwordPlaceholder": "একটি নিরাপদ পাসওয়ার্ড দিন",
       "roleLabel": "ভূমিকা",
       "rolePlaceholder": "একটি ভূমিকা নির্বাচন করুন",
+      "teamLabel": "টিম",
+      "teamPlaceholder": "কোনো টিম নেই",
       "cancel": "বাতিল",
       "save": "সংরক্ষণ"
     },

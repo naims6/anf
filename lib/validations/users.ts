@@ -5,6 +5,7 @@ export const createUserSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
   roleId: z.number().positive("Role is required"),
+  teamId: z.number().optional(),
 })
 
 export type CreateUserFormData = z.infer<typeof createUserSchema>
@@ -18,9 +19,18 @@ export interface User {
     id: number
     name: string
   }
+  team?: {
+    id: number
+    name: string
+  } | null
 }
 
 export interface Role {
+  id: number
+  name: string
+}
+
+export interface TeamOption {
   id: number
   name: string
 }

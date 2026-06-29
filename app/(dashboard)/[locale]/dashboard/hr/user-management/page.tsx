@@ -45,11 +45,13 @@ import {
   type CreateUserFormData,
   type User,
   type Role,
+  type TeamOption,
   type PaginationMeta,
 } from "@/lib/validations/users";
 import {
   getAllUsers,
   getAllRolesForUser,
+  getAllTeamsForUser,
   createUser,
 } from "@/services/userService";
 
@@ -65,15 +67,16 @@ function UserManagementContent() {
 
   const [users, setUsers] = useState<User[]>([]);
   const [roles, setRoles] = useState<Role[]>([]);
+  const [teams, setTeams] = useState<TeamOption[]>([]);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState<PaginationMeta | null>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const rolesFetched = useRef(false);
+  const referenceFetched = useRef(false);
 
   const form = useForm<CreateUserFormData>({
     resolver: zodResolver(createUserSchema),
-    defaultValues: { name: "", email: "", password: "", roleId: 0 },
+    defaultValues: { name: "", email: "", password: "", roleId: 0, teamId: undefined },
   });
 
   const {
@@ -100,20 +103,22 @@ function UserManagementContent() {
     fetchUsers();
   }, [fetchUsers]);
 
-  const ensureRoles = useCallback(async () => {
-    if (rolesFetched.current) return;
-    const res = await getAllRolesForUser();
-    if (res.data) {
-      setRoles(res.data);
-      rolesFetched.current = true;
-    } else {
-      toast.error(res.error || "Failed to load roles");
-    }
+  const ensureReferenceData = useCallback(async () => {
+    if (referenceFetched.current) return;
+    const [rolesRes, teamsRes] = await Promise.all([
+      getAllRolesForUser(),
+      getAllTeamsForUser(),
+    ]);
+    if (rolesRes.data) setRoles(rolesRes.data);
+    else toast.error(rolesRes.error || "Failed to load roles");
+    if (teamsRes.data) setTeams(teamsRes.data);
+    else toast.error(teamsRes.error || "Failed to load teams");
+    referenceFetched.current = true;
   }, []);
 
   const openAddSheet = () => {
-    ensureRoles();
-    reset({ name: "", email: "", password: "", roleId: 0 });
+    ensureReferenceData();
+    reset({ name: "", email: "", password: "", roleId: 0, teamId: undefined });
     setSheetOpen(true);
   };
 
@@ -123,7 +128,7 @@ function UserManagementContent() {
       name: data.name,
       email: data.email,
       password: data.password,
-      teamId: 3,
+      teamId: data.teamId,
       roleId: data.roleId,
     });
     if (res.data) {
@@ -374,6 +379,34 @@ function UserManagementContent() {
                     {errors.roleId.message}
                   </p>
                 )}
+              </div>
+
+              <div className="space-y-2">
+                <Label>{t("teamLabel")}</Label>
+                <Controller
+                  name="teamId"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      value={field.value != null ? String(field.value) : "none"}
+                      onValueChange={(val) =>
+                        field.onChange(val === "none" ? undefined : Number(val))
+                      }
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder={t("teamPlaceholder")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">{t("teamPlaceholder")}</SelectItem>
+                        {teams.map((team) => (
+                          <SelectItem key={team.id} value={String(team.id)}>
+                            {team.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
               </div>
             </div>
 

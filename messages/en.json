@@ -348,6 +348,8 @@
       "passwordPlaceholder": "Enter a secure password",
       "roleLabel": "Role",
       "rolePlaceholder": "Select a role",
+      "teamLabel": "Team",
+      "teamPlaceholder": "No team",
       "cancel": "Cancel",
       "save": "Save"
     },

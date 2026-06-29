@@ -133,3 +133,25 @@ export async function getSession() {
     return null;
   }
 }
+
+export async function changePasswordAction(
+  payload: ChangePasswordPayload,
+): Promise<{ success: boolean; message?: string; error?: string }> {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("access_token")?.value;
+    if (!token) return { success: false, error: "Not authenticated" };
+
+    const res = await apiClient.post<{ message: string }>(
+      "/admin/change-password",
+      payload,
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
+    return { success: true, message: res.message };
+  } catch (error: any) {
+    return {
+      success: false,
+      error: error.message || "Failed to change password",
+    };
+  }
+}

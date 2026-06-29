@@ -49,6 +49,7 @@ export type ChangePasswordPayload = z.infer<typeof changePasswordSchema>;
 
 /** User info returned from the backend login endpoint */
 export interface UserInfo {
+  id: string;
   email: string;
   name: string;
 }

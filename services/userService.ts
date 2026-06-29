@@ -3,7 +3,6 @@
 
 import { cookies } from "next/headers";
 import { apiClient } from "@/lib/api-client";
-import { getSession } from "@/services/authService";
 import type {
   User,
   Role,
@@ -60,9 +59,20 @@ export async function getAllRolesForUser() {
 
 export async function getMyProfile() {
   try {
-    const session = await getSession();
-    if (!session) return { error: "Not authenticated" };
-    return getUserDetails(session.user.id);
+    const cookieStore = await cookies();
+    const token = cookieStore.get("access_token")?.value;
+    if (!token) return { error: "Not authenticated" };
+
+    // Decode JWT payload to get user ID
+    const payloadBase64 = token.split('.')[1];
+    const payload = JSON.parse(
+      Buffer.from(payloadBase64, 'base64').toString(),
+    );
+    const userId = payload.sub || payload.id || payload.userId;
+
+    if (!userId) return { error: "Could not identify user" };
+
+    return getUserDetails(userId);
   } catch (error: any) {
     return { error: error.message || "Failed to fetch profile" };
   }

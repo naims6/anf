@@ -135,3 +135,58 @@ export async function createUser(data: {
     return { error: error.message || "Failed to create user" };
   }
 }
+
+export async function updateUser(id: string, data: {
+  name: string;
+  email: string;
+  teamId?: number;
+  roleId: number;
+}) {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("access_token")?.value;
+    const res = await apiClient.patch<{
+      success: boolean;
+      message: string;
+      data: User;
+    }>(`/user/update/${id}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return { data: res.data };
+  } catch (error: any) {
+    return { error: error.message || "Failed to update user" };
+  }
+}
+
+export async function deleteUser(id: string) {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("access_token")?.value;
+    await apiClient.delete<{
+      success: boolean;
+      message: string;
+    }>(`/user/delete/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return { success: true };
+  } catch (error: any) {
+    return { error: error.message || "Failed to delete user" };
+  }
+}
+
+export async function toggleUserStatus(id: string) {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("access_token")?.value;
+    const res = await apiClient.patch<{
+      success: boolean;
+      message: string;
+      data: User;
+    }>(`/user/toggle-status/${id}`, {}, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return { data: res.data };
+  } catch (error: any) {
+    return { error: error.message || "Failed to toggle user status" };
+  }
+}

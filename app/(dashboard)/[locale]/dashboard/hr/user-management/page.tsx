@@ -13,6 +13,9 @@ import {
   Users,
   Eye,
   EyeOff,
+  Pencil,
+  Trash2,
+  ToggleLeft,
 } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -40,7 +43,9 @@ import {
 import { useDebouncedSearch } from "@/hooks/use-debounced-search";
 import {
   createUserSchema,
+  updateUserSchema,
   type CreateUserFormData,
+  type UpdateUserFormData,
   type User,
   type Role,
   type TeamOption,
@@ -51,7 +56,12 @@ import {
   getAllRolesForUser,
   getAllTeamsForUser,
   createUser,
+  updateUser,
+  deleteUser,
+  toggleUserStatus,
 } from "@/services/userService";
+
+import { DeleteAlertDialog } from "@/components/shared/DeleteAlertDialog";
 
 import { SearchInput } from "@/components/shared/SearchInput";
 import { PageHeader } from "@/components/shared/PageHeader";
@@ -78,6 +88,10 @@ function UserManagementContent() {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [editingUser, setEditingUser] = useState<User | null>(null);
+  const [editSheetOpen, setEditSheetOpen] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deletingUserId, setDeletingUserId] = useState<string | null>(null);
   const referenceFetched = useRef(false);
 
   const form = useForm<CreateUserFormData>({
@@ -92,6 +106,19 @@ function UserManagementContent() {
     control,
     formState: { errors },
   } = form;
+
+  const editForm = useForm<UpdateUserFormData>({
+    resolver: zodResolver(updateUserSchema),
+    defaultValues: { name: "", email: "", roleId: 0, teamId: undefined },
+  });
+
+  const {
+    register: registerEdit,
+    handleSubmit: handleSubmitEdit,
+    reset: resetEdit,
+    control: controlEdit,
+    formState: { errors: editErrors },
+  } = editForm;
 
   const fetchUsers = useCallback(async () => {
     setLoading(true);
@@ -145,6 +172,66 @@ function UserManagementContent() {
       toast.error(res.error || "Failed to create user");
     }
     setSubmitting(false);
+  };
+
+  const openEditSheet = (user: User) => {
+    ensureReferenceData();
+    setEditingUser(user);
+    resetEdit({
+      name: user.name,
+      email: user.email,
+      roleId: user.role.id,
+      teamId: user.team?.id ?? undefined,
+    });
+    setEditSheetOpen(true);
+  };
+
+  const onEditSubmit = async (data: UpdateUserFormData) => {
+    if (!editingUser) return;
+    setSubmitting(true);
+    const res = await updateUser(editingUser.id, {
+      name: data.name,
+      email: data.email,
+      roleId: data.roleId,
+      teamId: data.teamId,
+    });
+    if (res.data) {
+      toast.success(t("updateSuccess"));
+      setEditSheetOpen(false);
+      setEditingUser(null);
+      fetchUsers();
+    } else {
+      toast.error(res.error || "Failed to update user");
+    }
+    setSubmitting(false);
+  };
+
+  const openDeleteDialog = (userId: string) => {
+    setDeletingUserId(userId);
+    setDeleteDialogOpen(true);
+  };
+
+  const onDeleteConfirm = async () => {
+    if (!deletingUserId) return;
+    const res = await deleteUser(deletingUserId);
+    if (res.success) {
+      toast.success(t("deleteSuccess"));
+      setDeleteDialogOpen(false);
+      setDeletingUserId(null);
+      fetchUsers();
+    } else {
+      toast.error(res.error || "Failed to delete user");
+    }
+  };
+
+  const onToggleStatus = async (userId: string) => {
+    const res = await toggleUserStatus(userId);
+    if (res.data) {
+      toast.success(t("statusToggled"));
+      fetchUsers();
+    } else {
+      toast.error(res.error || "Failed to toggle status");
+    }
   };
 
   const goToPage = (p: number) => {
@@ -206,6 +293,7 @@ function UserManagementContent() {
                     <th className="px-6 py-3">{t("name")}</th>
                     <th className="px-6 py-3">{t("role")}</th>
                     <th className="px-6 py-3">{t("status")}</th>
+                    <th className="px-6 py-3 text-right">{t("actions")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -243,6 +331,37 @@ function UserManagementContent() {
                         >
                           {user.status === "active" ? t("active") : t("inactive")}
                         </span>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <div className="flex items-center justify-end gap-1">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8"
+                            title={t("toggleStatus")}
+                            onClick={() => onToggleStatus(user.id)}
+                          >
+                            <ToggleLeft className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8"
+                            title={t("editUser")}
+                            onClick={() => openEditSheet(user)}
+                          >
+                            <Pencil className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8 text-destructive hover:text-destructive"
+                            title={t("deleteUser")}
+                            onClick={() => openDeleteDialog(user.id)}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -408,6 +527,133 @@ function UserManagementContent() {
           </form>
         </SheetContent>
       </Sheet>
+
+      <Sheet open={editSheetOpen} onOpenChange={setEditSheetOpen}>
+        <SheetContent side="right" className="flex w-full flex-col sm:max-w-md">
+          <SheetHeader className="border-b px-6 py-5">
+            <SheetTitle className="text-lg">{t("editUser")}</SheetTitle>
+            <SheetDescription>{t("editUserDesc")}</SheetDescription>
+          </SheetHeader>
+
+          <form
+            onSubmit={handleSubmitEdit(onEditSubmit)}
+            className="flex min-h-0 flex-1 flex-col"
+          >
+            <div className="min-h-0 flex-1 space-y-5 overflow-y-auto px-6 py-5">
+              <div className="space-y-2">
+                <Label htmlFor="edit-name">{t("nameLabel")}</Label>
+                <Input
+                  id="edit-name"
+                  placeholder={t("namePlaceholder")}
+                  {...registerEdit("name")}
+                />
+                {editErrors.name && (
+                  <p className="text-xs text-destructive">
+                    {editErrors.name.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="edit-email">{t("emailLabel")}</Label>
+                <Input
+                  id="edit-email"
+                  type="email"
+                  placeholder={t("emailPlaceholder")}
+                  {...registerEdit("email")}
+                />
+                {editErrors.email && (
+                  <p className="text-xs text-destructive">
+                    {editErrors.email.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="edit-roleId">{t("roleLabel")}</Label>
+                <Controller
+                  name="roleId"
+                  control={controlEdit}
+                  render={({ field }) => (
+                    <Select
+                      value={field.value ? String(field.value) : undefined}
+                      onValueChange={(val) => field.onChange(Number(val))}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder={t("rolePlaceholder")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {roles.map((role) => (
+                          <SelectItem key={role.id} value={String(role.id)}>
+                            {role.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+                {editErrors.roleId && (
+                  <p className="text-xs text-destructive">
+                    {editErrors.roleId.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Label>{t("teamLabel")}</Label>
+                <Controller
+                  name="teamId"
+                  control={controlEdit}
+                  render={({ field }) => (
+                    <Select
+                      value={field.value != null ? String(field.value) : "none"}
+                      onValueChange={(val) =>
+                        field.onChange(val === "none" ? undefined : Number(val))
+                      }
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder={t("teamPlaceholder")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">{t("teamPlaceholder")}</SelectItem>
+                        {teams.map((team) => (
+                          <SelectItem key={team.id} value={String(team.id)}>
+                            {team.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+              </div>
+            </div>
+
+            <SheetFooter className="shrink-0 border-t px-6 py-4">
+              <SheetClose asChild>
+                <Button variant="outline" type="button" disabled={submitting}>
+                  {t("cancel")}
+                </Button>
+              </SheetClose>
+              <Button type="submit" disabled={submitting}>
+                {submitting && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                {t("save")}
+              </Button>
+            </SheetFooter>
+          </form>
+        </SheetContent>
+      </Sheet>
+
+      <DeleteAlertDialog
+        open={deleteDialogOpen}
+        onOpenChange={setDeleteDialogOpen}
+        title={t("deleteUserTitle")}
+        description={t("deleteUserConfirm")}
+        confirmLabel={t("deleteUser")}
+        cancelLabel={t("cancel")}
+        onConfirm={onDeleteConfirm}
+      />
     </div>
   );
 }

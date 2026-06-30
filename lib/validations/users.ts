@@ -10,6 +10,15 @@ export const createUserSchema = z.object({
 
 export type CreateUserFormData = z.infer<typeof createUserSchema>
 
+export const updateUserSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().min(1, "Email is required").email("Invalid email address"),
+  roleId: z.number().positive("Role is required"),
+  teamId: z.number().optional(),
+})
+
+export type UpdateUserFormData = z.infer<typeof updateUserSchema>
+
 export interface User {
   id: string
   name: string

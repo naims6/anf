@@ -444,7 +444,25 @@
       "cancel": "Cancel",
       "save": "Save",
       "update": "Update"
-    }
+    },
+    "article_title": "Create Article",
+    "article_subtitle": "Create a new article for the website",
+    "article_details": "Article Details",
+    "article_titleLabel": "Title",
+    "article_titlePlaceholder": "Enter article title",
+    "article_descriptionLabel": "Description",
+    "article_descriptionPlaceholder": "Enter article description",
+    "article_categoryLabel": "Category",
+    "article_categoryPlaceholder": "Select a category",
+    "article_allCategories": "All Categories",
+    "article_selectLeaf": "Select",
+    "article_changeCategory": "Change",
+    "article_noCategories": "No categories found",
+    "article_teamLabel": "Team",
+    "article_teamPlaceholder": "Select a team",
+    "article_submit": "Create Article",
+    "article_createSuccess": "Article created successfully",
+    "article_createError": "Failed to create article"
   },
   "Auth": {
     "login": "Login",

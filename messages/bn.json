@@ -444,7 +444,25 @@
       "cancel": "বাতিল",
       "save": "সংরক্ষণ",
       "update": "আপডেট"
-    }
+    },
+    "article_title": "আর্টিকেল তৈরি করুন",
+    "article_subtitle": "ওয়েবসাইটের জন্য একটি নতুন আর্টিকেল তৈরি করুন",
+    "article_details": "আর্টিকেলের বিবরণ",
+    "article_titleLabel": "শিরোনাম",
+    "article_titlePlaceholder": "আর্টিকেলের শিরোনাম লিখুন",
+    "article_descriptionLabel": "বিবরণ",
+    "article_descriptionPlaceholder": "আর্টিকেলের বিবরণ লিখুন",
+    "article_categoryLabel": "ক্যাটাগরি",
+    "article_categoryPlaceholder": "একটি ক্যাটাগরি নির্বাচন করুন",
+    "article_allCategories": "সব ক্যাটাগরি",
+    "article_selectLeaf": "নির্বাচন করুন",
+    "article_changeCategory": "পরিবর্তন",
+    "article_noCategories": "কোনো ক্যাটাগরি পাওয়া যায়নি",
+    "article_teamLabel": "টিম",
+    "article_teamPlaceholder": "একটি টিম নির্বাচন করুন",
+    "article_submit": "আর্টিকেল তৈরি করুন",
+    "article_createSuccess": "আর্টিকেল সফলভাবে তৈরি করা হয়েছে",
+    "article_createError": "আর্টিকেল তৈরি করতে ব্যর্থ হয়েছে"
   },
   "Auth": {
     "login": "লগইন",

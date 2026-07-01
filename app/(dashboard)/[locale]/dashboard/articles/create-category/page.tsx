@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, Suspense } from "react";
+import { useState, useEffect, useCallback, Suspense, Fragment } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
@@ -295,7 +295,9 @@ function CreateCategoryContent() {
           ) : (
             <TooltipProvider>
               <div className="divide-y">
-                {searchedTree.map((node) => renderTreeNode(node))}
+                {searchedTree.map((node) => (
+                  <Fragment key={node.id}>{renderTreeNode(node)}</Fragment>
+                ))}
               </div>
             </TooltipProvider>
           )}
@@ -515,7 +517,11 @@ function CreateCategoryContent() {
           </div>
         </div>
         {hasChildren && isExpanded && (
-          <div>{childCategories.map((child) => renderTreeNode(child))}</div>
+          <div>
+            {childCategories.map((child) => (
+              <Fragment key={child.id}>{renderTreeNode(child)}</Fragment>
+            ))}
+          </div>
         )}
       </div>
     );

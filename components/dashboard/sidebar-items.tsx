@@ -34,6 +34,7 @@ export const navItems: NavItem[] = [
     href: "/dashboard/articles",
     items: [
       { labelKey: "allArticles", href: "/dashboard/articles" },
+      { labelKey: "myArticles", href: "/dashboard/articles/my-articles" },
       {
         labelKey: "addArticle",
         href: "/dashboard/articles/create-article",

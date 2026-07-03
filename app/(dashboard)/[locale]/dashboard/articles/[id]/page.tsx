@@ -1,11 +1,9 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useCallback, useRef } from "react"
-import { useParams, useRouter } from "next/navigation"
-import { useTranslations } from "next-intl"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { toast } from "sonner"
+import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 import {
   ArrowLeft,
   Calendar,
@@ -14,345 +12,272 @@ import {
   Layers,
   Pencil,
   Trash2,
-  Loader2,
   Clock,
   CheckCircle,
   XCircle,
-} from "lucide-react"
+  Tag,
+  Users,
+  MessageSquare,
+  Shield,
+} from "lucide-react";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Skeleton } from "@/components/ui/skeleton"
 import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-  SheetClose,
-  SheetFooter,
-} from "@/components/ui/sheet"
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
-import type {
-  ArticleDetail,
-  UpdateArticleFormData,
-} from "@/lib/validations/articles"
-import type { Category } from "@/lib/validations/categories"
-import {
-  getArticleById,
-  updateArticle,
-  deleteArticle,
-} from "@/services/articleService"
-import { getAllCategories } from "@/services/categoryService"
-import { getAllTeams } from "@/services/teamService"
-import { updateArticleSchema } from "@/lib/validations/articles"
+import type { ArticleDetail } from "@/lib/validations/articles";
+import { getArticleById, deleteArticle } from "@/services/articleService";
 
-import { DeleteAlertDialog } from "@/components/shared/DeleteAlertDialog"
+import { DeleteAlertDialog } from "@/components/shared/DeleteAlertDialog";
 
 function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString("en-US", {
+  return new Date(dateStr).toLocaleDateString(undefined, {
     year: "numeric",
     month: "long",
     day: "numeric",
-  })
+  });
 }
 
 function formatDateTime(dateStr: string) {
-  return new Date(dateStr).toLocaleString("en-US", {
+  return new Date(dateStr).toLocaleString(undefined, {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
-  })
+  });
 }
 
 export default function ArticleDetailPage() {
-  const t = useTranslations("Dashboard.articleDetail")
-  const { id } = useParams<{ id: string }>()
-  const router = useRouter()
+  const t = useTranslations("Dashboard.articleDetail");
+  const { id } = useParams<{ id: string }>();
+  const router = useRouter();
 
-  const [article, setArticle] = useState<ArticleDetail | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [submitting, setSubmitting] = useState(false)
-  const [editSheetOpen, setEditSheetOpen] = useState(false)
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
-  const [teams, setTeams] = useState<{ id: number; name: string }[]>([])
-  const [categories, setCategories] = useState<Category[]>([])
-  const [selectedCatPath, setSelectedCatPath] = useState("")
-  const [currentCatList, setCurrentCatList] = useState<Category[]>([])
-  const [catBreadcrumb, setCatBreadcrumb] = useState<{ id: string; name: string }[]>([])
-  const [loadingCat, setLoadingCat] = useState(false)
-  const referenceFetched = useRef(false)
-
-  const editForm = useForm<UpdateArticleFormData>({
-    resolver: zodResolver(updateArticleSchema),
-    defaultValues: { title: "", description: "", categoryId: "", teamId: 0 },
-  })
-
-  const {
-    register: registerEdit,
-    handleSubmit: handleSubmitEdit,
-    reset: resetEdit,
-    setValue: setEditValue,
-    watch: watchEdit,
-    formState: { errors: editErrors },
-  } = editForm
+  const [article, setArticle] = useState<ArticleDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   useEffect(() => {
     async function load() {
-      setLoading(true)
-      const res = await getArticleById(id)
+      setLoading(true);
+      const res = await getArticleById(id);
       if (res.data) {
-        setArticle(res.data)
+        setArticle(res.data);
       } else {
-        toast.error(res.error || "Failed to load article")
+        toast.error(res.error || "Failed to load article");
       }
-      setLoading(false)
+      setLoading(false);
     }
-    load()
-  }, [id])
-
-  const ensureReferenceData = useCallback(async () => {
-    if (referenceFetched.current) return
-    const [teamsRes, catRes] = await Promise.all([
-      getAllTeams(),
-      getAllCategories(),
-    ])
-    if (teamsRes.data) setTeams(teamsRes.data)
-    else toast.error(teamsRes.error || "Failed to load teams")
-    if (catRes.data) {
-      setCategories(catRes.data)
-      setCurrentCatList(catRes.data)
-    }
-    referenceFetched.current = true
-  }, [])
-
-  const openEditSheet = () => {
-    if (!article) return
-    ensureReferenceData()
-    const pathSegments: string[] = []
-    const findPath = (cats: Category[], targetId: string, parents: string[]): string[] | null => {
-      for (const cat of cats) {
-        if (cat.id === targetId) return [...parents, cat.name]
-        if (cat.parent?.id) {
-          const result = findPath(categories, cat.parent.id, [...parents, cat.parent.name])
-          if (result) return result
-        }
-      }
-      return null
-    }
-    const path = findPath(categories, article.categoryId, [])
-    setSelectedCatPath(path ? path.join(" > ") : article.category.name)
-    setEditValue("categoryId", article.categoryId)
-    resetEdit({
-      title: article.title,
-      description: article.description,
-      categoryId: article.categoryId,
-      teamId: article.articleTeams[0]?.id ?? 0,
-    })
-    setEditSheetOpen(true)
-  }
-
-  const onEditSubmit = async (data: UpdateArticleFormData) => {
-    if (!article) return
-    setSubmitting(true)
-    const res = await updateArticle(article.id, data)
-    if (res.data) {
-      toast.success(t("updateSuccess"))
-      setEditSheetOpen(false)
-      const refreshed = await getArticleById(id)
-      if (refreshed.data) setArticle(refreshed.data)
-    } else {
-      toast.error(res.error || t("updateError"))
-    }
-    setSubmitting(false)
-  }
+    load();
+  }, [id]);
 
   const onDeleteConfirm = async () => {
-    if (!article) return
-    const res = await deleteArticle(article.id)
+    if (!article) return;
+    const res = await deleteArticle(article.id);
     if (res.success) {
-      toast.success(t("deleteSuccess"))
-      setDeleteDialogOpen(false)
-      router.push("/dashboard/articles/my-articles")
+      toast.success(t("deleteSuccess"));
+      setDeleteDialogOpen(false);
+      router.push("/dashboard/articles/my-articles");
     } else {
-      toast.error(res.error || t("deleteError"))
+      toast.error(res.error || t("deleteError"));
     }
-  }
-
-  function handleCategoryClick(cat: Category) {
-    const hasChildren = (cat._count?.childCategories ?? 0) > 0
-    if (hasChildren) {
-      setCatBreadcrumb((prev) => [...prev, { id: cat.id, name: cat.name }])
-      setLoadingCat(true)
-      getAllCategories(cat.id).then((res) => {
-        if (res.data) setCurrentCatList(res.data)
-        setLoadingCat(false)
-      })
-    } else {
-      const path = [...catBreadcrumb.map((b) => b.name), cat.name].join(" > ")
-      setSelectedCatPath(path)
-      setEditValue("categoryId", cat.id, { shouldValidate: true })
-    }
-  }
-
-  function handleBreadcrumbClick(index: number) {
-    const newBreadcrumb = index < 0 ? [] : catBreadcrumb.slice(0, index + 1)
-    setCatBreadcrumb(newBreadcrumb)
-    setLoadingCat(true)
-    const parentId = newBreadcrumb.length > 0 ? newBreadcrumb[newBreadcrumb.length - 1].id : undefined
-    getAllCategories(parentId).then((res) => {
-      if (res.data) setCurrentCatList(res.data)
-      setLoadingCat(false)
-    })
-  }
-
-  function handleChangeCategory() {
-    setEditValue("categoryId", "", { shouldValidate: false })
-    setSelectedCatPath("")
-    setCatBreadcrumb([])
-    getAllCategories().then((res) => {
-      if (res.data) setCurrentCatList(res.data)
-    })
-  }
-
-  const selectedCatId = watchEdit("categoryId")
+  };
 
   const statusBadge = (status: string) => {
     const colors: Record<string, string> = {
-      Published: "bg-green-100 text-green-700",
-      Pending: "bg-yellow-100 text-yellow-700",
-      Under_Review: "bg-blue-100 text-blue-700",
-    }
+      Published:
+        "bg-green-50 dark:bg-green-950/30 text-green-700 dark:text-green-400 border border-green-200/50",
+      Pending:
+        "bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border border-amber-200/50",
+      Under_Review:
+        "bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 border border-blue-200/50",
+    };
+    const dotColors: Record<string, string> = {
+      Published: "bg-green-600 dark:bg-green-400",
+      Pending: "bg-amber-600 dark:bg-amber-400",
+      Under_Review: "bg-blue-600 dark:bg-blue-400",
+    };
     return (
-      <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${colors[status] || "bg-gray-100 text-gray-600"}`}>
+      <span
+        className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${colors[status] || "bg-gray-100 text-gray-600"}`}
+      >
+        <span
+          className={cn(
+            "h-1.5 w-1.5 rounded-full animate-pulse",
+            dotColors[status] || "bg-gray-400",
+          )}
+        />
         {status.replace(/_/g, " ")}
       </span>
-    )
-  }
+    );
+  };
 
   const reviewStatusIcon = (status: string) => {
-    if (status === "Approved") return <CheckCircle className="h-4 w-4 text-green-600" />
-    if (status === "Rejected") return <XCircle className="h-4 w-4 text-red-600" />
-    return <Clock className="h-4 w-4 text-yellow-600" />
-  }
+    if (status === "Approved")
+      return (
+        <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
+      );
+    if (status === "Rejected")
+      return <XCircle className="h-5 w-5 text-red-600 dark:text-red-400" />;
+    return <Clock className="h-5 w-5 text-amber-600 dark:text-amber-400" />;
+  };
 
   if (loading) {
     return (
       <div className="space-y-6">
-        <Skeleton className="h-8 w-32" />
+        <Skeleton className="h-10 w-24 rounded-xl" />
         <div className="grid gap-6 md:grid-cols-3">
-          <Skeleton className="h-48 rounded-xl" />
-          <Skeleton className="h-48 rounded-xl md:col-span-2" />
+          <Skeleton className="h-52 rounded-2xl" />
+          <Skeleton className="h-52 rounded-2xl md:col-span-2" />
         </div>
-        <Skeleton className="h-64 rounded-xl" />
+        <Skeleton className="h-64 rounded-2xl" />
       </div>
-    )
+    );
   }
 
   if (!article) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-center">
-        <p className="text-muted-foreground">{t("notFound")}</p>
-        <Button variant="outline" className="mt-4" onClick={() => router.back()}>
+      <div className="flex flex-col items-center justify-center py-24 text-center">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-destructive/10 text-destructive mb-4">
+          <FileText className="h-7 w-7" />
+        </div>
+        <p className="text-muted-foreground font-semibold">{t("notFound")}</p>
+        <Button
+          variant="outline"
+          className="mt-4 rounded-xl shadow-xs"
+          onClick={() => router.back()}
+        >
           {t("goBack")}
         </Button>
       </div>
-    )
+    );
   }
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <Button variant="ghost" size="sm" onClick={() => router.back()}>
+      {/* Top action row */}
+      <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="w-fit hover:bg-muted rounded-xl transition-all"
+          onClick={() => router.back()}
+        >
           <ArrowLeft className="mr-2 h-4 w-4" />
           {t("back")}
         </Button>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={openEditSheet}>
+          <Button
+            variant="outline"
+            size="sm"
+            className="rounded-xl shadow-xs hover:bg-muted transition-all"
+            onClick={() => router.push(`/dashboard/articles/${id}/edit`)}
+          >
             <Pencil className="mr-2 h-4 w-4" />
             {t("edit")}
           </Button>
-          <Button variant="destructive" size="sm" onClick={() => setDeleteDialogOpen(true)}>
+          <Button
+            variant="destructive"
+            size="sm"
+            className="rounded-xl shadow-xs hover:bg-destructive/95 transition-all"
+            onClick={() => setDeleteDialogOpen(true)}
+          >
             <Trash2 className="mr-2 h-4 w-4" />
             {t("delete")}
           </Button>
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
-        <Card className="md:col-span-1">
+      <div className="grid gap-6 lg:grid-cols-3">
+        {/* Left Column: Summary Card */}
+        <Card className="lg:col-span-1 border border-border/80 shadow-xs rounded-2xl overflow-hidden">
+          <div className="h-2 bg-gradient-to-r from-primary/50 to-primary" />
           <CardContent className="flex flex-col items-center py-8">
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-              <FileText className="h-8 w-8 text-primary" />
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary shadow-xs">
+              <FileText className="h-8 w-8" />
             </div>
-            <h2 className="text-center text-xl font-semibold">{article.title}</h2>
-            <p className="mt-1 text-xs text-muted-foreground">/{article.slug}</p>
-            <div className="mt-3">{statusBadge(article.status)}</div>
+            <h2 className="text-center text-xl font-bold tracking-tight text-foreground/90 px-4">
+              {article.title}
+            </h2>
+            <code className="mt-2 text-[10px] bg-muted px-2.5 py-0.5 rounded-full text-muted-foreground font-semibold select-all">
+              /{article.slug}
+            </code>
+            <div className="mt-4">{statusBadge(article.status)}</div>
           </CardContent>
         </Card>
 
-        <div className="space-y-6 md:col-span-2">
-          <Card>
-            <CardHeader className="border-b px-6 py-4">
-              <CardTitle className="flex items-center gap-2 text-base">
-                <FileText className="h-4 w-4 text-muted-foreground" />
+        {/* Right Column: Metadata Details */}
+        <div className="space-y-6 lg:col-span-2">
+          <Card className="border border-border/80 shadow-xs rounded-2xl overflow-hidden">
+            <CardHeader className="border-b px-6 py-4 bg-muted/10">
+              <CardTitle className="flex items-center gap-2 text-base font-semibold">
+                <Shield className="h-4 w-4 text-primary" />
                 {t("details")}
               </CardTitle>
             </CardHeader>
-            <CardContent className="grid gap-4 p-6 sm:grid-cols-2">
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            <CardContent className="grid gap-6 p-6 sm:grid-cols-2">
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/80 flex items-center gap-1">
+                  <Tag className="h-3 w-3" />
                   {t("category")}
                 </p>
-                <p className="mt-1 text-sm font-medium">{article.category.name}</p>
+                <p className="text-sm font-semibold text-foreground/80 bg-muted/40 p-2 rounded-xl border border-border/40">
+                  {article.category.name}
+                </p>
               </div>
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/80 flex items-center gap-1">
+                  <User className="h-3 w-3" />
                   {t("author")}
                 </p>
-                <p className="mt-1 flex items-center gap-1.5 text-sm font-medium">
-                  <User className="h-3.5 w-3.5 text-muted-foreground" />
+                <p className="text-sm font-semibold text-foreground/80 bg-muted/40 p-2 rounded-xl border border-border/40">
                   {article.author.name}
                 </p>
               </div>
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/80 flex items-center gap-1">
+                  <Calendar className="h-3 w-3" />
                   {t("createdAt")}
                 </p>
-                <p className="mt-1 flex items-center gap-1.5 text-sm font-medium">
-                  <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
+                <p className="text-sm font-semibold text-foreground/80 bg-muted/40 p-2 rounded-xl border border-border/40">
                   {formatDate(article.createdAt!)}
                 </p>
               </div>
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/80 flex items-center gap-1">
+                  <Calendar className="h-3 w-3" />
                   {t("updatedAt")}
                 </p>
-                <p className="mt-1 flex items-center gap-1.5 text-sm font-medium">
-                  <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
+                <p className="text-sm font-semibold text-foreground/80 bg-muted/40 p-2 rounded-xl border border-border/40">
                   {formatDate(article.updatedAt!)}
                 </p>
               </div>
-              <div className="sm:col-span-2">
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              <div className="sm:col-span-2 space-y-1.5">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/80 flex items-center gap-1">
+                  <MessageSquare className="h-3 w-3" />
                   {t("description")}
                 </p>
-                <p className="mt-1 text-sm">{article.description}</p>
+                <div className="text-sm text-foreground/80 leading-relaxed bg-muted/20 p-4 rounded-xl border border-border/60 min-h-[80px]">
+                  {article.description}
+                </div>
               </div>
               {article.articleTeams.length > 0 && (
-                <div className="sm:col-span-2">
-                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                <div className="sm:col-span-2 space-y-1.5">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/80 flex items-center gap-1">
+                    <Users className="h-3 w-3" />
                     {t("teams")}
                   </p>
-                  <div className="mt-1 flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1.5">
                     {article.articleTeams.map((team) => (
                       <span
                         key={team.id ?? `team-${team.name}`}
-                        className="inline-flex items-center rounded-md bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary"
+                        className="inline-flex items-center rounded-xl bg-primary/10 border border-primary/20 px-3 py-1 text-xs font-semibold text-primary"
                       >
                         {team.name}
                       </span>
@@ -363,51 +288,58 @@ export default function ArticleDetailPage() {
             </CardContent>
           </Card>
 
+          {/* Timeline and Stages Reviews */}
           {article.articleReviews.length > 0 && (
-            <Card>
-              <CardHeader className="border-b px-6 py-4">
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Layers className="h-4 w-4 text-muted-foreground" />
+            <Card className="border border-border/80 shadow-xs rounded-2xl overflow-hidden">
+              <CardHeader className="border-b px-6 py-4 bg-muted/10">
+                <CardTitle className="flex items-center gap-2 text-base font-semibold">
+                  <Layers className="h-4 w-4 text-primary" />
                   {t("reviews")}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-0">
-                <div className="divide-y">
+              <CardContent className="p-6">
+                <div className="relative pl-6 border-l-2 border-border/80 space-y-8">
                   {article.articleReviews.map((review) => (
-                    <div key={review.id} className="px-6 py-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center gap-2">
-                          {reviewStatusIcon(review.status)}
-                          <div>
-                            <p className="text-sm font-medium">
-                              {t("reviewStage")} {review.reviewStage}
-                            </p>
-                            <p className="text-xs text-muted-foreground">
-                              {t("by")} {review.reviewer.name}
-                            </p>
-                          </div>
+                    <div
+                      key={review.id}
+                      className="relative group animate-in fade-in slide-in-from-left-3"
+                    >
+                      {/* Timeline dot */}
+                      <span className="absolute -left-[37px] top-1 flex h-6 w-6 items-center justify-center rounded-full bg-card border-2 border-border/80 shadow-xs transition-colors group-hover:border-primary/40">
+                        {reviewStatusIcon(review.status)}
+                      </span>
+
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                        <div>
+                          <p className="text-sm font-semibold text-foreground/80">
+                            {t("reviewStage")} {review.reviewStage}
+                          </p>
+                          <p className="text-xs text-muted-foreground font-medium mt-0.5">
+                            {t("by")} {review.reviewer.name}
+                          </p>
                         </div>
-                        <div className="text-right">
+                        <div className="text-left sm:text-right shrink-0">
                           <span
-                            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-bold ${
                               review.status === "Approved"
-                                ? "bg-green-100 text-green-700"
+                                ? "bg-green-50 dark:bg-green-950/30 text-green-700 dark:text-green-400 border border-green-200/50"
                                 : review.status === "Rejected"
-                                  ? "bg-red-100 text-red-700"
-                                  : "bg-yellow-100 text-yellow-700"
+                                  ? "bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 border border-red-200/50"
+                                  : "bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border border-amber-200/50"
                             }`}
                           >
                             {review.status}
                           </span>
-                          <p className="mt-1 text-xs text-muted-foreground">
+                          <p className="mt-1 text-[10px] text-muted-foreground font-semibold">
                             {formatDateTime(review.createdAt)}
                           </p>
                         </div>
                       </div>
+
                       {review.comments && (
-                        <p className="mt-2 text-sm text-muted-foreground">
-                          {review.comments}
-                        </p>
+                        <div className="mt-2.5 text-sm text-muted-foreground leading-relaxed bg-muted/30 p-3 rounded-xl border border-border/40 w-fit max-w-full italic">
+                          &quot;{review.comments}&quot;
+                        </div>
                       )}
                     </div>
                   ))}
@@ -417,173 +349,6 @@ export default function ArticleDetailPage() {
           )}
         </div>
       </div>
-
-      <Sheet open={editSheetOpen} onOpenChange={setEditSheetOpen}>
-        <SheetContent side="right" className="flex w-full flex-col sm:max-w-md">
-          <SheetHeader className="border-b px-6 py-5">
-            <SheetTitle className="text-lg">{t("editTitle")}</SheetTitle>
-            <SheetDescription>{t("editDesc")}</SheetDescription>
-          </SheetHeader>
-
-          <form
-            onSubmit={handleSubmitEdit(onEditSubmit)}
-            className="flex min-h-0 flex-1 flex-col"
-          >
-            <div className="min-h-0 flex-1 space-y-5 overflow-y-auto px-6 py-5">
-              <div className="space-y-2">
-                <Label htmlFor="edit-title">{t("titleLabel")}</Label>
-                <Input
-                  id="edit-title"
-                  placeholder={t("titlePlaceholder")}
-                  {...registerEdit("title")}
-                />
-                {editErrors.title && (
-                  <p className="text-xs text-destructive">{editErrors.title.message}</p>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="edit-description">{t("descLabel")}</Label>
-                <textarea
-                  id="edit-description"
-                  placeholder={t("descPlaceholder")}
-                  className="flex min-h-[120px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-                  {...registerEdit("description")}
-                />
-                {editErrors.description && (
-                  <p className="text-xs text-destructive">{editErrors.description.message}</p>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <Label>{t("categoryLabel")}</Label>
-                {selectedCatId ? (
-                  <div className="flex items-center gap-2 rounded-md border bg-muted/30 px-3 py-2.5 text-sm">
-                    <CheckCircle className="h-4 w-4 shrink-0 text-primary" />
-                    <span className="flex-1 truncate text-muted-foreground">
-                      {selectedCatPath}
-                    </span>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      className="h-7 shrink-0 text-xs"
-                      onClick={handleChangeCategory}
-                    >
-                      {t("changeCategory")}
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="rounded-md border">
-                    {catBreadcrumb.length > 0 && (
-                      <div className="flex flex-wrap items-center gap-1 border-b px-3 py-2 text-xs text-muted-foreground">
-                        <button
-                          type="button"
-                          className="hover:text-foreground transition-colors"
-                          onClick={() => handleBreadcrumbClick(-1)}
-                        >
-                          {t("allCategories")}
-                        </button>
-                        {catBreadcrumb.map((item, idx) => (
-                          <span key={item.id} className="flex items-center gap-1">
-                            <span>&gt;</span>
-                            <button
-                              type="button"
-                              className="hover:text-foreground transition-colors"
-                              onClick={() => handleBreadcrumbClick(idx)}
-                            >
-                              {item.name}
-                            </button>
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    {loadingCat ? (
-                      <div className="flex items-center justify-center py-8">
-                        <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-                      </div>
-                    ) : currentCatList.length === 0 ? (
-                      <div className="py-8 text-center text-sm text-muted-foreground">
-                        {t("noCategories")}
-                      </div>
-                    ) : (
-                      <div className="divide-y">
-                        {currentCatList.map((cat) => {
-                          const hasChildren = (cat._count?.childCategories ?? 0) > 0
-                          return (
-                            <button
-                              key={cat.id}
-                              type="button"
-                              className="flex w-full items-center gap-3 px-3 py-2.5 text-left text-sm transition-colors hover:bg-muted/50"
-                              onClick={() => handleCategoryClick(cat)}
-                            >
-                              <span className="flex-1 font-medium">{cat.name}</span>
-                              {hasChildren ? (
-                                <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                                  {(cat._count?.childCategories ?? 0) > 0 && (
-                                    <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] text-primary">
-                                      {cat._count?.childCategories}
-                                    </span>
-                                  )}
-                                  <span>&gt;</span>
-                                </span>
-                              ) : (
-                                <span className="text-[10px] text-muted-foreground">
-                                  {t("selectLeaf")}
-                                </span>
-                              )}
-                            </button>
-                          )
-                        })}
-                      </div>
-                    )}
-                  </div>
-                )}
-                {editErrors.categoryId && (
-                  <p className="text-xs text-destructive">{editErrors.categoryId.message}</p>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <Label>{t("teamLabel")}</Label>
-                <select
-                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-                  value={String(watchEdit("teamId"))}
-                  onChange={(e) =>
-                    setEditValue("teamId", Number(e.target.value), {
-                      shouldValidate: true,
-                    })
-                  }
-                >
-                  <option value="0" disabled>
-                    {t("teamPlaceholder")}
-                  </option>
-                  {teams.map((team) => (
-                    <option key={team.id} value={String(team.id)}>
-                      {team.name}
-                    </option>
-                  ))}
-                </select>
-                {editErrors.teamId && (
-                  <p className="text-xs text-destructive">{editErrors.teamId.message}</p>
-                )}
-              </div>
-            </div>
-
-            <SheetFooter className="shrink-0 border-t px-6 py-4">
-              <SheetClose asChild>
-                <Button variant="outline" type="button" disabled={submitting}>
-                  {t("cancel")}
-                </Button>
-              </SheetClose>
-              <Button type="submit" disabled={submitting}>
-                {submitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                {t("save")}
-              </Button>
-            </SheetFooter>
-          </form>
-        </SheetContent>
-      </Sheet>
 
       <DeleteAlertDialog
         open={deleteDialogOpen}
@@ -595,5 +360,5 @@ export default function ArticleDetailPage() {
         onConfirm={onDeleteConfirm}
       />
     </div>
-  )
+  );
 }

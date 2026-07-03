@@ -17,6 +17,10 @@ import {
   Trash2,
   Loader2,
   ToggleLeft,
+  Phone,
+  UserCheck,
+  UserX,
+  User
 } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -177,21 +181,22 @@ export default function UserProfilePage() {
   if (loading) {
     return (
       <div className="space-y-6">
-        <Skeleton className="h-8 w-32" />
+        <Skeleton className="h-10 w-36 rounded-xl" />
         <div className="grid gap-6 md:grid-cols-3">
-          <Skeleton className="h-48 rounded-xl" />
-          <Skeleton className="h-48 rounded-xl md:col-span-2" />
+          <Skeleton className="h-64 rounded-2xl" />
+          <Skeleton className="h-64 rounded-2xl md:col-span-2" />
         </div>
-        <Skeleton className="h-64 rounded-xl" />
+        <Skeleton className="h-48 rounded-2xl" />
       </div>
     );
   }
 
   if (!user) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-center">
-        <p className="text-muted-foreground">User not found</p>
-        <Button variant="outline" className="mt-4" onClick={() => router.back()}>
+      <div className="flex flex-col items-center justify-center py-20 text-center bg-card rounded-2xl border border-border">
+        <UserX className="h-12 w-12 text-muted-foreground/50 mb-3" />
+        <p className="text-muted-foreground font-medium">User not found</p>
+        <Button variant="outline" className="mt-4 rounded-xl" onClick={() => router.back()}>
           Go back
         </Button>
       </div>
@@ -199,90 +204,133 @@ export default function UserProfilePage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <Button variant="ghost" size="sm" onClick={() => router.back()}>
-          <ArrowLeft className="mr-2 h-4 w-4" />
+    <div className="space-y-8">
+      {/* Top Bar with refined navigation and actions */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <Button 
+          variant="outline" 
+          size="sm" 
+          onClick={() => router.back()}
+          className="h-10 rounded-xl px-4 border-border/80 hover:bg-muted/50 transition-colors"
+        >
+          <ArrowLeft className="mr-2 h-4 w-4 text-muted-foreground" />
           Back
         </Button>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={onToggleStatus}>
-            <ToggleLeft className="mr-2 h-4 w-4" />
+        
+        <div className="flex flex-wrap items-center gap-2">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={onToggleStatus}
+            className="h-10 rounded-xl px-4 border-border/80 hover:bg-primary/10 hover:text-primary transition-colors"
+          >
+            <ToggleLeft className="mr-2 h-4.5 w-4.5" />
             {t("toggleStatus")}
           </Button>
-          <Button variant="outline" size="sm" onClick={openEditSheet}>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={openEditSheet}
+            className="h-10 rounded-xl px-4 border-border/80 hover:bg-primary/10 hover:text-primary transition-colors"
+          >
             <Pencil className="mr-2 h-4 w-4" />
             {t("editUser")}
           </Button>
-          <Button variant="destructive" size="sm" onClick={() => setDeleteDialogOpen(true)}>
+          <Button 
+            variant="destructive" 
+            size="sm" 
+            onClick={() => setDeleteDialogOpen(true)}
+            className="h-10 rounded-xl px-4 shadow-sm hover:shadow-md hover:bg-destructive/95 transition-all"
+          >
             <Trash2 className="mr-2 h-4 w-4" />
             {t("deleteUser")}
           </Button>
         </div>
       </div>
 
+      {/* Main Content Grid */}
       <div className="grid gap-6 md:grid-cols-3">
-        <Card className="md:col-span-1">
-          <CardContent className="flex flex-col items-center py-8">
-            <Avatar className="mb-4 h-20 w-20">
-              <AvatarFallback className="bg-primary/10 text-2xl text-primary">
+        {/* Left Side: Avatar/Profile Card */}
+        <Card className="md:col-span-1 border border-border/80 shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden">
+          <div className="h-2 w-full bg-primary/25" />
+          <CardContent className="flex flex-col items-center py-10 px-6">
+            <Avatar className="mb-4 h-24 w-24 border-4 border-card shadow-md">
+              <AvatarFallback className="bg-primary/10 text-3xl font-extrabold text-primary">
                 {getInitials(user.name)}
               </AvatarFallback>
             </Avatar>
-            <h2 className="text-xl font-semibold">{user.name}</h2>
-            <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
-              <Mail className="h-3.5 w-3.5" />
+            <h2 className="text-xl font-bold text-center tracking-tight text-foreground/90">{user.name}</h2>
+            <p className="flex items-center gap-1.5 text-sm text-muted-foreground font-medium mt-1">
+              <Mail className="h-3.5 w-3.5 text-muted-foreground/60" />
               {user.email}
             </p>
-            <span
-              className={`mt-3 inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
-                user.status === "active"
-                  ? "bg-green-100 text-green-700"
-                  : "bg-gray-100 text-gray-600"
-              }`}
-            >
-              {user.status === "active" ? t("active") : t("inactive")}
-            </span>
+            
+            <div className="mt-5">
+              {user.status === "active" ? (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-green-50 dark:bg-green-950/30 px-3.5 py-1 text-xs font-semibold text-green-700 dark:text-green-400 border border-green-200/50">
+                  <span className="h-2 w-2 rounded-full bg-green-600 dark:bg-green-400 animate-pulse" />
+                  {t("active")}
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-50 dark:bg-slate-900/30 px-3.5 py-1 text-xs font-medium text-slate-600 dark:text-slate-400 border border-slate-200/40">
+                  <span className="h-2 w-2 rounded-full bg-slate-400 dark:bg-slate-500" />
+                  {t("inactive")}
+                </span>
+              )}
+            </div>
           </CardContent>
         </Card>
 
+        {/* Right Side: Account metadata details */}
         <div className="space-y-6 md:col-span-2">
-          <Card>
-            <CardHeader className="border-b px-6 py-4">
-              <CardTitle className="flex items-center gap-2 text-base">
-                <Shield className="h-4 w-4 text-muted-foreground" />
+          <Card className="border border-border/80 shadow-xs hover:shadow-md transition-all duration-300">
+            <CardHeader className="border-b px-6 py-4 bg-muted/20">
+              <CardTitle className="flex items-center gap-2 text-base font-semibold">
+                <Shield className="h-4 w-4 text-primary" />
                 Role & Teams
               </CardTitle>
             </CardHeader>
-            <CardContent className="grid gap-4 p-6 sm:grid-cols-2">
+            <CardContent className="grid gap-6 p-6 sm:grid-cols-2">
               <div>
-                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Role</p>
-                <p className="mt-1 text-sm font-medium">{user.role.name}</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Role</p>
+                <div className="mt-2">
+                  <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 dark:bg-emerald-950/30 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-400 border border-emerald-200/50">
+                    <Shield className="h-3 w-3" />
+                    {user.role.name}
+                  </span>
+                </div>
               </div>
+              
               <div>
-                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Teams</p>
-                <div className="mt-1 flex flex-wrap gap-1.5">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Teams</p>
+                <div className="mt-2 flex flex-wrap gap-1.5">
                   {user.teams.length > 0 ? (
                     user.teams.map((team) => (
                       <span
                         key={team.id}
-                        className="inline-flex items-center rounded-md bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary"
+                        className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-3 py-1 text-xs font-semibold text-primary border border-primary/20"
                       >
+                        <Users className="h-3 w-3" />
                         {team.name}
                       </span>
                     ))
                   ) : (
-                    <span className="text-sm text-muted-foreground">No teams</span>
+                    <span className="text-sm font-medium text-muted-foreground italic">No teams assigned</span>
                   )}
                 </div>
               </div>
-              <div>
-                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Phone</p>
-                <p className="mt-1 text-sm font-medium">{user.phone ?? "—"}</p>
+              
+              <div className="border-t border-border/40 pt-4">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Phone</p>
+                <p className="mt-2 flex items-center gap-2 text-sm font-semibold text-foreground/80">
+                  <Phone className="h-3.5 w-3.5 text-muted-foreground" />
+                  {user.phone ?? <span className="text-xs text-muted-foreground/60 italic font-normal">—</span>}
+                </p>
               </div>
-              <div>
-                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Member since</p>
-                <p className="mt-1 flex items-center gap-1.5 text-sm font-medium">
+              
+              <div className="border-t border-border/40 pt-4">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Member since</p>
+                <p className="mt-2 flex items-center gap-2 text-sm font-semibold text-foreground/80">
                   <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
                   {formatDate(user.createdAt)}
                 </p>
@@ -290,76 +338,87 @@ export default function UserProfilePage() {
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader className="border-b px-6 py-4">
-              <CardTitle className="flex items-center gap-2 text-base">
-                <Key className="h-4 w-4 text-muted-foreground" />
+          {/* Permissions detail card */}
+          <Card className="border border-border/80 shadow-xs hover:shadow-md transition-all duration-300">
+            <CardHeader className="border-b px-6 py-4 bg-muted/20">
+              <CardTitle className="flex items-center gap-2 text-base font-semibold">
+                <Key className="h-4 w-4 text-primary" />
                 Permissions
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               {user.permissions.length > 0 ? (
-                <div className="flex flex-wrap gap-2">
+                <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                   {user.permissions.map((perm) => (
-                    <span
+                    <div
                       key={perm.id}
-                      className="inline-flex items-center rounded-md border bg-muted/50 px-3 py-1.5 text-xs font-medium text-muted-foreground"
+                      className="flex items-center gap-2 rounded-xl border border-border/60 bg-muted/30 px-3 py-2 text-xs font-medium text-foreground/80 hover:border-primary/30 transition-all"
                     >
-                      {perm.name}
-                    </span>
+                      <Key className="h-3 w-3 text-primary/70 shrink-0" />
+                      <span className="truncate">{perm.name}</span>
+                    </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-muted-foreground">No permissions assigned</p>
+                <p className="text-sm font-medium text-muted-foreground italic">No permissions assigned</p>
               )}
             </CardContent>
           </Card>
         </div>
       </div>
 
+      {/* Restyled Sheet: Edit User Profile */}
       <Sheet open={editSheetOpen} onOpenChange={setEditSheetOpen}>
-        <SheetContent side="right" className="flex w-full flex-col sm:max-w-md">
-          <SheetHeader className="border-b px-6 py-5">
-            <SheetTitle className="text-lg">{t("editUser")}</SheetTitle>
-            <SheetDescription>{t("editUserDesc")}</SheetDescription>
+        <SheetContent side="right" className="flex w-full flex-col sm:max-w-md p-0 rounded-l-2xl border-l border-border/80">
+          <SheetHeader className="border-b px-6 py-5 bg-muted/10">
+            <SheetTitle className="text-lg font-bold">{t("editUser")}</SheetTitle>
+            <SheetDescription className="text-xs">{t("editUserDesc")}</SheetDescription>
           </SheetHeader>
 
           <form
             onSubmit={handleSubmitEdit(onEditSubmit)}
             className="flex min-h-0 flex-1 flex-col"
           >
-            <div className="min-h-0 flex-1 space-y-5 overflow-y-auto px-6 py-5">
+            <div className="min-h-0 flex-1 space-y-6 overflow-y-auto px-6 py-6">
               <div className="space-y-2">
-                <Label htmlFor="edit-name">{t("nameLabel")}</Label>
-                <Input
-                  id="edit-name"
-                  placeholder={t("namePlaceholder")}
-                  {...registerEdit("name")}
-                />
+                <Label htmlFor="edit-name" className="text-sm font-semibold">{t("nameLabel")}</Label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
+                  <Input
+                    id="edit-name"
+                    placeholder={t("namePlaceholder")}
+                    className="pl-9 h-10 border-border/80 focus-visible:ring-primary/20 rounded-xl"
+                    {...registerEdit("name")}
+                  />
+                </div>
                 {editErrors.name && (
-                  <p className="text-xs text-destructive">
+                  <p className="text-xs font-medium text-destructive">
                     {editErrors.name.message}
                   </p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="edit-email">{t("emailLabel")}</Label>
-                <Input
-                  id="edit-email"
-                  type="email"
-                  placeholder={t("emailPlaceholder")}
-                  {...registerEdit("email")}
-                />
+                <Label htmlFor="edit-email" className="text-sm font-semibold">{t("emailLabel")}</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
+                  <Input
+                    id="edit-email"
+                    type="email"
+                    placeholder={t("emailPlaceholder")}
+                    className="pl-9 h-10 border-border/80 focus-visible:ring-primary/20 rounded-xl"
+                    {...registerEdit("email")}
+                  />
+                </div>
                 {editErrors.email && (
-                  <p className="text-xs text-destructive">
+                  <p className="text-xs font-medium text-destructive">
                     {editErrors.email.message}
                   </p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="edit-roleId">{t("roleLabel")}</Label>
+                <Label htmlFor="edit-roleId" className="text-sm font-semibold">{t("roleLabel")}</Label>
                 <Controller
                   name="roleId"
                   control={controlEdit}
@@ -368,12 +427,12 @@ export default function UserProfilePage() {
                       value={field.value ? String(field.value) : undefined}
                       onValueChange={(val) => field.onChange(Number(val))}
                     >
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="w-full h-10 border-border/80 focus:ring-primary/20 rounded-xl">
                         <SelectValue placeholder={t("rolePlaceholder")} />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="rounded-xl">
                         {roles.map((role) => (
-                          <SelectItem key={role.id} value={String(role.id)}>
+                          <SelectItem key={role.id} value={String(role.id)} className="rounded-lg">
                             {role.name}
                           </SelectItem>
                         ))}
@@ -382,14 +441,14 @@ export default function UserProfilePage() {
                   )}
                 />
                 {editErrors.roleId && (
-                  <p className="text-xs text-destructive">
+                  <p className="text-xs font-medium text-destructive">
                     {editErrors.roleId.message}
                   </p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <Label>{t("teamLabel")}</Label>
+                <Label className="text-sm font-semibold">{t("teamLabel")}</Label>
                 <Controller
                   name="teamId"
                   control={controlEdit}
@@ -400,13 +459,13 @@ export default function UserProfilePage() {
                         field.onChange(val === "none" ? undefined : Number(val))
                       }
                     >
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="w-full h-10 border-border/80 focus:ring-primary/20 rounded-xl">
                         <SelectValue placeholder={t("teamPlaceholder")} />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="none">{t("teamPlaceholder")}</SelectItem>
+                      <SelectContent className="rounded-xl">
+                        <SelectItem value="none" className="rounded-lg">{t("teamPlaceholder")}</SelectItem>
                         {teams.map((team) => (
-                          <SelectItem key={team.id} value={String(team.id)}>
+                          <SelectItem key={team.id} value={String(team.id)} className="rounded-lg">
                             {team.name}
                           </SelectItem>
                         ))}
@@ -417,13 +476,13 @@ export default function UserProfilePage() {
               </div>
             </div>
 
-            <SheetFooter className="shrink-0 border-t px-6 py-4">
+            <SheetFooter className="shrink-0 border-t px-6 py-4 bg-muted/10">
               <SheetClose asChild>
-                <Button variant="outline" type="button" disabled={submitting}>
+                <Button variant="outline" type="button" className="rounded-xl" disabled={submitting}>
                   {t("cancel")}
                 </Button>
               </SheetClose>
-              <Button type="submit" disabled={submitting}>
+              <Button type="submit" className="rounded-xl px-5" disabled={submitting}>
                 {submitting && (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 )}

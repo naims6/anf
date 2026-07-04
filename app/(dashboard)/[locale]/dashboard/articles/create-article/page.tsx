@@ -31,6 +31,7 @@ import type { Category } from "@/lib/validations/categories";
 
 import { PageHeader } from "@/components/shared/PageHeader";
 import { PageFallback } from "@/components/shared/PageFallback";
+import { TiptapEditor } from "@/components/shared/TiptapEditor";
 
 function CreateArticleContent() {
   const t = useTranslations("Dashboard");
@@ -200,11 +201,10 @@ function CreateArticleContent() {
                     <Label htmlFor="description" className="text-sm font-semibold">
                       {sa("descriptionLabel")}
                     </Label>
-                    <textarea
-                      id="description"
+                    <TiptapEditor
+                      value={watch("description")}
+                      onChange={(html) => setValue("description", html, { shouldValidate: true })}
                       placeholder={sa("descriptionPlaceholder")}
-                      className="flex min-h-[140px] w-full rounded-xl border border-border/80 bg-transparent px-3 py-2 text-sm shadow-xs placeholder:text-muted-foreground/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50"
-                      {...register("description")}
                     />
                     {errors.description && (
                       <p className="text-xs font-medium text-destructive">

@@ -214,9 +214,6 @@ function MyArticlesContent() {
                             <p className="font-semibold text-foreground/80 group-hover:text-primary transition-colors duration-200 line-clamp-1">
                               {article.title}
                             </p>
-                            <p className="text-xs text-muted-foreground line-clamp-1 mt-1 font-medium">
-                              {article.description}
-                            </p>
                           </div>
                           <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground/0 group-hover:text-primary group-hover:translate-x-1 transition-all duration-200" />
                         </Link>

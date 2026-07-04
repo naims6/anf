@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, Suspense } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
@@ -11,10 +11,16 @@ import {
   ChevronRight,
   Check,
   Layers,
-  Tag
+  Tag,
 } from "lucide-react";
 
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -26,7 +32,6 @@ import {
 } from "@/lib/validations/articles";
 import { createArticle } from "@/services/articleService";
 import { getAllCategories } from "@/services/categoryService";
-import { getAllTeams } from "@/services/teamService";
 import type { Category } from "@/lib/validations/categories";
 
 import { PageHeader } from "@/components/shared/PageHeader";
@@ -38,10 +43,8 @@ function CreateArticleContent() {
   const sa = (key: string, vars?: Record<string, string | number | Date>) =>
     t(`article_${key}`, vars);
 
-  const [teams, setTeams] = useState<{ id: number; name: string }[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const referenceFetched = useRef(false);
 
   const form = useForm<CreateArticleFormData>({
     resolver: zodResolver(createArticleSchema),
@@ -49,7 +52,6 @@ function CreateArticleContent() {
       title: "",
       description: "",
       categoryId: "",
-      teamId: 0,
     },
   });
 
@@ -63,20 +65,6 @@ function CreateArticleContent() {
 
   const categoryId = watch("categoryId");
 
-  const ensureReferenceData = useCallback(async () => {
-    if (referenceFetched.current) return;
-    setLoading(true);
-    const [teamsRes] = await Promise.all([getAllTeams()]);
-    if (teamsRes.data) setTeams(teamsRes.data);
-    else toast.error(teamsRes.error || "Failed to load teams");
-    referenceFetched.current = true;
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    ensureReferenceData();
-  }, [ensureReferenceData]);
-
   const onSubmit = async (data: CreateArticleFormData) => {
     setSubmitting(true);
     const res = await createArticle(data);
@@ -86,7 +74,6 @@ function CreateArticleContent() {
         title: "",
         description: "",
         categoryId: "",
-        teamId: 0,
       });
       setSelectedCatPath("");
       setSelectedColIds([]);
@@ -126,7 +113,7 @@ function CreateArticleContent() {
     if (hasChildren) {
       setLoadingColIdx(colIdx + 1);
       setColumns((prev) => [...prev.slice(0, colIdx + 1)]);
-      
+
       const res = await getAllCategories(cat.id);
       if (res.data) {
         setColumns((prev) => [...prev.slice(0, colIdx + 1), res.data]);
@@ -136,11 +123,14 @@ function CreateArticleContent() {
       setLoadingColIdx(null);
     } else {
       setColumns((prev) => prev.slice(0, colIdx + 1));
-      const pathNames = newSelectedIds.map((id, idx) => {
-        const found = idx === colIdx ? cat : columns[idx]?.find((c) => c.id === id);
-        return found ? found.name : "";
-      }).filter(Boolean);
-      
+      const pathNames = newSelectedIds
+        .map((id, idx) => {
+          const found =
+            idx === colIdx ? cat : columns[idx]?.find((c) => c.id === id);
+          return found ? found.name : "";
+        })
+        .filter(Boolean);
+
       const path = pathNames.join(" > ");
       setSelectedCatPath(path);
       setValue("categoryId", cat.id, { shouldValidate: true });
@@ -176,7 +166,8 @@ function CreateArticleContent() {
                     {sa("details")}
                   </CardTitle>
                   <CardDescription className="text-xs">
-                    Provide the title, details, and assign a team for the article.
+                    Provide the title, details, and assign a team for the
+                    article.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-6 space-y-5">
@@ -198,12 +189,17 @@ function CreateArticleContent() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="description" className="text-sm font-semibold">
+                    <Label
+                      htmlFor="description"
+                      className="text-sm font-semibold"
+                    >
                       {sa("descriptionLabel")}
                     </Label>
                     <TiptapEditor
                       value={watch("description")}
-                      onChange={(html) => setValue("description", html, { shouldValidate: true })}
+                      onChange={(html) =>
+                        setValue("description", html, { shouldValidate: true })
+                      }
                       placeholder={sa("descriptionPlaceholder")}
                     />
                     {errors.description && (
@@ -213,36 +209,8 @@ function CreateArticleContent() {
                     )}
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="team" className="text-sm font-semibold">
-                      {sa("teamLabel")}
-                    </Label>
-                    <select
-                      id="team"
-                      className="flex h-10 w-full rounded-xl border border-border/80 bg-background px-3 py-2 text-sm shadow-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50"
-                      value={String(watch("teamId"))}
-                      onChange={(e) =>
-                        setValue("teamId", Number(e.target.value), {
-                          shouldValidate: true,
-                        })
-                      }
-                    >
-                      <option value="0" disabled>
-                        {sa("teamPlaceholder")}
-                      </option>
-                      {teams.map((team) => (
-                        <option key={team.id} value={String(team.id)}>
-                          {team.name}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.teamId && (
-                      <p className="text-xs font-medium text-destructive">
-                        {errors.teamId.message}
-                      </p>
-                    )}
-                  </div>
-                  
+                  {/* Team assignment handled by backend */}
+
                   <div className="flex justify-end pt-4">
                     <Button
                       type="submit"
@@ -323,22 +291,30 @@ function CreateArticleContent() {
                                 </div>
                                 <div className="flex-1 overflow-y-auto divide-y divide-border/60 scrollbar-thin">
                                   {colItems.map((cat) => {
-                                    const hasChildren = (cat._count?.childCategories ?? 0) > 0;
-                                    const isSelected = selectedColIds[colIdx] === cat.id;
+                                    const hasChildren =
+                                      (cat._count?.childCategories ?? 0) > 0;
+                                    const isSelected =
+                                      selectedColIds[colIdx] === cat.id;
                                     return (
                                       <button
                                         key={cat.id}
                                         type="button"
                                         className={cn(
                                           "flex w-full items-center justify-between px-3 py-2.5 text-left text-sm transition-all duration-150 hover:bg-primary/5 hover:text-primary",
-                                          isSelected && "bg-primary/10 text-primary font-bold border-r-2 border-primary"
+                                          isSelected &&
+                                            "bg-primary/10 text-primary font-bold border-r-2 border-primary",
                                         )}
-                                        onClick={() => handleColumnCategoryClick(cat, colIdx)}
+                                        onClick={() =>
+                                          handleColumnCategoryClick(cat, colIdx)
+                                        }
                                       >
-                                        <span className="truncate pr-2 font-medium">{cat.name}</span>
+                                        <span className="truncate pr-2 font-medium">
+                                          {cat.name}
+                                        </span>
                                         {hasChildren ? (
                                           <span className="flex items-center gap-1 shrink-0 text-[10px] text-muted-foreground">
-                                            {(cat._count?.childCategories ?? 0) > 0 && (
+                                            {(cat._count?.childCategories ??
+                                              0) > 0 && (
                                               <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-[9px] font-bold text-primary">
                                                 {cat._count?.childCategories}
                                               </span>

@@ -17,8 +17,7 @@ import {
   XCircle,
   Tag,
   Users,
-  BookOpen,
-  Eye,
+  ChevronRight,
 } from "lucide-react";
 
 import {
@@ -33,6 +32,7 @@ import { cn } from "@/lib/utils";
 
 import type { ArticleDetail } from "@/lib/validations/articles";
 import { getArticleById, deleteArticle } from "@/services/articleService";
+import { getCategoryAncestors } from "@/services/categoryService";
 
 import { DeleteAlertDialog } from "@/components/shared/DeleteAlertDialog";
 
@@ -62,6 +62,7 @@ export default function ArticleDetailPage() {
   const [article, setArticle] = useState<ArticleDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [categoryPath, setCategoryPath] = useState<{ id: string; name: string }[]>([]);
 
   useEffect(() => {
     async function load() {
@@ -69,6 +70,9 @@ export default function ArticleDetailPage() {
       const res = await getArticleById(id);
       if (res.data) {
         setArticle(res.data);
+        // Build category breadcrumb path
+        const catRes = await getCategoryAncestors(res.data.categoryId);
+        if (catRes.data) setCategoryPath(catRes.data);
       } else {
         toast.error(res.error || "Failed to load article");
       }
@@ -211,9 +215,23 @@ export default function ArticleDetailPage() {
                 {statusBadge(article.status)}
               </div>
             </div>
-            <code className="hidden sm:inline-flex text-[10px] bg-muted px-2.5 py-0.5 rounded-full text-muted-foreground font-semibold select-all">
-              /{article.slug}
-            </code>
+          </div>
+
+          {/* Category breadcrumb */}
+          <div className="px-6 pb-1.5">
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground/70">
+              {categoryPath.length > 0
+                ? categoryPath.map((cat, idx) => (
+                    <span key={cat.id} className="flex items-center gap-1.5">
+                      <span className="font-medium">{cat.name}</span>
+                      {idx < categoryPath.length - 1 && (
+                        <ChevronRight className="h-3 w-3" />
+                      )}
+                    </span>
+                  ))
+                : <span className="font-medium">{article.category.name}</span>
+              }
+            </div>
           </div>
 
           {/* Title */}
@@ -231,25 +249,6 @@ export default function ArticleDetailPage() {
             />
           </div>
 
-          {/* Post actions / stats bar */}
-          <div className="flex items-center gap-4 px-6 py-3 border-t border-border/60 bg-muted/10">
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <BookOpen className="h-3.5 w-3.5" />
-              <span className="font-semibold">{article.category.name}</span>
-            </div>
-            {article.articleTeams.length > 0 && (
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <Users className="h-3.5 w-3.5" />
-                <span className="font-semibold">
-                  {article.articleTeams.map((t) => t.name).join(", ")}
-                </span>
-              </div>
-            )}
-            <div className="ml-auto flex items-center gap-1.5 text-xs text-muted-foreground">
-              <Eye className="h-3.5 w-3.5" />
-              <span className="font-semibold">{article.status.replace(/_/g, " ")}</span>
-            </div>
-          </div>
         </CardContent>
       </Card>
 

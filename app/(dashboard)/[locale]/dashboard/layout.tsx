@@ -20,7 +20,7 @@ export default async function DashboardLayout({
 
   return (
     <SidebarProvider>
-      <DashboardSidebar />
+      <DashboardSidebar user={session.user} />
       <SidebarInset>
         <DashboardHeader user={session.user} />
         <main className="flex-1 overflow-y-auto bg-muted/30 p-4 lg:p-6">

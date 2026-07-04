@@ -287,7 +287,10 @@
       "roles": "ভূমিকা",
       "permissions": "অনুমতি",
       "users": "ব্যবহারকারী",
-      "backToSite": "সাইটে ফিরে যান"
+      "backToSite": "সাইটে ফিরে যান",
+      "mainMenu": "প্রধান মেনু",
+      "management": "ব্যবস্থাপনা",
+      "system": "সিস্টেম"
     },
     "category_title": "ক্যাটাগরি",
     "category_subtitle": "আর্টিকেল ক্যাটাগরি পরিচালনা করুন",

@@ -287,7 +287,10 @@
       "roles": "Roles",
       "permissions": "Permissions",
       "users": "Users",
-      "backToSite": "Back to Site"
+      "backToSite": "Back to Site",
+      "mainMenu": "Main Menu",
+      "management": "Management",
+      "system": "System"
     },
     "category_title": "Categories",
     "category_subtitle": "Manage article categories",

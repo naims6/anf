@@ -1,233 +1,155 @@
 import Link from "next/link";
-import { Facebook, Instagram, Twitter, Youtube, MapPin, Phone, Mail, Heart, Shield, Users, BookOpen } from "lucide-react";
+import Image from "next/image";
+import { MapPin, Phone, Mail, Heart, Shield, Users, ArrowRight } from "lucide-react";
 import { SiteConfig } from "@/config/siteConfig";
 import { NavItem } from "@/types/siteConfigType";
+import Logo from "../../../assets/logo/footer-logo.png";
 
-
+interface SocialLink {
+  name: string;
+  icon: any;
+  href: string;
+}
 
 export function Footer() {
-  const {
-    brandName,
-    description,
-    email,
-    displayNumber,
-    callLink,
-    location,
-    navItems,
-    socialLinks,
-  } = SiteConfig;
+  const { brandName, description, email, displayNumber, callLink, location, navItems, socialLinks } = SiteConfig;
+
+  const activityItems = ["যাকাত প্রদান", "এতিম ও দুস্থ সহায়তা", "জরুরি খাদ্য সহায়তা", "মসজিদ ও মাদ্রাসা ফান্ড", "শীতবস্ত্র বিতরণ", "স্বাস্থ্যসেবা প্রদান"];
 
   return (
-    // bg-[#008E48]
-    <footer className="bg-primary text-white relative overflow-hidden">
-      {/* <footer className="bg-gradient-to-b from-emerald-900 to-green-950 text-white relative overflow-hidden"> */}
-      {/* Islamic Pattern Overlay */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-32 h-32 border-2 border-white rounded-full"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 border-2 border-white rounded-full"></div>
-        <div className="absolute top-1/2 left-1/4 w-20 h-20 border-2 border-white rounded-full"></div>
-        <div className="absolute top-1/3 right-1/4 w-16 h-16 border-2 border-white rounded-full"></div>
+    <footer className="bg-primary text-white relative overflow-hidden border-t border-white/10 pb-24 lg:pb-0">
+      {/* Background Subtle Elements */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute -top-24 -left-24 w-64 h-64 border border-white rounded-full"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 blur-3xl rounded-full"></div>
       </div>
 
-      {/* Main Footer Content */}
-      <div className="container mx-auto px-4 py-16 relative z-10">
-        {/* Trust Badges Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
-            <div className="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Shield className="h-6 w-6 text-white" />
-            </div>
-            <h3 className="font-semibold mb-2">100% Secure Donations</h3>
-            <p className="text-sm text-white/70">Your contributions are protected with encryption</p>
-          </div>
+      <div className="container mx-auto px-6 py-12 lg:py-16 relative z-10">
 
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
-            <div className="w-12 h-12 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Users className="h-6 w-6 text-white" />
-            </div>
-            <h3 className="font-semibold mb-2">Transparent Operations</h3>
-            <p className="text-sm text-white/70">Regular updates on fund utilization</p>
+        {/* উপরের ৩টি মূল বৈশিষ্ট্য */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <div className="group p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-amber-400/50 transition-all duration-300">
+            <Shield className="h-8 w-8 text-amber-400 mb-4 group-hover:scale-110 transition-transform" />
+            <h3 className="text-lg font-bold mb-2">নিরাপদ অনুদান</h3>
+            <p className="text-sm text-white/60">আপনার প্রতিটি কন্ট্রিবিউশন এনক্রিপশন দ্বারা সুরক্ষিত।</p>
           </div>
-
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
-            <div className="w-12 h-12 bg-rose-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Heart className="h-6 w-6 text-white" />
-            </div>
-            <h3 className="font-semibold mb-2">Sadaqah Jariyah</h3>
-            <p className="text-sm text-white/70">Continuous charity for lasting rewards</p>
+          <div className="group p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-amber-400/50 transition-all duration-300">
+            <Users className="h-8 w-8 text-amber-400 mb-4 group-hover:scale-110 transition-transform" />
+            <h3 className="text-lg font-bold mb-2">স্বচ্ছ কার্যক্রম</h3>
+            <p className="text-sm text-white/60">ব্যয়ের সঠিক হিসাব এবং নিয়মিত আপডেট প্রদান।</p>
+          </div>
+          <div className="group p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-amber-400/50 transition-all duration-300 sm:col-span-2 lg:col-span-1">
+            <Heart className="h-8 w-8 text-amber-400 mb-4 group-hover:scale-110 transition-transform" />
+            <h3 className="text-lg font-bold mb-2">সদকাহ জারিয়া</h3>
+            <p className="text-sm text-white/60">স্থায়ী সওয়াব অর্জনে আপনার পাশে আন-নুসরা ফাউন্ডেশন।</p>
           </div>
         </div>
 
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 mb-12">
-          {/* Brand Column */}
-          <div className="space-y-6">
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-amber-400 to-amber-200 bg-clip-text text-transparent">
-                {brandName}
-              </h3>
-              <p className="text-sm text-white/80 leading-relaxed mb-6">
-                {description}
-              </p>
+        {/* মেইন গ্রিড সেকশন */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
-              {/* Contact Info */}
-              <div className="space-y-4">
-                <div className="flex items-start gap-3 group cursor-pointer">
-                  <div className="p-2 bg-amber-500 rounded-lg group-hover:scale-110 transition-transform">
-                    <Phone className="h-4 w-4 text-white" />
-                  </div>
-                  <div>
-                    <Link
-                      href={callLink}
-                      className="text-sm font-medium hover:text-amber-400 transition-colors block"
-                    >
-                      {displayNumber}
-                    </Link>
-                    <p className="text-xs text-white/60 mt-1">24/7 Support Available</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 group cursor-pointer">
-                  <div className="p-2 bg-amber-500 rounded-lg group-hover:scale-110 transition-transform">
-                    <Mail className="h-4 w-4 text-white" />
-                  </div>
-                  <Link
-                    href={`mailto:${email}`}
-                    className="text-sm font-medium hover:text-amber-400 transition-colors"
-                  >
-                    {email}
-                  </Link>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-amber-500 rounded-lg">
-                    <MapPin className="h-4 w-4 text-white" />
-                  </div>
-                  <p className="text-sm font-medium">{location}</p>
-                </div>
-              </div>
+          {/* লোগো ও বর্ণনা */}
+          <div className="space-y-6 text-center md:text-left">
+            <div className="flex justify-center md:justify-start">
+              <Image
+                src={Logo}
+                alt={`${brandName} Logo`}
+                className="h-20 w-auto object-contain bg-white rounded-md p-1" // লোগোটি হোয়াইট ব্যাকগ্রাউন্ডে থাকলে p-1 দিলে সুন্দর দেখায়
+                priority
+              />
+            </div>
+            <p className="text-sm text-white/70 leading-relaxed font-light">
+              {description}
+            </p>
+            <div className="flex justify-center md:justify-start gap-4 pt-2">
+              {socialLinks?.map(({ name, icon: Icon, href }: SocialLink) => (
+                <Link key={name} href={href} className="p-2 bg-white/5 rounded-full hover:bg-amber-500 hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+                  <Icon className="h-5 w-5" />
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links Column */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold border-l-4 border-amber-400 pl-3 bg-white/5 py-2 rounded-r-lg">
-              Quick Links
-            </h3>
-            <nav className="grid grid-cols-1 gap-3">
-              {navItems?.bn.map((item:NavItem, index:number) => (
+          {/* দ্রুত লিংক */}
+          <div className="space-y-5">
+            <h3 className="text-lg font-bold border-l-4 border-amber-400 pl-3">দ্রুত লিংক</h3>
+            <nav className="flex flex-col gap-3">
+              {navItems?.bn.map((item: NavItem, index: number) => (
                 <Link
                   key={index}
                   href={item.href}
-                  className="text-sm text-white/80 hover:text-amber-400 transition-all duration-300 hover:translate-x-2 flex items-center gap-1 group p-2 rounded-lg hover:bg-white/5"
+                  className="text-sm text-white/60 hover:text-amber-400 hover:translate-x-2 transition-all duration-300 flex items-center gap-2"
                 >
-                  <div className="w-2 h-2 bg-amber-400 rounded-full group-hover:scale-150 transition-transform"></div>
+                  <span className="w-1 h-1 bg-amber-400 rounded-full"></span>
                   {item.name}
                 </Link>
               ))}
             </nav>
           </div>
 
-          {/* Donation Types Column */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold border-l-4 border-amber-400 pl-3 bg-white/5 py-2 rounded-r-lg">
-              Ways to Give
-            </h3>
-            <div className="grid grid-cols-1 gap-3">
-              {[
-                "Zakat",
-                "Sadaqah",
-                "Emergency Aid",
-                "Education Funds",
-                "Winter Relief",
-                "Qurbani",
-                "Tree Plantation",
-                "Masjid Construction"
-              ].map((type, index) => (
+          {/* আমাদের কার্যক্রম */}
+          <div className="space-y-5">
+            <h3 className="text-lg font-bold border-l-4 border-amber-400 pl-3">আমাদের কার্যক্রম</h3>
+            <div className="flex flex-col gap-3">
+              {activityItems?.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 transition-all duration-300 group"
+                  className="group flex items-center gap-2 text-sm text-white/60 hover:text-amber-400 cursor-pointer transition-all duration-400 hover:translate-x-3"
                 >
-                  <div className="w-1.5 h-1.5 bg-amber-400 rounded-full group-hover:scale-150 transition-transform"></div>
-                  <span className="text-sm text-white/80 group-hover:text-white">
-                    {type}
-                  </span>
+                  <ArrowRight className="h-0 w-0 group-hover:w-4 group-hover:h-4 opacity-0 group-hover:opacity-100 transition-all duration-400 text-amber-400" />
+                  <span>{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Islamic Resources & Social Links */}
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <h3 className="text-lg font-bold border-l-4 border-amber-400 pl-3 bg-white/5 py-2 rounded-r-lg">
-                Resources
-              </h3>
-              <nav className="space-y-3">
-                {[
-                  { name: "Zakat Calculator", href: "/zakat-calculator" },
-                  { name: "Islamic Webinars", href: "/webinars" },
-                  { name: "Blog & Articles", href: "/blog" },
-                  { name: "Volunteer", href: "/volunteer" },
-                  { name: "Membership", href: "/membership" }
-                ].map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="text-sm text-white/80 hover:text-amber-400 transition-all duration-300 hover:translate-x-2 flex items-center gap-3 group p-2 rounded-lg hover:bg-white/5"
-                  >
-                    <div className="w-2 h-2 bg-amber-400 rounded-full group-hover:scale-150 transition-transform"></div>
-                    {link.name}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-
-            {/* Social Links */}
-            <div className="space-y-4">
-              <h4 className="font-semibold text-white">Follow Our Journey</h4>
-              <div className="flex gap-3">
-                {socialLinks.map(({ name, icon: Icon, href }:any) => (
-                  <Link
-                    key={name}
-                    href={href}
-                    aria-label={name}
-                    className="p-3 bg-white/10 rounded-xl hover:bg-amber-500 hover:scale-110 transition-all duration-300 group border border-white/20"
-                  >
-                    <Icon className="h-5 w-5 group-hover:text-white" />
-                  </Link>
-                ))}
+          {/* যোগাযোগ */}
+          <div className="space-y-5">
+            <h3 className="text-lg font-bold border-l-4 border-amber-400 pl-3">যোগাযোগ করুন</h3>
+            <div className="space-y-4 text-sm text-white/70">
+              <Link href={callLink} className="flex items-center gap-3 hover:text-amber-400 transition-colors group">
+                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-amber-500/20 transition-colors">
+                  <Phone className="h-4 w-4" />
+                </div>
+                {displayNumber}
+              </Link>
+              <Link href={`mailto:${email}`} className="flex items-center gap-3 hover:text-amber-400 transition-colors group">
+                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-amber-500/20 transition-colors">
+                  <Mail className="h-4 w-4" />
+                </div>
+                {email}
+              </Link>
+              <div className="flex items-start gap-3 group">
+                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-amber-500/20 transition-colors">
+                  <MapPin className="h-4 w-4" />
+                </div>
+                <span className="leading-relaxed">{location}</span>
               </div>
             </div>
           </div>
         </div>
-        {/* Copyright Section */}
-        <div className="mt-12 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center">
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-            <p className="text-sm text-white/60">
-              © {new Date().getFullYear()} {brandName}. All rights reserved.
+
+        {/* নিচের অংশ */}
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6 text-center">
+          <div className="space-y-2 lg:text-left">
+            <p className="text-xs text-white/50">
+              © {new Date().getFullYear()} {brandName}। সর্বস্বত্ব সংরক্ষিত।
             </p>
-            <div className="flex gap-6">
-              <Link href="/privacy-policy" className="text-sm text-white/60 hover:text-amber-400 transition-colors hover:underline">
-                Privacy Policy
-              </Link>
-              <Link href="/terms-and-conditions" className="text-sm text-white/60 hover:text-amber-400 transition-colors hover:underline">
-                Terms & Conditions
-              </Link>
-              <Link href="/refund-policy" className="text-sm text-white/60 hover:text-amber-400 transition-colors hover:underline">
-                Refund Policy
-              </Link>
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-[11px] text-white/40">
+              <Link href="/privacy-policy" className="hover:text-amber-400 transition-colors">গোপনীয়তা নীতি</Link>
+              <Link href="/terms" className="hover:text-amber-400 transition-colors">শর্তাবলী</Link>
+              <Link href="/refund" className="hover:text-amber-400 transition-colors">ফেরত নীতি</Link>
             </div>
           </div>
 
-          {/* Payment Methods */}
-          <div className="flex items-center gap-2 mt-4 md:mt-0">
-            <span className="text-xs text-white/60 mr-2">Secure Payments:</span>
-            <div className="flex gap-1">
-              <div className="w-8 h-5 bg-white/20 rounded text-[10px] flex items-center justify-center text-white/60">Bkash</div>
-              <div className="w-8 h-5 bg-white/20 rounded text-[10px] flex items-center justify-center text-white/60">Nagad</div>
-              <div className="w-8 h-5 bg-white/20 rounded text-[10px] flex items-center justify-center text-white/60">VISA</div>
-              <div className="w-8 h-5 bg-white/20 rounded text-[10px] flex items-center justify-center text-white/60">MC</div>
+          <div className="flex flex-col items-center lg:items-end gap-3">
+            <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold">নিরাপদ পেমেন্ট পার্টনার</span>
+            <div className="flex gap-2">
+              {['বিকাশ', 'নগদ', 'রকেট', 'ভিসা'].map((pay) => (
+                <div key={pay} className="px-3 py-1 bg-white/5 rounded border border-white/10 text-[10px] text-white/60 hover:bg-white/10 transition-colors cursor-default">
+                  {pay}
+                </div>
+              ))}
             </div>
           </div>
         </div>

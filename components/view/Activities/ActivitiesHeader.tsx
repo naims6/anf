@@ -1,7 +1,6 @@
 'use client';
 
 import { Activity, Filter } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 interface ActivitiesHeaderProps {
   title?: string;
@@ -28,7 +27,7 @@ export default function ActivitiesHeader({
   ];
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-green-50 py-10">
+    <div className="relative overflow-hidden bg-linear-to-br from-emerald-50 via-white to-green-50 pb-10 pt-24">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-100/30 rounded-full blur-3xl" />
@@ -67,10 +66,9 @@ export default function ActivitiesHeader({
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-bangla leading-tight">
             <span className="block mb-3">আমাদের</span>
             <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
                 {title}
               </span>
-              <div className="absolute -bottom-2 left-1/4 right-1/4 h-1 bg-gradient-to-r from-emerald-400 via-green-400 to-emerald-400 rounded-full" />
             </span>
           </h1>
           
@@ -105,7 +103,7 @@ export default function ActivitiesHeader({
                   className={`
                     px-5 py-2.5 rounded-xl font-medium transition-all duration-300 font-bangla
                     ${activeFilter === filter.id 
-                      ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-lg' 
+                      ? 'bg-linear-to-r from-emerald-500 to-green-500 text-white shadow-lg' 
                       : 'bg-white text-gray-700 border border-gray-200 hover:border-emerald-300 hover:bg-emerald-50'
                     }
                   `}

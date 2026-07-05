@@ -116,7 +116,7 @@ export default function FAQ() {
   const currentFaqs = faqItems[activeCategory as keyof typeof faqItems];
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-emerald-50/30">
+    <section className="py-16 md:py-24 bg-linear-to-b from-white to-emerald-50/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -129,7 +129,7 @@ export default function FAQ() {
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-bangla">
-              <span className="bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
                 সচরাচর জিজ্ঞাসিত প্রশ্ন
               </span>
             </h2>
@@ -149,7 +149,7 @@ export default function FAQ() {
                 <button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center gap-3 px-5 py-3 rounded-xl font-semibold transition-all duration-300 font-bangla ${isActive ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-lg' : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'}`}
+                  className={`flex items-center gap-3 px-5 py-3 rounded-xl font-semibold transition-all hover:cursor-pointer duration-300 font-bangla ${isActive ? 'bg-linear-to-r from-emerald-500 to-green-500 text-white shadow-lg' : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'}`}
                 >
                   <Icon className="w-5 h-5" />
                   {category.label}
@@ -173,8 +173,8 @@ export default function FAQ() {
                     className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-all duration-300"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 mt-1">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-emerald-50 to-green-50 flex items-center justify-center">
+                      <div className="shrink-0 mt-1">
+                        <div className="w-8 h-8 rounded-lg bg-linear-to-r from-emerald-50 to-green-50 flex items-center justify-center">
                           <HelpCircle className="w-4 h-4 text-emerald-600" />
                         </div>
                       </div>
@@ -205,7 +205,7 @@ export default function FAQ() {
 
           {/* Still Have Questions */}
           <div className="mt-16">
-            <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-3xl p-8 border border-emerald-100">
+            <div className="bg-linear-to-r from-emerald-50 to-green-50 rounded-3xl p-8 border border-emerald-100">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-4 font-bangla">
@@ -218,7 +218,7 @@ export default function FAQ() {
                   <div className="flex flex-wrap gap-4">
                     <a
                       href="tel:+8801711234567"
-                      className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-green-500 text-white font-semibold hover:opacity-90 transition-all duration-300 font-bangla"
+                      className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-linear-to-r from-emerald-500 to-green-500 text-white font-semibold hover:opacity-90 transition-all duration-300 font-bangla"
                     >
                       <Phone className="w-5 h-5" />
                       কল করুন
@@ -236,7 +236,7 @@ export default function FAQ() {
                 
                 <div className="flex justify-center">
                   <div className="relative">
-                    <div className="w-40 h-40 rounded-full bg-gradient-to-r from-emerald-500/10 to-green-500/10 flex items-center justify-center">
+                    <div className="w-40 h-40 rounded-full bg-linear-to-r from-emerald-500/10 to-green-500/10 flex items-center justify-center">
                       <MessageSquare className="w-20 h-20 text-emerald-600" />
                     </div>
                   </div>

@@ -2,8 +2,12 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Eye, X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import { Eye, X, ChevronLeft, ChevronRight, Maximize2, Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
+import { useLanguage } from '@/contexts/LanguageContext';
+import bnHomepageMessages from '@/messages/bn/homepage.json';
+import enHomepageMessages from '@/messages/en/homepage.json'
 
 const galleryImages = [
   {
@@ -54,6 +58,10 @@ export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  // Get translations based on current locale
+  const { locale } = useLanguage();
+  const t = locale === 'bn' ? bnHomepageMessages.HomePage.GallerySection : enHomepageMessages.HomePage.GallerySection;
+
   const openImage = (id: number) => {
     setSelectedImage(id);
     document.body.style.overflow = 'hidden';
@@ -83,15 +91,15 @@ export default function Gallery() {
 
   return (
     <>
-      <section className="relative py-6 bg-gradient-to-b from-white via-emerald-50/5 to-white">
+      <section className="relative py-6 bg-linear-to-b from-white via-emerald-50/5 to-white">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 right-10 w-96 h-96 bg-emerald-100/20 rounded-full blur-3xl" />
           <div className="absolute bottom-20 left-10 w-80 h-80 bg-blue-100/20 rounded-full blur-3xl" />
-          
+
           {/* Geometric Pattern */}
           <div className="absolute inset-0 opacity-[0.03]">
-            <div 
+            <div
               className="absolute inset-0"
               style={{
                 backgroundImage: `radial-gradient(circle at 1px 1px, #000 1px, transparent 0)`,
@@ -103,40 +111,16 @@ export default function Gallery() {
 
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-16 lg:mb-20">
-            {/* Subtle Badge */}
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-full px-4 py-2 mb-6 border border-emerald-100">
-              <div className="flex gap-1">
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
-              </div>
-              <span className="text-emerald-700 font-semibold text-sm font-bangla">
-                আমাদের কার্যক্রমের ঝলক
-              </span>
-            </div>
-
-            {/* Elegant Title */}
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-bangla leading-tight">
-                <span className="block mb-3">কার্যক্রমের</span>
-                <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
-                    ছবিসমূহ
-                  </span>
-                  <div className="absolute -bottom-2 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
-                </span>
-              </h2>
-              
-              <p className="text-lg text-gray-600 font-bangla leading-relaxed max-w-2xl mx-auto">
-                ফাউন্ডেশনের বিভিন্ন কার্যক্রমের মুহূর্তগুলো ক্যামেরাবন্দী করা কিছু দৃশ্য
-              </p>
-            </div>
-          </div>
+          <SectionHeader
+            badgeText={t.badgeText}
+            title={t.title}
+            description={t.description}
+            icon={Star}
+          />
 
           {/* Gallery Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryImages.map((image, index) => (
+            {galleryImages?.map((image, index) => (
               <motion.div
                 key={image.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -196,15 +180,16 @@ export default function Gallery() {
           </div>
 
           {/* View All CTA */}
-          <div className="text-center mt-16">
+          <div className="text-end mt-10 hover:cursor-pointer">
             <button
               onClick={() => openImage(1)}
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-8 py-4 rounded-xl font-semibold font-bangla text-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-xl font-semibold font-bangla text-lg transition-all duration-300 text-emerald-600 hover:gap-4  hover:cursor-pointer"
             >
               <span>সমস্ত ছবি দেখুন</span>
-              <Eye className="w-5 h-5" />
+              <Eye className="w-8 h-8 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </div>
+
         </div>
       </section>
 
@@ -290,7 +275,7 @@ export default function Gallery() {
                 className="object-contain"
                 sizes="100vw"
               />
-              
+
               {/* Loading Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-gray-900/30 to-black/30 flex items-center justify-center">
                 <div className="w-12 h-12 border-3 border-white/20 border-t-white rounded-full animate-spin" />

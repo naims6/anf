@@ -97,7 +97,7 @@ export default function FinancialPolicySection() {
   };
 
   return (
-    <section className="py-8 bg-gradient-to-b from-white to-emerald-50/30">
+    <section className="py-8 bg-linear-to-b from-white to-emerald-50/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -110,7 +110,7 @@ export default function FinancialPolicySection() {
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-bangla">
-              <span className="bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
                 আয়-ব্যয়ের নীতিমালা
               </span>
             </h2>
@@ -131,7 +131,7 @@ export default function FinancialPolicySection() {
                 <button
                   key={policy.id}
                   onClick={() => setActiveTab(policy.id)}
-                  className={`flex items-center gap-3 px-6 py-3 rounded-xl font-semibold transition-all duration-300 font-bangla ${isActive ? colors.text + ' ' + colors.bg + ' border ' + colors.border + ' shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}
+                  className={`flex items-center gap-3 px-6 py-3 rounded-xl font-semibold transition-all duration-300 font-bangla hover:cursor-pointer ${isActive ? colors.text + ' ' + colors.bg + ' border ' + colors.border + ' shadow-sm' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}
                 >
                   <TabIcon className="w-5 h-5" />
                   {policy.label}
@@ -144,7 +144,7 @@ export default function FinancialPolicySection() {
           <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm">
             {/* Tab Header */}
             <div className={`inline-flex items-center gap-3 ${colorMap[activePolicy?.color as keyof typeof colorMap]?.bg} rounded-xl px-4 py-3 mb-8`}>
-              <div className={`w-10 h-10 rounded-lg bg-gradient-to-r ${colorMap[activePolicy?.color as keyof typeof colorMap]?.gradient} flex items-center justify-center`}>
+              <div className={`w-10 h-10 rounded-lg bg-linear-to-r ${colorMap[activePolicy?.color as keyof typeof colorMap]?.gradient} flex items-center justify-center`}>
                 <Icon className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -166,7 +166,7 @@ export default function FinancialPolicySection() {
                 <div className="space-y-6">
                   {activePolicy.items?.map((item, idx) => (
                     <div key={idx} className="flex items-start gap-4">
-                      <div className={`flex-shrink-0 w-8 h-8 rounded-lg ${colorMap[activePolicy?.color as keyof typeof colorMap]?.bg} flex items-center justify-center`}>
+                      <div className={`shrink-0 w-8 h-8 rounded-lg ${colorMap[activePolicy?.color as keyof typeof colorMap]?.bg} flex items-center justify-center`}>
                         <Shield className="w-4 h-4" />
                       </div>
                       
@@ -198,8 +198,8 @@ export default function FinancialPolicySection() {
                       <div className="space-y-4">
                         {section.items?.map((item, itemIdx) => (
                           <div key={itemIdx} className="flex items-start gap-3">
-                            <div className="flex-shrink-0 mt-1">
-                              <div className={`w-5 h-5 rounded-full bg-gradient-to-r ${colorMap[activePolicy?.color as keyof typeof colorMap]?.gradient} flex items-center justify-center`}>
+                            <div className="shrink-0 mt-1">
+                              <div className={`w-5 h-5 rounded-full bg-linear-to-r ${colorMap[activePolicy?.color as keyof typeof colorMap]?.gradient} flex items-center justify-center`}>
                                 <div className="w-1.5 h-1.5 bg-white rounded-full" />
                               </div>
                             </div>
@@ -230,7 +230,7 @@ export default function FinancialPolicySection() {
 
           {/* Trust Badge */}
           <div className="mt-12 text-center">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl px-6 py-4 border border-emerald-100">
+            <div className="inline-flex items-center gap-3 bg-linear-to-r from-emerald-50 to-green-50 rounded-2xl px-6 py-4 border border-emerald-100">
               <Target className="w-6 h-6 text-emerald-600" />
               <div>
                 <div className="font-semibold text-emerald-700 font-bangla">

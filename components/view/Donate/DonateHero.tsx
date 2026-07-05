@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 export default function DonateHero() {
   return (
-    <section className="relative py-16 md:py-24 bg-gradient-to-br from-rose-50 via-white to-pink-25">
+    <section className="relative py-16 md:py-24 bg-linear-to-br from-rose-50 via-white to-pink-25">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-64 h-64 bg-rose-100/30 rounded-full blur-3xl" />
@@ -39,7 +39,6 @@ export default function DonateHero() {
                   <span className="bg-primary bg-clip-text text-transparent">
                     আপনার দান
                   </span>
-                  <div className="absolute -bottom-2 left-0 right-0 h-1 bg-primary rounded-full" />
                 </span>
               </h1>
               
@@ -127,7 +126,7 @@ export default function DonateHero() {
               </div>
               
               {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full flex items-center justify-center shadow-lg">
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-linear-to-r from-amber-400 to-orange-400 rounded-full flex items-center justify-center shadow-lg">
                 <div className="text-white text-center">
                   <div className="text-2xl font-bold">+৫</div>
                   <div className="text-xs">বছরের বিশ্বস্ততা</div>

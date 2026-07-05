@@ -119,7 +119,7 @@ export default function DonationCategories() {
             {/* Left - Categories List */}
             <div className="lg:col-span-2">
               <div className="grid sm:grid-cols-2 gap-4">
-                {categories.map((category) => {
+                {categories?.map((category) => {
                   const Icon = category.icon;
                   const isSelected = selectedCategory === category.id;
 
@@ -127,10 +127,10 @@ export default function DonationCategories() {
                     <button
                       key={category.id}
                       onClick={() => setSelectedCategory(category.id)}
-                      className={`relative group text-left rounded-2xl p-4 border transition-all duration-300 ${isSelected ? 'border-rose-300 bg-gradient-to-br from-rose-50 to-pink-50 shadow-md' : 'border-gray-200 hover:border-rose-200 hover:bg-rose-50/50'}`}
+                      className={`relative group hover:cursor-pointer text-left rounded-2xl p-4 border transition-all duration-300 ${isSelected ? 'border-rose-300 bg-linear-to-br from-rose-50 to-pink-50 shadow-md' : 'border-gray-200 hover:border-rose-200 hover:bg-rose-50/50'}`}
                     >
                       <div className="flex items-start gap-4">
-                        <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center`}>
+                        <div className={`shrink-0 w-12 h-12 rounded-xl bg-linear-to-br ${category.color} flex items-center justify-center`}>
                           <Icon className="w-6 h-6 text-white" />
                         </div>
                         
@@ -167,7 +167,7 @@ export default function DonationCategories() {
                       </div>
                       
                       {/* Hover Effect */}
-                      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+                      <div className={`absolute inset-0 rounded-2xl bg-linear-to-br ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
                     </button>
                   );
                 })}
@@ -176,12 +176,12 @@ export default function DonationCategories() {
 
             {/* Right - Selected Category Details */}
             <div className="lg:col-span-1">
-              <div className="sticky top-24 bg-gradient-to-br from-gray-50 to-white rounded-3xl border border-gray-200 p-6 shadow-lg">
+              <div className="sticky top-24 bg-linear-to-br from-gray-50 to-white rounded-3xl border border-gray-200 p-6 shadow-lg">
                 {selectedCat && (
                   <>
                     {/* Selected Category Header */}
                     <div className="text-center mb-6">
-                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${selectedCat.color} mb-4 mx-auto`}>
+                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-linear-to-br ${selectedCat.color} mb-4 mx-auto`}>
                         <selectedCat.icon className="w-8 h-8 text-white" />
                       </div>
                       
@@ -201,7 +201,7 @@ export default function DonationCategories() {
                       <div className="space-y-2">
                         {selectedCat.projects.map((project, idx) => (
                           <div key={idx} className="flex items-center gap-3">
-                            <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${selectedCat.color}`} />
+                            <div className={`w-2 h-2 rounded-full bg-linear-to-r ${selectedCat.color}`} />
                             <span className="text-gray-700 text-sm font-bangla">
                               {project}
                             </span>

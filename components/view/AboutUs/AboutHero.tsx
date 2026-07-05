@@ -5,7 +5,7 @@ import { Shield, Target, Award } from 'lucide-react';
 
 export default function AboutHero() {
   return (
-    <section className="relative pt-20 bg-gradient-to-br from-emerald-50 via-white to-emerald-25">
+    <section className="relative pt-20 bg-linear-to-br from-emerald-50 via-white to-emerald-25">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-100/30 rounded-full blur-3xl" />
@@ -57,10 +57,9 @@ export default function AboutHero() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-bangla leading-tight">
               <span className="block mb-3">আস-সুন্নাহ</span>
               <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
                   ফাউন্ডেশন
                 </span>
-                <div className="absolute -bottom-2 left-1/4 right-1/4 h-1 bg-gradient-to-r from-emerald-400 via-green-400 to-emerald-400 rounded-full" />
               </span>
             </h1>
             

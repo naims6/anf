@@ -1,0 +1,37 @@
+{
+  "Programs": {
+    "heroTitle": "Our <span class=\"text-green-600\">Permanent Programs</span>",
+    "heroSubtitle": "As-Sunnah Foundation works with sustainable and long-term planning not just temporary assistance to improve people's lives.",
+    "learnMore": "Learn More",
+    "partnerWithUs": "Be Our Partner in Serving Humanity",
+    "donationText": "Your small contribution can change the future of a neglected person. Donate to your favorite project today.",
+    "donateNow": "Donate Now",
+    "volunteer": "Join as Volunteer",
+    "programsList": [
+      {
+        "title": "Education and Skill Development",
+        "description": "Providing scholarships to poor and brilliant students and technical training through As-Sunnah Skill Development."
+      },
+      {
+        "title": "Self-reliance Project",
+        "description": "Making poor families permanently free from poverty by providing them with rickshaws, sewing machines or capital for small businesses."
+      },
+      {
+        "title": "Health and Medical Services",
+        "description": "Ensuring medical assistance to helpless patients, free medical camps and emergency medicine supply."
+      },
+      {
+        "title": "Pure Water Project",
+        "description": "Installing deep tube wells for arsenic-free pure water in remote and coastal areas of the country."
+      },
+      {
+        "title": "Environment and Tree Plantation",
+        "description": "Planting lakhs of fruit and forest trees across the country every year to combat climate change."
+      },
+      {
+        "title": "Disaster Management",
+        "description": "Providing quick relief and assistance to victims of floods, cyclones or any natural disaster."
+      }
+    ]
+  }
+}

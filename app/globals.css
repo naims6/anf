@@ -8,13 +8,10 @@
   font-family: 'Poppins', sans-serif;
 } */
 
-
 /* color primary select- 1 #20A643 */
 /* color primary select- 2 #00943B */
 
-
 /* @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap'); */
-
 
 @layer base {
   .font-bangla {
@@ -54,7 +51,6 @@
   -khtml-user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
-
 
 /* Embla Carousel Base Styles */
 .embla {
@@ -230,7 +226,6 @@ select::-webkit-scrollbar-thumb:hover {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.6357 0.1775 147.02);
 }
-
 
 @layer base {
   * {

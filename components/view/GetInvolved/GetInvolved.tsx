@@ -5,15 +5,15 @@ import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
-import bnMessages from '@/messages/bn.json'
-import enMessages from '@/messages/en.json'
+import bnHomepageMessages from '@/messages/bn/homepage.json'
+import enHomepageMessages from '@/messages/en/homepage.json'
 
 export default function GetInvolved() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
    // Get translations based on current locale
   const { locale } = useLanguage();
-  const t = locale === 'bn' ? bnMessages.HomePage.GetInvolvedSection : enMessages.HomePage.GetInvolvedSection;
+  const t = locale === 'bn' ? bnHomepageMessages.HomePage.GetInvolvedSection : enHomepageMessages.HomePage.GetInvolvedSection;
   const involvementOptions = t.involvementOptions || [];
   
   // Add IDs to the translated options

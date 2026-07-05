@@ -5,8 +5,8 @@ import { Mail, Phone, MapPin, Send, Clock, MessageSquare, Star } from 'lucide-re
 import { Button } from '@/components/ui/button';
 import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
-import enMessages from '@/messages/en.json';
-import bnMessages from '@/messages/bn.json';
+import enHomepageMessages from '@/messages/en/homepage.json';
+import bnHomepageMessages from '@/messages/bn/homepage.json';
 
 const contactIcons = [Phone, Mail, MapPin];
 
@@ -21,7 +21,7 @@ export default function Contact() {
   });
   
   // Get translations based on current locale
-  const t = locale === 'bn' ? bnMessages.HomePage.ContactSection : enMessages.HomePage.ContactSection;
+  const t = locale === 'bn' ? bnHomepageMessages.HomePage.ContactSection : enHomepageMessages.HomePage.ContactSection;
   const contactInfo = t.contactInfo;
 
   const [isSubmitting, setIsSubmitting] = useState(false);

@@ -12,14 +12,14 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
-import enMessages from '@/messages/en.json';
-import bnMessages from '@/messages/bn.json';
+import enProgramsMessages from '@/messages/en/programs.json';
+import bnProgramsMessages from '@/messages/bn/programs.json';
 
 const ProgramsPage = () => {
   const { locale } = useLanguage();
   
   // Get translations based on current locale
-  const t = locale === 'bn' ? bnMessages.Programs : enMessages.Programs;
+  const t = locale === 'bn' ? bnProgramsMessages.Programs : enProgramsMessages.Programs;
   const programs = t.programsList.map((prog, index) => ({
     id: index + 1,
     title: prog.title,

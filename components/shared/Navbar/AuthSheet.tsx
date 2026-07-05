@@ -25,8 +25,8 @@ import {
 } from "@/lib/validations/auth";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { loginAction } from "@/services/authService";
-import enMessages from "@/messages/en.json";
-import bnMessages from "@/messages/bn.json";
+import enAuthMessages from "@/messages/en/auth.json";
+import bnAuthMessages from "@/messages/bn/auth.json";
 
 type AuthMode = "login" | "register";
 
@@ -38,8 +38,8 @@ export default function AuthSheet() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { locale } = useLanguage();
 
-  const messages = locale === "bn" ? bnMessages.Auth : enMessages.Auth;
-  const t = (key: keyof typeof enMessages.Auth) => messages[key];
+  const messages = locale === "bn" ? bnAuthMessages.Auth : enAuthMessages.Auth;
+  const t = (key: keyof typeof enAuthMessages.Auth) => messages[key];
 
   const loginForm = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),

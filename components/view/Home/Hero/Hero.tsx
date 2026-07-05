@@ -9,8 +9,8 @@ import DonationCard from './DonationCard';
 import { homeBaanner } from '@/utils/assets';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
-import enMessages from '@/messages/en.json';
-import bnMessages from '@/messages/bn.json';
+import enHomepageMessages from '@/messages/en/homepage.json';
+import bnHomepageMessages from '@/messages/bn/homepage.json';
 
 const heroSlides = [
     {
@@ -35,7 +35,7 @@ export default function Hero() {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     // Get translations based on current locale
-    const t = locale === 'bn' ? bnMessages.HomePage.HeroSection : enMessages.HomePage.HeroSection;
+    const t = locale === 'bn' ? bnHomepageMessages.HomePage.HeroSection : enHomepageMessages.HomePage.HeroSection;
 
     const autoplay = Autoplay({
         delay: 5000,

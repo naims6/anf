@@ -6,8 +6,8 @@ import { Eye, X, ChevronLeft, ChevronRight, Maximize2, Star } from 'lucide-react
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
-import bnMessages from '@/messages/bn.json';
-import enMessages from '@/messages/en.json'
+import bnHomepageMessages from '@/messages/bn/homepage.json';
+import enHomepageMessages from '@/messages/en/homepage.json'
 
 const galleryImages = [
   {
@@ -60,7 +60,7 @@ export default function Gallery() {
 
   // Get translations based on current locale
   const { locale } = useLanguage();
-  const t = locale === 'bn' ? bnMessages.HomePage.GallerySection : enMessages.HomePage.GallerySection;
+  const t = locale === 'bn' ? bnHomepageMessages.HomePage.GallerySection : enHomepageMessages.HomePage.GallerySection;
 
   const openImage = (id: number) => {
     setSelectedImage(id);

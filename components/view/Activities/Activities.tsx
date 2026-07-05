@@ -6,8 +6,8 @@ import Image from 'next/image';
 import DefaultWeight from '@/components/shared/DefaultWeight/DefaultWeight';
 import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
-import bnMessages from '@/messages/bn.json'
-import enMessages from '@/messages/en.json'
+import bnHomepageMessages from '@/messages/bn/homepage.json'
+import enHomepageMessages from '@/messages/en/homepage.json'
 
 // Map activity slugs to icons and images
 
@@ -124,7 +124,7 @@ export default function ActivitiesSection() {
 
   const { locale } = useLanguage();
 
-  const t = locale === 'bn' ? bnMessages.HomePage.ActivitiesSection : enMessages.HomePage.ActivitiesSection;
+  const t = locale === 'bn' ? bnHomepageMessages.HomePage.ActivitiesSection : enHomepageMessages.HomePage.ActivitiesSection;
 
   return (
     <section>

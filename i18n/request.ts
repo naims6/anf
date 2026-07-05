@@ -2,6 +2,8 @@
 import { getRequestConfig } from 'next-intl/server';
 import { routing } from './routing';
 
+const NAMESPACES = ['navbar', 'common', 'homepage', 'programs', 'dashboard', 'auth'] as const;
+
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale;
 
@@ -9,8 +11,14 @@ export default getRequestConfig(async ({ requestLocale }) => {
     locale = routing.defaultLocale;
   }
 
+  const imports = await Promise.all(
+    NAMESPACES.map((ns) => import(`../messages/${locale}/${ns}.json`))
+  );
+
+  const messages = imports.reduce((acc, mod) => ({ ...acc, ...mod.default }), {});
+
   return {
     locale,
-    messages: (await import(`../messages/${locale}.json`)).default
+    messages,
   };
 });

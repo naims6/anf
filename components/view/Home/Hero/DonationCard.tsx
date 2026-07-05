@@ -7,8 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from '@/components/ui/select';
 import { useLanguage } from '@/contexts/LanguageContext';
-import enMessages from '@/messages/en.json';
-import bnMessages from '@/messages/bn.json';
+import enHomepageMessages from '@/messages/en/homepage.json';
+import bnHomepageMessages from '@/messages/bn/homepage.json';
 
 export default function DonationCard() {
   const [selectedFund, setSelectedFund] = useState('');
@@ -17,7 +17,7 @@ export default function DonationCard() {
 
   // Get translations based on current locale
   const { locale } = useLanguage();
-  const t = locale === 'bn' ? bnMessages.HomePage.DonationCard : enMessages.HomePage.DonationCard;
+  const t = locale === 'bn' ? bnHomepageMessages.HomePage.DonationCard : enHomepageMessages.HomePage.DonationCard;
   
   // Define donation funds with translations
   const donationFunds = [

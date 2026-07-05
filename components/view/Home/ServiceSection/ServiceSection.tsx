@@ -6,8 +6,8 @@ import { GraduationCap, HeartHandshake, MessageCircle, HandCoins, Palette, Shiel
 import { Button } from '@/components/ui/button';
 import SectionHeader from '@/components/shared/SectionHeader/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
-import enMessages from '@/messages/en.json';
-import bnMessages from '@/messages/bn.json';
+import enHomepageMessages from '@/messages/en/homepage.json';
+import bnHomepageMessages from '@/messages/bn/homepage.json';
 
 // Remove the hardcoded services array and replace with helper data
 const serviceIcons = [GraduationCap, HeartHandshake, MessageCircle, HandCoins, Palette];
@@ -31,7 +31,7 @@ export default function ServiceSection() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
   
   // Get translations based on current locale
-  const t = locale === 'bn' ? bnMessages.HomePage.ServiceSection : enMessages.HomePage.ServiceSection;
+  const t = locale === 'bn' ? bnHomepageMessages.HomePage.ServiceSection : enHomepageMessages.HomePage.ServiceSection;
   const services = t.services;
 
   return (

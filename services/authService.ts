@@ -6,10 +6,8 @@ import { apiClient } from "@/lib/api-client";
 import {
   LoginCredentials,
   AuthResponse,
-  CreateUserPayload,
   CurrentUser,
   ChangePasswordPayload,
-  loginSchema,
 } from "@/lib/validations/auth";
 
 async function login(credentials: LoginCredentials): Promise<AuthResponse> {
@@ -26,18 +24,6 @@ async function logout(options?: any): Promise<void> {
 
 async function getMe(options?: any): Promise<CurrentUser> {
   return apiClient.get<CurrentUser>("/admin/me", options);
-}
-
-async function createAdminUser(
-  userData: CreateUserPayload,
-): Promise<CurrentUser> {
-  return apiClient.post<CurrentUser>("/admin/create-admin-user", userData);
-}
-
-async function changePassword(
-  payload: ChangePasswordPayload,
-): Promise<{ message: string }> {
-  return apiClient.post<{ message: string }>("/admin/change-password", payload);
 }
 
 // actions for login,logout,getsession

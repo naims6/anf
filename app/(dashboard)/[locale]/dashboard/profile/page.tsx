@@ -65,7 +65,7 @@ export default function MyProfilePage() {
     formState: { errors, isSubmitting },
   } = useForm<ChangePasswordPayload>({
     resolver: zodResolver(changePasswordSchema),
-    defaultValues: { oldPassword: "", newPassword: "", confirmPassword: "" },
+    defaultValues: { oldPassword: "", newPassword: "", confirmNewPassword: "" },
   });
 
   useEffect(() => {
@@ -399,7 +399,7 @@ export default function MyProfilePage() {
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm password"
                     className="h-10 pl-10 pr-10"
-                    {...register("confirmPassword")}
+                    {...register("confirmNewPassword")}
                   />
                   <button
                     type="button"
@@ -414,9 +414,9 @@ export default function MyProfilePage() {
                     )}
                   </button>
                 </div>
-                {errors.confirmPassword && (
+                {errors.confirmNewPassword && (
                   <p className="text-xs text-destructive">
-                    {errors.confirmPassword.message}
+                    {errors.confirmNewPassword.message}
                   </p>
                 )}
               </div>

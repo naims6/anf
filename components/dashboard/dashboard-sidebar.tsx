@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { ChevronRight, ExternalLink, Search } from "lucide-react"
-import { useTranslations } from "next-intl"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ChevronRight, ExternalLink, Search, LayoutDashboard } from "lucide-react";
+import { useTranslations } from "next-intl";
 import {
   Sidebar,
   SidebarContent,
@@ -19,59 +19,59 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { navItems } from "./sidebar-items"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/collapsible";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { navItems } from "./sidebar-items";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface DashboardSidebarProps {
   user?: {
-    name?: string | null
-    email?: string | null
-  } | null
+    name?: string | null;
+    email?: string | null;
+  } | null;
 }
 
 export function DashboardSidebar({ user }: DashboardSidebarProps) {
-  const pathname = usePathname()
-  const t = useTranslations("Dashboard.sidebar")
+  const pathname = usePathname();
+  const t = useTranslations("Dashboard.sidebar");
 
-  const tLabel = (key: string) => t(key)
+  const tLabel = (key: string) => t(key);
 
   const groups = navItems.reduce<Record<string, typeof navItems>>(
     (acc, item) => {
-      const group = item.group
-      if (!acc[group]) acc[group] = []
-      acc[group].push(item)
-      return acc
+      const group = item.group;
+      if (!acc[group]) acc[group] = [];
+      acc[group].push(item);
+      return acc;
     },
     {},
-  )
+  );
 
   const groupLabels: Record<string, string> = {
     mainMenu: t("mainMenu"),
     management: t("management"),
     system: t("system"),
-  }
+  };
 
   return (
     <Sidebar>
       <SidebarHeader className="border-b border-sidebar-border pb-3">
-        <Link
-          href="/dashboard"
-          className="flex items-center gap-3 px-2 py-1"
-        >
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary/70 text-sm font-bold text-primary-foreground shadow-sm">
-            A
+        <Link href="/dashboard" className="flex items-center gap-3 px-2 py-1">
+          <div className="flex items-center justify-center rounded-lg bg-primary/10 p-1.5">
+            <Image src="/logo.png" alt="logo" width={28} height={28} className="object-contain" />
           </div>
-          <div className="grid gap-0.5">
-            <span className="text-sm font-semibold leading-none">ANF</span>
-            <span className="text-[10px] leading-none text-sidebar-foreground/50">
-              Dashboard
+          <div className="flex flex-col leading-tight">
+            <span className="text-sm font-extrabold tracking-tight text-sidebar-foreground">
+              An Nusra
+            </span>
+            <span className="text-[10px] font-medium text-sidebar-foreground/60 tracking-wide">
+              Foundation
             </span>
           </div>
         </Link>
@@ -97,7 +97,7 @@ export function DashboardSidebar({ user }: DashboardSidebarProps) {
               <SidebarMenu>
                 {items.map((item) => {
                   if (item.items && item.items.length > 0) {
-                    const isActive = pathname.startsWith(item.href)
+                    const isActive = pathname.startsWith(item.href);
                     return (
                       <Collapsible
                         key={item.labelKey}
@@ -137,10 +137,10 @@ export function DashboardSidebar({ user }: DashboardSidebarProps) {
                           </CollapsibleContent>
                         </SidebarMenuItem>
                       </Collapsible>
-                    )
+                    );
                   }
 
-                  const isActive = pathname === item.href
+                  const isActive = pathname === item.href;
                   return (
                     <SidebarMenuItem key={item.labelKey}>
                       <SidebarMenuButton
@@ -158,7 +158,7 @@ export function DashboardSidebar({ user }: DashboardSidebarProps) {
                         </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
-                  )
+                  );
                 })}
               </SidebarMenu>
             </SidebarGroupContent>
@@ -206,5 +206,5 @@ export function DashboardSidebar({ user }: DashboardSidebarProps) {
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

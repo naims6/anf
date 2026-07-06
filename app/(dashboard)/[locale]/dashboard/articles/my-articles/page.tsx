@@ -11,12 +11,10 @@ import {
   CheckCircle,
   Clock,
   AlertCircle,
-  Calendar,
-  Tag,
-  ChevronRight
+  Calendar
 } from "lucide-react"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { StatCard } from "@/components/dashboard/stat-card"
 
@@ -95,6 +93,8 @@ function MyArticlesContent() {
     })
   }
 
+  const stripHtml = (html: string) => html.replace(/<[^>]*>/g, "")
+
   // Count statistics based on current page list
   const totalArticlesCount = pagination?.total ?? articles.length
   const publishedArticlesCount = articles.filter((a) => a.status === "Published").length
@@ -159,109 +159,85 @@ function MyArticlesContent() {
         </div>
       </div>
 
-      {/* Main Table Card */}
-      <Card className="overflow-hidden border border-border/80 shadow-xs hover:shadow-md transition-all duration-300 rounded-2xl">
-        <CardHeader className="border-b px-6 py-4 bg-muted/20">
-          <CardTitle className="text-base font-semibold flex items-center justify-between">
-            <span>{t("allArticles")}</span>
-            {!loading && (
-              <span className="text-xs font-medium bg-primary/10 text-primary px-2.5 py-0.5 rounded-full">
-                {totalArticlesCount} {totalArticlesCount === 1 ? "Article" : "Articles"}
-              </span>
-            )}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-0">
-          {loading ? (
-            <TableSkeleton />
-          ) : articles.length === 0 ? (
-            <EmptyState
-              icon={<FileText className="h-12 w-12 text-muted-foreground/40" />}
-              message={t("empty")}
-              action={
-                <Link href="/dashboard/articles/create-article">
-                  <Button variant="outline" size="sm" className="rounded-xl">
-                    <Plus className="mr-1.5 h-3.5 w-3.5" />
-                    {tSidebar("addArticle")}
-                  </Button>
-                </Link>
-              }
-            />
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm text-left">
-                <thead>
-                  <tr className="border-b bg-muted/40 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    <th className="px-6 py-4 min-w-[280px]">{t("titleCol")}</th>
-                    <th className="px-6 py-4">{t("status")}</th>
-                    <th className="px-6 py-4">{t("category")}</th>
-                    <th className="px-6 py-4">{t("createdAt")}</th>
-                    <th className="px-6 py-4">{t("publishedAt")}</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border/60">
-                  {articles.map((article) => (
-                    <tr
-                      key={article.id}
-                      className="group transition-all duration-200 hover:bg-muted/30"
-                    >
-                      <td className="px-6 py-4">
-                        <Link
-                          href={`/dashboard/articles/${article.id}`}
-                          className="flex items-center justify-between hover:opacity-95 transition-all duration-200"
-                        >
-                          <div className="flex-1 min-w-0 pr-4">
-                            <p className="font-semibold text-foreground/80 group-hover:text-primary transition-colors duration-200 line-clamp-1">
-                              {article.title}
-                            </p>
-                          </div>
-                          <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground/0 group-hover:text-primary group-hover:translate-x-1 transition-all duration-200" />
-                        </Link>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {article.status === "Published" ? (
-                          <span className="inline-flex items-center gap-1.5 rounded-full bg-green-50 dark:bg-green-950/30 px-2.5 py-1 text-xs font-semibold text-green-700 dark:text-green-400 border border-green-200/50">
-                            <span className="h-1.5 w-1.5 rounded-full bg-green-600 dark:bg-green-400 animate-pulse" />
-                            {article.status}
-                          </span>
-                        ) : article.status === "Pending" ? (
-                          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 dark:bg-amber-950/30 px-2.5 py-1 text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200/50">
-                            <span className="h-1.5 w-1.5 rounded-full bg-amber-600 dark:bg-amber-400 animate-pulse" />
-                            {article.status}
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-950/30 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-400 border border-blue-200/50">
-                            <span className="h-1.5 w-1.5 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse" />
-                            {article.status.replace(/_/g, " ")}
-                          </span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4 text-muted-foreground">
-                        <span className="inline-flex items-center gap-1 bg-muted px-2.5 py-1 rounded-md text-xs font-semibold text-muted-foreground border border-border/80">
-                          <Tag className="h-3 w-3 shrink-0 text-muted-foreground/60" />
-                          {categoryMap[article.categoryId] || "—"}
+      {/* Article Cards Grid */}
+      <div>
+        {loading ? (
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <div key={i} className="h-64 rounded-2xl bg-muted/50 animate-pulse" />
+            ))}
+          </div>
+        ) : articles.length === 0 ? (
+          <EmptyState
+            icon={<FileText className="h-12 w-12 text-muted-foreground/40" />}
+            message={t("empty")}
+            action={
+              <Link href="/dashboard/articles/create-article">
+                <Button variant="outline" size="sm" className="rounded-xl">
+                  <Plus className="mr-1.5 h-3.5 w-3.5" />
+                  {tSidebar("addArticle")}
+                </Button>
+              </Link>
+            }
+          />
+        ) : (
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+            {articles.map((article) => {
+              const statusStyles = {
+                Published: { bar: "bg-green-500", badge: "text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-950/30 border-green-200/50 ring-green-500/20", pulse: "bg-green-500" },
+                Pending: { bar: "bg-amber-500", badge: "text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 border-amber-200/50 ring-amber-500/20", pulse: "bg-amber-500" },
+                Under_Review: { bar: "bg-blue-500", badge: "text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/30 border-blue-200/50 ring-blue-500/20", pulse: "bg-blue-500" },
+              }[article.status] || { bar: "bg-slate-500", badge: "text-slate-700 dark:text-slate-400 bg-slate-50 dark:bg-slate-950/30 border-slate-200/50 ring-slate-500/20", pulse: "bg-slate-500" }
+
+              return (
+                <Link
+                  key={article.id}
+                  href={`/dashboard/articles/${article.id}`}
+                  className="group block"
+                >
+                  <Card className="relative overflow-hidden border border-border/80 shadow-xs hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 rounded-xl h-full">
+                    {/* Top accent strip */}
+                    <div className={`absolute top-0 left-0 right-0 h-1 ${statusStyles.bar}`} />
+
+                    <CardContent className="p-5 pt-6">
+                      {/* Status badge */}
+                      <div className="flex items-center justify-between mb-4">
+                        <span className={`inline-flex items-center gap-1.5 rounded-md ${statusStyles.badge} px-2 py-1 text-[11px] font-semibold border`}>
+                          <span className={`h-1.5 w-1.5 rounded-full ${statusStyles.pulse} animate-pulse`} />
+                          {article.status === "Under_Review" ? "Under Review" : article.status}
                         </span>
-                      </td>
-                      <td className="px-6 py-4 text-muted-foreground whitespace-nowrap text-xs font-semibold">
+                        <FileText className="h-4 w-4 text-muted-foreground/20" />
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2 mb-2 leading-snug">
+                        {article.title}
+                      </h3>
+
+                      {/* Description excerpt */}
+                      <p className="text-xs text-muted-foreground/60 line-clamp-2 mb-5 leading-relaxed">
+                        {article.description ? stripHtml(article.description) : "No description"}
+                      </p>
+
+                      {/* Footer meta */}
+                      <div className="flex items-center justify-between pt-3 border-t border-border/40 text-[11px] text-muted-foreground/60">
                         <div className="flex items-center gap-1.5">
-                          <Calendar className="h-3.5 w-3.5 text-muted-foreground/50" />
+                          <Calendar className="h-3 w-3" />
                           {formatDate(article.createdAt)}
                         </div>
-                      </td>
-                      <td className="px-6 py-4 text-muted-foreground whitespace-nowrap text-xs font-semibold">
                         <div className="flex items-center gap-1.5">
-                          <Calendar className="h-3.5 w-3.5 text-muted-foreground/50" />
-                          {formatDate(article.publishedAt)}
+                          <Calendar className="h-3 w-3" />
+                          {article.publishedAt ? formatDate(article.publishedAt) : "Draft"}
                         </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              )
+            })}
+          </div>
+        )}
+      </div>
 
       {/* Pagination wrapper for spacing */}
       {pagination && (

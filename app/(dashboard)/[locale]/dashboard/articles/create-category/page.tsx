@@ -1,50 +1,32 @@
 "use client";
 
-import { useState, useEffect, useCallback, Suspense, Fragment } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useState, useEffect, useCallback, Suspense } from "react";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
-  Search,
   Plus,
   Pencil,
   Trash2,
   FolderTree,
-  FolderOpen,
-  Folder,
+  Layers,
   Loader2,
   ChevronRight,
-  ChevronDown,
+  X,
 } from "lucide-react";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-  SheetClose,
-  SheetFooter,
-} from "@/components/ui/sheet";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 import { DeleteAlertDialog } from "@/components/shared/DeleteAlertDialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-  TooltipProvider,
-} from "@/components/ui/tooltip";
 
 import {
   createCategorySchema,
@@ -59,55 +41,25 @@ import {
 } from "@/services/categoryService";
 
 import { PageHeader } from "@/components/shared/PageHeader";
-import { TableSkeleton } from "@/components/shared/TableSkeleton";
-import { EmptyState } from "@/components/shared/EmptyState";
 import { PageFallback } from "@/components/shared/PageFallback";
-
-interface TreeNode {
-  id: string;
-  name: string;
-  parentId: string | null;
-  depth: number;
-  _count?: { childCategories: number };
-}
-
-function normalizeParentId(cat: Category): Category {
-  const obj = cat as unknown as Record<string, unknown>;
-  const raw =
-    obj.parentId ??
-    obj.parent_id ??
-    (obj.parent as Record<string, unknown>)?.id;
-  return {
-    ...cat,
-    parentId: raw !== null && raw !== undefined ? String(raw) : null,
-  };
-}
-
-function getParentName(list: Category[], node: TreeNode): string {
-  if (!node.parentId) return "";
-  const parent = list.find((c) => c.id === node.parentId);
-  return parent ? parent.name : "";
-}
 
 function CreateCategoryContent() {
   const t = useTranslations("Dashboard");
   const sc = (key: string, vars?: Record<string, string | number | Date>) =>
     t(`category_${key}`, vars);
 
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loadedParents, setLoadedParents] = useState<Set<string>>(new Set());
-  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
-  const [loadingChildren, setLoadingChildren] = useState<Set<string>>(
-    new Set(),
-  );
-  const [searchInput, setSearchInput] = useState("");
-  const [sheetOpen, setSheetOpen] = useState(false);
+  const [columns, setColumns] = useState<Category[][]>([]);
+  const [selectedColIds, setSelectedColIds] = useState<string[]>([]);
+  const [loadingColIdx, setLoadingColIdx] = useState<number | null>(null);
+
+  // Dialog state
+  const [dialogOpen, setDialogOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
+  const [formParentId, setFormParentId] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [deletingCategory, setDeletingCategory] = useState<Category | null>(
-    null,
-  );
+
+  const [deletingCategory, setDeletingCategory] = useState<Category | null>(null);
 
   const isEditing = editingCategory !== null;
 
@@ -115,20 +67,21 @@ function CreateCategoryContent() {
     resolver: zodResolver(createCategorySchema),
     defaultValues: { name: "", parentId: null },
   });
+
   const {
     register,
     handleSubmit,
     reset,
-    control,
+    setFocus,
     formState: { errors },
   } = form;
 
   const fetchRootCategories = useCallback(async () => {
     setLoading(true);
+    setSelectedColIds([]);
     const res = await getAllCategories();
     if (res.data) {
-      setCategories(res.data.map(normalizeParentId));
-      setLoadedParents(new Set());
+      setColumns([res.data]);
     } else {
       toast.error(res.error || "Failed to load categories");
     }
@@ -139,87 +92,168 @@ function CreateCategoryContent() {
     fetchRootCategories();
   }, [fetchRootCategories]);
 
-  const loadChildren = useCallback(
-    async (parentId: string) => {
-      if (loadedParents.has(parentId)) return;
-      setLoadingChildren((prev) => new Set(prev).add(parentId));
-      const res = await getAllCategories(parentId);
+  useEffect(() => {
+    if (dialogOpen) {
+      setTimeout(() => setFocus("name"), 100);
+    }
+  }, [dialogOpen, setFocus]);
+
+  async function handleColumnCategoryClick(cat: Category, colIdx: number) {
+    const hasChildren = (cat._count?.childCategories ?? 0) > 0;
+    const newSelectedIds = [...selectedColIds.slice(0, colIdx), cat.id];
+    setSelectedColIds(newSelectedIds);
+
+    if (hasChildren) {
+      setLoadingColIdx(colIdx + 1);
+      setColumns((prev) => [...prev.slice(0, colIdx + 1)]);
+
+      const res = await getAllCategories(cat.id);
       if (res.data) {
-        const children = res.data.map(normalizeParentId);
-        setCategories((prev) => {
-          const existing = new Set(prev.map((c) => c.id));
-          const newOnes = children.filter((c) => !existing.has(c.id));
-          return newOnes.length > 0 ? [...prev, ...newOnes] : prev;
-        });
-        setLoadedParents((prev) => new Set(prev).add(parentId));
+        setColumns((prev) => [...prev.slice(0, colIdx + 1), res.data]);
       } else {
         toast.error(res.error || "Failed to load subcategories");
       }
-      setLoadingChildren((prev) => {
-        const next = new Set(prev);
-        next.delete(parentId);
-        return next;
-      });
-    },
-    [loadedParents],
-  );
-
-  const toggleExpand = (node: TreeNode) => {
-    const isExpanded = expandedIds.has(node.id);
-    if (isExpanded) {
-      setExpandedIds((prev) => {
-        const next = new Set(prev);
-        next.delete(node.id);
-        return next;
-      });
+      setLoadingColIdx(null);
     } else {
-      setExpandedIds((prev) => new Set(prev).add(node.id));
-      loadChildren(node.id);
+      setColumns((prev) => prev.slice(0, colIdx + 1));
     }
-  };
+  }
 
-  const tree: TreeNode[] = categories
-    .filter((c) => !c.parentId)
-    .map((c) => ({
-      id: c.id,
-      name: c.name,
-      parentId: null,
-      depth: 0,
-      _count: c._count,
-    }));
+  function openAddDialog(parentId: string | null) {
+    setEditingCategory(null);
+    setFormParentId(parentId);
+    reset({ name: "", parentId });
+    setDialogOpen(true);
+  }
 
-  const flattenForSearch = useCallback(
-    (node: TreeNode): TreeNode[] => {
-      const result: TreeNode[] = [node];
-      const children = categories
-        .filter((c) => c.parentId === node.id)
-        .map((c) => ({
-          id: c.id,
-          name: c.name,
-          parentId: c.parentId,
-          depth: node.depth + 1,
-          _count: c._count,
-        }));
-      for (const child of children) {
-        result.push(...flattenForSearch(child));
-      }
-      return result;
-    },
-    [categories],
-  );
+  function openEditDialog(cat: Category) {
+    setEditingCategory(cat);
+    setFormParentId(cat.parentId);
+    reset({ name: cat.name, parentId: cat.parentId });
+    setDialogOpen(true);
+  }
 
-  const searchedTree = searchInput
-    ? tree.filter((node) => {
-        const flat = flattenForSearch(node);
-        return flat.some((n) =>
-          n.name.toLowerCase().includes(searchInput.toLowerCase()),
+  function closeDialog() {
+    setDialogOpen(false);
+    setEditingCategory(null);
+    setFormParentId(null);
+    reset({ name: "", parentId: null });
+  }
+
+  function findCategoryParentCol(id: string): number {
+    for (let i = 0; i < columns.length; i++) {
+      if (columns[i].some((c) => c.id === id)) return i;
+    }
+    return -1;
+  }
+
+  function getCategoryName(id: string | null): string {
+    if (!id) return "";
+    for (const col of columns) {
+      const found = col.find((c) => c.id === id);
+      if (found) return found.name;
+    }
+    return "";
+  }
+
+  async function onSubmit(data: CreateCategoryFormData) {
+    setSubmitting(true);
+
+    if (isEditing && editingCategory) {
+      const res = await updateCategory(editingCategory.id, data);
+      if (res.data) {
+        const updated: Category = res.data;
+        setColumns((prev) =>
+          prev.map((col) =>
+            col.map((c) => (c.id === updated.id ? { ...c, name: updated.name } : c)),
+          ),
         );
-      })
-    : tree;
+        toast.success("Category updated");
+        closeDialog();
+      } else {
+        toast.error(res.error || "Failed to update category");
+      }
+    } else {
+      const res = await createCategory(data);
+      if (res.data) {
+        const newCat: Category = res.data;
+        setColumns((prev) => {
+          const next = [...prev];
+          if (!data.parentId) {
+            // Root category - add to first column
+            next[0] = [newCat, ...next[0]];
+          } else {
+            // Child category - find parent column and add to next column
+            const parentColIdx = findCategoryParentCol(data.parentId);
+            const childColIdx = parentColIdx + 1;
+            if (next[childColIdx]) {
+              next[childColIdx] = [...next[childColIdx], newCat];
+            }
+            // Increment parent's child count
+            if (parentColIdx >= 0) {
+              next[parentColIdx] = next[parentColIdx].map((c) =>
+                c.id === data.parentId
+                  ? {
+                      ...c,
+                      _count: {
+                        childCategories: (c._count?.childCategories ?? 0) + 1,
+                      },
+                    }
+                  : c,
+              );
+            }
+          }
+          return next;
+        });
+        toast.success("Category created");
+        closeDialog();
+      } else {
+        toast.error(res.error || "Failed to create category");
+      }
+    }
+    setSubmitting(false);
+  }
 
-  const parentOptions = editingCategory
-    ? categories.filter((c) => c.id !== editingCategory.id)
-    : categories;
+  async function confirmDelete() {
+    if (!deletingCategory) return;
+    const res = await deleteCategory(deletingCategory.id);
+    if (res.success) {
+      const deleted = deletingCategory;
+      setColumns((prev) => {
+        const next = prev.map((col) =>
+          col.filter((c) => c.id !== deleted.id),
+        );
+        // Decrement parent's child count
+        if (deleted.parentId) {
+          const parentColIdx = findCategoryParentCol(deleted.parentId);
+          if (parentColIdx >= 0) {
+            next[parentColIdx] = next[parentColIdx].map((c) =>
+              c.id === deleted.parentId
+                ? {
+                    ...c,
+                    _count: {
+                      childCategories: Math.max(
+                        0,
+                        (c._count?.childCategories ?? 1) - 1,
+                      ),
+                    },
+                  }
+                : c,
+            );
+          }
+        }
+        // Remove empty trailing columns
+        while (next.length > 1 && next[next.length - 1].length === 0) {
+          next.pop();
+        }
+        return next;
+      });
+      toast.success("Category deleted");
+      setDeletingCategory(null);
+    } else {
+      toast.error(res.error || "Failed to delete category");
+    }
+  }
 
   return (
     <div className="space-y-6">
@@ -227,162 +261,256 @@ function CreateCategoryContent() {
         title={sc("title")}
         subtitle={sc("subtitle")}
         action={
-          <Button
-            onClick={() => {
-              setEditingCategory(null);
-              reset({ name: "", parentId: null });
-              setSheetOpen(true);
-            }}
-          >
+          <Button onClick={() => openAddDialog(null)} className="shadow-sm">
             <Plus className="mr-2 h-4 w-4" /> {sc("add")}
           </Button>
         }
       />
 
-      <div className="relative max-w-sm">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          placeholder={sc("search")}
-          className="pl-9"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-      </div>
-
-      <Card className="shadow-sm">
-        <CardHeader className="border-b px-6 py-4">
+      <Card className="shadow-xs hover:shadow-md transition-all duration-300 border-border/80 rounded-2xl">
+        <CardHeader className="border-b px-6 py-4 bg-muted/10 flex flex-row items-center justify-between">
           <CardTitle className="flex items-center gap-2 text-base font-semibold">
-            <FolderTree className="h-4 w-4 text-muted-foreground" />
+            <FolderTree className="h-4.5 w-4.5 text-primary" />
             {sc("all")}
-            {!loading && (
-              <span className="text-xs font-normal text-muted-foreground">
-                ({categories.length})
-              </span>
-            )}
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-0">
+        <CardContent className="p-6">
           {loading ? (
-            <TableSkeleton />
-          ) : categories.length === 0 ? (
-            <EmptyState
-              icon={
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/5">
-                  <FolderTree className="h-7 w-7 text-primary/40" />
-                </div>
-              }
-              message={sc("empty")}
-              action={
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
-                    setEditingCategory(null);
-                    reset({ name: "", parentId: null });
-                    setSheetOpen(true);
-                  }}
-                >
-                  <Plus className="mr-1.5 h-3.5 w-3.5" />
-                  {sc("add")}
-                </Button>
-              }
-            />
-          ) : searchedTree.length === 0 ? (
-            <EmptyState
-              icon={<Search className="h-8 w-8 text-muted-foreground/50" />}
-              message={`${sc("noResults")} "${searchInput}"`}
-            />
+            <div className="flex items-center justify-center py-16">
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            </div>
+          ) : columns.length === 0 || columns[0]?.length === 0 ? (
+            <div className="py-16 text-center text-sm text-muted-foreground border rounded-2xl bg-muted/5">
+              <Layers className="mx-auto mb-2 h-10 w-10 text-muted-foreground/30" />
+              <p className="font-medium">{sc("empty")}</p>
+              <Button
+                variant="outline"
+                size="sm"
+                className="mt-3"
+                onClick={() => openAddDialog(null)}
+              >
+                <Plus className="mr-1.5 h-3.5 w-3.5" />
+                {sc("add")}
+              </Button>
+            </div>
           ) : (
-            <TooltipProvider>
-              <div className="divide-y">
-                {searchedTree.map((node) => (
-                  <Fragment key={node.id}>{renderTreeNode(node)}</Fragment>
-                ))}
-              </div>
-            </TooltipProvider>
+            <div className="flex gap-2 border border-border/80 rounded-2xl overflow-x-auto p-2 bg-muted/10 min-h-[280px] max-w-full">
+              {columns.map((colItems, colIdx) => (
+                <div
+                  key={colIdx}
+                  className="flex-1 min-w-[200px] max-w-[240px] flex flex-col border border-border/60 bg-card rounded-xl overflow-hidden shadow-xs transition-all duration-200"
+                >
+                  <div className="bg-muted/40 border-b px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-wider text-muted-foreground">
+                    {colIdx === 0
+                      ? sc("all")
+                      : selectedColIds[colIdx - 1]
+                        ? getCategoryName(selectedColIds[colIdx - 1])
+                        : `Level ${colIdx + 1}`}
+                  </div>
+                  <div className="flex-1 overflow-y-auto divide-y divide-border/60 max-h-[400px]">
+                    {colItems.map((cat) => {
+                      const isSelected = selectedColIds[colIdx] === cat.id;
+                      const hasChildren =
+                        (cat._count?.childCategories ?? 0) > 0;
+                      return (
+                        <div
+                          key={cat.id}
+                          className={cn(
+                            "group flex items-center justify-between px-2.5 py-2 text-left text-xs transition-all duration-150 hover:bg-primary/5",
+                            isSelected && "bg-primary/10",
+                          )}
+                        >
+                          <button
+                            type="button"
+                            className="flex items-center gap-2 flex-1 min-w-0 text-left"
+                            onClick={() =>
+                              handleColumnCategoryClick(cat, colIdx)
+                            }
+                          >
+                            <span
+                              className={cn(
+                                "truncate font-medium",
+                                isSelected && "text-primary font-bold",
+                              )}
+                            >
+                              {cat.name}
+                            </span>
+                            {hasChildren && (
+                              <ChevronRight
+                                className={cn(
+                                  "h-3 w-3 shrink-0 text-muted-foreground/60",
+                                  isSelected && "text-primary",
+                                )}
+                              />
+                            )}
+                          </button>
+
+                          <div className="flex items-center gap-0.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button
+                              type="button"
+                              onClick={() => openAddDialog(cat.id)}
+                              className="flex h-6 w-6 items-center justify-center rounded hover:bg-primary/10 hover:text-primary text-muted-foreground/60 transition-colors"
+                              title={sc("addSubcategory")}
+                            >
+                              <Plus className="h-3 w-3" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => openEditDialog(cat)}
+                              className="flex h-6 w-6 items-center justify-center rounded hover:bg-primary/10 hover:text-primary text-muted-foreground/60 transition-colors"
+                              title={sc("edit")}
+                            >
+                              <Pencil className="h-3 w-3" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setDeletingCategory(cat)}
+                              className="flex h-6 w-6 items-center justify-center rounded hover:bg-destructive/10 hover:text-destructive text-muted-foreground/60 transition-colors"
+                              title="Delete"
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </button>
+                          </div>
+
+                          {!isSelected && (
+                            <div className="flex items-center gap-0.5 shrink-0 sm:hidden">
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  openAddDialog(cat.id)
+                                }
+                                className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground"
+                              >
+                                <Plus className="h-3 w-3" />
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="border-t border-border/60">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        openAddDialog(
+                          colIdx === 0
+                            ? null
+                            : selectedColIds[colIdx - 1] ?? null,
+                        )
+                      }
+                      className="flex w-full items-center justify-center gap-1.5 px-3 py-2.5 text-xs font-semibold text-primary bg-primary/5 hover:bg-primary/10 transition-colors rounded-b-xl"
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                      {sc("add")}
+                    </button>
+                  </div>
+
+                  {loadingColIdx === colIdx + 1 && (
+                    <div className="flex items-center justify-center py-8 border-t border-border/60">
+                      <Loader2 className="h-5 w-5 animate-spin text-primary" />
+                    </div>
+                  )}
+                </div>
+              ))}
+
+              {loadingColIdx !== null && loadingColIdx >= columns.length && (
+                <div className="flex-1 min-w-[200px] max-w-[240px] flex flex-col border border-border/60 bg-card rounded-xl overflow-hidden shadow-xs justify-center items-center">
+                  <Loader2 className="h-5 w-5 animate-spin text-primary" />
+                </div>
+              )}
+            </div>
           )}
         </CardContent>
       </Card>
 
-      <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-        <SheetContent side="right" className="flex w-full flex-col sm:max-w-md">
-          <SheetHeader className="border-b px-6 py-5">
-            <SheetTitle className="text-lg">
-              {isEditing ? sc("edit") : sc("add")}
-            </SheetTitle>
-            <SheetDescription>
-              {isEditing ? sc("editDesc") : sc("addDesc")}
-            </SheetDescription>
-          </SheetHeader>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex min-h-0 flex-1 flex-col"
-          >
-            <div className="min-h-0 flex-1 space-y-5 overflow-y-auto px-6 py-5">
-              <div className="space-y-2">
-                <Label htmlFor="name">{sc("nameLabel")}</Label>
-                <Input
-                  id="name"
-                  placeholder={sc("namePlaceholder")}
-                  {...register("name")}
-                />
-                {errors.name && (
-                  <p className="text-xs text-destructive">
-                    {errors.name.message}
+      {/* Add/Edit Dialog */}
+      {dialogOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={closeDialog}
+          />
+          <div className="relative w-full max-w-md animate-in fade-in zoom-in-95 duration-200 px-4">
+            <Card className="shadow-xl border-border/80 rounded-2xl">
+              <CardHeader className="border-b px-6 py-4 bg-muted/10 flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle className="text-base font-semibold">
+                    {isEditing ? sc("edit") : sc("add")}
+                  </CardTitle>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    {isEditing ? sc("editDesc") : sc("addDesc")}
                   </p>
-                )}
-              </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={closeDialog}
+                  className="flex h-7 w-7 items-center justify-center rounded-full hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </CardHeader>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <CardContent className="p-6 space-y-5">
+                  <div className="space-y-2">
+                    <Label htmlFor="cat-name" className="text-sm font-semibold">
+                      {sc("nameLabel")}
+                    </Label>
+                    <Input
+                      id="cat-name"
+                      placeholder={sc("namePlaceholder")}
+                      className="h-10 border-border/80 focus-visible:ring-primary/20 rounded-xl"
+                      {...register("name")}
+                      autoFocus
+                    />
+                    {errors.name && (
+                      <p className="text-xs text-destructive">
+                        {errors.name.message}
+                      </p>
+                    )}
+                  </div>
 
-              <div className="space-y-2">
-                <Label>{sc("parentLabel")}</Label>
-                <Controller
-                  name="parentId"
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      value={field.value ?? "none"}
-                      onValueChange={(val) =>
-                        field.onChange(val === "none" ? null : val)
-                      }
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder={sc("parentPlaceholder")} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="none">
-                          {sc("parentPlaceholder")}
-                        </SelectItem>
-                        {parentOptions.map((cat) => (
-                          <SelectItem key={cat.id} value={cat.id}>
-                            {cat.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-                <p className="text-xs text-muted-foreground">
-                  {sc("parentHint")}
-                </p>
-              </div>
-            </div>
+                  <div className="space-y-2">
+                    <Label className="text-sm font-semibold">
+                      {sc("parentLabel")}
+                    </Label>
+                    <div className="flex h-10 items-center rounded-xl border border-border/80 bg-muted/20 px-3.5 text-sm text-muted-foreground">
+                      {formParentId
+                        ? getCategoryName(formParentId)
+                        : sc("parentPlaceholder")}
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      {sc("parentHint")}
+                    </p>
+                  </div>
+                </CardContent>
 
-            <SheetFooter className="shrink-0 border-t px-6 py-4">
-              <SheetClose asChild>
-                <Button variant="outline" type="button" disabled={submitting}>
-                  {sc("cancel")}
-                </Button>
-              </SheetClose>
-              <Button type="submit" disabled={submitting}>
-                {submitting && (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                )}
-                {isEditing ? sc("update") : sc("save")}
-              </Button>
-            </SheetFooter>
-          </form>
-        </SheetContent>
-      </Sheet>
+                <div className="flex justify-end gap-3 border-t px-6 py-4">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={closeDialog}
+                    disabled={submitting}
+                    className="rounded-xl"
+                  >
+                    {sc("cancel")}
+                  </Button>
+                  <Button
+                    type="submit"
+                    disabled={submitting}
+                    className="rounded-xl"
+                  >
+                    {submitting && (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    )}
+                    {isEditing ? sc("update") : sc("save")}
+                  </Button>
+                </div>
+              </form>
+            </Card>
+          </div>
+        </div>
+      )}
 
       <DeleteAlertDialog
         open={deletingCategory !== null}
@@ -395,227 +523,6 @@ function CreateCategoryContent() {
       />
     </div>
   );
-
-  function renderTreeNode(node: TreeNode) {
-    const childCategories = categories
-      .filter((c) => c.parentId === node.id)
-      .map((c) => ({
-        id: c.id,
-        name: c.name,
-        parentId: c.parentId,
-        depth: node.depth + 1,
-        _count: c._count,
-      }));
-    const childCount = node._count?.childCategories ?? childCategories.length;
-    const hasChildren = childCount > 0;
-    const isExpanded = expandedIds.has(node.id);
-    const parentName = getParentName(categories, node);
-    const isLoading = loadingChildren.has(node.id);
-
-    return (
-      <div key={node.id}>
-        <div
-          className="flex cursor-pointer items-center gap-2 border-b border-border/50 px-4 py-3 transition-colors hover:bg-muted/40 last:border-b-0"
-          style={{ paddingLeft: `${node.depth * 28 + 16}px` }}
-          onClick={() => toggleExpand(node)}
-        >
-          <span className="flex h-5 w-5 shrink-0 items-center justify-center">
-            {isLoading ? (
-              <Loader2 className="h-3.5 w-3.5 animate-spin text-muted-foreground" />
-            ) : hasChildren ? (
-              isExpanded ? (
-                <ChevronDown className="h-4 w-4 text-muted-foreground" />
-              ) : (
-                <ChevronRight className="h-4 w-4 text-muted-foreground" />
-              )
-            ) : (
-              <span className="h-4 w-4" />
-            )}
-          </span>
-
-          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/8 text-primary">
-            {hasChildren ? (
-              isExpanded ? (
-                <FolderOpen className="h-3.5 w-3.5" />
-              ) : (
-                <Folder className="h-3.5 w-3.5" />
-              )
-            ) : (
-              <FolderTree className="h-3.5 w-3.5" />
-            )}
-          </span>
-
-          {childCount > 0 && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span className="flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 px-1.5 text-[10px] font-medium text-primary">
-                  {childCount}
-                </span>
-              </TooltipTrigger>
-              <TooltipContent side="top">
-                <p className="text-xs">
-                  {childCount}{" "}
-                  {childCount === 1 ? sc("subcategory") : sc("subcategories")}
-                </p>
-              </TooltipContent>
-            </Tooltip>
-          )}
-
-          <span className="flex-1 truncate text-sm font-medium">
-            {node.name}
-          </span>
-
-          {parentName && (
-            <span className="hidden shrink-0 text-xs text-muted-foreground sm:inline">
-              {parentName}
-            </span>
-          )}
-
-          <div
-            className="flex shrink-0 items-center gap-1"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-muted-foreground hover:text-foreground"
-              onClick={() => {
-                setEditingCategory(null);
-                reset({ name: "", parentId: node.id });
-                setSheetOpen(true);
-              }}
-              title={sc("addSubcategory")}
-            >
-              <Plus className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-muted-foreground hover:text-foreground"
-              onClick={() => {
-                const cat = categories.find((c) => c.id === node.id);
-                if (cat) {
-                  setEditingCategory(cat);
-                  reset({ name: cat.name, parentId: cat.parentId });
-                  setSheetOpen(true);
-                }
-              }}
-            >
-              <Pencil className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-destructive hover:text-destructive"
-              onClick={() => {
-                const cat = categories.find((c) => c.id === node.id);
-                if (cat) setDeletingCategory(cat);
-              }}
-            >
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-        {hasChildren && isExpanded && (
-          <div>
-            {childCategories.map((child) => (
-              <Fragment key={child.id}>{renderTreeNode(child)}</Fragment>
-            ))}
-          </div>
-        )}
-      </div>
-    );
-  }
-
-  async function onSubmit(data: CreateCategoryFormData) {
-    setSubmitting(true);
-    const payload = {
-      name: data.name,
-      parentId: data.parentId || undefined,
-    };
-
-    if (isEditing && editingCategory) {
-      const res = await updateCategory(editingCategory.id, payload);
-      if (res.data) {
-        setCategories((prev) =>
-          prev.map((c) =>
-            c.id === editingCategory.id
-              ? { ...c, name: data.name, parentId: data.parentId ?? null }
-              : c,
-          ),
-        );
-        toast.success("Category updated");
-        setSheetOpen(false);
-      } else {
-        toast.error(res.error || "Failed to update category");
-      }
-    } else {
-      const res = await createCategory(payload);
-      if (res.data) {
-        const parent = data.parentId
-          ? (categories.find((c) => c.id === data.parentId) ?? null)
-          : null;
-        const newCat: Category = {
-          id: res.data.id,
-          name: data.name,
-          parentId: data.parentId ?? null,
-          parent: parent ? { id: parent.id, name: parent.name } : null,
-        };
-        setCategories((prev) => {
-          const normalized = normalizeParentId(newCat);
-          const withNew = [normalized, ...prev];
-          if (data.parentId) {
-            return withNew.map((c) =>
-              c.id === data.parentId
-                ? {
-                    ...c,
-                    _count: {
-                      childCategories: (c._count?.childCategories ?? 0) + 1,
-                    },
-                  }
-                : c,
-            );
-          }
-          return withNew;
-        });
-        toast.success("Category created");
-        setSheetOpen(false);
-      } else {
-        toast.error(res.error || "Failed to create category");
-      }
-    }
-    setSubmitting(false);
-  }
-
-  async function confirmDelete() {
-    if (!deletingCategory) return;
-    const res = await deleteCategory(deletingCategory.id);
-    if (res.success) {
-      setCategories((prev) => {
-        const without = prev.filter((c) => c.id !== deletingCategory.id);
-        if (deletingCategory.parentId) {
-          return without.map((c) =>
-            c.id === deletingCategory.parentId
-              ? {
-                  ...c,
-                  _count: {
-                    childCategories: Math.max(
-                      0,
-                      (c._count?.childCategories ?? 1) - 1,
-                    ),
-                  },
-                }
-              : c,
-          );
-        }
-        return without;
-      });
-      toast.success("Category deleted");
-    } else {
-      toast.error(res.error || "Failed to delete category");
-    }
-    setDeletingCategory(null);
-  }
 }
 
 export default function CreateCategoryPage() {

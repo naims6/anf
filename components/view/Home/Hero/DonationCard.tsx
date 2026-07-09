@@ -76,7 +76,7 @@ export default function DonationCard() {
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-primary/20 shadow-lg p-6 md:w-[65%] mx-auto pb-10 relative overflow-hidden group">
+    <div className="bg-gradient-to-b from-emerald-50 to-white rounded-2xl border border-emerald-100 shadow-lg p-6 md:w-[55%] mx-auto pb-10 relative overflow-hidden">
 
       {/* Header */}
       <div className="text-center mb-8">
@@ -91,24 +91,26 @@ export default function DonationCard() {
           <Label htmlFor="fund" className="text-sm font-semibold text-gray-700 font-bangla">
             {t.fundSelectionLabel}
           </Label>
-          <Select
-            onValueChange={(val) => setValue('fund', val, { shouldValidate: true })}
-            disabled={fundsLoading}
-          >
-            <SelectTrigger
-              id="fund"
-              className={`w-full h-12 rounded-xl border-gray-300 bg-white font-bangla text-gray-700 shadow-xs transition-all ${errors.fund ? 'ring-2 ring-red-400 border-red-400' : ''}`}
+          <div className="w-full">
+            <Select
+              onValueChange={(val) => setValue('fund', val, { shouldValidate: true })}
+              disabled={fundsLoading}
             >
-              <SelectValue placeholder={fundsLoading ? 'Loading...' : t.fundPlaceholder} />
-            </SelectTrigger>
-            <SelectContent className="rounded-xl border border-gray-200 shadow-lg bg-white font-bangla">
-              {funds?.map((fund) => (
-                <SelectItem key={fund.id} value={fund.id} className="font-bangla text-gray-700 hover:bg-emerald-50 focus:bg-emerald-50 cursor-pointer">
-                  {fund.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+              <SelectTrigger
+                id="fund"
+                className={`w-full !h-12 rounded-xl border-gray-300 bg-white font-bangla text-gray-700 shadow-xs transition-all ${errors.fund ? 'ring-2 ring-red-400 border-red-400' : ''}`}
+              >
+                <SelectValue placeholder={fundsLoading ? 'Loading...' : t.fundPlaceholder} />
+              </SelectTrigger>
+              <SelectContent className="rounded-xl border border-gray-200 shadow-lg bg-white font-bangla">
+                {funds?.map((fund) => (
+                  <SelectItem key={fund.id} value={fund.id} className="font-bangla text-gray-700 hover:bg-emerald-50 focus:bg-emerald-50 cursor-pointer">
+                    {fund.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
           {errors.fund && (
             <p className="text-red-500 text-xs mt-1">{errors.fund.message}</p>
           )}

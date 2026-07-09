@@ -1,13 +1,22 @@
 "use client";
 
+import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const LanguageToggle = () => {
   const { locale, setLocale } = useLanguage();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const toggleLanguage = () => {
     const newLocale = locale === "en" ? "bn" : "en";
     setLocale(newLocale);
+
+    const segments = pathname.split("/");
+    if (segments[1] === "en" || segments[1] === "bn") {
+      segments[1] = newLocale;
+    }
+    router.replace(segments.join("/") + window.location.search);
   };
 
   const isBengali = locale === "bn";

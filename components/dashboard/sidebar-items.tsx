@@ -4,6 +4,7 @@ import {
   FileText,
   type LucideIcon,
   Shield,
+  Heart,
 } from "lucide-react";
 
 export interface NavItem {
@@ -48,6 +49,13 @@ export const navItems: NavItem[] = [
         href: "/dashboard/articles/create-category",
       },
     ],
+  },
+  {
+    labelKey: "donation",
+    icon: Heart,
+    href: "/dashboard/donation",
+    group: "management",
+    items: [{ labelKey: "fund", href: "/dashboard/donation/fund" }],
   },
   {
     labelKey: "rbac",

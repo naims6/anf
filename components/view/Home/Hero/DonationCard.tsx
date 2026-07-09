@@ -18,6 +18,7 @@ import bnHomepageMessages from '@/messages/bn/homepage.json';
 interface Fund {
   id: string
   name: string
+  nameBN: string
 }
 
 export default function DonationCard() {
@@ -105,7 +106,7 @@ export default function DonationCard() {
               <SelectContent className="rounded-xl border border-gray-200 shadow-lg bg-white font-bangla">
                 {funds?.map((fund) => (
                   <SelectItem key={fund.id} value={fund.id} className="font-bangla text-gray-700 hover:bg-emerald-50 focus:bg-emerald-50 cursor-pointer">
-                    {fund.name}
+                    {locale === 'bn' ? fund.nameBN : fund.name}
                   </SelectItem>
                 ))}
               </SelectContent>

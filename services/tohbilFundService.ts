@@ -5,6 +5,7 @@ import { apiClient } from "@/lib/api-client"
 interface TohbilFund {
   id: string
   name: string
+  nameBN: string
   isActive: boolean
   createdAt: string
   updatedAt: string

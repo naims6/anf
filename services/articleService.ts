@@ -10,7 +10,6 @@ import type {
   ArticleDetail,
   ApiResponse,
   ApiPaginatedResponse,
-  PaginationMeta,
 } from "@/lib/validations/articles"
 
 export async function createArticle(data: CreateArticleFormData) {

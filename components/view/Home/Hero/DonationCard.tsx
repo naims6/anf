@@ -1,13 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Heart } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Heart, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { getActiveTohbilFunds } from '@/services/tohbilFundService';
+import { initPayment } from '@/services/paymentService';
+import { donationSchema, type DonationFormData } from '@/lib/validations/donation';
 import enHomepageMessages from '@/messages/en/homepage.json';
 import bnHomepageMessages from '@/messages/bn/homepage.json';
 
@@ -17,51 +21,85 @@ interface Fund {
 }
 
 export default function DonationCard() {
-  const [selectedFund, setSelectedFund] = useState('');
-  const [amount, setAmount] = useState('');
-  const [contact, setContact] = useState('');
   const [funds, setFunds] = useState<Fund[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [fundsLoading, setFundsLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
   const { locale } = useLanguage();
   const t = locale === 'bn' ? bnHomepageMessages.HomePage.DonationCard : enHomepageMessages.HomePage.DonationCard;
 
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<DonationFormData>({
+    resolver: zodResolver(donationSchema),
+  });
+
   useEffect(() => {
     async function fetchFunds() {
-      setLoading(true);
+      setFundsLoading(true);
       const result = await getActiveTohbilFunds();
       if (result.data) {
         setFunds(result.data);
       }
-      setLoading(false);
+      setFundsLoading(false);
     }
     fetchFunds();
   }, []);
 
-  const handleDonate = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ selectedFund, amount, contact });
-  };
+  async function onSubmit(data: DonationFormData) {
+    setSubmitting(true);
+
+    const isEmail = data.contact.includes('@');
+    const payload = {
+      amount: Number(data.amount),
+      paymentPurpose: 'DONATION' as const,
+      tohbilId: data.fund,
+      ...(isEmail
+        ? { email: data.contact }
+        : { phone: data.contact }),
+    };
+
+    const result = await initPayment(payload);
+    if (result.error) {
+      alert(result.error);
+      setSubmitting(false);
+      return;
+    }
+
+    const gatewayUrl = result.data?.data.paymentUrl;
+    if (gatewayUrl) {
+      window.location.assign(gatewayUrl);
+    }
+  }
 
   return (
     <div className="bg-white rounded-2xl border border-primary/20 shadow-lg p-6 md:w-[65%] mx-auto pb-10 relative overflow-hidden group">
 
       {/* Header */}
-      <div className="text-center mb-6">
+      <div className="text-center mb-8">
         <h3 className="text-xl md:text-3xl font-bold text-gray-900 mb-3 font-bangla">
           {t.title}
         </h3>
       </div>
 
-      <form onSubmit={handleDonate} className="space-y-4 md:space-y-0 md:flex md:items-end md:gap-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-0 md:flex md:items-end md:gap-4">
         {/* Fund Selection */}
         <div className="space-y-2 md:flex-1">
           <Label htmlFor="fund" className="text-sm font-semibold text-gray-700 font-bangla">
             {t.fundSelectionLabel}
           </Label>
-          <Select value={selectedFund} onValueChange={setSelectedFund} disabled={loading}>
-            <SelectTrigger className="w-full h-12 rounded-xl border-gray-300 bg-white font-bangla text-gray-700 shadow-xs transition-all">
-              <SelectValue placeholder={loading ? 'Loading...' : t.fundPlaceholder} />
+          <Select
+            onValueChange={(val) => setValue('fund', val, { shouldValidate: true })}
+            disabled={fundsLoading}
+          >
+            <SelectTrigger
+              id="fund"
+              className={`w-full h-12 rounded-xl border-gray-300 bg-white font-bangla text-gray-700 shadow-xs transition-all ${errors.fund ? 'ring-2 ring-red-400 border-red-400' : ''}`}
+            >
+              <SelectValue placeholder={fundsLoading ? 'Loading...' : t.fundPlaceholder} />
             </SelectTrigger>
             <SelectContent className="rounded-xl border border-gray-200 shadow-lg bg-white font-bangla">
               {funds?.map((fund) => (
@@ -71,6 +109,9 @@ export default function DonationCard() {
               ))}
             </SelectContent>
           </Select>
+          {errors.fund && (
+            <p className="text-red-500 text-xs mt-1">{errors.fund.message}</p>
+          )}
         </div>
 
         {/* Contact Input */}
@@ -81,12 +122,13 @@ export default function DonationCard() {
           <Input
             id="contact"
             type="text"
-            value={contact}
-            onChange={(e) => setContact(e.target.value)}
+            {...register('contact')}
             placeholder={t.contactPlaceholder}
-            className="h-12 rounded-xl border-gray-300 bg-white text-gray-700 shadow-xs"
-            required
+            className={`h-12 rounded-xl border-gray-300 bg-white font-bangla text-gray-700 shadow-xs ${errors.contact ? 'ring-2 ring-red-400 border-red-400' : ''}`}
           />
+          {errors.contact && (
+            <p className="text-red-500 text-xs mt-1">{errors.contact.message}</p>
+          )}
         </div>
 
         {/* Amount Input */}
@@ -101,22 +143,28 @@ export default function DonationCard() {
             <Input
               id="amount"
               type="text"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              {...register('amount')}
               placeholder={t.amountPlaceholder}
-              className="pl-8 h-12 rounded-xl border-gray-300 bg-white text-lg text-gray-700 shadow-xs"
-              required
+              className={`pl-8 h-12 rounded-xl border-gray-300 bg-white text-lg font-semibold font-bangla text-gray-700 shadow-xs ${errors.amount ? 'ring-2 ring-red-400 border-red-400' : ''}`}
             />
           </div>
+          {errors.amount && (
+            <p className="text-red-500 text-xs mt-1">{errors.amount.message}</p>
+          )}
         </div>
 
         {/* Donate Button */}
         <Button
           type="submit"
-          className="w-full h-12 md:w-auto md:flex-1 bg-linear-to-r from-emerald-500 to-green-600 text-white rounded-xl text-lg font-semibold shadow-sm hover:from-emerald-600 hover:to-green-700 transition-all duration-200"
+          disabled={submitting}
+          className="w-full h-12 md:w-auto md:flex-1 bg-linear-to-r from-emerald-500 to-green-600 text-white rounded-xl text-lg font-semibold shadow-sm hover:from-emerald-600 hover:to-green-700 transition-all duration-200 disabled:opacity-60"
         >
-          <Heart className="w-5 h-5 mr-2" />
-          {t.donateButton}
+          {submitting ? (
+            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+          ) : (
+            <Heart className="w-5 h-5 mr-2" />
+          )}
+          {submitting ? 'Processing...' : t.donateButton}
         </Button>
       </form>
     </div>

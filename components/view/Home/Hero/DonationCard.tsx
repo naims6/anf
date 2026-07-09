@@ -1,31 +1,42 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { getActiveTohbilFunds } from '@/services/tohbilFundService';
 import enHomepageMessages from '@/messages/en/homepage.json';
 import bnHomepageMessages from '@/messages/bn/homepage.json';
+
+interface Fund {
+  id: string
+  name: string
+}
 
 export default function DonationCard() {
   const [selectedFund, setSelectedFund] = useState('');
   const [amount, setAmount] = useState('');
   const [contact, setContact] = useState('');
+  const [funds, setFunds] = useState<Fund[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const { locale } = useLanguage();
   const t = locale === 'bn' ? bnHomepageMessages.HomePage.DonationCard : enHomepageMessages.HomePage.DonationCard;
 
-  const donationFunds = [
-    { value: 'zakat', label: t.funds?.zakat || (locale === 'bn' ? 'যাকাত' : 'Zakat') },
-    { value: 'sadaqah', label: t.funds?.sadaqah || (locale === 'bn' ? 'সাদাকাহ' : 'Sadaqah') },
-    { value: 'education', label: t.funds?.education || (locale === 'bn' ? 'শিক্ষা তহবিল' : 'Education Fund') },
-    { value: 'emergency', label: t.funds?.emergency || (locale === 'bn' ? 'জরুরী তহবিল' : 'Emergency Fund') },
-    { value: 'winter', label: t.funds?.winter || (locale === 'bn' ? 'শীতবার্তা তহবিল' : 'Winter Relief Fund') },
-    { value: 'qurbani', label: t.funds?.qurbani || (locale === 'bn' ? 'কুরবানি তহবিল' : 'Qurbani Fund') },
-  ];
+  useEffect(() => {
+    async function fetchFunds() {
+      setLoading(true);
+      const result = await getActiveTohbilFunds();
+      if (result.data) {
+        setFunds(result.data);
+      }
+      setLoading(false);
+    }
+    fetchFunds();
+  }, []);
 
   const handleDonate = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,7 +48,7 @@ export default function DonationCard() {
 
       {/* Header */}
       <div className="text-center mb-6">
-        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 font-bangla">
+        <h3 className="text-xl md:text-3xl font-bold text-gray-900 mb-3 font-bangla">
           {t.title}
         </h3>
       </div>
@@ -48,14 +59,14 @@ export default function DonationCard() {
           <Label htmlFor="fund" className="text-sm font-semibold text-gray-700 font-bangla">
             {t.fundSelectionLabel}
           </Label>
-          <Select value={selectedFund} onValueChange={setSelectedFund}>
+          <Select value={selectedFund} onValueChange={setSelectedFund} disabled={loading}>
             <SelectTrigger className="w-full h-12 rounded-xl border-gray-300 bg-white font-bangla text-gray-700 shadow-xs transition-all">
-              <SelectValue placeholder={t.fundPlaceholder} />
+              <SelectValue placeholder={loading ? 'Loading...' : t.fundPlaceholder} />
             </SelectTrigger>
             <SelectContent className="rounded-xl border border-gray-200 shadow-lg bg-white font-bangla">
-              {donationFunds?.map((fund) => (
-                <SelectItem key={fund.value} value={fund.value} className="font-bangla text-gray-700 hover:bg-emerald-50 focus:bg-emerald-50 cursor-pointer">
-                  {fund.label}
+              {funds?.map((fund) => (
+                <SelectItem key={fund.id} value={fund.id} className="font-bangla text-gray-700 hover:bg-emerald-50 focus:bg-emerald-50 cursor-pointer">
+                  {fund.name}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -73,7 +84,7 @@ export default function DonationCard() {
             value={contact}
             onChange={(e) => setContact(e.target.value)}
             placeholder={t.contactPlaceholder}
-            className="h-12 rounded-xl border-gray-300 bg-white font-bangla text-gray-700 shadow-xs"
+            className="h-12 rounded-xl border-gray-300 bg-white text-gray-700 shadow-xs"
             required
           />
         </div>
@@ -93,8 +104,7 @@ export default function DonationCard() {
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder={t.amountPlaceholder}
-              className="pl-8 h-12 rounded-xl border-gray-300 bg-white text-lg font-semibold font-bangla text-gray-700 shadow-xs"
-              min="1"
+              className="pl-8 h-12 rounded-xl border-gray-300 bg-white text-lg text-gray-700 shadow-xs"
               required
             />
           </div>
@@ -103,7 +113,7 @@ export default function DonationCard() {
         {/* Donate Button */}
         <Button
           type="submit"
-          className="w-full h-12 md:w-auto md:flex-1 bg-linear-to-r from-emerald-500 to-green-600 text-white rounded-xl text-lg font-semibold font-bangla shadow-sm hover:from-emerald-600 hover:to-green-700 transition-all duration-200"
+          className="w-full h-12 md:w-auto md:flex-1 bg-linear-to-r from-emerald-500 to-green-600 text-white rounded-xl text-lg font-semibold shadow-sm hover:from-emerald-600 hover:to-green-700 transition-all duration-200"
         >
           <Heart className="w-5 h-5 mr-2" />
           {t.donateButton}

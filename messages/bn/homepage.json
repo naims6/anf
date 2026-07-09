@@ -11,10 +11,10 @@
       "title": "আপনার অনুদান প্রদান করুন",
       "fundSelectionLabel": "তহবিল নির্বাচন করুন",
       "fundPlaceholder": "তহবিল নির্বাচন করুন",
-      "contactLabel": "ফোন নম্বর বা ইমেইল",
-      "contactPlaceholder": "01XXXXXXXXX",
+      "contactLabel": "ফোন নম্বর / ইমেইল",
+      "contactPlaceholder": "ফোন নম্বর / ইমেইল লিখুন",
       "amountLabel": "পরিমাণ (টাকা)",
-      "amountPlaceholder": "1000",
+      "amountPlaceholder": "সংখায় লিখুন",
       "donateButton": "দান করুন",
       "funds": {
         "zakat": "যাকাত",

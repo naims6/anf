@@ -11,10 +11,10 @@
       "title": "Make Your Donation",
       "fundSelectionLabel": "Select Fund",
       "fundPlaceholder": "Select Fund",
-      "contactLabel": "Phone Number or Email",
-      "contactPlaceholder": "01XXXXXXXXX",
+      "contactLabel": "Phone Number / Email",
+      "contactPlaceholder": "Type Phone/Email",
       "amountLabel": "Amount (BDT)",
-      "amountPlaceholder": "1000",
+      "amountPlaceholder": "Write in Number",
       "donateButton": "Donate",
       "funds": {
         "zakat": "Zakat",
